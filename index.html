@@ -768,7 +768,7 @@ function makeChar(f,T){
 const EZ=-11;
 // ---------- real 3D hero (AI model + Mixamo animations) ----------
 let HERO=null,eRig=null;const HERO_H=2.12;
-try{if(THREE.GLTFLoader)new THREE.GLTFLoader().load('hero.glb?v=1',g=>{
+try{if(THREE.GLTFLoader)new THREE.GLTFLoader().load('hero.glb?v=2',g=>{
   g.animations.forEach(c=>{if(c.name==='walk'||c.name==='run')c.tracks.forEach(tr=>{if(/Hips\.position$/.test(tr.name)){const v=tr.values;for(let i=0;i<v.length;i+=3){v[i]=v[0];v[i+2]=v[2];}}});});
   g.scene.traverse(o=>{if(o.isMesh){o.castShadow=true;o.frustumCulled=false;const m=o.material;if(m.map)m.map.encoding=THREE.LinearEncoding;m.roughness=.8;m.metalness=0;m.needsUpdate=true;}});
   HERO={scene:g.scene,clips:g.animations};
@@ -786,10 +786,10 @@ function tintHero(R,f){const th=new THREE.Color(f.thobe!=null?f.thobe:0xF4F2EC),
   const plain=c=>c.r>.86&&c.g>.86&&c.b>.84;if(plain(th)&&plain(sh)&&f.iqal==null)return;
   R.root.traverse(o=>{if(!o.isMesh)return;const m=o.material.clone();o.material=m;m.normalMap=null;m.roughness=1;
     m.onBeforeCompile=sh0=>{sh0.uniforms.uTh={value:th};sh0.uniforms.uSh={value:sh};sh0.uniforms.uIq={value:iq};
-      sh0.vertexShader=sh0.vertexShader.replace('#include <common>','#include <common>\nvarying float vBindY;').replace('#include <begin_vertex>','#include <begin_vertex>\nvBindY=position.y;');
-      sh0.fragmentShader=sh0.fragmentShader.replace('#include <common>','#include <common>\nvarying float vBindY;uniform vec3 uTh;uniform vec3 uSh;uniform vec3 uIq;')
-        .replace('#include <map_fragment>','#include <map_fragment>\n{vec3 c=diffuseColor.rgb;float mx=max(c.r,max(c.g,c.b)),mn=min(c.r,min(c.g,c.b));float w=smoothstep(.22,.45,mx)*(1.-smoothstep(.3,.5,mx-mn))*(1.-smoothstep(.24,.34,c.r-c.b));float head=step(158.,vBindY);vec3 t=mix(uTh,uSh,head);float l=clamp(dot(c,vec3(.3,.59,.11))*1.12,0.,1.);diffuseColor.rgb=mix(c,t*l,w);float dk=(1.-smoothstep(.12,.25,mx))*step(181.,vBindY);diffuseColor.rgb=mix(diffuseColor.rgb,uIq*(.6+mx*2.),dk);}');};
-    m.customProgramCacheKey=()=>'tint';m.needsUpdate=true;});}
+      const hasG=!!o.geometry.attributes._ghutra;sh0.vertexShader=sh0.vertexShader.replace('#include <common>','#include <common>\nvarying float vBindY;varying float vG;'+(hasG?'attribute float _ghutra;':'')).replace('#include <begin_vertex>','#include <begin_vertex>\nvBindY=position.y;vG='+(hasG?'_ghutra':'step(158.,position.y)')+';');
+      sh0.fragmentShader=sh0.fragmentShader.replace('#include <common>','#include <common>\nvarying float vBindY;varying float vG;uniform vec3 uTh;uniform vec3 uSh;uniform vec3 uIq;')
+        .replace('#include <map_fragment>','#include <map_fragment>\n{vec3 c=diffuseColor.rgb;float mx=max(c.r,max(c.g,c.b)),mn=min(c.r,min(c.g,c.b));float w=smoothstep(.18,.4,mx)*(1.-smoothstep(.27,.4,mx-mn));float head=smoothstep(.35,.65,vG);vec3 t=mix(uTh,uSh,head);float l=clamp(dot(c,vec3(.3,.59,.11))*1.12,0.,1.);diffuseColor.rgb=mix(c,t*l,w);float dk=(1.-smoothstep(.12,.25,mx))*step(181.,vBindY);diffuseColor.rgb=mix(diffuseColor.rgb,uIq*(.6+mx*2.),dk);}');};
+    m.customProgramCacheKey=()=>'tint2';m.needsUpdate=true;});}
 function fitBisht(G){G.traverse(o=>{if(o.userData.btop){o.visible=false;return;}if(o.userData.bisht){o.scale.x*=.74;o.scale.z*=.62;o.scale.y*=.95;o.position.x*=.74;o.position.z*=.62;o.position.y*=.9;}});}
 function lobHero(G,anim,dark,look){if(!HERO||save.realChar===false)return;
   G.traverse(o=>{if(o.isMesh&&o.material&&!(look&&o.userData.bisht)){o.material=o.material.clone();o.material.visible=false;}});
