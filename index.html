@@ -760,10 +760,10 @@ function makeChar(f,T){
   const eg=new THREE.Group();const brl=new THREE.Mesh(new THREE.BoxGeometry(.05,.05,.32),gun);brl.position.z=.14;eg.add(brl);const gr=new THREE.Mesh(new THREE.BoxGeometry(.05,.15,.07),grip);gr.position.set(0,-.08,0);eg.add(gr);eg.position.y=-.8;eg.rotation.x=-Math.PI/2;shoulder.add(eg);
   const flash=new THREE.Mesh(new THREE.SphereGeometry(.12,6,5),new THREE.MeshBasicMaterial({color:0xFFE08A}));flash.position.set(0,-.8,0);flash.visible=false;eg.add(flash);flash.position.set(0,0,.36);
   const belt=new THREE.Mesh(new THREE.TorusGeometry(.42,.04,5,14),M(0x6B3E1F));belt.rotation.x=Math.PI/2;belt.position.y=1.05;T.add(belt);
-  if(f.bisht!=null){const gap=.9,bm=M(f.bisht,{side:THREE.DoubleSide});const bs=new THREE.Mesh(new THREE.CylinderGeometry(.4,.62,1.5,14,1,true,gap/2,Math.PI*2-gap),bm);bs.position.y=.95;bs.userData.part='body';T.add(bs);
-    const sh=new THREE.Mesh(new THREE.CylinderGeometry(.44,.4,.12,14),bm);sh.position.y=1.72;sh.userData.part='body';T.add(sh);
-    if(f.trim){const gm=M(0xD4A73A,{metalness:.6,roughness:.35});[-1,1].forEach(sd=>{const tr=new THREE.Mesh(new THREE.BoxGeometry(.03,1.45,.03),gm);const a=gap/2*sd;tr.position.set(Math.sin(a)*.52,.97,Math.cos(a)*.52);tr.userData.part='body';T.add(tr);});
-      const col=new THREE.Mesh(new THREE.TorusGeometry(.42,.02,5,16),gm);col.rotation.x=Math.PI/2;col.position.y=1.76;T.add(col);}}
+  if(f.bisht!=null){const gap=.9,bm=M(f.bisht,{side:THREE.DoubleSide});const bs=new THREE.Mesh(new THREE.CylinderGeometry(.4,.62,1.5,14,1,true,gap/2,Math.PI*2-gap),bm);bs.position.y=.95;bs.userData.part='body';bs.userData.bisht=1;T.add(bs);
+    const sh=new THREE.Mesh(new THREE.CylinderGeometry(.44,.4,.12,14),bm);sh.position.y=1.72;sh.userData.part='body';sh.userData.bisht=1;sh.userData.btop=1;T.add(sh);
+    if(f.trim){const gm=M(0xD4A73A,{metalness:.6,roughness:.35});[-1,1].forEach(sd=>{const tr=new THREE.Mesh(new THREE.BoxGeometry(.03,1.45,.03),gm);const a=gap/2*sd;tr.position.set(Math.sin(a)*.52,.97,Math.cos(a)*.52);tr.userData.part='body';tr.userData.bisht=1;T.add(tr);});
+      const col=new THREE.Mesh(new THREE.TorusGeometry(.42,.02,5,16),gm);col.rotation.x=Math.PI/2;col.position.y=1.76;col.userData.bisht=1;col.userData.btop=1;T.add(col);}}
   return {head,ghutra,shoulder,flash,armL,gun:eg};}
 const EZ=-11;
 // ---------- real 3D hero (AI model + Mixamo animations) ----------
@@ -772,7 +772,7 @@ try{if(THREE.GLTFLoader)new THREE.GLTFLoader().load('hero.glb?v=1',g=>{
   g.animations.forEach(c=>{if(c.name==='walk'||c.name==='run')c.tracks.forEach(tr=>{if(/Hips\.position$/.test(tr.name)){const v=tr.values;for(let i=0;i<v.length;i+=3){v[i]=v[0];v[i+2]=v[2];}}});});
   g.scene.traverse(o=>{if(o.isMesh){o.castShadow=true;o.frustumCulled=false;const m=o.material;if(m.map)m.map.encoding=THREE.LinearEncoding;m.roughness=.8;m.metalness=0;m.needsUpdate=true;}});
   HERO={scene:g.scene,clips:g.animations};
-  if(state==='menu'||state==='lobby')buildEnemy(foe,true);},undefined,e=>console.warn('hero.glb not loaded',e));}catch(e){}
+  if(state==='menu'||state==='lobby')buildEnemy(foe,true);try{if(lineup.length){const k=lobI;buildLineup();lobI=Math.min(k,lineup.length-1);}}catch(e){}},undefined,e=>console.warn('hero.glb not loaded',e));}catch(e){}
 function heroInstance(){const o=THREE.SkeletonUtils?THREE.SkeletonUtils.clone(HERO.scene):HERO.scene.clone(true);const b=new THREE.Box3().setFromObject(HERO.scene);
   o.scale.setScalar(HERO_H/Math.max(1e-6,b.max.y-b.min.y));const bones={};o.traverse(x=>{if(x.isBone)bones[x.name.replace(/^mixamorig:?/,'')]=x;});
   const mix=new THREE.AnimationMixer(o);const A={};HERO.clips.forEach(c=>{A[c.name]=mix.clipAction(c);});
@@ -780,6 +780,22 @@ function heroInstance(){const o=THREE.SkeletonUtils?THREE.SkeletonUtils.clone(HE
   const R={root:o,mix,A,bones,cur:null,arm:0,play(n,fade){const a=A[n];if(!a||R.cur===n)return;const prev=R.cur&&A[R.cur];a.reset();a.enabled=true;a.setEffectiveWeight(1);a.play();if(prev)prev.crossFadeTo(a,fade==null?.25:fade,false);R.cur=n;}};
   mix.addEventListener('finished',ev=>{if(ev.action===A.hit&&R.cur==='hit')R.play('idle',.3);});
   R.play('idle',0);return R;}
+let lobRigs=[];
+// recolour the white cloth of the real model: thobe below the neck, ghutra above it
+function tintHero(R,f){const th=new THREE.Color(f.thobe!=null?f.thobe:0xF4F2EC),sh=new THREE.Color(f.shemagh!=null?f.shemagh:0xF8F8F4),iq=new THREE.Color(f.iqal!=null?f.iqal:0x1C1612);
+  const plain=c=>c.r>.86&&c.g>.86&&c.b>.84;if(plain(th)&&plain(sh)&&f.iqal==null)return;
+  R.root.traverse(o=>{if(!o.isMesh)return;const m=o.material.clone();o.material=m;m.normalMap=null;m.roughness=1;
+    m.onBeforeCompile=sh0=>{sh0.uniforms.uTh={value:th};sh0.uniforms.uSh={value:sh};sh0.uniforms.uIq={value:iq};
+      sh0.vertexShader=sh0.vertexShader.replace('#include <common>','#include <common>\nvarying float vBindY;').replace('#include <begin_vertex>','#include <begin_vertex>\nvBindY=position.y;');
+      sh0.fragmentShader=sh0.fragmentShader.replace('#include <common>','#include <common>\nvarying float vBindY;uniform vec3 uTh;uniform vec3 uSh;uniform vec3 uIq;')
+        .replace('#include <map_fragment>','#include <map_fragment>\n{vec3 c=diffuseColor.rgb;float mx=max(c.r,max(c.g,c.b)),mn=min(c.r,min(c.g,c.b));float w=smoothstep(.22,.45,mx)*(1.-smoothstep(.3,.5,mx-mn))*(1.-smoothstep(.24,.34,c.r-c.b));float head=step(158.,vBindY);vec3 t=mix(uTh,uSh,head);float l=clamp(dot(c,vec3(.3,.59,.11))*1.12,0.,1.);diffuseColor.rgb=mix(c,t*l,w);float dk=(1.-smoothstep(.12,.25,mx))*step(181.,vBindY);diffuseColor.rgb=mix(diffuseColor.rgb,uIq*(.6+mx*2.),dk);}');};
+    m.customProgramCacheKey=()=>'tint';m.needsUpdate=true;});}
+function fitBisht(G){G.traverse(o=>{if(o.userData.btop){o.visible=false;return;}if(o.userData.bisht){o.scale.x*=.74;o.scale.z*=.62;o.scale.y*=.95;o.position.x*=.74;o.position.z*=.62;o.position.y*=.9;}});}
+function lobHero(G,anim,dark,look){if(!HERO||save.realChar===false)return;
+  G.traverse(o=>{if(o.isMesh&&o.material&&!(look&&o.userData.bisht)){o.material=o.material.clone();o.material.visible=false;}});
+  const R=heroInstance();R.root.userData.hero=1;
+  if(dark)R.root.traverse(o=>{if(o.isMesh){o.material=o.material.clone();o.material.color.setHex(0x1a1410);o.material.map=null;o.material.needsUpdate=true;}});
+  if(look){tintHero(R,look);fitBisht(G);}G.add(R.root);R.play(anim,0);R.mix.update(Math.random()*8);if(anim==='laugh')R.A.laugh.timeScale=.8;lobRigs.push(R);}
 const _q1=new THREE.Quaternion(),_q2=new THREE.Quaternion(),_v1=new THREE.Vector3(),_Y=new THREE.Vector3(0,1,0);
 function aimBone(b,dir,w){if(!b)return;b.parent.updateMatrixWorld(true);b.parent.getWorldQuaternion(_q1);_q2.setFromUnitVectors(_Y,dir);_q1.invert().multiply(_q2);b.quaternion.slerp(_q1,w);b.updateMatrixWorld(true);}
 function rigUpdate(dt){if(!eRig)return;eRig.mix.update(dt);
@@ -791,8 +807,8 @@ function rigUpdate(dt){if(!eRig)return;eRig.mix.update(dt);
 function buildEnemy(f,real){while(enemy.children.length)enemy.remove(enemy.children[0]);eParts=makeChar(f,enemy);enemy.position.set(0,0,EZ);enemy.rotation.set(0,0,0);eRig=null;
   if(real&&HERO&&save.realChar!==false){
     // keep the simple body as invisible hit boxes; show the real model instead
-    enemy.traverse(o=>{if(o.isMesh&&o.material){o.material=o.material.clone();o.material.visible=false;}});
-    eRig=heroInstance();enemy.add(eRig.root);
+    const tinted=real==='tint';enemy.traverse(o=>{if(o.isMesh&&o.material&&!(tinted&&o.userData.bisht)){o.material=o.material.clone();o.material.visible=false;}});
+    eRig=heroInstance();if(tinted){tintHero(eRig,f);fitBisht(enemy);}enemy.add(eRig.root);
     const g=eParts.gun;g.parent.remove(g);enemy.add(g);g.rotation.set(0,0,0);g.traverse(o=>{if(o.isMesh&&o!==eParts.flash){o.material=M(0x3A3A3A,{metalness:.4});}});eParts.flash.material=new THREE.MeshBasicMaterial({color:0xFFE08A});g.visible=false;}}
 
 // ---------- referee ----------
@@ -935,7 +951,7 @@ function tabs(names){const T=$('hubTabs');T.innerHTML='';T.style.display=names?'
 function previewLook(){const L=myLook();if(trySel&&hubView==='clothes'){const it=citem(trySel.slot,trySel.id);if(trySel.slot==='thobe')L.thobe=it.c;if(trySel.slot==='head')L.shemagh=it.c;if(trySel.slot==='iqal')L.iqal=it.c;if(trySel.slot==='bisht'){L.bisht=it.c;L.trim=!!it.trim;}}return L;}
 function renderHub(){const L=$('armList');L.innerHTML='';$('wR').textContent=AR(save.gold);$('wP').textContent=AR(save.pearls);$('selBar').classList.add('hidden');
   $('hubMeTitle').innerHTML=save.title?titleHTML(save.title):'';$('hubR').scrollTop=0;
-  buildEnemy(Object.assign({lvl:1},previewLook()));
+  buildEnemy(Object.assign({lvl:1},previewLook()),'tint');
   ({shop:viewShop,weapons:viewWeapons,weapon:viewWeapon,clothes:viewClothes})[hubView](L);}
 // ---- shop ----
 function viewShop(L){$('hubTitle').textContent='المتجر';tabs(null);
@@ -1392,14 +1408,14 @@ function signTex(lines,kind){const c=document.createElement('canvas');c.width=51
   if(lines[1]){x.font='bold 40px Tajawal, sans-serif';x.fillStyle='#FFF4DF';x.fillText(lines[1],256,218);}
   const t=new THREE.CanvasTexture(c);t.anisotropy=4;return t;}
 function addSign(G,lines,kind,y,s){const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:signTex(lines,kind),transparent:true}));sp.scale.set(1.7*(s||1),.93*(s||1),1);sp.position.set(0,y,.55);G.add(sp);return sp;}
-function buildLineup(){lineup.forEach(o=>{lobbyG.remove(o.g);o.g.traverse(c=>{if(c.isSprite){c.material.map&&c.material.map.dispose();c.material.dispose();}else if(c.isMesh){c.geometry.dispose();}});});lineup=[];
+function buildLineup(){lineup.forEach(o=>{lobbyG.remove(o.g);o.g.traverse(c=>{if(c.isSprite){c.material.map&&c.material.map.dispose();c.material.dispose();}else if(c.isMesh&&!c.isSkinnedMesh){c.geometry.dispose();}});});lineup=[];lobRigs=[];
   const L=save.level,used=new Set([...save.revenge,...save.nemesis].map(x=>x.name));
   lobFoes=[Math.max(1,L-1),L,L,L+1,L+2].map(l=>makeFoe(l,used));
   const items=[{kind:'quick'},{kind:'you'}].concat(save.revenge.map(f=>({kind:'foe',f:Object.assign({},f,{tag:'revenge',title:botTitle(f.lvl,f.name)})})),save.nemesis.map(f=>({kind:'foe',f:Object.assign({},f,{tag:'nemesis',title:botTitle(f.lvl,f.name)})})),lobFoes.map(f=>({kind:'foe',f})));
   items.forEach((it,i)=>{const G=new THREE.Group();G.position.set(i*LGAP,.34,LZ);
-    if(it.kind==='quick'){makeChar({thobe:0x14100C,shemagh:0x14100C,iqal:0x14100C},G);const q=addSign(G,['؟'],'quick',2.62,.4);q.scale.set(.5,.27,1);addSign(G,['مبارزة سريعة','خصم عشوائي'],'quick',1.3,.72);}
-    else if(it.kind==='you'){makeChar(Object.assign({},myLook()),G);}
-    else{const f=it.f;makeChar(f,G);addSign(G,[f.name,f.tag==='revenge'?'يبي ثأره':f.tag==='nemesis'?'غلبك قبل':'المستوى '+AR(f.lvl)],f.tag||'',1.3,.72);}
+    if(it.kind==='quick'){makeChar({thobe:0x14100C,shemagh:0x14100C,iqal:0x14100C},G);lobHero(G,'idle',true);const q=addSign(G,['؟'],'quick',2.62,.4);q.scale.set(.5,.27,1);addSign(G,['مبارزة سريعة','خصم عشوائي'],'quick',1.3,.72);}
+    else if(it.kind==='you'){const lk=Object.assign({},myLook());makeChar(lk,G);lobHero(G,'idle',false,lk);}
+    else{const f=it.f;makeChar(f,G);lobHero(G,f.tag==='nemesis'?'laugh':'idle');addSign(G,[f.name,f.tag==='revenge'?'يبي ثأره':f.tag==='nemesis'?'غلبك قبل':'المستوى '+AR(f.lvl)],f.tag||'',1.3,.72);}
     G.rotation.y=0;lobbyG.add(G);lineup.push(Object.assign({g:G},it));});}
 function setDrawer(open){$('lobDrawer').classList.toggle('open',open);$('lobDrawer').setAttribute('aria-hidden',String(!open));$('lobMenuB').setAttribute('aria-expanded',String(open));}
 $('lobMenuB').onclick=e=>{e.stopPropagation();click();setDrawer(!$('lobDrawer').classList.contains('open'));};
@@ -1547,7 +1563,7 @@ function loop(now){requestAnimationFrame(loop);
     enemy.position.set(-(1-colW)*hw,.35,-d);enemy.rotation.set(0,Math.sin(t*.6)*.7,0);pg.visible=false;}
   // enemy draw twirl + flinch
   if(eParts.gun){if(eDrawn&&!eWasDrawn){eWasDrawn=true;eTwirl=Math.PI*2;}eTwirl=Math.max(0,eTwirl-dt*16);eParts.gun.rotation.x=(eRig?0:-Math.PI/2)-eTwirl;}
-  rigUpdate(dt);
+  rigUpdate(dt);if(lobRigs.length&&lobbyG.visible)lobRigs.forEach(R=>R.mix.update(dt));
   if(eFlinch>0&&fall===0&&endAnim!=='lose'){eFlinch=Math.max(0,eFlinch-dt*4);enemy.rotation.x=-Math.sin(eFlinch*Math.PI)*.22*eFlinch*(eRig?.4:1);}
   // losing cinematic: you drop, he walks up, looks down and laughs
   if(endAnim==='lose'){const e=(now-endT)/1000;
