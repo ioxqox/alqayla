@@ -443,6 +443,11 @@ button.kW,button.kR,button.kG{min-height:46px}
 .hnMid .pb,.prog{height:16px;border-radius:0;overflow:visible;box-shadow:none;background:none;border-style:solid;border-color:transparent;border-width:5px 15px;border-image:url(ui/bar_empty.png?v=1) 10 34 fill/5px 15px stretch;filter:drop-shadow(0 2px 2px rgba(0,0,0,.35))}
 .hnMid .pb i,.prog i{border-radius:2px;margin:0 -3px;background:linear-gradient(180deg,#FFE9A0,#E8B54A 45%,#A8701E);box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
 .hnMid .pb.red i{background:linear-gradient(180deg,#F07A6E,#B3261E 50%,#7A140F)}
+
+.wImg{display:block;width:92%;height:auto;max-height:62%;object-fit:contain;margin:4px auto 0;filter:drop-shadow(0 3px 3px rgba(0,0,0,.45))}
+.wImg.long{width:128%;max-height:none;max-width:none;margin:10px -14% 0;transform:rotate(-20deg)}
+.wImg.off{filter:grayscale(.85) brightness(.85) drop-shadow(0 3px 3px rgba(0,0,0,.35))}
+.wHead .wImg{width:70%;max-height:140px}.wHead .wImg.long{width:96%;margin:6px auto;transform:none}
 </style>
 </head>
 <body>
@@ -1137,7 +1142,20 @@ function el(html){const d=document.createElement('div');d.innerHTML=html;return 
 let hubView='shop',hubTab=0,hubGun='fard',trySel=null;
 const LOCK='<img src="ui/lock.png?v=1" width="14" height="14" style="object-fit:contain;vertical-align:middle;width:auto" alt="">';
 function gunCol(id){const sk=save.wskin[id];if(sk==null||sk==='tier')return hex(TIERS[tierIdx(id)].c);const f=FIN[sk];return f?hex(f.c):'#555';}
-function gunSVG(model,col,naqsh,wd){wd=wd||'#7A4524';const st='stroke="#1E140C" stroke-width="2" stroke-linejoin="round"';
+function gunSVG(model,col,naqsh,wd,wid){const id=wid||(model==='pistol'?(naqsh?'naqsh':'fard'):model==='shot'?'shotgun':'fitil');const long=model!=='pistol';
+  const off=col==='#8a8a8a';return '<img class="wImg'+(long?' long':'')+(off?' off':'')+'" src="ui/w_'+id+'.png?v=1" alt=""'+(off?'':' data-c="'+col+'" onload="tintGun(this)"')+'>';}
+// recolour only the steel parts of a weapon picture (keeps wood, brass and pearl untouched) so tiers/finishes read as real metal
+const _tintC={};
+function tintGun(img){const c=img.dataset.c;if(!c||img.dataset.done)return;const base=img.src.split('?')[0],k=base.split('/').pop()+c;img.dataset.done=1;
+  if(_tintC[k]){img.src=_tintC[k];return;}
+  const mk=new Image();mk.onload=()=>{try{const w=img.naturalWidth,h=img.naturalHeight,cv=document.createElement('canvas');cv.width=w;cv.height=h;const x=cv.getContext('2d');
+    x.drawImage(mk,0,0,w,h);const md=x.getImageData(0,0,w,h).data;x.clearRect(0,0,w,h);x.drawImage(img,0,0);
+    const d=x.getImageData(0,0,w,h),a=d.data,n=parseInt(c.slice(1),16),tr=(n>>16&255)/255,tg=(n>>8&255)/255,tb=(n&255)/255;
+    for(let i=0;i<a.length;i+=4){const m=md[i]/255;if(m<=.02)continue;const r=a[i],g=a[i+1],b=a[i+2],L=(.3*r+.59*g+.11*b)/255,Ln=Math.min(1,L/.42),q=.28+.95*Ln,hl=Math.max(0,Ln-.8)*180;
+      a[i]=r+(Math.min(255,255*tr*q+hl)-r)*m;a[i+1]=g+(Math.min(255,255*tg*q+hl)-g)*m;a[i+2]=b+(Math.min(255,255*tb*q+hl)-b)*m;}
+    x.putImageData(d,0,0);_tintC[k]=cv.toDataURL();img.src=_tintC[k];}catch(e){}};mk.src=base.replace(/\.png$/,'_m.png')+'?v=1';}
+window.tintGun=tintGun;
+function gunSVG_old(model,col,naqsh,wd){wd=wd||'#7A4524';const st='stroke="#1E140C" stroke-width="2" stroke-linejoin="round"';
   if(model==='shot')return '<svg viewBox="0 0 160 60"><path d="M6 20h96v6H6zM6 27h96v6H6z" fill="'+col+'" '+st+'/><path d="M96 16h22v20h-22z" fill="'+col+'" '+st+'/><path d="M40 33h52v8H40z" fill="'+wd+'" '+st+'/><path d="M116 22l38 4 2 22-14 4-26-16z" fill="'+wd+'" '+st+'/><path d="M104 36q2 10 10 6" fill="none" stroke="#C9A043" stroke-width="3"/></svg>';
   if(model==='fitil')return '<svg viewBox="0 0 160 60"><path d="M2 22h110v6H2z" fill="'+col+'" '+st+'/><path d="M20 27h96v8H20z" fill="'+wd+'" '+st+'/><path d="M112 22l44 6v20l-12 4-34-14z" fill="'+wd+'" '+st+'/>'+[34,62,90].map(x=>'<rect x="'+x+'" y="20" width="5" height="16" fill="#C9A043" '+st+'/>').join('')+'<path d="M112 22l6-12" stroke="#C9A043" stroke-width="3"/><circle cx="118" cy="9" r="3" fill="#FF7A1A"/></svg>';
   return '<svg viewBox="0 0 120 70"><path d="M8 18h58v9H8z" fill="'+col+'" '+st+'/><rect x="60" y="13" width="26" height="22" rx="5" fill="'+col+'" '+st+'/><path d="M86 15h10l4 14H86z" fill="'+col+'" '+st+'/><path d="M88 29l20 4-4 32H86z" fill="'+wd+'" '+st+'/><path d="M70 35q-2 12 10 10" fill="none" stroke="#1E140C" stroke-width="3"/>'
@@ -1193,7 +1211,7 @@ function viewWeapons(L){$('hubTitle').textContent='الأسلحة';tabs(null);
   const groups=[['المسدسات',WID.filter(i=>WEAPONS[i].model==='pistol')],['البنادق',WID.filter(i=>WEAPONS[i].model!=='pistol')]];
   groups.forEach(([n,ids])=>{sec(n);const g=el('<div class="grid"></div>');ids.forEach(i=>g.appendChild(card(i)));L.appendChild(g);});
   sec('قريباً');const g=el('<div class="grid"></div>');
-  [['أم خمس','pistol'],['القنّاص','fitil'],['المطعّمة','shot']].forEach(([n,m])=>g.appendChild(el('<div class="tile lock">'+gunSVG(m,'#8a8a8a')+'<div class="nm">'+n+'</div><span class="lk">'+LOCK+'</span><div class="req">تحت التطوير</div></div>')));L.appendChild(g);}
+  [['أم خمس','pistol','khams'],['القنّاص','fitil','qannas'],['المطعّمة','shot','mutaama']].forEach(([n,m,wid])=>g.appendChild(el('<div class="tile lock">'+gunSVG(m,'#8a8a8a',0,0,wid)+'<div class="nm">'+n+'</div><span class="lk">'+LOCK+'</span><div class="req">تحت التطوير</div></div>')));L.appendChild(g);}
 function viewWeapon(L){const id=hubGun,w=WEAPONS[id],own=save.owned.includes(id),S=save.w[id],ti=tierIdx(id);$('hubTitle').textContent=w.name;
   const gs=gStat(id),perShot=w.pellets?(w.pBody[0]+w.pBody[1])/2*w.pellets*.6:18.5*w.mul,per=Math.round(perShot*gs.dmg),rpm=Math.round(60000/Math.max(w.rof+(w.fuse||0),180));
   const bar=(n,v,max,txt)=>'<div class="wst"><span>'+n+'</span><div class="pb3"><i style="width:'+Math.min(100,v/max*100)+'%"></i></div><b>'+txt+'</b></div>';
