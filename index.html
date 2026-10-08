@@ -753,11 +753,12 @@ const bdMesh=new THREE.Mesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMate
 function loadBd(id){const b=BDROP[id];if(!b||bdTex[id])return;bdTex[id]='loading';new THREE.TextureLoader().load(b.file,t=>{bdTex[id]=t;},undefined,()=>{bdTex[id]='fail';});}
 MAPS.forEach(m=>loadBd(m.id));
 const lbMesh=new THREE.Mesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({fog:false,toneMapped:false}));lbMesh.visible=false;lbMesh.renderOrder=-10;scene.add(lbMesh);let lbTex=null,lbHid=null;
-new THREE.TextureLoader().load('bg_lobby.jpg?v=1',t=>{lbTex=t;lbMesh.material.map=t;lbMesh.material.needsUpdate=true;});
-const LB={vp:.45,ar:1672/941,D:11,par:.65};
+new THREE.TextureLoader().load('bg_lobby.jpg?v=1',t=>{const im=t.image,c=document.createElement('canvas');c.width=Math.round(im.width*.6);c.height=Math.round(im.height*.6);c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+  const ct=new THREE.CanvasTexture(c);ct.minFilter=THREE.LinearFilter;lbTex=ct;lbMesh.material.map=ct;lbMesh.material.needsUpdate=true;});
+const LB={ar:1672/941,D:11,par:.82,zoom:1.32,gnd:.655,floorY:.34};
 function updLobbyBd(){const on=!!(lbTex&&camMode==='lobby');lbMesh.visible=on;
-  if(on){const D=LB.D+(cam.position.z-LZ),H=2*D*Math.tan(cam.fov*Math.PI/360)*1.08;lbMesh.scale.set(H*LB.ar,H,1);
-    lbMesh.position.set(1.25*(1-LB.par)+cam.position.x*LB.par,1.38+(.5-LB.vp)*H*0,LZ-LB.D);}
+  if(on){const D=LB.D+(cam.position.z-LZ),H=2*D*Math.tan(cam.fov*Math.PI/360)*LB.zoom;lbMesh.scale.set(H*LB.ar,H,1);
+    lbMesh.position.set(1.25*(1-LB.par)+cam.position.x*LB.par,LB.floorY+(LB.gnd-.5)*H,LZ-LB.D);}
   if(on!==lbHid){lbHid=on;lobbyG.children.forEach(c=>{const plank=c.geometry&&c.geometry.parameters&&c.geometry.parameters.width===60&&c.position.y<.5;if((c.position.z<LZ-.9&&!plank)||(c.geometry&&c.geometry.type==='PlaneGeometry'&&c.position.z===LZ&&c.position.y===0))c.visible=!on;});}}
 function updBdrop(){updLobbyBd();const m=curMap(),b=BDROP[m.id],t=bdTex[m.id];const on=!!(b&&t&&t.isTexture&&camMode==='duel');
   if(on){if(bdMesh.material.map!==t){bdMesh.material.map=t;bdMesh.material.needsUpdate=true;}
