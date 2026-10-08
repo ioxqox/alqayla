@@ -770,8 +770,8 @@ const EZ=-11;
 let HERO=null,eRig=null;const HEROES={};
 // each real model: file, height in game units, and where its iqal sits (bind pose, cm)
 const MODELS={hero:{file:'hero.glb?v=4',h:2.12,iq:{c:[2.2,183.8,7.9],s:[13.2,13.2,17.1],t:-.075},band:[.112,183.4]},
-  shayeb:{file:'shayeb.glb?v=2',h:2.08,iq:{c:[0.5,183.2,10.8],s:[13.2,13.2,13.1],t:.069},band:[-.069,185.0]},
-  shanab:{file:'shanab.glb?v=2',h:2.14,iq:{c:[0.8,185.8,9.2],s:[12.5,12.5,14.0],t:.059},band:[-.059,186.5]}};
+  shayeb:{file:'shayeb.glb?v=3',h:2.08,iq:{c:[0.5,183.2,10.8],s:[13.2,13.2,13.1],t:.069},band:[-.069,185.0]},
+  shanab:{file:'shanab.glb?v=3',h:2.14,iq:{c:[0.8,185.3,8.6],s:[12.1,12.1,14.4],t:.059},band:[-.059,186.5]}};
 function modelFor(f){if(f&&f.model&&HEROES[f.model])return f.model;const ids=Object.keys(HEROES).filter(k=>k!=='hero');if(!f||!f.name||!ids.length)return 'hero';
   let h=7;for(const ch of f.name)h=(h*31+ch.charCodeAt(0))|0;const all=['hero'].concat(ids);return all[Math.abs(h)%all.length];}
 try{if(THREE.GLTFLoader)Object.keys(MODELS).forEach(id=>new THREE.GLTFLoader().load(MODELS[id].file,g=>{
@@ -799,7 +799,7 @@ function tintHero(R,f){const th=new THREE.Color(f.thobe!=null?f.thobe:0xF4F2EC),
 function addIqal(R,col){let sm=null;R.root.traverse(o=>{if(o.isSkinnedMesh&&!sm)sm=o;});if(!sm)return;const sk=sm.skeleton;
   const bi=sk.bones.findIndex(b=>/Head$/.test(b.name));if(bi<0)return;const head=sk.bones[bi];
   const gold=col===0xD4A73A||col===0xBFC5CA;const mat=new THREE.MeshStandardMaterial({color:col,roughness:gold?.35:.7,metalness:gold?.6:0});
-  const ring=new THREE.Group();[0,1].forEach(k=>{const t=new THREE.Mesh(new THREE.TorusGeometry(1,.088,8,48),mat);t.rotation.x=Math.PI/2;t.position.y=k*.172;ring.add(t);});
+  const ring=new THREE.Group();[0,1].forEach(k=>{const t=new THREE.Mesh(new THREE.TorusGeometry(1,.088,8,48),mat);t.rotation.x=Math.PI/2;t.position.y=k*.172;if(k)t.scale.set(.94,.94,1);ring.add(t);});
   const q=R.def.iq;ring.scale.set(q.s[0],q.s[1],q.s[2]);
   const M0=new THREE.Matrix4().compose(new THREE.Vector3(q.c[0],q.c[1],q.c[2]),new THREE.Quaternion().setFromEuler(new THREE.Euler(q.t,0,0)),ring.scale.clone());
   const L=new THREE.Matrix4().copy(sk.boneInverses[bi]).multiply(sm.bindMatrix).multiply(M0);
@@ -825,6 +825,8 @@ function rigUpdate(dt){if(!eRig)return;const R=eRig,now=performance.now();
   const want=(eDrawn&&state!=='menu'&&state!=='end')?1:0;R.arm+=(want-R.arm)*Math.min(1,dt*(want?30:10));
   if(R.arm>.01){R.root.updateMatrixWorld(true);_vA.set(-.05,-.02,1).normalize();_vD.set(.05,-1,.12).normalize();
     const u=Math.min(1,Math.max(0,(k-.45)/.55));_v1.copy(_vD).lerp(_vA,u*u*(3-2*u)).normalize();
+    const rl=(state==='fight'&&now<eReloadUntil)?1:0;R.rl=(R.rl||0)+(rl-(R.rl||0))*Math.min(1,dt*10);
+    if(R.rl>.01){_vD.set(.35,-.6,.72).normalize();_v1.lerp(_vD,R.rl).normalize();}
     aimBone(B.RightArm,_v1,R.arm);aimBone(B.RightForeArm,_v1,R.arm);aimBone(B.RightHand,_v1,R.arm);}
   if(eParts.gun){const h=B.RightHand;eParts.gun.visible=R.arm>.35&&k>.4&&!(state==='end'&&fall>0);
     if(h&&eParts.gun.visible){enemy.updateMatrixWorld(true);h.getWorldPosition(_v1);enemy.worldToLocal(_v1);eParts.gun.position.copy(_v1).add(new THREE.Vector3(0,-.02,.12));}}}
@@ -904,7 +906,7 @@ function stain(point,obj){const d=new THREE.Mesh(new THREE.CircleGeometry(rnd(.0
 
 // ---------- state ----------
 let windX=0,pTools=new Set(),eTools=new Set(),sunSide='player',shieldP=false,shieldE=false,prepEnd=0,eDelay=0,eDrawAt=0,drawPending=false;
-const MAXHP=150;let tookDmg=false,lastKillHead=false,lastDeathHead=false,shake=0,pTwirl=0,eTwirl=0,eFlinch=0,endAnim=null,endT=0,eWasDrawn=false,laughNext=0;let camMode='duel',upSince=0,downSince=0,cdStart=0,cdShown=-1,exT=0,exGoal=0,exNext=0;
+const MAXHP=150;let eAmmo=6,eReloadUntil=0,eReloadStart=0;let tookDmg=false,lastKillHead=false,lastDeathHead=false,shake=0,pTwirl=0,eTwirl=0,eFlinch=0,endAnim=null,endT=0,eWasDrawn=false,laughNext=0;let camMode='duel',upSince=0,downSince=0,cdStart=0,cdShown=-1,exT=0,exGoal=0,exNext=0;
 let state='menu',foe=FOES[0],eHP=MAXHP,pHP=MAXHP,ammo=6,drawn=false,reloading=false,lastShot=0,signalAt=0,eDrawn=false,eNextShot=0,blindUntil=0,smokeUntil=0,used={},timeScale=1,slowUntil=0,ghutraFly=null,fall=0,beatT=0,beatGap=0;
 const ray=new THREE.Raycaster(),ndc=new THREE.Vector2();
 
@@ -1147,7 +1149,7 @@ function beginReady(force){if(state!=='prep'&&state!=='holster')return;state='re
   setMsg('استعد…',false,sub);
   cdStart=performance.now();cdShown=-1;signalAt=cdStart+2400+rnd(500,2600);renderHUD();}
 function signal(){state='fight';bell();shot(.0001);const now=performance.now();
-  eNextShot=now+eDelay;eDrawAt=now+eDelay-250;let sub='';
+  eNextShot=now+eDelay;eDrawAt=now+eDelay-250;eAmmo=6;eReloadUntil=0;let sub='';
   if(pTools.has('smoke')||eTools.has('smoke')){smokeUntil=now+5000;sub='دخان المبخرة غطّى المكان';}
   if(pTools.has('mirror')){if(sunSide!=='player')sub='الشمس مو وراك، مرآتك ما نفعت';else if(eTools.has('litham'))sub='لثامه صد مرآتك';else{blindUntil=now+(curMap().id==='sahel'?1800:900);sub='عميته بالمرآة!';}}
   if(eTools.has('mirror')&&sunSide==='enemy'){if(pTools.has('litham'))sub='لثامك صد مرآته';else{$('glare').style.transition='none';$('glare').style.opacity=.97;setTimeout(()=>{$('glare').style.transition='opacity 1.2s';$('glare').style.opacity=0;},curMap().id==='sahel'?1500:700);sub='عماك بمرآته!';}}
@@ -1571,10 +1573,13 @@ function loop(now){requestAnimationFrame(loop);
     }else if(cv.style.display!=='none')cv.style.display='none';}
   if(state==='fight'){
     if(!eDrawn&&now>=eDrawAt)eDrawn=true;
-    if(eDrawn&&now>=eNextShot&&now>=blindUntil){enemyShoot();eNextShot=now+foe.rate*rnd(.8,1.2);}
+    if(eDrawn&&now>=eNextShot&&now>=blindUntil&&now>=eReloadUntil){enemyShoot();eAmmo--;
+      if(eAmmo<=0&&state==='fight'){const rt=Math.max(900,2100-(foe.lvl||1)*100);eReloadStart=now;eReloadUntil=now+rt;eNextShot=eReloadUntil+rnd(150,350);eAmmo=6;
+        setMsg('',false,'خصمك يلقّم… فرصتك!');for(let i=1;i<=6;i++)setTimeout(()=>{if(state==='fight'&&typeof clickIn==='function')clickIn();},rt*(.15+i*.12));}
+      else eNextShot=now+foe.rate*rnd(.8,1.2);}
   }
   // enemy anim
-  if(eParts.shoulder){const target=(eDrawn&&state!=='menu')?-Math.PI/2+.1:0;eParts.shoulder.rotation.x+=(target-eParts.shoulder.rotation.x)*Math.min(1,dt*14);
+  if(eParts.shoulder){const target=(eDrawn&&state!=='menu'&&now>=eReloadUntil)?-Math.PI/2+.1:0;eParts.shoulder.rotation.x+=(target-eParts.shoulder.rotation.x)*Math.min(1,dt*14);
     if(now<blindUntil){eParts.armL.rotation.x=-2.4;eParts.armL.position.y=1.75;}else{eParts.armL.rotation.x=0;eParts.armL.position.y=1.35;}}
   if(state!=='end'||fall===0){enemy.rotation.y*=.9;enemy.position.y=eRig?0:Math.sin(t*2)*.01;}
 
@@ -1586,7 +1591,7 @@ function loop(now){requestAnimationFrame(loop);
   if(state==='hub'){const d=5.2,hv=d*Math.tan(cam.fov*Math.PI/360),hw=hv*cam.aspect,colW=Math.max(140,innerWidth*.4)/innerWidth;
     enemy.position.set(-(1-colW)*hw,.35,-d);enemy.rotation.set(0,Math.sin(t*.6)*.7,0);pg.visible=false;}
   // enemy draw twirl + flinch
-  if(eParts.gun){if(eDrawn&&!eWasDrawn){eWasDrawn=true;eTwirl=Math.PI*2;}eTwirl=Math.max(0,eTwirl-dt*16);eParts.gun.rotation.x=(eRig?0:-Math.PI/2)-eTwirl;}
+  if(eParts.gun){if(eDrawn&&!eWasDrawn){eWasDrawn=true;eTwirl=Math.PI*2;}eTwirl=Math.max(0,eTwirl-dt*16);eParts.gun.rotation.x=(eRig?0:-Math.PI/2)-eTwirl;{const rk=now<eReloadUntil&&state==='fight'?Math.sin(Math.min(1,(now-eReloadStart)/400)*Math.PI/2):0;eParts.gun.rotation.z=rk*1.1;if(eRig)eParts.gun.rotation.x+=rk*.9;}}
   rigUpdate(dt);if(lobRigs.length&&lobbyG.visible)lobRigs.forEach(R=>R.mix.update(dt));
   if(eFlinch>0&&fall===0&&endAnim!=='lose'){eFlinch=Math.max(0,eFlinch-dt*4);enemy.rotation.x=-Math.sin(eFlinch*Math.PI)*.22*eFlinch*(eRig?.4:1);}
   // losing cinematic: you drop, he walks up, looks down and laughs
