@@ -759,7 +759,7 @@ const LB={ar:1672/941,D:11,par:.82,zoom:1.32,gnd:.655,floorY:.34};
 function updLobbyBd(){const on=!!(lbTex&&camMode==='lobby');lbMesh.visible=on;
   if(on){const D=LB.D+(cam.position.z-LZ),H=2*D*Math.tan(cam.fov*Math.PI/360)*LB.zoom;lbMesh.scale.set(H*LB.ar,H,1);
     lbMesh.position.set(1.25*(1-LB.par)+cam.position.x*LB.par,LB.floorY+(LB.gnd-.5)*H,LZ-LB.D);}
-  if(on!==lbHid){lbHid=on;lobbyG.children.forEach(c=>{const plank=c.geometry&&c.geometry.parameters&&c.geometry.parameters.width===60&&c.position.y<.5;if((c.position.z<LZ-.9&&!plank)||(c.geometry&&c.geometry.type==='PlaneGeometry'&&c.position.z===LZ&&c.position.y===0))c.visible=!on;});}}
+  if(on!==lbHid){lbHid=on;lobbyG.children.forEach(c=>{if(!lineup.some(o=>o.g===c))c.visible=!on;});}}
 function updBdrop(){updLobbyBd();const m=curMap(),b=BDROP[m.id],t=bdTex[m.id];const on=!!(b&&t&&t.isTexture&&camMode==='duel');
   if(on){if(bdMesh.material.map!==t){bdMesh.material.map=t;bdMesh.material.needsUpdate=true;}
     const D=90,H=2*D*Math.tan(baseFov*Math.PI/360)*1.25;bdMesh.scale.set(H*b.ar,H,1);bdMesh.position.set(0,cam.position.y+(b.vp-.5)*H,-D);}
@@ -1579,7 +1579,7 @@ function buildLineup(){lineup.forEach(o=>{lobbyG.remove(o.g);o.g.traverse(c=>{if
     if(it.kind==='quick'){makeChar({thobe:0x14100C,shemagh:0x14100C,iqal:0x14100C},G);lobHero(G,'idle',true);addSign(G,['مبارزة سريعة','خصم عشوائي'],'quick',2.28,.46);}
     else if(it.kind==='you'){const lk=Object.assign({},myLook());makeChar(lk,G);lobHero(G,'idle',false,lk);}
     else{const f=it.f;makeChar(f,G);lobHero(G,(f.tag==='nemesis'||i%3===1)?'look':'idle',false,f,modelFor(f));addSign(G,[f.name,f.tag==='revenge'?'يبي ثأره':f.tag==='nemesis'?'غلبك قبل':'المستوى '+AR(f.lvl)],f.tag||'',2.28,.46);}
-    G.rotation.y=0;lobbyG.add(G);lineup.push(Object.assign({g:G},it));});}
+    G.rotation.y=0;lobbyG.add(G);G.add(footShadow());lineup.push(Object.assign({g:G},it));});}
 function setDrawer(open){$('lobDrawer').classList.toggle('open',open);$('lobDrawer').setAttribute('aria-hidden',String(!open));$('lobMenuB').setAttribute('aria-expanded',String(open));}
 $('lobMenuB').onclick=e=>{e.stopPropagation();click();setDrawer(!$('lobDrawer').classList.contains('open'));};
 document.querySelectorAll('#lobDrawer [data-go]').forEach(b=>b.onclick=e=>{e.stopPropagation();const g=b.dataset.go;
