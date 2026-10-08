@@ -415,6 +415,15 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .hnBan.kP #lobGo.kR{min-width:0;flex:none;font-size:21px;border-width:12px 16px;border-image-width:12px 16px;padding:0 8px!important;margin-right:auto;max-width:48%}
 .hnBan.kP .hnRow3{gap:6px;min-width:0}.hnBan.kP .eSeg{flex:1 1 auto;min-width:0;overflow:hidden}.hnBan.kP .eSeg i{width:9px;flex:none}.hnBan.kP .eTime{min-width:0}
 .hnBan.kP #lobGo.kR{font-size:19px;max-width:44%;white-space:nowrap}
+
+.parch.kP2,.parch{clip-path:none;background:none;box-shadow:none;border-radius:0;border-style:solid;border-color:transparent;border-width:30px 24px 28px;border-image:url(ui/panel_sadu.png?v=1) 60 52 58 52 fill/30px 24px 28px stretch;padding:4px 6px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.55))}
+.hubBack{background:url(ui/btn_round.png?v=1) center/100% 100% no-repeat!important;border:0!important;border-radius:50%!important;width:48px!important;height:48px!important;min-height:48px!important;padding:0!important;margin-left:0!important;color:#FFE7A3!important;box-shadow:none!important;filter:drop-shadow(0 3px 2px rgba(0,0,0,.5))}
+.hubBack svg{filter:drop-shadow(0 1px 1px #000)}
+.opt{background:linear-gradient(180deg,rgba(60,34,14,.85),rgba(40,22,8,.9));border:2px solid #B8873A;box-shadow:inset 0 1px 0 rgba(255,220,150,.35),0 3px 0 rgba(0,0,0,.35);border-radius:10px}
+.seg button{border-style:solid;border-color:transparent;border-width:11px 14px;border-image:url(ui/btn_wood.png?v=1) 38 50 fill/11px 14px stretch;background:none!important;box-shadow:none;border-radius:0;padding:0 4px;color:#FFEBC2;text-shadow:0 1px 0 #000}
+.seg button.on{border-image-source:url(ui/btn_red.png?v=1)}
+button.kW,button.kR,button.kG{min-height:46px}
+.ammo{gap:2px;align-items:flex-end}.ammo b{width:11px;height:28px;border:0;border-radius:0;background:url(ui/bullet.png?v=1) center/contain no-repeat;filter:drop-shadow(0 1px 1px rgba(0,0,0,.6))}.ammo b.e{background:url(ui/bullet_e.png?v=1) center/contain no-repeat;opacity:.75}
 </style>
 </head>
 <body>
@@ -527,11 +536,11 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
     <div class="hnRow3"><span class="eLbl">الطاقة</span><div class="eSeg" id="eSeg"></div><span class="eTime" id="eTime"></span><button id="lobGo" class="goBtn kR">بارز</button></div>
   </div>
 </div>
-<div id="tut" class="hidden"><div class="tutBox"><div class="tutStep" id="tutStep"></div><b id="tutT"></b><p id="tutP"></p><div class="tutDots" id="tutDots"></div><button class="goBtn" id="tutNext">التالي</button><button id="tutSkip" style="background:none;box-shadow:none;font-size:16px;min-height:36px;color:#7A4E1A">تخطي</button></div></div>
+<div id="tut" class="hidden"><div class="tutBox"><div class="tutStep" id="tutStep"></div><b id="tutT"></b><p id="tutP"></p><div class="tutDots" id="tutDots"></div><button class="goBtn kR" id="tutNext">التالي</button><button id="tutSkip" style="background:none;box-shadow:none;font-size:16px;min-height:36px;color:#7A4E1A">تخطي</button></div></div>
 <div class="hidden" id="board"><div class="bdIn">
   <div class="bdHead"><button class="hubBack" id="boardBack" aria-label="رجوع"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button><h2>المطلوبين</h2><span id="bdCount"></span></div>
   <div class="bdWood"><div class="bdPosters" id="bdPosters"></div><div class="bdShoe"><span>كل ما قبضت على مطلوب يتجدد مكانه طلب جديد</span></div></div>
-  <button class="goBtn" id="boardGo">كمّل</button></div></div>
+  <button class="goBtn kR" id="boardGo">كمّل</button></div></div>
 <div class="hidden" id="maps"><div class="mapsIn">
   <div class="hubBar"><button class="hubBack" id="mapsBack" aria-label="رجوع"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button><h2>الخرائط</h2></div>
   <div class="mapList" id="mapList"></div></div></div>
@@ -543,11 +552,11 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
     <div class="pTitle"><h2 id="endTitle">كفو!</h2><p id="endReason"></p><small id="endBeat"></small><b id="endFoe"></b><span id="endGun"></span></div></div>
   <p id="endText"></p>
   <div class="resCard" id="resCard"></div>
-  <div class="choice hidden" id="choice"><b>وش تسوي فيه؟</b><div class="chRow"><button id="stealBtn">اسلبه</button><button id="spareBtn">اعفُ عنه</button></div><small>السلب يعطيك روبيات زيادة بس بيرجع يطالب بثأره. والعفو من الشيم: يرفع نقاطك وسمعتك.</small></div>
+  <div class="choice hidden" id="choice"><b>وش تسوي فيه؟</b><div class="chRow"><button class="kR" id="stealBtn">اسلبه</button><button class="kG" id="spareBtn">اعفُ عنه</button></div><small>السلب يعطيك روبيات زيادة بس بيرجع يطالب بثأره. والعفو من الشيم: يرفع نقاطك وسمعتك.</small></div>
   <div class="unlock" id="endUnlock"></div>
   </div>
-  <button class="big" id="againBtn">مبارزة جديدة</button>
-  <button id="menuBtn">القائمة</button>
+  <button class="big kR" id="againBtn">مبارزة جديدة</button>
+  <button class="kW" id="menuBtn">القائمة</button>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -1122,7 +1131,7 @@ function clothSVG(slot,it){const c=it.c==null?null:hex(it.c),st='stroke="#1E140C
   return '<svg viewBox="0 0 60 60"><path d="M18 8h24l12 46H6z" fill="'+c+'" '+st+'/><path d="M26 8l4 46M34 8l-4 46" stroke="#1E140C" stroke-width="1.5"/>'+(it.trim?'<path d="M24 9l-6 44M36 9l6 44" stroke="#D4A73A" stroke-width="3"/>':'')+'</svg>';}
 const CICON={thobe:{c:0xF2F0EA},head:{c:0xC0392B},iqal:{c:0x1C1612},bisht:{c:0x6B4423,trim:true}};
 const PRICE=it=>it.r?'<span class="price"><i class="coin" style="width:12px;height:12px;border-radius:50%;display:inline-block"></i>'+AR(it.r)+'</span>':it.p?'<span class="price"><i class="pearl" style="width:12px;height:12px;border-radius:50%;display:inline-block"></i>'+AR(it.p)+'</span>':'';
-function btn(txt,cls,fn,dis){const b=document.createElement('button');b.textContent=txt;if(cls)b.className=cls;if(dis)b.disabled=true;b.onclick=fn;return b;}
+function btn(txt,cls,fn,dis){const b=document.createElement('button');b.textContent=txt;b.className=(cls?cls+' ':'')+(/goBtn/.test(cls||'')?'kR':(cls==='on'?'kG':'kW'));if(dis)b.disabled=true;b.onclick=fn;return b;}
 function canPay(it){return it.r?save.gold>=it.r:it.p?save.pearls>=it.p:true;}
 function pay(it){if(!canPay(it))return false;if(it.r)save.gold-=it.r;if(it.p)save.pearls-=it.p;return true;}
 let hubFrom='menu';
