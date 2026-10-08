@@ -1577,6 +1577,7 @@ function loop(now){requestAnimationFrame(loop);
       if(eAmmo<=0&&state==='fight'){const rt=Math.max(900,2100-(foe.lvl||1)*100);eReloadStart=now;eReloadUntil=now+rt;eNextShot=eReloadUntil+rnd(150,350);eAmmo=6;
         setMsg('',false,'خصمك يلقّم… فرصتك!');for(let i=1;i<=6;i++)setTimeout(()=>{if(state==='fight'&&typeof clickIn==='function')clickIn();},rt*(.15+i*.12));}
       else eNextShot=now+foe.rate*rnd(.8,1.2);}
+    if(eReloadUntil&&now>=eReloadUntil){eReloadUntil=0;if($('sub').textContent==='خصمك يلقّم… فرصتك!')$('sub').textContent='';}
   }
   // enemy anim
   if(eParts.shoulder){const target=(eDrawn&&state!=='menu'&&now>=eReloadUntil)?-Math.PI/2+.1:0;eParts.shoulder.rotation.x+=(target-eParts.shoulder.rotation.x)*Math.min(1,dt*14);
