@@ -590,16 +590,25 @@ const FOES=[
 
 // ---------- audio ----------
 let AC=null;
-function ac(){if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)();}catch(e){}}if(AC&&AC.state==='suspended')AC.resume();return AC;}
+function ac(){if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)();}catch(e){}if(AC)loadSfx(AC);}if(AC&&AC.state==='suspended')AC.resume();return AC;}
+// ---- recorded sound effects (falls back to the synthesized ones until they load) ----
+const SFX={},SFXN=['shot','bell','ric','load','draw','fall','wind'];
+function loadSfx(a){SFXN.forEach(n=>{fetch('sfx_'+n+'.mp3?v='+(n==='ric'?2:1)).then(r=>r.ok?r.arrayBuffer():Promise.reject()).then(b=>new Promise((ok,no)=>a.decodeAudioData(b,ok,no))).then(buf=>{SFX[n]=buf;}).catch(()=>{});});}
+function sfx(n,vol,rate,when){if(!save.sound)return false;const a=AC;if(!a||!SFX[n])return false;const src=a.createBufferSource();src.buffer=SFX[n];src.playbackRate.value=rate||1;
+  const g=a.createGain();g.gain.value=vol==null?1:vol;src.connect(g).connect(a.destination);src.start(a.currentTime+(when||0));return src;}
+let windSrc=null,windGain=null;
+function windOn(on){const a=AC;if(on&&save.sound&&a&&SFX.wind&&!windSrc){windGain=a.createGain();windGain.gain.value=0;windGain.gain.linearRampToValueAtTime(.16,a.currentTime+1.5);
+    windSrc=a.createBufferSource();windSrc.buffer=SFX.wind;windSrc.loop=true;windSrc.connect(windGain).connect(a.destination);windSrc.start();}
+  else if((!on||!save.sound)&&windSrc){const s0=windSrc,g0=windGain;windSrc=null;try{g0.gain.linearRampToValueAtTime(0,a.currentTime+.6);s0.stop(a.currentTime+.7);}catch(e){}}}
 function noiseBuf(d){const a=ac();const b=a.createBuffer(1,a.sampleRate*d,a.sampleRate);const x=b.getChannelData(0);for(let i=0;i<x.length;i++)x[i]=(Math.random()*2-1)*Math.pow(1-i/x.length,2);return b;}
-function shot(vol,far){if(!save.sound)return;const a=ac();if(!a)return;const t=a.currentTime;
+function shot(vol,far){if(!save.sound)return;const a=ac();if(!a)return;const t=a.currentTime;if(vol>.05&&sfx('shot',Math.min(1,vol*(far?.6:1.1)),(far?.94:1)*(.96+Math.random()*.08)))return;
   const n=a.createBufferSource();n.buffer=noiseBuf(.45);const f=a.createBiquadFilter();f.type='lowpass';f.frequency.setValueAtTime(far?1800:6000,t);f.frequency.exponentialRampToValueAtTime(300,t+.4);
   const g=a.createGain();g.gain.setValueAtTime(vol,t);g.gain.exponentialRampToValueAtTime(.001,t+.45);n.connect(f).connect(g).connect(a.destination);n.start(t);
   const o=a.createOscillator();o.frequency.setValueAtTime(140,t);o.frequency.exponentialRampToValueAtTime(40,t+.2);const og=a.createGain();og.gain.setValueAtTime(vol*.9,t);og.gain.exponentialRampToValueAtTime(.001,t+.25);o.connect(og).connect(a.destination);o.start(t);o.stop(t+.3);}
 function drum(v){if(!save.sound)return;const a=ac();if(!a)return;const t=a.currentTime;const o=a.createOscillator();o.frequency.setValueAtTime(95,t);o.frequency.exponentialRampToValueAtTime(48,t+.25);const g=a.createGain();g.gain.setValueAtTime(v||.5,t);g.gain.exponentialRampToValueAtTime(.001,t+.3);o.connect(g).connect(a.destination);o.start(t);o.stop(t+.32);}
 function tar(){if(!save.sound)return;const a=ac();if(!a)return;const t=a.currentTime;const n=a.createBufferSource();n.buffer=noiseBuf(.12);const f=a.createBiquadFilter();f.type='bandpass';f.frequency.value=2200;const g=a.createGain();g.gain.value=.5;n.connect(f).connect(g).connect(a.destination);n.start(t);}
 function beep(f,d,v){if(!save.sound)return;const a=ac();if(!a)return;const t=a.currentTime;const o=a.createOscillator();o.type='triangle';o.frequency.value=f;const g=a.createGain();g.gain.setValueAtTime(v||.35,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+d);}
-function bell(){if(!save.sound)return;const a=ac();if(!a)return;const t=a.currentTime;
+function bell(){if(!save.sound)return;const a=ac();if(!a)return;const t=a.currentTime;if(sfx('bell',.9))return;
   [[1,.5,1.6],[2.76,.28,1.1],[5.4,.16,.7],[8.93,.08,.45]].forEach(([r,v,d])=>{const o=a.createOscillator();o.type='sine';o.frequency.value=1046*r;const g=a.createGain();g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.004);g.gain.exponentialRampToValueAtTime(.0005,t+d);o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+d);});
   const n=a.createBufferSource();n.buffer=noiseBuf(.03);const f=a.createBiquadFilter();f.type='highpass';f.frequency.value=5000;const g2=a.createGain();g2.gain.setValueAtTime(.4,t);g2.gain.exponentialRampToValueAtTime(.001,t+.03);n.connect(f);f.connect(g2);g2.connect(a.destination);n.start(t);}
 function laugh(deep){if(!save.sound)return;const a=ac();if(!a)return;let t=a.currentTime+.02;const base=deep?118:150;
@@ -1155,7 +1164,7 @@ function signal(){state='fight';bell();shot(.0001);const now=performance.now();
   if(eTools.has('mirror')&&sunSide==='enemy'){if(pTools.has('litham'))sub='لثامك صد مرآته';else{$('glare').style.transition='none';$('glare').style.opacity=.97;setTimeout(()=>{$('glare').style.transition='opacity 1.2s';$('glare').style.opacity=0;},curMap().id==='sahel'?1500:700);sub='عماك بمرآته!';}}
   setMsg('اضرب!',true,sub);setTimeout(()=>{if(state==='fight')setMsg('');},700);renderHUD();}
 function foul(){state='end';settle(false,1);$('prep').classList.add('hidden');setMsg('استعجلت!',false,'سحبت قبل الإشارة');drum(.6);setTimeout(()=>finish(false,'سحبت قبل الإشارة، وهذا عيب بالمبارزة. اصبر لين تسمع "اضرب!".'),1200);}
-function doDraw(){if(state==='ready'){foul();return;}if(state==='fight'&&!drawn&&!drawPending){whoosh();recenter();if(GW().model==='pistol')pTwirl=Math.PI*2;setTimeout(click,330);}if(state!=='fight'||drawn||drawPending)return;if(shieldP||pTools.has('shield')){drawPending=true;renderHUD();setTimeout(()=>{drawPending=false;drawn=true;click();renderHUD();},160);}else{drawn=true;click();renderHUD();}}
+function doDraw(){if(state==='ready'){foul();return;}if(state==='fight'&&!drawn&&!drawPending){if(!sfx('draw',.9))whoosh();recenter();if(GW().model==='pistol')pTwirl=Math.PI*2;setTimeout(click,330);}if(state!=='fight'||drawn||drawPending)return;if(shieldP||pTools.has('shield')){drawPending=true;renderHUD();setTimeout(()=>{drawPending=false;drawn=true;click();renderHUD();},160);}else{drawn=true;click();renderHUD();}}
 function holster(){if(state==='fight'&&drawn){drawn=false;renderHUD();}}
 
 function popDmg(x,y,t,big,mine){const d=document.createElement('div');d.className='dmg'+(big?' big':'')+(mine?' mine':'');d.textContent=t;d.style.left=x+'px';d.style.top=y+'px';document.body.appendChild(d);setTimeout(()=>d.remove(),800);}
@@ -1195,7 +1204,7 @@ function discharge(cx,cy,W){const now=performance.now();const gs=GST();if(windX)
       total+=d;hitCount++;if(head)anyHead=true;
       const dir=ray.ray.direction.clone();if(save.blood){burst(res.point,head?(n>1?8:22):(n>1?5:12),true,dir);if(n===1||Math.random()<.4)stain(res.point,res.obj);}else burst(res.point,n>1?4:8,false,dir);
       if(head&&!ghutraFly&&eParts.ghutra&&(n===1||Math.random()<.35)){const g=eParts.ghutra;const wp=new THREE.Vector3();g.getWorldPosition(wp);enemy.remove(g);scene.add(g);g.position.copy(wp);ghutraFly={o:g,v:new THREE.Vector3(rnd(-1,1),3.5,-2),s:rnd(4,8)};}}
-    else burst(res.point,n>1?3:10,false);}
+    else{burst(res.point,n>1?3:10,false);if(n===1&&Math.random()<.6)sfx('ric',.45,.9+Math.random()*.25,.05);}}
   if(total>0){const dmg=Math.round(total);eHP-=dmg;popDmg(cx,cy,'-'+AR(dmg)+(n>1?' ('+AR(hitCount)+'/'+AR(n)+')':''),anyHead);
     enemy.rotation.y=rnd(-.2,.2);enemy.position.z-=.08*(n>1?1.6:1);eFlinch=anyHead?1:.55;if(eRig&&eHP-0>0&&eRig.cur!=='die'){eRig.A.hit&&(eRig.A.hit.timeScale=1.7);eRig.cur=null;eRig.play('hit',.08);}shake=Math.max(shake,.15);if(anyHead){save.heads++;GS().h++;misEvent('head');}
     setMsg('',false,anyHead?'ضربة راس!':'');if(eHP<=0){lastKillHead=anyHead;win();}}
@@ -1211,7 +1220,7 @@ function hitAt(cx,cy,assist){const r=renderer.domElement.getBoundingClientRect()
   return {enemy:onEnemy(hits),part,point:hh.point,obj:hh.object};}
 function enemyShoot(){const now=performance.now();eParts.flash.visible=true;setTimeout(()=>eParts.flash&&(eParts.flash.visible=false),60);shot(.45,true);
   let acc=foe.acc*(now<smokeUntil?.45:1);
-  const hit=Math.random()<acc;
+  const hit=Math.random()<acc;if(!hit&&Math.random()<.45)sfx('ric',.35,.9+Math.random()*.3,.08);
   if(hit&&shieldP){shieldP=false;setMsg('',false,'درعك صد الطلقة!');renderHUD();return;}
   if(hit){const head=Math.random()<.12;const dmg=Math.round(head?rnd(24,30):rnd(10,15));pHP-=dmg;lastDeathHead=head;tookDmg=true;popDmg(innerWidth/2,innerHeight*.7,'-'+AR(dmg),false,true);
     $('hurt').style.opacity=save.blood?1:.5;setTimeout(()=>$('hurt').style.opacity=0,220);
@@ -1232,11 +1241,11 @@ function settle(w,k){const diff=(foe.rating||save.rating)-save.rating;let d;
   lastRes={w,d,gold,taken,streak:save.streak,tag};persist();}
 function runAway(){if(!(state==='fight'||state==='ready'||state==='holster'))return;state='end';settle(false,.5);setMsg('انحشت!',false,'');drum(.5);
   setTimeout(()=>finish(false,'انسحبت من المبارزة. خسرت نص النقاط بس، وسمعتك… الله يستر.'),900);}
-function win(){state='end';$('outAmmo').classList.remove('on');setTimeout(()=>{if(state==='end'&&GW().model==='pistol'){pTwirl=Math.PI*4;whoosh();}setTimeout(()=>{drawn=false;},700);},1100);timeScale=.22;slowUntil=performance.now()+1500;fall=0.0001;setMsg('كفو!',true,'');
+function win(){state='end';$('outAmmo').classList.remove('on');setTimeout(()=>{if(state==='end'&&GW().model==='pistol'){pTwirl=Math.PI*4;whoosh();}setTimeout(()=>{drawn=false;},700);},1100);timeScale=.22;slowUntil=performance.now()+1500;fall=0.0001;sfx('fall',.7,.9,1.1);setMsg('كفو!',true,'');
   const up=foe.lvl>=save.level;const wasHigher=foe.lvl>save.level;save.wins++;if(up)save.level++;save.kills++;GS().k++;settle(true,1);misEvent('win',{gun:save.gun,map:save.map,clean:!tookDmg,higher:wasHigher});const g=lastRes.gold;persist();
   setTimeout(()=>{phrase([0,2,3,4,5,4,7,-1,7],.14,.45);},400);
   setTimeout(()=>finish(true,'طيّحت '+foe.name+' بـ'+GW().name+'.'+(up?' ارتفع مستواك!':'')),2200);}
-function lose(){state='end';misEvent('lose');$('rfx').classList.remove('on');$('outAmmo').classList.remove('on');settle(false,1);setMsg('',false,'');drum(.8);drawn=false;renderHUD();endAnim='lose';endT=performance.now();exGoal=enemy.position.x;
+function lose(){state='end';sfx('fall',.9,1,.35);misEvent('lose');$('rfx').classList.remove('on');$('outAmmo').classList.remove('on');settle(false,1);setMsg('',false,'');drum(.8);drawn=false;renderHUD();endAnim='lose';endT=performance.now();exGoal=enemy.position.x;
   $('hudTop').classList.add('hidden');$('hudBot').classList.add('hidden');$('eTag').style.display='none';$('xh').style.display='none';$('skipEnd').classList.add('on');
   try{navigator.vibrate&&navigator.vibrate([120,60,200]);}catch(e){}
   setTimeout(()=>{if(endAnim==='lose')phrase([4,3,2,1,-1,1,0],.24,.32);},600);}
@@ -1262,7 +1271,7 @@ function drawRfx(k){const W=GW(),n=GST().ammo,fill=Math.floor(k*n+.001);if(rfxFi
   else{const w=n===1?60:44,gap=14,tot=n*w+(n-1)*gap;for(let i=0;i<n;i++){const x=-tot/2+i*(w+gap);s+='<rect x="'+x+'" y="-70" width="'+w+'" height="140" rx="10" fill="#222" stroke="#555" stroke-width="3"/>'
       +(i<fill?(W.model==='shot'?'<rect x="'+(x+5)+'" y="-64" width="'+(w-10)+'" height="90" rx="6" fill="#B3261E"/><rect x="'+(x+5)+'" y="24" width="'+(w-10)+'" height="40" rx="4" fill="#C9A043"/>':'<path d="M'+(x+w/2)+' -60 l18 50 h-36z" fill="#5A3A1E"/><circle cx="'+(x+w/2)+'" cy="20" r="20" fill="#2A2A2A"/>'):'');}}
   $('rfxSvg').innerHTML=s;}
-function clickIn(){if(!save.sound)return;const a=ac();if(!a)return;const t=a.currentTime;const o=a.createOscillator();o.type='square';o.frequency.setValueAtTime(1500,t);o.frequency.exponentialRampToValueAtTime(600,t+.03);const g=a.createGain();g.gain.setValueAtTime(.16,t);g.gain.exponentialRampToValueAtTime(.001,t+.05);o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+.06);}
+function clickIn(){if(!save.sound)return;const a=ac();if(!a)return;if(sfx('load',.75,.95+Math.random()*.1))return;const t=a.currentTime;const o=a.createOscillator();o.type='square';o.frequency.setValueAtTime(1500,t);o.frequency.exponentialRampToValueAtTime(600,t+.03);const g=a.createGain();g.gain.setValueAtTime(.16,t);g.gain.exponentialRampToValueAtTime(.001,t+.05);o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+.06);}
 function doReload(){if(reloading||ammo===GST().ammo||state!=='fight')return;reloading=true;click();renderHUD();rfxStart=performance.now();rfxFill=-1;drawRfx(ammo/GST().ammo);$('outAmmo').classList.remove('on');$('rfx').classList.add('on');
   setTimeout(()=>{ammo=GST().ammo;reloading=false;click();renderHUD();drawRfx(1);setTimeout(()=>$('rfx').classList.remove('on'),180);},GST().reload);}
 function splat(n,red){const box=$('splats');for(let i=0;i<n;i++){const d=document.createElement('i');const s=rnd(40,130);d.style.width=s+'px';d.style.height=s*rnd(.7,1.1)+'px';
@@ -1544,7 +1553,7 @@ addEventListener('resize',resize);resize();
 buildEnemy(FOES[0],true);applySkin();
 
 let last=performance.now();
-function loop(now){requestAnimationFrame(loop);
+function loop(now){requestAnimationFrame(loop);windOn(state==='prep'||state==='ready'||state==='holster'||state==='fight'||state==='end');
   let dt=Math.min((now-last)/1000,.05);last=now;
   if(timeScale<1&&now>slowUntil)timeScale=1;dt*=timeScale;
   const t=now/1000;
@@ -1572,7 +1581,7 @@ function loop(now){requestAnimationFrame(loop);
       if(pTools.has('binoc')){const br=$('binoc').getBoundingClientRect();const m='radial-gradient(circle '+(br.width/2+6)+'px at '+(br.left+br.width/2)+'px '+(br.top+br.height/2)+'px,transparent 97%,#000 100%)';cv.style.webkitMaskImage=m;cv.style.maskImage=m;}else{cv.style.webkitMaskImage='';cv.style.maskImage='';}
     }else if(cv.style.display!=='none')cv.style.display='none';}
   if(state==='fight'){
-    if(!eDrawn&&now>=eDrawAt)eDrawn=true;
+    if(!eDrawn&&now>=eDrawAt){eDrawn=true;sfx('draw',.45,1.05);}
     if(eDrawn&&now>=eNextShot&&now>=blindUntil&&now>=eReloadUntil){enemyShoot();eAmmo--;
       if(eAmmo<=0&&state==='fight'){const rt=Math.max(900,2100-(foe.lvl||1)*100);eReloadStart=now;eReloadUntil=now+rt;eNextShot=eReloadUntil+rnd(150,350);eAmmo=6;
         setMsg('',false,'خصمك يلقّم… فرصتك!');for(let i=1;i<=6;i++)setTimeout(()=>{if(state==='fight'&&typeof clickIn==='function')clickIn();},rt*(.15+i*.12));}
