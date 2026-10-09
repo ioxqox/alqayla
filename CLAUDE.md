@@ -1,0 +1,49 @@
+# القايلة (Al-Qayla) — project handoff for Claude
+
+Owner: Mohammad (Kuwait). Reply ONLY in Arabic (Gulf dialect is fine). Never mix Arabic and English in one line.
+He wants: step-by-step work, honest critique (no flattery), proactive advice on things he didn't think of, and every change
+checked (screenshots) before reporting. Goal: a professional, polished, Gulf-heritage duel game (inspired by the old
+iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds or code).
+
+## Where things live
+- Repo: github.com/ioxqox/alqayla (GitHub Pages). Live: https://ioxqox.github.io/alqayla/?v=NN (bump NN each release; last used 66).
+- Claude can push directly (GitHub app installed). Commit as `Claude <noreply@anthropic.com>`.
+- Plan & tracker doc (Claude Docs): https://claude.ai/code/artifact/a512277a-dd89-43db-aa94-a63e087aa06d
+- Owner's PC (Windows, "killua", RTX 3080), mirror folder: `C:\Users\MA\Documents\MY PROJECT 2026\القايلة - ملفات اللعبة`
+  (copy index.html + changed assets there after each release). Original ChatGPT art: `...\MY PROJECT 2026\الخلفيات الأصلية`.
+  Source models/clips: `Young guy`, `Shayeb`, `Shanab`, `Sounds` folders in MY PROJECT 2026.
+
+## Files in the repo
+- `index.html` — the whole game (three.js r128 from cdnjs; GLTFLoader/SkeletonUtils from jsdelivr three@0.128.0). Save key `alqayla-v1` (localStorage).
+- `hero.glb`, `shayeb.glb`, `shanab.glb` — Meshy-Lite characters rigged in Mixamo (clips: idle walk run die hit laugh aim pidle look). Clothing tint is a shader (tintHero) using baked `_GHUTRA`/`_NOTINT` vertex masks; iqal is a procedural double cord on the Head bone.
+- `bg_fareej.jpg bg_souq.jpg bg_barr.jpg bg_sahel.jpg` — painted duel backdrops (BDROP table, `vp` = horizon height). `bg_lobby.jpg` — lobby "baraha" wall (LB table: zoom/gnd/par). `menu_art.jpg` — main menu & loading key art.
+- `sfx_*.mp3`, `vox_*.mp3` (Kuwaiti taunts via ElevenLabs).
+- `ui/` — polished UI kit cut from ChatGPT sheets (gray bg removed): btn_wood/red/green (used with CSS border-image classes `.kW .kR .kG`), panel_sadu (`.kP`), ribbon_sadu, btn_round, ic_* icons, coin, pearl, lock, ic_energy, ic_back, bar_empty (health/progress bars), bullet(_e), tiles, rank_* badges, trophy, stars, chests, `w_*.png` 7 weapon arts (+ `w_*_m.png` steel masks), `hol_*` animated holster cover, `c_*.png` clothing bases recoloured in code (clTint).
+- `manifest.json`, `sw.js`, icons — installable PWA + fullscreen on first tap.
+
+## Systems worth knowing
+- Weapon finishes = full-body "camo" (camoGun): whole gun recoloured in polished metal, grip darkened, engraved pattern
+  (swirl for silver/gold, Sadu diamonds for diamond tier & some special finishes; CAMO_P map). Tiers TIERS (kills/headshots), special finishes FIN (headshots).
+  3D first-person revolver (rev.js code inside index.html: makeRevolver/makeFPHand) uses gunSteel/gunWood/gunWoodD + env reflections.
+- Hub weapon screens show a spinning weapon showcase (#hubShow) instead of the character.
+- Testing: Playwright + swiftshader in /home/claude/srv (copy index.html there, inject `window.__q=c=>eval(c);` before `function endLose(){`; do NOT copy sw.js into srv — it breaks local tests). Scripts t_audit.py (full flow), t45 (fight fx), t52 (weapons), t56 (clothes), t55 (holster).
+
+## Roadmap status (see doc for the table)
+1 bug fixes ✅ · 2 Pistol Strafe animation from Mixamo (waiting for owner to download "Pistol Strafe", Without Skin, 30fps) ·
+3 painted backgrounds ✅ · UI kit ✅ · weapon art ✅ · clothing art ✅ · holster cover ✅ ·
+4 3D weapons (better first-person revolver, Meshy) · 5 missing voice lines + music (ElevenLabs) ·
+6 subscription month: redo characters/weapons/voices in full quality with commercial licences (Meshy free = CC BY, ElevenLabs free = non-commercial) ·
+7 accounts + cloud save + split the single file · 8 friends test, then App Store / Google Play.
+
+## Next steps (in order)
+1. Owner tests v66 on phone and reports issues (he sends screenshots; fix them all, then add your own critique).
+2. Night/sunset variants of arenas, and a new arena (dhow-building "النقعة") from earlier ChatGPT picks — later.
+3. Store screenshots + icon from the new art.
+4. Rank badges (ui/rank_*.png) on lobby/results; chests for mission rewards.
+5. Known weak spots to be honest about: low-detail Meshy-Lite characters (fixed only in step 6), simple first-person gun, gray inside a few trigger guards.
+
+## Working rules learned
+- ChatGPT refuses detailed "firearm/sniper" prompts — describe guns as stylized cartoon game items/antique props.
+- Ask ChatGPT for single sheets, no text, flat gray background; Claude cuts/keys them (better than ChatGPT slicing).
+- Generate neutral/white bases and recolour in code instead of one image per colour.
+- device_commit_files sometimes writes a stale snapshot: verify size with device_list_dir after copying.
