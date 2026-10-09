@@ -6,7 +6,7 @@ checked (screenshots) before reporting. Goal: a professional, polished, Gulf-her
 iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds or code).
 
 ## Where things live
-- Repo: github.com/ioxqox/alqayla (GitHub Pages). Live: https://ioxqox.github.io/alqayla/?v=NN (bump NN each release; last used 67).
+- Repo: github.com/ioxqox/alqayla (GitHub Pages). Live: https://ioxqox.github.io/alqayla/?v=NN (bump NN each release; last used 68).
 - Claude can push directly (GitHub app installed). Commit as `Claude <noreply@anthropic.com>`.
 - Plan & tracker doc (Claude Docs): https://claude.ai/code/artifact/a512277a-dd89-43db-aa94-a63e087aa06d
 - Owner's PC (Windows, "killua", RTX 3080), mirror folder: `C:\Users\MA\Documents\MY PROJECT 2026\القايلة - ملفات اللعبة`
@@ -27,6 +27,7 @@ iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds
   3D first-person revolver (rev.js code inside index.html: makeRevolver/makeFPHand) uses gunSteel/gunWood/gunWoodD + env reflections.
 - Hub (weapons/clothes/shop) is stacked since v67: top bar (back, title, wallet pill with small +), preview stage on top (#hubShow spinning gun, or the 3D character placed by hubFit rays at 11%-41% of screen height with the camera pitched down), full-width sheet #hubR below with 3-column item cards (card2(): picture / name / footer strip, badges in corner).
 - Lobby backdrop (LB): painting extended in a canvas (sky gradient above, mirrored sand below); k = size vs depth, base = wall-foot line below eye level. Characters stand on the sand in front, wall far behind.
+- Balance (v68): NO power upgrades. gStat(id) returns the weapon's fixed base stats; old save.wg levels were refunded once (save.refund notice on the weapons list). Weapon screen tabs: المواصفات (wSpecs/specTable with ▲▼ vs equipped gun) · التقدم · الألوان. Next: customization slots (barrel 10 kills / grip 50 / action 200, sidegrades bought once with rupees), then a duel simulation to tune numbers so no weapon/loadout tops 55% wins. Design is in the plan doc.
 - A global thin scroll hint (#scrollHint) appears on any scrolled list.
 - Testing: Playwright + swiftshader in /home/claude/srv (copy index.html there, inject `window.__q=c=>eval(c);` before `function endLose(){`; do NOT copy sw.js into srv — it breaks local tests). Scripts t_audit.py (full flow), t45 (fight fx), t52 (weapons), t56 (clothes), t55 (holster).
 
@@ -38,7 +39,7 @@ iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds
 7 accounts + cloud save + split the single file · 8 friends test, then App Store / Google Play.
 
 ## Next steps (in order)
-1. Owner tests v67 on phone (new stacked hub, farther lobby wall) and reports issues; fix them all, then add your own critique.
+1. Owner tests v68 on phone (stacked hub, farther lobby wall, specs tab) and reports issues. Then balance step 2: customization slots.
 2. Night/sunset variants of arenas, and a new arena (dhow-building "النقعة") from earlier ChatGPT picks — later.
 3. Store screenshots + icon from the new art.
 4. Rank badges (ui/rank_*.png) on lobby/results; chests for mission rewards.

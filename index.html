@@ -572,6 +572,23 @@ button.kW,button.kR,button.kG{min-height:46px}
 .hnBan.kP #lobGo.kR{flex:none;max-width:none!important;width:auto;min-width:118px;margin-right:auto;font-size:18px;min-height:44px;padding:0 6px!important;white-space:nowrap}
 /* shop rows on the wide sheet: button beside the text, not a full-width bar */
 .hubR .item{flex-wrap:nowrap!important;align-items:center}.hubR .item .txt{flex:1;min-width:0}.hubR .item>button{flex:none!important;min-width:104px;font-size:17px}
+
+/* ---- v68: weapon specs ---- */
+.wHead{gap:8px}
+.wHead p{margin:0;font-size:13.5px;line-height:1.6}
+.wChips{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.wChips div{display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 2px;border-radius:8px;background:rgba(58,36,16,.85);color:#FFE6A8}
+.wChips small{font-size:11px;font-weight:700;opacity:.85}.wChips b{font-size:17px;font-weight:800}
+.wKills{font-weight:800;font-size:13px!important;opacity:.85}
+.reqBox img{filter:brightness(3)}
+.spec{display:flex;flex-direction:column;gap:7px;background:rgba(255,248,230,.6);border:2px solid rgba(122,78,26,.45);border-radius:8px;padding:10px}
+.spCmp{margin:0 0 2px;font-size:12.5px;font-weight:700;color:#5A3410}
+.spR{display:grid;grid-template-columns:7.4em 1fr 3.6em 1.1em;align-items:center;gap:8px;font-size:13.5px;font-weight:800}
+.spR .pb3{height:12px;border-radius:7px;background:rgba(58,36,16,.2);overflow:hidden;box-shadow:inset 0 1px 2px rgba(0,0,0,.3)}
+.spR .pb3 i{display:block;height:100%;background:linear-gradient(180deg,#F2C766,#C9862A)}
+.spR b{text-align:left;direction:rtl;white-space:nowrap;font-size:13px}
+.spA{font-style:normal;text-align:center}.spA em{font-style:normal;font-size:13px}.spA .up{color:#1F8A4C}.spA .dn{color:#B3261E}
+.spec .note{margin:4px 0 0!important;color:#5A3410}
 /* thin scroll hint that shows while any list is moving */
 #scrollHint{position:fixed;z-index:30;width:5px;border-radius:3px;background:rgba(58,36,16,.72);box-shadow:0 0 0 1px rgba(255,236,190,.35);pointer-events:none;opacity:0;transition:opacity .35s}
 #scrollHint.on{opacity:1;transition:opacity .1s}
@@ -729,10 +746,11 @@ try{const r=localStorage.getItem(KEY);if(r)save=Object.assign(save,JSON.parse(r)
 WID.forEach(id=>{if(!save.w[id])save.w[id]={k:0,h:0};});if(save.fard&&!save.w.fard.k&&!save.w.fard.h){save.w.fard={k:save.fard.k||0,h:save.fard.h||0};}delete save.fard;
 if(!save.owned.includes(save.gun))save.gun='fard';
 const GW=()=>WEAPONS[save.gun],GS=()=>save.w[save.gun];
-const GMAX=30;
-function gStat(id,g){const w=WEAPONS[id];g=g==null?(save.wg[id]||0):g;return {dmg:w.mul*(1+.02*g),ammo:w.ammo+(g>=10?1:0),reload:Math.round(w.reload*(g>=20?.85:1)),head:g>=30?1.15:1,spread:w.aim.spread*(1-.01*g),sway:w.aim.sway*(1-.012*g),sens:w.aim.sens};}
+function gStat(id){const w=WEAPONS[id];return {dmg:w.mul,ammo:w.ammo,reload:w.reload,head:1,spread:w.aim.spread,sway:w.aim.sway,sens:w.aim.sens};} // fixed: weapons differ by style, never by upgrades
 const GST=()=>gStat(save.gun);
 const gCost=g=>Math.round(80*Math.pow(1.16,g)/10)*10;
+// v68: power upgrades removed; give back every rupee spent on them, once
+{let r=0;Object.keys(save.wg||{}).forEach(id=>{for(let g=0;g<(save.wg[id]||0);g++)r+=gCost(g);});if(r>0){save.gold+=r;save.refund=(save.refund||0)+r;}save.wg={};try{localStorage.setItem(KEY,JSON.stringify(save));}catch(e){}}
 if(save.skin!==undefined){if(save.wskin.fard===undefined)save.wskin.fard=save.skin;delete save.skin;}
 const CLOTHES={
  thobe:{name:'الثوب',items:[
@@ -1383,11 +1401,28 @@ function viewShop(L){$('hubTitle').textContent='المتجر';tabs(null);
   [[100,'٠٫٩٩ دولار'],[550,'٤٫٩٩ دولار'],[1200,'٩٫٩٩ دولار']].forEach(([n,pr])=>{const it=el('<div class="item"><span class="sw" style="background:radial-gradient(circle at 35% 35%,#fff,#D9D3E6 60%,#A9A2B8)"></span><div class="txt"><b>'+AR(n)+' لؤلؤة</b><small>السعر عند النشر: '+pr+'</small></div></div>');
     it.appendChild(btn('شحن تجريبي','',()=>{save.pearls+=n;persist();click();renderHub();}));L.appendChild(it);});
   L.appendChild(el('<p class="note">النسخة تجريبية: الشحن مجاني وما فيه دفع حقيقي. اللؤلؤ للملابس بس، الأسلحة وألوانها ما تنباع أبداً.</p>'));}
+// ---- weapon specs (higher bar = better for the player; reload shown in seconds, lower is better) ----
+function wSpecs(id){const w=WEAPONS[id],g=gStat(id),pel=w.pellets||0;
+  const body=pel?(w.pBody[0]+w.pBody[1])/2*pel*.6*g.dmg:18.5*g.dmg,hd=pel?(w.pHead[0]+w.pHead[1])/2*pel*.6*g.dmg*g.head:44*g.dmg*g.head;
+  const rpm=Math.round(60000/Math.max(w.rof+(w.fuse||0),180)),acc=Math.round(100*(1-g.spread/66)),stab=Math.round(100-g.sway*6),aim=Math.round(g.sens*100);
+  const S=(n,v,max,t,lo)=>({n,v,max,t,lo});
+  return {dmg:S('الضرر',Math.round(body),60,AR(Math.round(body))),head:S('ضربة الراس',Math.round(hd),130,AR(Math.round(hd))),ammo:S('الطلقات',g.ammo,8,AR(g.ammo)),
+    acc:S('الدقة',acc,100,AR(acc)+'٪'),stab:S('الثبات',stab,100,AR(stab)+'٪'),rpm:S('سرعة الرمي',rpm,240,AR(rpm)+'/د'),
+    rl:S('التلقيم',+(g.reload/1000).toFixed(1),2.6,AR((g.reload/1000).toFixed(1))+'ث',1),aim:S('سرعة التصويب',aim,100,AR(aim)+'٪')};}
+function specTable(ST,C,cn){const box=el('<div class="spec"></div>');
+  if(C)box.appendChild(el('<p class="spCmp">الأسهم مقارنة مع سلاحك الحالي: '+cn+'</p>'));
+  ['dmg','head','ammo','acc','stab','rpm','rl','aim'].forEach(k=>{const d=ST[k],c=C&&C[k];let ar='';
+    if(c&&c.v!==d.v){const better=d.lo?d.v<c.v:d.v>c.v;ar='<em class="'+(better?'up':'dn')+'">'+(better?'▲':'▼')+'</em>';}
+    const pct=d.lo?Math.max(6,Math.min(100,(d.max-d.v)/(d.max-.8)*100)):Math.max(4,Math.min(100,d.v/d.max*100));
+    box.appendChild(el('<div class="spR"><span>'+d.n+'</span><div class="pb3"><i style="width:'+pct+'%"></i></div><b>'+d.t+'</b><i class="spA">'+ar+'</i></div>'));});
+  box.appendChild(el('<p class="note">الأسلحة كلها بنفس القوة، وكل واحد له أسلوب. الأسهم تبين وش تكسب ووش تخسر لو بدّلت.</p>'));return box;}
 // ---- item card: picture / name / footer, badges in the corner ----
 function card2(img,name,o){o=o||{};return el('<div class="cd'+(o.lock?' lock':'')+(o.sel?' sel':'')+(o.on?' on':'')+'">'+(o.on?'<span class="ck">✓</span>':'')+(o.lock?'<span class="lk">'+LOCK+'</span>':'')
   +'<div class="cdImg">'+img+'</div><div class="cdNm">'+name+'</div>'+(o.ft!=null?'<div class="cdFt'+(o.fc?' '+o.fc:'')+'">'+o.ft+'</div>':'')+'</div>');}
 // ---- weapons ----
 function viewWeapons(L){$('hubTitle').textContent='الأسلحة';tabs(null);
+  if(save.refund){const n=el('<div class="item"><span class="sw coinB" style="width:34px;height:34px"></span><div class="txt"><b>رجعنا لك '+AR(save.refund)+' روبية</b><small>شلنا تطوير القوة عشان الكل يبارز بعدل. الأسلحة صارت تختلف بالأسلوب، والتخصيص جاي قريب.</small></div></div>');
+    n.appendChild(btn('تمام','',()=>{delete save.refund;persist();click();renderHub();}));L.appendChild(n);}
   const sec=(t)=>L.appendChild(el('<div class="sec">'+t+'</div>'));
   const card=(id)=>{const w=WEAPONS[id],own=save.owned.includes(id),on=save.gun===id,canBuy=!own&&save.level>=w.lvl;
     const t=card2(gunSVG(w.model,own?gunCol(id):'#8a8a8a',id==='naqsh',0,id),w.name,{on,lock:!own&&!canBuy,
@@ -1398,32 +1433,19 @@ function viewWeapons(L){$('hubTitle').textContent='الأسلحة';tabs(null);
   sec('قريباً');const g=el('<div class="cgrid"></div>');
   [['أم خمس','pistol','khams'],['القنّاص','fitil','qannas'],['المطعّمة','shot','mutaama']].forEach(([n,m,wid])=>g.appendChild(card2(gunSVG(m,'#8a8a8a',0,0,wid),n,{lock:true,ft:'تحت التطوير'})));L.appendChild(g);}
 function viewWeapon(L){const id=hubGun,w=WEAPONS[id],own=save.owned.includes(id),S=save.w[id],ti=tierIdx(id);$('hubTitle').textContent=w.name;
-  const gs=gStat(id),perShot=w.pellets?(w.pBody[0]+w.pBody[1])/2*w.pellets*.6:18.5*w.mul,per=Math.round(perShot*gs.dmg),rpm=Math.round(60000/Math.max(w.rof+(w.fuse||0),180));
-  const bar=(n,v,max,txt)=>'<div class="wst"><span>'+n+'</span><div class="pb3"><i style="width:'+Math.min(100,v/max*100)+'%"></i></div><b>'+txt+'</b></div>';
-  const head=el('<div class="wHead">'+gunSVG(w.model,own?gunCol(id):'#8a8a8a',id==='naqsh')+'<p>'+w.desc+'</p>'
-    +bar('الضرر',per,60,AR(per))+bar('الطلقات',gs.ammo,8,AR(gs.ammo))+bar('الدقة',100-gs.spread*2.2,100,AR(Math.round(100-gs.spread*2.2))+'٪')+bar('سرعة الرمي',rpm,240,AR(rpm)+'/د')+bar('التلقيم',2600-gs.reload,2000,AR((gs.reload/1000).toFixed(1))+'ث')
-    +(own?'<p style="font-weight:700">'+AR(S.k)+' قتلة، '+AR(S.h)+' ضربة راس بهالسلاح</p>':'')+'</div>');
-  if(!own&&save.level<w.lvl)head.appendChild(el('<div class="reqBox">'+LOCK.replace('#3A2410','#FFF4DF').replace('#3A2410','#FFF4DF')+'<span>يفتح بالمستوى '+AR(w.lvl)+'، وسعره '+AR(w.cost)+' روبية. باقي لك '+AR(w.lvl-save.level)+' مستوى.</span></div>'));
+  const ST=wSpecs(id),cmp=save.gun!==id&&save.owned.includes(save.gun)?wSpecs(save.gun):null;
+  const head=el('<div class="wHead"><p>'+w.desc+'</p><div class="wChips">'+['dmg','ammo','acc','rl'].map(k=>{const d=ST[k];return '<div><small>'+d.n+'</small><b>'+d.t+'</b></div>';}).join('')+'</div>'
+    +(own?'<p class="wKills">'+AR(S.k)+' قتلة، '+AR(S.h)+' ضربة راس بهالسلاح</p>':'')+'</div>');
+  if(!own&&save.level<w.lvl)head.appendChild(el('<div class="reqBox">'+LOCK+'<span>يفتح بالمستوى '+AR(w.lvl)+'، وسعره '+AR(w.cost)+' روبية. باقي لك '+AR(w.lvl-save.level)+' مستوى.</span></div>'));
   L.appendChild(head);
   {const sb=$('selBar');sb.classList.remove('hidden');let b;
     if(own)b=btn(save.gun===id?'مستخدم ✓':'استخدمه',save.gun===id?'on':'goBtn',()=>{save.gun=id;persist();applySkin();renderHub();});
     else if(save.level>=w.lvl){const pr={r:w.cost};b=btn('اشترِ بـ'+AR(w.cost),'goBtn',()=>{if(pay(pr)){save.owned.push(id);save.gun=id;persist();bell();applySkin();renderHub();}},!canPay(pr));}
     else b=btn('مقفل','',()=>{},true);
     sb.innerHTML='<div class="tx"><b>'+w.name+'</b><small>'+(own?'مستوى السلاح: '+TIERS[ti].name:save.level>=w.lvl?'متاح للشراء':'يفتح بالمستوى '+AR(w.lvl))+'</small></div>';sb.appendChild(b);}
-  tabs(['التطوير','التقدم','الألوان']);
-  if(hubTab===0){const g=save.wg[id]||0,cur=gStat(id,g),nx=gStat(id,Math.min(GMAX,g+1));
-    const box=el('<div class="upg"></div>');
-    box.appendChild(el('<div class="gr"><span>الدرجة</span><div class="gpips">'+Array.from({length:GMAX},(_,i)=>'<i class="'+(i<g?'on':'')+(i===9||i===19||i===29?' ms':'')+'"></i>').join('')+'</div><b>'+AR(g)+' / '+AR(GMAX)+'</b></div>'));
-    const row=(n,a,b,max,fmt)=>'<div class="st2"><span>'+n+'</span><div class="pb2"><i style="width:'+Math.min(100,a/max*100)+'%"></i>'+(b>a?'<em style="width:'+Math.min(100,(b-a)/max*100)+'%"></em>':'')+'</div><b>'+fmt(a)+(b>a?' <small>+'+fmt(b-a).replace('٪','')+'</small>':'')+'</b></div>';
-    box.appendChild(el('<div>'+row('الضرر',cur.dmg*100,nx.dmg*100,200,v=>AR(Math.round(v))+'٪')+row('الطلقات',cur.ammo,nx.ammo,8,v=>AR(v))+row('سرعة التلقيم',2000-cur.reload,2000-nx.reload,1400,v=>AR(((2000-v)/1000).toFixed(2))+'ث')+row('ضرر الراس',cur.head*100,nx.head*100,130,v=>AR(Math.round(v))+'٪')+row('الدقة',100-cur.spread*2.5,100-nx.spread*2.5,100,v=>AR(Math.round(v))+'٪')+'</div>'));
-    L.appendChild(box);
-    const MS=[[10,'رصاصة زيادة: الطلقات +١'],[20,'يد خفيفة: التلقيم أسرع ١٥٪'],[30,'الإتقان: ضرر الراس +١٥٪ ولقب السلاح المتقن']];
-    L.appendChild(el('<div class="sec">محطات التطوير</div>'));
-    MS.forEach(([n,t])=>L.appendChild(el('<div class="item'+(g>=n?'':' locked')+'"><span class="dot2">'+(g>=n?'✓':AR(n))+'</span><div class="txt"><b>الدرجة '+AR(n)+'</b><small>'+t+'</small></div></div>')));
-    if(g<GMAX){const c={r:gCost(g)};const b=btn(own?'طوّر بـ '+AR(c.r)+' روبية':'لازم تملك السلاح أول','goBtn',()=>{if(own&&pay(c)){save.wg[id]=g+1;persist();bell();renderHub();}},!own||!canPay(c));b.style.width='100%';L.appendChild(b);}
-    else L.appendChild(el('<div class="item"><div class="txt"><b>متقن!</b><small>وصلت أعلى درجة بهالسلاح</small></div></div>'));
-    L.appendChild(el('<p class="note">التطوير بالروبيات اللي تكسبها باللعب بس. بالأونلاين، نظام النقاط يجمعك مع ناس بنفس قوتك.</p>'));
-  }else if(hubTab===1){
+  tabs(['المواصفات','التقدم','الألوان']);
+  if(hubTab===0){L.appendChild(specTable(ST,cmp,cmp?WEAPONS[save.gun].name:''));}
+  else if(hubTab===1){
     const trk=el('<div class="trk"></div>');
     TIERS.forEach((t,i)=>{const done=i<=ti&&own,cur=own&&i===ti+1&&!t.lock;let pr='';
       if(cur){const k=Math.min(S.k/t.k,t.h?S.h/t.h:1);pr=prog(k,1)+'<small>'+AR(S.k)+' من '+AR(t.k)+' قتلة'+(t.h?'، '+AR(S.h)+' من '+AR(t.h)+' راس':'')+'</small>';}
