@@ -6,7 +6,7 @@ checked (screenshots) before reporting. Goal: a professional, polished, Gulf-her
 iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds or code).
 
 ## Where things live
-- Repo: github.com/ioxqox/alqayla (GitHub Pages). Live: https://ioxqox.github.io/alqayla/?v=NN (bump NN each release; last used 66).
+- Repo: github.com/ioxqox/alqayla (GitHub Pages). Live: https://ioxqox.github.io/alqayla/?v=NN (bump NN each release; last used 67).
 - Claude can push directly (GitHub app installed). Commit as `Claude <noreply@anthropic.com>`.
 - Plan & tracker doc (Claude Docs): https://claude.ai/code/artifact/a512277a-dd89-43db-aa94-a63e087aa06d
 - Owner's PC (Windows, "killua", RTX 3080), mirror folder: `C:\Users\MA\Documents\MY PROJECT 2026\القايلة - ملفات اللعبة`
@@ -25,7 +25,9 @@ iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds
 - Weapon finishes = full-body "camo" (camoGun): whole gun recoloured in polished metal, grip darkened, engraved pattern
   (swirl for silver/gold, Sadu diamonds for diamond tier & some special finishes; CAMO_P map). Tiers TIERS (kills/headshots), special finishes FIN (headshots).
   3D first-person revolver (rev.js code inside index.html: makeRevolver/makeFPHand) uses gunSteel/gunWood/gunWoodD + env reflections.
-- Hub weapon screens show a spinning weapon showcase (#hubShow) instead of the character.
+- Hub (weapons/clothes/shop) is stacked since v67: top bar (back, title, wallet pill with small +), preview stage on top (#hubShow spinning gun, or the 3D character placed by hubFit rays at 11%-41% of screen height with the camera pitched down), full-width sheet #hubR below with 3-column item cards (card2(): picture / name / footer strip, badges in corner).
+- Lobby backdrop (LB): painting extended in a canvas (sky gradient above, mirrored sand below); k = size vs depth, base = wall-foot line below eye level. Characters stand on the sand in front, wall far behind.
+- A global thin scroll hint (#scrollHint) appears on any scrolled list.
 - Testing: Playwright + swiftshader in /home/claude/srv (copy index.html there, inject `window.__q=c=>eval(c);` before `function endLose(){`; do NOT copy sw.js into srv — it breaks local tests). Scripts t_audit.py (full flow), t45 (fight fx), t52 (weapons), t56 (clothes), t55 (holster).
 
 ## Roadmap status (see doc for the table)
@@ -36,7 +38,7 @@ iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds
 7 accounts + cloud save + split the single file · 8 friends test, then App Store / Google Play.
 
 ## Next steps (in order)
-1. Owner tests v66 on phone and reports issues (he sends screenshots; fix them all, then add your own critique).
+1. Owner tests v67 on phone (new stacked hub, farther lobby wall) and reports issues; fix them all, then add your own critique.
 2. Night/sunset variants of arenas, and a new arena (dhow-building "النقعة") from earlier ChatGPT picks — later.
 3. Store screenshots + icon from the new art.
 4. Rank badges (ui/rank_*.png) on lobby/results; chests for mission rewards.
