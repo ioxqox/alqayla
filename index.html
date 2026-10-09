@@ -97,7 +97,7 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 #lobby{position:fixed;inset:0;z-index:9;pointer-events:none;color:#FFF4DF}
 #lobby.hidden{display:none}
 .dotN{display:inline-block;width:10px;height:10px;border-radius:50%;background:#FFE27A;box-shadow:0 0 6px #FFE27A;margin-right:4px}
-#board{position:fixed;inset:0;z-index:11;overflow-y:auto;background:linear-gradient(180deg,rgba(20,10,4,.55),rgba(20,10,4,.85));padding:calc(12px + env(safe-area-inset-top,0px)) 10px calc(20px + env(safe-area-inset-bottom,0px))}
+#board{position:fixed;inset:0;z-index:11;overflow-y:auto;background:linear-gradient(180deg,rgba(20,10,4,.9),rgba(20,10,4,.95));padding:calc(12px + env(safe-area-inset-top,0px)) 10px calc(20px + env(safe-area-inset-bottom,0px))}
 #board.hidden{display:none}
 .bdIn{max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
 .bdHead{display:flex;align-items:center;gap:10px;color:#FFE6A8}
@@ -605,6 +605,36 @@ button.kW,button.kR,button.kG{min-height:46px}
 .promo.dn2 .lgB{filter:grayscale(.5) brightness(.85)}.promo.dn2 b{color:#7A140F}
 @keyframes lgPop{0%{transform:scale(.2) rotate(-20deg);opacity:0}100%{transform:none;opacity:1}}
 @media (prefers-reduced-motion: reduce){.promo .lgB.lgBig{animation:none}}
+
+/* ---- v71: chests ---- */
+.bdChest{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:linear-gradient(180deg,rgba(72,44,18,.95),rgba(46,28,10,.96));border:2px solid #B8873A;color:#FFE6A8;box-shadow:0 6px 16px rgba(0,0,0,.4)}
+.bdChest img{width:84px;height:auto;flex:none;filter:drop-shadow(0 4px 4px rgba(0,0,0,.5))}
+.bdChest img.rdy{animation:chWig 1.4s ease-in-out infinite;filter:drop-shadow(0 0 10px #FFD36A) drop-shadow(0 4px 4px rgba(0,0,0,.5))}
+.bcT{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.bcT b{font-family:'Mirza','Tajawal',sans-serif;font-size:22px;line-height:1.1}
+.bcT small{font-size:12.5px;font-weight:700;opacity:.9}
+.bcP{display:flex;gap:5px;margin-top:3px}.bcP i{width:26px;height:8px;border-radius:4px;background:rgba(255,230,168,.2)}.bcP i.on{background:linear-gradient(180deg,#FFE9A0,#E8B54A)}
+.bdChest .goBtn{flex:none;min-width:88px;font-size:20px}
+#chestFx{position:fixed;inset:0;z-index:30;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:radial-gradient(circle at 50% 42%,rgba(60,34,14,.88),rgba(14,8,3,.96));color:#FFE6A8;text-align:center;padding:20px}
+#chestFx.hidden{display:none}
+.cfGlow{position:absolute;left:50%;top:40%;width:420px;height:420px;margin:-210px 0 0 -210px;border-radius:50%;background:repeating-conic-gradient(rgba(255,214,110,.32) 0 10deg,transparent 10deg 24deg);opacity:0;transform:scale(.3);transition:opacity .4s,transform .6s;pointer-events:none;-webkit-mask:radial-gradient(circle,#000 25%,transparent 70%);mask:radial-gradient(circle,#000 25%,transparent 70%)}
+#chestFx.open .cfGlow{opacity:1;transform:scale(1);animation:cfSpin 9s linear infinite}
+.cfBox{position:relative;width:min(46vw,190px);height:auto;filter:drop-shadow(0 12px 14px rgba(0,0,0,.6));animation:chShake .5s ease-in-out infinite}
+#chestFx.big .cfBox{width:min(62vw,260px)}
+#chestFx.open .cfBox{animation:chPop .45s cubic-bezier(.2,1.6,.4,1) both;filter:drop-shadow(0 0 22px #FFD36A) drop-shadow(0 12px 14px rgba(0,0,0,.6)) brightness(1.12)}
+#cfT{position:relative;font-family:'Mirza','Tajawal',sans-serif;font-size:30px;text-shadow:0 3px 0 #3A2410}
+.cfLoot{position:relative;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;min-height:96px}
+.cfLoot>div{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:92px;padding:10px 8px;border-radius:12px;background:rgba(255,236,190,.1);border:1px solid rgba(255,230,168,.35);opacity:0;animation:cfIn .45s cubic-bezier(.2,1.5,.4,1) forwards}
+.cfLoot .coinB,.cfLoot .pearlB{width:34px;height:34px}
+.cfLoot b{font-size:20px;font-weight:800}.cfLoot small{font-size:12px;font-weight:700;opacity:.85}
+.cfC{display:block;width:54px;height:54px}.cfC .cImg{max-width:100%;max-height:100%;height:auto;margin:0}
+#cfOk{position:relative;min-width:160px}
+@keyframes chShake{0%,100%{transform:rotate(0)}25%{transform:rotate(-4deg) translateY(-2px)}75%{transform:rotate(4deg) translateY(-2px)}}
+@keyframes chPop{0%{transform:scale(1)}40%{transform:scale(1.25) translateY(-14px)}100%{transform:scale(1.08)}}
+@keyframes chWig{0%,70%,100%{transform:rotate(0)}78%{transform:rotate(-5deg)}86%{transform:rotate(5deg)}94%{transform:rotate(-3deg)}}
+@keyframes cfIn{from{opacity:0;transform:translateY(24px) scale(.6)}to{opacity:1;transform:none}}
+@keyframes cfSpin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){.cfBox,#chestFx.open .cfGlow,.bdChest img.rdy{animation:none!important}}
 /* thin scroll hint that shows while any list is moving */
 #scrollHint{position:fixed;z-index:30;width:5px;border-radius:3px;background:rgba(58,36,16,.72);box-shadow:0 0 0 1px rgba(255,236,190,.35);pointer-events:none;opacity:0;transition:opacity .35s}
 #scrollHint.on{opacity:1;transition:opacity .1s}
@@ -721,9 +751,11 @@ button.kW,button.kR,button.kG{min-height:46px}
   </div>
 </div>
 <div id="tut" class="hidden"><div class="tutBox"><div class="tutStep" id="tutStep"></div><b id="tutT"></b><p id="tutP"></p><div class="tutDots" id="tutDots"></div><button class="goBtn kR" id="tutNext">التالي</button><button id="tutSkip" style="background:none;box-shadow:none;font-size:16px;min-height:36px;color:#7A4E1A">تخطي</button></div></div>
+<div class="hidden" id="chestFx"><div class="cfGlow"></div><img class="cfBox" id="cfBox" alt=""><b id="cfT"></b><div class="cfLoot" id="cfLoot"></div><button class="goBtn kR" id="cfOk">تمام</button></div>
 <div class="hidden" id="board"><div class="bdIn">
   <div class="bdHead"><button class="hubBack" id="boardBack" aria-label="رجوع"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button><h2>المطلوبين</h2><span id="bdCount"></span></div>
   <div class="bdWood"><div class="bdPosters" id="bdPosters"></div><div class="bdShoe"><span>كل ما قبضت على مطلوب يتجدد مكانه طلب جديد</span></div></div>
+  <div class="bdChest" id="bdChest"></div>
   <button class="goBtn kR" id="boardGo">كمّل</button></div></div>
 <div class="hidden" id="maps"><div class="mapsIn">
   <div class="hubBar"><button class="hubBack" id="mapsBack" aria-label="رجوع"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button><h2>الخرائط</h2></div>
@@ -1790,10 +1822,26 @@ function misEvent(t,d){ensureMissions();save.mis.forEach(m=>{if(m.p>=m.n)return;
   if(t==='spare'&&m.t==='spare')inc=1;
   if(inc){m.p=Math.min(m.n,m.p+inc);misMoved=true;if(m.p>=m.n)misLog.push('قبضت على '+m.name+'!');}});
   persist();updateBoardDot();}
-function updateBoardDot(){ensureMissions();const any=save.mis.some(m=>m.p>=m.n&&!m.claimed);['boardDot','lobMenuDot','ldBoardDot'].forEach(k=>{const d=$(k);if(d)d.classList.toggle('hidden',!any);});}
+function updateBoardDot(){ensureMissions();const any=save.mis.some(m=>m.p>=m.n&&!m.claimed)||(save.chestP||0)>=CHEST_N;['boardDot','lobMenuDot','ldBoardDot'].forEach(k=>{const d=$(k);if(d)d.classList.toggle('hidden',!any);});}
 let boardThen=null;
+// ---- chests: every captured outlaw opens a small chest; three captures fill the sheikh's chest ----
+const CHEST_N=3;
+function bigLoot(){const L=save.level,out=[{k:'r',n:Math.round((150+L*40)/10)*10},{k:'p',n:10+Math.floor(Math.random()*11)}];
+  if(Math.random()<.3){const pool=[];CSLOTS.forEach(sl=>CLOTHES[sl].items.forEach(it=>{if(it.r&&!save.ownedC.includes(it.id))pool.push({sl,it});}));
+    if(pool.length){const x=pool[Math.floor(Math.random()*pool.length)];out.push({k:'c',sl:x.sl,it:x.it});}}
+  return out;}
+function renderBigChest(){const C=$('bdChest');if(!C)return;const p=save.chestP||0,ready=p>=CHEST_N;
+  C.innerHTML='<img src="ui/chest_big.png?v=1" alt="" class="'+(ready?'rdy':'')+'"><div class="bcT"><b>صندوق الشيخ</b><small>'+(ready?'جاهز! افتحه وشوف وش فيه':'اقبض على '+AR(CHEST_N)+' مطلوبين ويتعبى')+'</small><div class="bcP">'+Array.from({length:CHEST_N},(_,i)=>'<i class="'+(i<p?'on':'')+'"></i>').join('')+'</div></div>';
+  if(ready){const b=btn('افتح','goBtn',()=>{const loot=bigLoot();loot.forEach(x=>{if(x.k==='r')save.gold+=x.n;if(x.k==='p')save.pearls+=x.n;if(x.k==='c')save.ownedC.push(x.it.id);});save.chestP=0;persist();
+      openChest('big',loot,'صندوق الشيخ',()=>{renderBoard();updateBoardDot();});});C.appendChild(b);}}
+function openChest(kind,loot,title,done){const F=$('chestFx');F.className='';F.classList.add(kind==='big'?'big':'small');
+  $('cfBox').src='ui/'+(kind==='big'?'chest_big':'it_chest')+'.png?v=1';$('cfT').textContent=title;$('cfLoot').innerHTML='';$('cfOk').classList.add('hidden');
+  whoosh();setTimeout(()=>{F.classList.add('open');bell();phrase(kind==='big'?[0,4,7,12]:[0,4,7],.1,.35);
+    $('cfLoot').innerHTML=loot.map((x,i)=>'<div style="animation-delay:'+(i*.18)+'s">'+(x.k==='r'?'<i class="coinB"></i><b>+'+AR(x.n)+'</b><small>روبية</small>':x.k==='p'?'<i class="pearlB"></i><b>+'+AR(x.n)+'</b><small>لؤلؤ</small>':'<span class="cfC">'+clothSVG(x.sl,x.it)+'</span><b>'+x.it.name+'</b><small>'+CLOTHES[x.sl].name+' جديد</small>')+'</div>').join('');
+    setTimeout(()=>$('cfOk').classList.remove('hidden'),350+loot.length*180);},kind==='big'?1100:750);
+  $('cfOk').onclick=()=>{click();F.className='hidden';if(done)done();};}
 function openBoard(then){ensureMissions();boardThen=then||null;$('board').classList.remove('hidden');renderBoard();misMoved=false;}
-function renderBoard(){const B=$('bdPosters');B.innerHTML='';
+function renderBoard(){const B=$('bdPosters');B.innerHTML='';renderBigChest();
   $('bdCount').textContent=AR(save.mis.filter(m=>m.p>=m.n).length)+' / ٣';
   save.mis.forEach((m,i)=>{const done=m.p>=m.n;const r=[-2.2,1.5,-1][i];
     const sil='<svg viewBox="0 0 80 80"><path d="M6 80c2-16 14-22 34-22s32 6 34 22z" fill="#5A3A1E"/><path d="M14 66 L40 14 L66 66 Q40 74 14 66z" fill="#5A3A1E"/><ellipse cx="40" cy="38" rx="14" ry="17" fill="#4A2E16"/><text x="40" y="46" text-anchor="middle" font-size="22" font-weight="800" fill="#E8B54A" opacity=".8">؟</text></svg>';
@@ -1801,8 +1849,8 @@ function renderBoard(){const B=$('bdPosters');B.innerHTML='';
     const c=el('<div class="post'+(done&&!m.claimed?' done':'')+'" style="--r:'+r+'deg"><span class="pin"></span><span class="wt">مطلوب</span><div class="mt">'+m.txt+'</div>'
       +'<div class="pg"><i style="width:'+Math.round(m.p/m.n*100)+'%"></i></div><span class="pn">'+AR(m.p)+' / '+AR(m.n)+'</span><b class="bn">'+m.name+'</b>'+ph
       +'<div class="rw"><span><i class="coin" style="width:11px;height:11px;border-radius:50%;display:inline-block"></i> '+AR(m.gold)+'</span>'+(m.pearls?'<span><i class="pearl" style="width:11px;height:11px;border-radius:50%;display:inline-block"></i> '+AR(m.pearls)+'</span>':'')+'</div></div>');
-    if(done&&!m.claimed){const b=btn('استلم','goBtn',()=>{m.claimed=true;save.gold+=m.gold;save.pearls+=m.pearls;bell();persist();
-        setTimeout(()=>{const k=save.mis.indexOf(m);if(k>=0){save.mis[k]=newMission(save.mis);persist();renderBoard();updateBoardDot();}},650);renderBoard();});c.appendChild(b);}
+    if(done&&!m.claimed){const b=btn('افتح','goBtn',()=>{m.claimed=true;save.gold+=m.gold;save.pearls+=m.pearls;save.chestP=Math.min(CHEST_N,(save.chestP||0)+1);persist();
+        openChest('small',[{k:'r',n:m.gold}].concat(m.pearls?[{k:'p',n:m.pearls}]:[]),'جايزة '+m.name,()=>{const k=save.mis.indexOf(m);if(k>=0){save.mis[k]=newMission(save.mis);persist();}renderBoard();updateBoardDot();});});c.appendChild(b);}
     B.appendChild(c);});}
 $('boardGo').onclick=()=>{click();$('board').classList.add('hidden');const f=boardThen;boardThen=null;if(f)f();};
 $('boardBack').onclick=()=>{click();$('board').classList.add('hidden');boardThen=null;};
