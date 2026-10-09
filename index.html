@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <title>القايلة</title>
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="manifest.json?v=2">
 <meta name="theme-color" content="#3A2410">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1907,7 +1907,8 @@ requestAnimationFrame(loop);
 // go full screen on the first tap (Android browsers); installed app opens full screen by itself
 (function(){const fs=()=>{const d=document.documentElement,r=d.requestFullscreen||d.webkitRequestFullscreen;if(!document.fullscreenElement&&!document.webkitFullscreenElement&&r){try{const p=r.call(d,{navigationUI:'hide'});if(p&&p.catch)p.catch(()=>{});}catch(e){}}
   try{screen.orientation&&screen.orientation.lock&&screen.orientation.lock('portrait').catch(()=>{});}catch(e){}};
-  addEventListener('pointerup',fs,{passive:true});})();
+  addEventListener('pointerup',fs,{passive:true});
+  if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});})();
 </script>
 </body>
 </html>
