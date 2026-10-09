@@ -592,7 +592,7 @@ button.kW,button.kR,button.kG{min-height:46px}
 
 /* ---- v70: league badges ---- */
 .lgB{display:inline-block;width:auto;object-fit:contain;filter:drop-shadow(0 2px 2px rgba(0,0,0,.45))}
-.lgB.legend{filter:drop-shadow(0 0 6px #FFD36A) drop-shadow(0 2px 2px rgba(0,0,0,.45)) saturate(1.3)}
+.lgB.legend{filter:drop-shadow(0 0 5px rgba(255,211,106,.8)) drop-shadow(0 2px 2px rgba(0,0,0,.45))}
 .hnBadge{flex:none;display:flex;align-items:center;justify-content:center;width:46px;height:52px;margin-left:-4px}
 .hnBadge .lgB{height:50px}
 .lgRow{display:inline-flex;align-items:center;gap:6px}
@@ -996,6 +996,7 @@ const BDROP={fareej:{file:'bg_fareej.jpg?v=1',vp:.52,ar:941/1672},souq:{file:'bg
 const bdMesh=new THREE.Mesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({fog:false,depthWrite:false,toneMapped:false}));bdMesh.visible=false;bdMesh.renderOrder=-10;scene.add(bdMesh);
 function loadBd(id){const b=BDROP[id];if(!b||bdTex[id])return;bdTex[id]='loading';new THREE.TextureLoader().load(b.file,t=>{bdTex[id]=t;},undefined,()=>{bdTex[id]='fail';});}
 MAPS.forEach(m=>loadBd(m.id));
+const bdNight={};MAPS.forEach(m=>{if(BDROP[m.id])new THREE.TextureLoader().load('bg_'+m.id+'_n.jpg?v=1',t=>{bdNight[m.id]=t;});});
 // lobby backdrop: k = painting height relative to depth (smaller = farther wall), base = wall-foot line in screen slope below eye level, wb = wall-foot height in the painting
 const LB={ar:1672/941,D:11,par:.82,k:4.6,base:-.035,wb:.345,eT:.45,eB:.6,eye:1.38};
 const lbMesh=new THREE.Mesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({fog:false,toneMapped:false}));lbMesh.visible=false;lbMesh.renderOrder=-10;scene.add(lbMesh);let lbTex=null,lbHid=null;
@@ -1027,7 +1028,7 @@ function gradeTex(id,k){const key=id+'_'+k;if(bdTod[key])return bdTod[key];const
   const ct=new THREE.CanvasTexture(c);ct.minFilter=THREE.LinearFilter;bdTod[key]=ct;return ct;}
 function setTod(k){tod=k;const T=TOD[k];sun.color.setHex(T.sun[0]);sun.intensity=T.sun[1];hemi.color.setHex(T.hemi[0]);hemi.groundColor.setHex(T.hemi[1]);hemi.intensity=T.hemi[2];}
 function pickTod(){let r=Math.random(),k='noon';for(const n of ['noon','maghrib','night']){r-=TOD[n].w;if(r<=0){k=n;break;}}return k;}
-function updBdrop(){updLobbyBd();const m=curMap(),b=BDROP[m.id];let t=bdTex[m.id];if(tod!=='noon'&&t&&t.isTexture)t=gradeTex(m.id,tod)||t;const on=!!(b&&t&&t.isTexture&&camMode==='duel');
+function updBdrop(){updLobbyBd();const m=curMap(),b=BDROP[m.id];let t=bdTex[m.id];if(tod==='night'&&bdNight[m.id])t=bdNight[m.id];else if(tod!=='noon'&&t&&t.isTexture)t=gradeTex(m.id,tod)||t;const on=!!(b&&t&&t.isTexture&&camMode==='duel');
   if(on){if(bdMesh.material.map!==t){bdMesh.material.map=t;bdMesh.material.needsUpdate=true;}
     const D=90,H=2*D*Math.tan(baseFov*Math.PI/360)*1.25;bdMesh.scale.set(H*b.ar,H,1);bdMesh.position.set(0,cam.position.y+(b.vp-.5)*H,-D);}
   bdMesh.visible=on;if(mapG[m.id])mapG[m.id].visible=!on;ground.visible=!on;}
@@ -1691,8 +1692,8 @@ function enemyShoot(){const now=performance.now();eParts.flash.visible=true;{con
   renderHUD();}
 const LEAGUES=[[0,'دوري الفريج'],[1100,'دوري السوق'],[1250,'دوري الديوانية'],[1450,'دوري القصر'],[1700,'دوري المجلس الكبير'],[2000,'دوري الأساطير']];
 function league(r){let i=0;LEAGUES.forEach((l,j)=>{if(r>=l[0])i=j;});return i;}
-const LG_IMG=['rank_bronze','rank_silver','rank_gold','rank_pearl','rank_swords','rank_swords'];
-function lgBadge(i,cls){return '<img class="lgB'+(i>=5?' legend':'')+(cls?' '+cls:'')+'" src="ui/'+LG_IMG[i]+'.png?v=2" alt="'+LEAGUES[i][1]+'">';}
+const LG_IMG=['rank_bronze','rank_silver','rank_gold','rank_pearl','rank_swords','rank_legend'];
+function lgBadge(i,cls){return '<img class="lgB'+(i>=5?' legend':'')+(cls?' '+cls:'')+'" src="ui/'+LG_IMG[i]+'.png?v=3" alt="'+LEAGUES[i][1]+'">';}
 let lastRes={};
 function settle(w,k){const diff=(foe.rating||save.rating)-save.rating;let d;
   if(w){d=Math.max(8,Math.min(40,Math.round(20+diff/25)));save.streak++;}
@@ -1849,8 +1850,8 @@ function renderBigChest(){const C=$('bdChest');if(!C)return;const p=save.chestP|
   if(ready){const b=btn('افتح','goBtn',()=>{const loot=bigLoot();loot.forEach(x=>{if(x.k==='r')save.gold+=x.n;if(x.k==='p')save.pearls+=x.n;if(x.k==='c')save.ownedC.push(x.it.id);});save.chestP=0;persist();
       openChest('big',loot,'صندوق الشيخ',()=>{renderBoard();updateBoardDot();});});C.appendChild(b);}}
 function openChest(kind,loot,title,done){const F=$('chestFx');F.className='';F.classList.add(kind==='big'?'big':'small');
-  $('cfBox').src='ui/'+(kind==='big'?'chest_big':'it_chest')+'.png?v=1';$('cfT').textContent=title;$('cfLoot').innerHTML='';$('cfOk').classList.add('hidden');
-  whoosh();setTimeout(()=>{F.classList.add('open');bell();phrase(kind==='big'?[0,4,7,12]:[0,4,7],.1,.35);
+  const cb=kind==='big'?'chest_big':'it_chest';$('cfBox').src='ui/'+cb+'.png?v=1';{const pre=new Image();pre.src='ui/'+cb+'_open.png?v=1';}$('cfT').textContent=title;$('cfLoot').innerHTML='';$('cfOk').classList.add('hidden');
+  whoosh();setTimeout(()=>{F.classList.add('open');$('cfBox').src='ui/'+cb+'_open.png?v=1';bell();phrase(kind==='big'?[0,4,7,12]:[0,4,7],.1,.35);
     $('cfLoot').innerHTML=loot.map((x,i)=>'<div style="animation-delay:'+(i*.18)+'s">'+(x.k==='r'?'<i class="coinB"></i><b>+'+AR(x.n)+'</b><small>روبية</small>':x.k==='p'?'<i class="pearlB"></i><b>+'+AR(x.n)+'</b><small>لؤلؤ</small>':'<span class="cfC">'+clothSVG(x.sl,x.it)+'</span><b>'+x.it.name+'</b><small>'+CLOTHES[x.sl].name+' جديد</small>')+'</div>').join('');
     setTimeout(()=>$('cfOk').classList.remove('hidden'),350+loot.length*180);},kind==='big'?1100:750);
   $('cfOk').onclick=()=>{click();F.className='hidden';if(done)done();};}
