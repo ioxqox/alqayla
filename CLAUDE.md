@@ -46,7 +46,7 @@ iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds
 ## Next steps (in order)
 1. Owner tests v69 on phone (stacked hub, farther lobby wall, specs tab, motion-only controls, draw speed) and reports issues. Then balance step 2: customization slots.
 2. Sunset/night done in v72 (graded). Later: new arena (dhow-building "النقعة"); real painted night versions from ChatGPT would look better than grading.
-3. Store art (v73+): store/store_1..6.jpg (1290x2796, framed in-game shots with Arabic captions) and store/feature_1024x500.jpg. Built by /home/claude/store/comp.py + fg.py. App icon still needed from ChatGPT (current icon is a busy crop of the menu art).
+3. Store art (v73+): store/store_1..6.jpg (1290x2796, framed in-game shots with Arabic captions) and store/feature_1024x500.jpg. Built by /home/claude/store/comp.py + fg.py. App icon done (v74, store/icon_1024.png; red sky, figure centred for Android circle crop).
 4. Badges and chests done with final art (v73).
 5. Known weak spots to be honest about: low-detail Meshy-Lite characters (fixed only in step 6), simple first-person gun, gray inside a few trigger guards.
 
