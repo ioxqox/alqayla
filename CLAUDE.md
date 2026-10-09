@@ -6,7 +6,7 @@ checked (screenshots) before reporting. Goal: a professional, polished, Gulf-her
 iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds or code).
 
 ## Where things live
-- Repo: github.com/ioxqox/alqayla (GitHub Pages). Live: https://ioxqox.github.io/alqayla/?v=NN (bump NN each release; last used 71).
+- Repo: github.com/ioxqox/alqayla (GitHub Pages). Live: https://ioxqox.github.io/alqayla/?v=NN (bump NN each release; last used 72).
 - Claude can push directly (GitHub app installed). Commit as `Claude <noreply@anthropic.com>`.
 - Plan & tracker doc (Claude Docs): https://claude.ai/code/artifact/a512277a-dd89-43db-aa94-a63e087aa06d
 - Owner's PC (Windows, "killua", RTX 3080), mirror folder: `C:\Users\MA\Documents\MY PROJECT 2026\القايلة - ملفات اللعبة`
@@ -32,6 +32,7 @@ iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds
 - Draw speed per weapon (WEAPONS.draw ms, gStat().draw): fard 0, naqsh 70, shotgun 150, fitil 240; shown as السحب in specs. Grip slot will trade stability vs draw speed (not aim speed).
 - League badges (v70): lgBadge(i) maps LEAGUES to ui/rank_* (legend = swords + gold glow). Shown in the lobby banner (#bBadge) and results (league row, plus a promotion/demotion card computed from rating before/after).
 - Chests (v71): claiming a wanted poster opens a small chest (openChest overlay #chestFx with its rupees/pearls) and adds 1 to save.chestP; at CHEST_N=3 the sheikh's chest on the board (#bdChest) opens: rupees, 10-20 pearls, 30% chance of an unowned rupee-priced clothing item (bigLoot). Chests are earned only, never sold.
+- Time of day (v72): each duel picks TOD noon 55% / maghrib 28% / night 17% (pickTod, setTod sets sun+hemi lights). Backdrops are colour-graded canvas copies of the noon paintings (gradeTex: multiply gradient + glow; night adds moon and stars). Night: no sun, mirrors useless. Maghrib: low sun, mirror blinds 1.5x. Lobby/hub always noon.
 - A global thin scroll hint (#scrollHint) appears on any scrolled list.
 - Testing: Playwright + swiftshader in /home/claude/srv (copy index.html there, inject `window.__q=c=>eval(c);` before `function endLose(){`; do NOT copy sw.js into srv — it breaks local tests). Scripts t_audit.py (full flow), t45 (fight fx), t52 (weapons), t56 (clothes), t55 (holster).
 
@@ -44,7 +45,7 @@ iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds
 
 ## Next steps (in order)
 1. Owner tests v69 on phone (stacked hub, farther lobby wall, specs tab, motion-only controls, draw speed) and reports issues. Then balance step 2: customization slots.
-2. Night/sunset variants of arenas, and a new arena (dhow-building "النقعة") from earlier ChatGPT picks — later.
+2. Sunset/night done in v72 (graded). Later: new arena (dhow-building "النقعة"); real painted night versions from ChatGPT would look better than grading.
 3. Store screenshots + icon from the new art.
 4. Badges (v70) and chests (v71) done. Still wanted from ChatGPT: a distinct legend-league badge.
 5. Known weak spots to be honest about: low-detail Meshy-Lite characters (fixed only in step 6), simple first-person gun, gray inside a few trigger guards.
