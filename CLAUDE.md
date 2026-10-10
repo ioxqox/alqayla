@@ -6,7 +6,7 @@ checked (screenshots) before reporting. Goal: a professional, polished, Gulf-her
 iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds or code).
 
 ## Where things live
-- Repo: github.com/ioxqox/alqayla (GitHub Pages). Live: https://ioxqox.github.io/alqayla/?v=NN (bump NN each release; last used 73).
+- Repo: github.com/ioxqox/alqayla (GitHub Pages). Live: https://ioxqox.github.io/alqayla/?v=NN (bump NN each release; last used 76).
 - Claude can push directly (GitHub app installed). Commit as `Claude <noreply@anthropic.com>`.
 - Plan & tracker doc (Claude Docs): https://claude.ai/code/artifact/a512277a-dd89-43db-aa94-a63e087aa06d
 - Owner's PC (Windows, "killua", RTX 3080), mirror folder: `C:\Users\MA\Documents\MY PROJECT 2026\القايلة - ملفات اللعبة`
@@ -63,3 +63,4 @@ iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds
 - Ask ChatGPT for single sheets, no text, flat gray background; Claude cuts/keys them (better than ChatGPT slicing).
 - Generate neutral/white bases and recolour in code instead of one image per colour.
 - device_commit_files sometimes writes a stale snapshot: verify size with device_list_dir after copying.
+- v76 (owner's notes after v75): maps unlock by league only (mapsOld removed, fixMap resets save.map); lobby sprite signs replaced by one HTML plate #lobTag over the selected character (clamped on screen), lobby camera farther (dz 9.2-13, LGAP 1.45); duel backdrop bottom mirror bug fixed (was overwriting the painting = the "paper" seam), #sky set to the painting's top colour so camera tilts never show an edge; padded backdrop textures built on demand, only 2 kept (bdFor); maghrib removed from rotation (noon 72% / night 28%), night lights brighter; mirror glare is a sun-flash centred on the enemy; smoothNormals() on character meshes (faceted look); portraits with gold bevel frames and softer light; polished metallic borders for titles/leagues cards, lock image without the white circle; level star number dark/engraved; banner subtitle wraps to 2 lines; انحاش uses ui/btn_round; big screens held sideways (foldables/tablets) run in a centred portrait column (html.lbx, AW/AH/AOX replace innerWidth/innerHeight, CSS vw -> var(--vw)).
