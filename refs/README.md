@@ -9,5 +9,13 @@ Kept as the source for every cut/keyed asset in the game. Re-cut from these, nev
 | badge_legend_option*, badge_3_diwaniya_rejected | alternatives not used |
 | icon_FINAL.png | icon-512/192, apple-touch-icon, store/icon_1024.png |
 | icon_option1/2 | earlier icon tries |
+| arena_fareej/souq/barr/sahel.png | bg_*.jpg (noon arenas) |
+| arena_alt_courtyard.png | unused alternative arena |
+| lobby_baraha.png | bg_lobby.jpg |
+| menu_keyart.png | menu_art.jpg (menu, loading, feature graphic) |
+| ui_sheet_1/2/3.png, ui_sheet_treasure.png | ui/ buttons, panels, ribbons, icons, coin, pearl, bars, badges (old), chests, trophy |
+| weapons_sheet.png | ui/w_*.png weapon arts |
+| holster_sheet.png | ui/hol_*.png holster cover |
+| clothes_sheet_1/2.png | ui/c_*.png clothing bases |
 
 Prompts used are in the plan doc and the chat history. Style master for badges: badge_6_legend_CHOSEN.png.

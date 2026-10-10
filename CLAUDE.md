@@ -10,7 +10,7 @@ iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds
 - Claude can push directly (GitHub app installed). Commit as `Claude <noreply@anthropic.com>`.
 - Plan & tracker doc (Claude Docs): https://claude.ai/code/artifact/a512277a-dd89-43db-aa94-a63e087aa06d
 - Owner's PC (Windows, "killua", RTX 3080), mirror folder: `C:\Users\MA\Documents\MY PROJECT 2026\القايلة - ملفات اللعبة`
-  (copy index.html + changed assets there after each release). Original ChatGPT art: `...\MY PROJECT 2026\الخلفيات الأصلية`.
+  (copy index.html + changed assets there after each release). Original ChatGPT art: refs\chatgpt (older copies also in `...\MY PROJECT 2026\الخلفيات الأصلية`).
   Source models/clips: `Young guy`, `Shayeb`, `Shanab`, `Sounds` folders in MY PROJECT 2026.
 
 ## Files in the repo
@@ -19,7 +19,7 @@ iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds
 - `bg_fareej.jpg bg_souq.jpg bg_barr.jpg bg_sahel.jpg` — painted duel backdrops (BDROP table, `vp` = horizon height). `bg_lobby.jpg` — lobby "baraha" wall (LB table: zoom/gnd/par). `menu_art.jpg` — main menu & loading key art.
 - `sfx_*.mp3`, `vox_*.mp3` (Kuwaiti taunts via ElevenLabs).
 - `ui/` — polished UI kit cut from ChatGPT sheets (gray bg removed): btn_wood/red/green (used with CSS border-image classes `.kW .kR .kG`), panel_sadu (`.kP`), ribbon_sadu, btn_round, ic_* icons, coin, pearl, lock, ic_energy, ic_back, bar_empty (health/progress bars), bullet(_e), tiles, rank_* badges, trophy, stars, chests, `w_*.png` 7 weapon arts (+ `w_*_m.png` steel masks), `hol_*` animated holster cover, `c_*.png` clothing bases recoloured in code (clTint).
-- `refs/chatgpt/` — ALL original ChatGPT images at full resolution (badges, night arenas, open chests, icon); refs/README.md maps each to its game asset. Always add new ChatGPT originals here.
+- `refs/chatgpt/` — ALL original ChatGPT images at full resolution (arenas day+night, lobby, menu art, UI/weapon/holster/clothes sheets, badges, chests, icon); refs/README.md maps each to its game asset. Always add new ChatGPT originals here.
 - `manifest.json`, `sw.js`, icons — installable PWA + fullscreen on first tap.
 
 ## Systems worth knowing
