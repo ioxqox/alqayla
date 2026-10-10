@@ -40,8 +40,7 @@ html,body{height:100%;margin:0;overflow:hidden;background:#F3E3BE;font-family:'T
 .myBar{flex:1;display:flex;flex-direction:column;gap:6px}
 .row2{display:flex;justify-content:space-between;align-items:center}
 .youLbl{font-weight:800;color:#FFF4DF;text-shadow:0 1px 4px rgba(0,0,0,.8);font-size:15px}
-.runBtn{pointer-events:auto;position:relative;isolation:isolate;width:66px;height:66px;min-height:0;border-radius:50%;padding:0;font-size:15px;font-weight:900;color:#FFEBC0;text-shadow:0 2px 0 rgba(60,0,0,.8);background:url(ui/btn_round.png?v=1) center/100% 100% no-repeat!important;border:0!important;box-shadow:none!important;filter:drop-shadow(0 4px 3px rgba(0,0,0,.5))}
-.runBtn:before{content:'';position:absolute;inset:19%;border-radius:50%;z-index:-1;background:radial-gradient(circle at 40% 28%,#EE6646,#B3261E 55%,#6A0F0A);box-shadow:inset 0 2px 2px rgba(255,210,170,.55),inset 0 -3px 5px rgba(0,0,0,.55)}
+.runBtn{pointer-events:auto;position:relative;width:70px;height:72px;min-height:0;border-radius:50%;padding:0 0 2px;font-family:'Mirza','Tajawal',sans-serif;font-size:17px;font-weight:700;color:#FFE7A3;text-shadow:0 2px 0 #5A0A06,0 0 4px rgba(60,0,0,.8);background:url(ui/btn_round_red.png?v=1) center/100% 100% no-repeat!important;border:0!important;box-shadow:none!important;filter:drop-shadow(0 4px 3px rgba(0,0,0,.5))}
 .runBtn:active{transform:scale(.94)}
 #lobTag{position:fixed;z-index:4;display:none;pointer-events:none;transform:translate(-50%,-100%);min-width:110px;max-width:calc(72*var(--vw));text-align:center;padding:9px 24px 11px;isolation:isolate;font-family:'Mirza','Tajawal',sans-serif;white-space:nowrap;filter:drop-shadow(0 6px 6px rgba(0,0,0,.45))}
 #lobTag:before{content:'';position:absolute;inset:0;z-index:-1;border-style:solid;border-width:13px 17px;border-image:url(ui/btn_wood.png?v=1) 38 50 fill/13px 17px stretch}
@@ -74,6 +73,12 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 #msg.go{color:#FFE27A;font-size:84px}
 #sub{position:fixed;left:16px;right:16px;top:calc(env(safe-area-inset-top,0px) + 200px);text-align:center;font-size:18px;font-weight:700;color:#FFF4DF;text-shadow:0 1px 6px rgba(0,0,0,.8);pointer-events:none;z-index:6}
 #hurt{position:fixed;inset:0;pointer-events:none;z-index:4;opacity:0;transition:opacity .25s;background:radial-gradient(ellipse at center,transparent 45%,rgba(160,20,15,.75) 100%)}
+#smokeFx{position:fixed;inset:0;pointer-events:none;z-index:3;opacity:0;transition:opacity .9s;overflow:hidden}
+#smokeFx.on{opacity:1}
+#smokeFx i{position:absolute;width:120%;height:60%;left:-10%;border-radius:50%;filter:blur(18px);background:radial-gradient(ellipse at center,rgba(214,206,190,.75),rgba(200,190,172,.35) 45%,rgba(190,180,160,0) 70%);animation:smk 7s ease-in-out infinite alternate}
+#smokeFx i:nth-child(1){top:18%;animation-duration:6s}#smokeFx i:nth-child(2){top:38%;left:-30%;animation-duration:8s;animation-delay:-3s}#smokeFx i:nth-child(3){top:55%;animation-duration:7s;animation-delay:-5s}
+html.nightTod #smokeFx i{background:radial-gradient(ellipse at center,rgba(96,104,130,.75),rgba(80,88,112,.35) 45%,rgba(70,78,100,0) 70%)}
+@keyframes smk{from{transform:translateX(-8%) scale(1)}to{transform:translateX(10%) scale(1.15)}}
 #glare{position:fixed;inset:0;pointer-events:none;z-index:4;opacity:0;transition:opacity .4s;
   background:radial-gradient(circle at var(--gx,50%) var(--gy,30%),#FFFFFF 0,#FFFFF4 9%,rgba(255,250,228,.9) 18%,rgba(255,240,200,.55) 34%,rgba(255,226,170,.2) 55%,rgba(255,220,160,0) 75%),
   linear-gradient(180deg,transparent calc(var(--gy,30%) - 1.2%),rgba(255,250,230,.7) var(--gy,30%),transparent calc(var(--gy,30%) + 1.2%))}
@@ -811,6 +816,19 @@ button.kW,button.kR,button.kG{min-height:46px}
 .lgRow .lgLk{top:-14px!important;left:-12px!important}
 .lgRow .lgTag{top:-24px!important;left:4px!important}
 .lgRow .lgOk{top:-8px!important;left:-6px!important}
+#drawBtn.kR,#readyBtn.kR{width:100%;border-width:17px 24px!important;border-image-width:17px 24px!important;min-height:68px;font-size:30px!important;line-height:1;padding:0 10px!important;letter-spacing:.5px;color:#FFE7A3!important;text-shadow:0 3px 0 rgba(60,0,0,.75),0 0 10px rgba(0,0,0,.3)!important}
+#readyBtn.kR{min-height:60px;font-size:26px!important}
+#drawBtn.kR:disabled,#drawBtn.kR.dis{filter:grayscale(.6) brightness(.8)}
+/* v79 maps page: framed title, league chip on every map, gold frame for the chosen one */
+#maps .hubBar h2,.pgTop h2{flex:none!important;margin:0 auto!important;min-width:170px;padding:6px 34px 10px!important;background:url(ui/ribbon_sadu.png?v=1) center/100% 100% no-repeat;font-size:26px!important;color:#FFE9B8!important;text-shadow:0 2px 0 rgba(0,0,0,.65)!important;filter:drop-shadow(0 4px 4px rgba(0,0,0,.45))}
+.pgTop .pgSp{flex:none!important;width:46px}
+.mapCard .mLg{position:absolute;top:10px;right:10px;display:flex;align-items:center;gap:6px;padding:3px 10px 3px 4px;border-radius:20px;background:linear-gradient(180deg,rgba(58,34,14,.92),rgba(30,16,6,.92));border:2px solid #C9A24A;box-shadow:0 3px 6px rgba(0,0,0,.5);font-style:normal}
+.mapCard .mLg .mLgB{height:30px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.6))}
+.mapCard .mLg em{font-style:normal;font-size:12.5px;font-weight:800;color:#FFE6A8}
+#maps .mapCard.on{box-shadow:0 0 0 3px #FFE27A,0 0 0 6px #8A5E1C,0 0 0 7px #FFE9A8,0 0 22px rgba(255,210,100,.65),0 10px 20px rgba(0,0,0,.5)!important}
+#maps .mapCard .sel{top:10px!important;left:10px!important;background:url(ui/ribbon_sadu.png?v=1) center/100% 100% no-repeat!important;border:0!important;border-radius:0!important;width:118px;height:34px;padding:0 0 4px!important;display:flex;align-items:center;justify-content:center;font-family:'Mirza','Tajawal',sans-serif;font-size:17px!important;color:#FFE9B8!important;text-shadow:0 2px 0 rgba(0,0,0,.6);filter:drop-shadow(0 3px 3px rgba(0,0,0,.5));z-index:2}
+#hudBot .tool{background:url(ui/tile_wood.png?v=1) center/100% 100% no-repeat!important;border:0!important;box-shadow:none!important;border-radius:0!important;color:#FFE6A8!important;text-shadow:0 2px 0 rgba(0,0,0,.6);filter:drop-shadow(0 3px 3px rgba(0,0,0,.45))}
+#hudBot .tool:disabled{filter:grayscale(.7) brightness(.7)}
 /* maps */
 #maps{background:radial-gradient(ellipse at 50% 0,rgba(201,162,74,.25),transparent 60%),linear-gradient(180deg,#4A2C14,#2A170A)!important;padding-bottom:calc(24px + var(--sb))!important}
 .mapCard{border:0!important;border-radius:16px!important;background:#2A170A!important;color:#FFE6A8!important;box-shadow:0 0 0 2px #C9A24A,0 0 0 5px #3A2410,0 0 0 6px rgba(201,162,74,.5),0 10px 20px rgba(0,0,0,.5)!important;margin:6px}
@@ -847,7 +865,7 @@ button.kW,button.kR,button.kG{min-height:46px}
 <div id="loadScr"><b>القايلة</b><i></i><small>يجهّز الساحة…</small></div><div id="rotScr"><svg viewBox="0 0 48 48" width="64" height="64" fill="none" stroke="#FFE27A" stroke-width="3" stroke-linecap="round"><rect x="15" y="6" width="18" height="32" rx="3"/><path d="M38 30a14 14 0 0 1-8 10M30 40l1-5M30 40l5 1"/></svg><b>دوّر جوالك</b><small>القايلة تنلعب والجوال واقف</small></div>
 <div id="sky"></div>
 <canvas id="c"></canvas>
-<div id="litham"></div><div id="hurt"></div><div id="glare"></div>
+<div id="litham"></div><div id="hurt"></div><div id="smokeFx"><i></i><i></i><i></i></div><div id="glare"></div>
 
 <div class="hud top hidden" id="hudTop">
   <div class="myRow"><div class="myBar"><div class="bar big" id="pBar"><i></i><span class="hpN" id="pHPt"></span></div>
@@ -864,7 +882,7 @@ button.kW,button.kR,button.kG{min-height:46px}
 <div id="binoc"><span>الحكم</span></div>
 <div id="msg"></div><div id="sub"></div>
 <div class="hud bottom hidden" id="hudBot">
-  <button id="drawBtn">اسحب</button>
+  <button id="drawBtn" class="kR">اسحب</button>
   <div class="row">
     <div class="tools">
       <button class="tool" id="tCoffee" aria-label="فنجان قهوة يرجع لك صحة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 9h11v4a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5z"/><path d="M16 10h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M9 3c-1 1.5 1 2.5 0 4M12.5 3c-1 1.5 1 2.5 0 4"/></svg>قهوة</button>
@@ -881,7 +899,7 @@ button.kW,button.kR,button.kG{min-height:46px}
   <div class="sunInfo" id="sunInfo"></div>
   <div class="ptools" id="ptools"></div>
   <div class="tdesc" id="tdesc">اضغط على أداة عشان تختارها. خصمك يشوف أدواتك، وأنت تشوف أدواته.</div>
-  <button id="readyBtn">جاهز</button>
+  <button id="readyBtn" class="kR">جاهز</button>
 </div>
 
 <div class="screen" id="menu">
@@ -1081,7 +1099,7 @@ const TAUNTS=['ههههه.. يبيلك تمرين!','هذا كله اللي عن
 function bubble(txt){const b=$('taunt');b.textContent=txt;b.classList.add('on');}
 function whoosh(){if(!save.sound)return;const a=ac();if(!a)return;const t=a.currentTime;const n=a.createBufferSource();n.buffer=noiseBuf(.25);const f=a.createBiquadFilter();f.type='bandpass';f.Q.value=2;f.frequency.setValueAtTime(400,t);f.frequency.exponentialRampToValueAtTime(3000,t+.2);const g=a.createGain();g.gain.setValueAtTime(.5,t);g.gain.exponentialRampToValueAtTime(.001,t+.25);n.connect(f);f.connect(g);g.connect(a.destination);n.start(t);}
 // interface sounds (wooden UI set, sfx_ui_*.mp3); they follow the sound switch only, so players who mute the music still hear every press
-const lastUi={};function ui(k,vol){if(!save.sound)return;const nw=performance.now();if(nw-(lastUi[k]||0)<(k==='tap'?260:90))return;lastUi[k]=nw;ac();if(sfx('ui_'+k,vol||.85,.97+Math.random()*.06))return;if(k==='tap'||k==='tab'||k==='toggle'||k==='back')blip();}
+const lastUi={};function ui(k,vol){if(!save.sound)return;if(k==='back'||k==='tab'||k==='toggle'||k==='open'||k==='close')k='tap';const nw=performance.now();if(nw-(lastUi[k]||0)<(k==='tap'?260:90))return;lastUi[k]=nw;ac();if(sfx('ui_'+k,vol||.85,.97+Math.random()*.06))return;if(k==='tap'||k==='tab'||k==='toggle'||k==='back')blip();}
 function uiKind(e){let el=e.target;for(let i=0;el&&el.nodeType===1&&el!==document.body&&i<7;i++,el=el.parentElement){
   if(el.matches('input[type=checkbox],input[type=range],select'))return 'toggle';
   if(el.matches('.hubBack,#lobBack,#boardBack,#carBack,#mapsBack,#setBack,[data-close],#cfOk,#mmCancel'))return 'back';
@@ -1260,7 +1278,7 @@ function gradeCv(im,id,k){const g=TOD[k].grade,b=BDROP[id];
   if(k==='night'){x.fillStyle='#F4F1E4';x.shadowColor='#DDE6FF';x.shadowBlur=W*.05;x.beginPath();x.arc(sx,sy,W*.035,0,7);x.fill();x.shadowBlur=0;x.fillStyle='rgba(36,48,94,.9)';x.beginPath();x.arc(sx+W*.016,sy-W*.008,W*.03,0,7);x.fill();
     x.globalCompositeOperation='source-over';for(let i=0;i<70;i++){const yy=Math.random()*hz*.85;x.globalAlpha=.25+Math.random()*.6;x.fillStyle='#FFF';x.fillRect(Math.random()*W,yy,1.4,1.4);}x.globalAlpha=1;}
   return c;}
-function setTod(k){tod=k;const T=TOD[k];sun.color.setHex(T.sun[0]);sun.intensity=T.sun[1];hemi.color.setHex(T.hemi[0]);hemi.groundColor.setHex(T.hemi[1]);hemi.intensity=T.hemi[2];}
+function setTod(k){tod=k;document.documentElement.classList.toggle('nightTod',k==='night');const T=TOD[k];sun.color.setHex(T.sun[0]);sun.intensity=T.sun[1];hemi.color.setHex(T.hemi[0]);hemi.groundColor.setHex(T.hemi[1]);hemi.intensity=T.hemi[2];}
 function pickTod(){let r=Math.random(),k='noon';for(const n of ['noon','maghrib','night']){r-=TOD[n].w;if(r<=0){k=n;break;}}return k;}
 function updBdrop(){updLobbyBd();const m=curMap(),b=BDROP[m.id],t=b&&camMode==='duel'?bdFor(m.id,tod):null;const on=!!t;
   if(on){if(bdMesh.material.map!==t){bdMesh.material.map=t;bdMesh.material.needsUpdate=true;}
@@ -1560,7 +1578,7 @@ function stain(point,obj){const d=new THREE.Mesh(new THREE.PlaneGeometry(1,1),ne
 // ---------- state ----------
 let windX=0,pTools=new Set(),eTools=new Set(),sunSide='player',shieldP=false,shieldE=false,prepEnd=0,eDelay=0,eDrawAt=0,drawPending=false;
 const MAXHP=150;let eAmmo=6,eReloadUntil=0,eReloadStart=0;let tookDmg=false,lastKillHead=false,lastDeathHead=false,shake=0,pTwirl=0,eTwirl=0,eFlinch=0,endAnim=null,endT=0,eWasDrawn=false,laughNext=0;let camMode='duel',upSince=0,downSince=0,cdStart=0,cdShown=-1,exT=0,exGoal=0,exNext=0;
-let state='menu',foe=FOES[0],eHP=MAXHP,pHP=MAXHP,ammo=6,drawn=false,reloading=false,lastShot=0,signalAt=0,eDrawn=false,eNextShot=0,blindUntil=0,smokeUntil=0,used={},timeScale=1,slowUntil=0,ghutraFly=null,fall=0,beatT=0,beatGap=0;
+let smokeFxOn=false,smokeFog0=null;let state='menu',foe=FOES[0],eHP=MAXHP,pHP=MAXHP,ammo=6,drawn=false,reloading=false,lastShot=0,signalAt=0,eDrawn=false,eNextShot=0,blindUntil=0,smokeUntil=0,used={},timeScale=1,slowUntil=0,ghutraFly=null,fall=0,beatT=0,beatGap=0;
 const ray=new THREE.Raycaster(),ndc=new THREE.Vector2();
 
 function setMsg(t,go,sub){const m=$('msg');m.textContent=t||'';m.className=go?'go':'';$('sub').textContent=sub||'';}
@@ -1861,7 +1879,7 @@ function beginReady(force){if(state!=='prep'&&state!=='holster')return;state='re
   cdStart=performance.now();cdShown=-1;signalAt=cdStart+2400+rnd(500,2600);renderHUD();}
 function signal(){state='fight';bell();shot(.0001);const now=performance.now();
   eNextShot=now+eDelay;eDrawAt=now+eDelay-250;eAmmo=6;eReloadUntil=0;let sub='';
-  if(pTools.has('smoke')||eTools.has('smoke')){smokeUntil=now+5000;sub='دخان المبخرة غطّى المكان';}
+  if(pTools.has('smoke')||eTools.has('smoke')){smokeUntil=now+5000;sub='الدخان غطّى المكان';}
   if(pTools.has('mirror')){if(sunSide!=='player')sub='الشمس مو وراك، مرآتك ما نفعت';else if(eTools.has('litham'))sub='لثامه صد مرآتك';else{blindUntil=now+(curMap().id==='sahel'?1800:900)*(tod==='maghrib'?1.5:1);sub='عميته بالمرآة!';}}
   if(eTools.has('mirror')&&sunSide==='enemy'){if(pTools.has('litham'))sub='لثامك صد مرآته';else{{const v=new THREE.Vector3(enemy.position.x+.45,1.8,enemy.position.z).project(cam),gl=$('glare');gl.style.setProperty('--gx',((v.x+1)/2*100).toFixed(1)+'%');gl.style.setProperty('--gy',((1-v.y)/2*100).toFixed(1)+'%');}$('glare').style.transition='none';$('glare').style.opacity=.97;setTimeout(()=>{$('glare').style.transition='opacity 1.2s';$('glare').style.opacity=0;},(curMap().id==='sahel'?1500:700)*(tod==='maghrib'?1.5:1));sub='عماك بمرآته!';}}
   setMsg('اضرب!',true,sub);setTimeout(()=>{if(state==='fight')setMsg('');},sub?1500:700);renderHUD();}
@@ -2050,7 +2068,7 @@ function fixMap(){const m=MAPS.find(x=>x.id===save.map);if(!m||!mapOpen(m)){save
 function openMaps(){ui('open');$('maps').classList.remove('hidden');const L=$('mapList');L.innerHTML='';
   MAPS.forEach(m=>{const open=mapOpen(m),on=save.map===m.id,bd=BDROP[m.id];
     const c=el('<div class="mapCard'+(open?'':' lock')+(on?' on':'')+'"><div class="mArt" style="background-image:url('+bd.file+')"></div><div class="mShade"></div>'
-      +(on?'<span class="sel">✓ المختارة</span>':'')
+      +(on?'<span class="sel">المختارة</span>':'')+(open?'<span class="mLg">'+lgBadge(m.lg,'mLgB')+'<em>'+LEAGUES[m.lg][1]+'</em></span>':'')
       +(open?'':'<div class="lockB">'+lgBadge(m.lg,'mlB')+'<span>توصل '+LEAGUES[m.lg][1]+'</span><small>'+AR(LEAGUES[m.lg][0])+' نقطة</small></div>')
       +'<div class="mi"><b>'+m.name+'</b><p>'+m.desc+'</p>'+(m.twist?'<span class="tw">'+m.twist+'</span>':'<span class="tw ok">بدون مفاجآت</span>')+'</div></div>');
     if(open)c.onclick=()=>{save.map=m.id;persist();bell();$('maps').classList.add('hidden');$('mapChipT').textContent=m.name;applyMap(m.id);};L.appendChild(c);});}
@@ -2420,7 +2438,9 @@ function loop(now){requestAnimationFrame(loop);windOn(state==='prep'||state==='r
   {const hw=Math.tan(cam.fov*Math.PI/360)*cam.aspect;if(GW().model==='pistol')GUN_UP.set(hw*.21,-.14,-.5);else GUN_UP.set(hw*.5*.5,-.19,-.5);GUN_DOWN.set(hw*.7*.5,-.66,-.48);GUN_RL.set(hw*.38*.5,-.3,-.44);}
   const showG=state==='hub'&&hubView==='weapon';const tgt=showG?(WEAPONS[hubGun].model==='pistol'?GUN_SHOW:GUN_SHOW_L):(drawn&&reloading)?GUN_RL:drawn?GUN_UP:GUN_DOWN;pg.position.lerp(tgt,Math.min(1,dt*(showG?6:16)));{const bx=showG?0:reloading?-.75:.05;pg.rotation.x+=(bx-pg.rotation.x)*.18;}if(pTwirl>0)pg.rotation.x=-pTwirl;pg.rotation.y=showG?Math.PI/2+Math.sin(t*.8)*.6:pg.rotation.y+((reloading?.9:GW().model==='pistol'?.12:.1)-pg.rotation.y)*.2;pg.rotation.z+=((reloading?.5:0)-pg.rotation.z)*.2;
   cam.rotation.z*=.85;
-  if(state==='fight'&&now<smokeUntil){scene.fog.near=2;scene.fog.far=16;}else{scene.fog.near+=(18-scene.fog.near)*.05;scene.fog.far+=(60-scene.fog.far)*.05;}
+  {const sm=(state==='fight'||state==='end')&&now<smokeUntil;if(sm!==!!smokeFxOn){smokeFxOn=sm;$('smokeFx').classList.toggle('on',sm);
+      if(sm){smokeFog0=scene.fog.color.getHex();scene.fog.color.setHex(tod==='night'?0x3A4258:0xB9AE9C);}else if(smokeFog0!=null){scene.fog.color.setHex(smokeFog0);smokeFog0=null;}}
+    if(sm){scene.fog.near=5;scene.fog.far=26;}else{scene.fog.near+=(18-scene.fog.near)*.05;scene.fog.far+=(60-scene.fog.far)*.05;}}
   // cam slow-mo push
   const camZ=(timeScale<1)?-2.2:0;cam.position.z+=(camZ-cam.position.z)*Math.min(1,dt*3);
   updParts(dt);
