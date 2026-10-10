@@ -6,7 +6,7 @@ checked (screenshots) before reporting. Goal: a professional, polished, Gulf-her
 iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds or code).
 
 ## Where things live
-- Repo: github.com/ioxqox/alqayla (GitHub Pages). Live: https://ioxqox.github.io/alqayla/?v=NN (bump NN each release; last used 79).
+- Repo: github.com/ioxqox/alqayla (GitHub Pages). Live: https://ioxqox.github.io/alqayla/?v=NN (bump NN each release; last used 80).
 - Claude can push directly (GitHub app installed). Commit as `Claude <noreply@anthropic.com>`.
 - Plan & tracker doc (Claude Docs): https://claude.ai/code/artifact/a512277a-dd89-43db-aa94-a63e087aa06d
 - Owner's PC (Windows, "killua", RTX 3080), mirror folder: `C:\Users\MA\Documents\MY PROJECT 2026\القايلة - ملفات اللعبة`
@@ -68,3 +68,5 @@ iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds
 - Pending discussion with owner (do not build before he agrees): tools/items redesign (unlock by league, pros/cons, counters, new tools like the lasso flip) and monetization/economy.
 - v79: owner likes the soft tap tone → ui() maps back/tab/toggle/open/close to 'tap' (one tone for every button; buy/err/equip stay). Smoke (المبخرة) used to wash the character white (fog colour = cream map fog, backdrop unfogged): now #smokeFx drifting haze overlay over everything + smoke-grey fog (night: blue-grey), html.nightTod class. اسحب/جاهز use .kR; انحاش uses ui/btn_round_red.png (btn_round with glossy red centre, made in PIL); in-duel tool buttons on tile_wood. Maps page: ribbon-framed titles (also .pgTop h2), league chip (.mLg) on each open map, gold frame + ribbon "المختارة" for the chosen map (#maps-scoped rules, older rules later in the CSS).
 - Owner decisions (v79 talk): tool names must be plain everyday words (heritage stays in art/theme, not tool names). Monetization like League of Legends: cosmetics + battle pass only, never pay-to-win.
+- v80: owner rejected the ribbon titles/tags on the maps page → page titles (#maps h2, .pgTop h2) are btn_wood plaques (::before border-image), map cards framed with tile_wood 9-slice (16px), chosen map = glow + btn_green "✓ المختارة" plaque, league chip + twist pills are btn_wood/btn_red/btn_green plaques. Leagues card (.lgMe) bar/text inset so they stay inside the Sadu frame.
+- Owner APPROVED (v80): tools list with secret pick + reveal + 3s swap of one tool; exclusive premium gun collections (look + shot effect, no stats; kill camos stay earned-only); starter pack. Two tools replaced at his request: الصفارة الوهمية → النسخة الوهمية (decoy double, منظار exposes it), سدادات الأذن → التركيز (first second after draw in slow-motion for you, then hand shakes 2s). Build the tools system next.
