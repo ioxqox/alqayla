@@ -13,7 +13,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Mirza:wght@600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&family=Mirza:wght@600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--vw:1vw;--appw:100vw}
 html.lbx{--vw:calc(var(--appw)/100);background:#1E1208 radial-gradient(ellipse at 50% 40%,#5A3416,#1E1208 70%)}
@@ -863,6 +863,131 @@ button.kW,button.kR,button.kG{min-height:46px}
 /* thin scroll hint that shows while any list is moving */
 #scrollHint{position:fixed;z-index:30;width:5px;border-radius:3px;background:rgba(58,36,16,.72);box-shadow:0 0 0 1px rgba(255,236,190,.35);pointer-events:none;opacity:0;transition:opacity .35s}
 #scrollHint.on{opacity:1;transition:opacity .1s}
+/* ===== v82 light theme: profile page (ملفي) ===== */
+#pfPage{position:fixed;inset:0;z-index:14;direction:rtl;display:flex;flex-direction:column;color:#5A3416;font-family:'Tajawal',sans-serif;overflow:hidden;background:#F3E3BE}
+#pfPage.hidden{display:none}
+#pfPage .pfBg{position:absolute;inset:-24px;background-size:cover;background-position:center 40%;filter:blur(7px) saturate(1.05);transform:scale(1.06)}
+#pfPage .pfBg:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,244,222,.35),rgba(255,240,210,.55) 40%,rgba(246,226,186,.8))}
+.pfHdr{position:relative;z-index:2;margin:calc(8px + env(safe-area-inset-top,0px)) 8px 0;height:64px;border-style:solid;border-width:0 28px;border-image:url(ui/l/hdr.webp) 0 82 0 82 fill/0 28px round;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 4px 5px rgba(80,40,10,.35))}
+.pfHdr h2{margin:-10px 0 0;font-family:'Mirza','Tajawal',sans-serif;font-size:27px;line-height:1;color:#FFF0CF;text-shadow:0 2px 0 #6B3A12,0 0 6px rgba(60,25,5,.5)}
+.pfRb{position:absolute;top:50%;transform:translateY(-58%);width:52px;height:52px;min-height:0;padding:0;border-radius:50%;background:url(ui/l/bt_rnd_turq.webp) center/100% 100% no-repeat;box-shadow:none;display:grid;place-items:center}
+.pfRb svg{filter:drop-shadow(0 1px 1px rgba(0,60,60,.6))}
+.pfRb:active{transform:translateY(-58%) scale(.93)}
+.pfRb.bk{right:-30px}.pfRb.gr{left:-30px}
+.pfBody{position:relative;z-index:1;flex:1;overflow-y:auto;overflow-x:hidden;padding:8px 12px calc(20px + var(--sb));display:flex;flex-direction:column;gap:10px;max-width:520px;width:100%;margin:0 auto;box-sizing:border-box;scrollbar-width:none}
+.pfBody::-webkit-scrollbar{display:none}
+.pfCard{position:relative;border-style:solid;border-width:22px;border-image:url(ui/l/pn_frame.webp) 52 fill/22px stretch;padding:4px 4px 6px;filter:drop-shadow(0 5px 6px rgba(80,40,10,.3))}
+.pfTop{display:flex;gap:10px;align-items:center}
+.pfAv{position:relative;flex:none;width:calc(30*var(--vw));max-width:132px;aspect-ratio:318/360}
+.pfAv .ph{position:absolute;left:13%;right:13%;top:16.5%;aspect-ratio:1;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 50% 35%,#7FD3D0,#2E8E93 75%)}
+.pfAv .ph img{transform:scale(1.18) translateY(4%)}
+.pfAv .rg{position:absolute;inset:0;background:url(ui/l/ring.webp) center/100% 100% no-repeat;pointer-events:none}
+.pfInfo{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px;align-items:stretch}
+.pfName{position:relative;height:44px;border-style:solid;border-width:0 26px;border-image:url(ui/l/tp_wood.webp) 0 80 0 80 fill/0 26px stretch;display:flex;align-items:center;justify-content:center;padding:0 2px 2px;cursor:pointer}
+.pfName b{font-family:'Aref Ruqaa','Mirza',serif;font-size:25px;line-height:1;color:#5A2E0E;text-shadow:0 1px 0 rgba(255,250,235,.8);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pfName input{width:100%;border:0;background:transparent;text-align:center;font-family:'Aref Ruqaa','Mirza',serif;font-size:21px;color:#5A2E0E;outline:none}
+.pfName .ed{position:absolute;left:-22px;top:50%;transform:translateY(-50%);width:20px;height:20px;opacity:.75}
+.pfBadges{display:flex;align-items:center;justify-content:space-around;gap:4px}
+.pfLv{position:relative;width:58px;height:58px;display:grid;place-items:center;background:url(ui/star.png?v=2) center/contain no-repeat;filter:drop-shadow(0 2px 2px rgba(90,50,10,.4))}
+.pfLv b{font-family:'Mirza',sans-serif;font-size:22px;color:#5A2A06;margin-top:6px;text-shadow:0 0 3px #FFF1C2,0 0 3px #FFF1C2,0 1px 0 #FFF7DA}
+.pfLg{display:flex;flex-direction:column;align-items:center;gap:0}
+.pfLg img{width:70px;height:70px;object-fit:contain;filter:drop-shadow(0 2px 3px rgba(80,40,10,.4))}
+.pfLg small{font-size:11.5px;font-weight:800;color:#7A4A1E;margin-top:-2px;white-space:nowrap}
+.pfTitleTag{font-family:'Aref Ruqaa',serif;font-size:15px;color:#8A4A12;text-align:center;line-height:1.1;min-height:16px}
+.pfStats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}
+.pfSt{height:44px;border-style:solid;border-width:0 20px;border-image:url(ui/l/bt_cream_s.webp) 0 70 0 70 fill/0 20px stretch;display:flex;align-items:center;justify-content:center;gap:5px;padding-bottom:2px}
+.pfSt img{width:22px;height:22px;object-fit:contain;margin:0 -6px 0 0}
+.pfSt b{font-family:'Tajawal';font-weight:800;font-size:16px;color:#5A3416;direction:ltr}
+.pfSt small{display:block;font-size:10px;font-weight:700;color:#8B6234;line-height:1;margin-top:-1px}
+.pfSt span{display:flex;flex-direction:column;align-items:center}
+.pfBar{margin:10px 2px 2px;display:flex;align-items:center;gap:8px}
+.pfBar .tr{flex:1;height:16px;border-radius:10px;background:linear-gradient(#A79C8C,#CFC6B7);box-shadow:inset 0 2px 3px rgba(70,40,10,.45),0 1px 0 rgba(255,255,255,.7);overflow:hidden;border:2px solid #C8932F}
+.pfBar .tr i{display:block;height:100%;border-radius:8px;background:linear-gradient(#FFE58A,#F2B33A 55%,#D98E1C);box-shadow:inset 0 2px 0 rgba(255,255,255,.6)}
+.pfBar small{font-size:12px;font-weight:800;color:#6B4320;white-space:nowrap}
+.pfShow{display:flex;align-items:center;gap:8px;margin-top:8px;padding:6px 8px;border-radius:12px;background:rgba(160,110,50,.12);box-shadow:inset 0 1px 3px rgba(90,50,10,.25)}
+.pfShow>small{font-size:12px;font-weight:800;color:#7A4A1E;white-space:nowrap}
+.pfShow .sl{flex:1;display:flex;justify-content:space-around}
+.pfShow .sl span{width:46px;height:54px;display:grid;place-items:center;border-radius:10px}
+.pfShow .sl span.em{border:2px dashed rgba(150,100,40,.45);width:40px;height:40px;border-radius:50%}
+.pfShow .sl img{height:54px;width:auto;filter:drop-shadow(0 2px 2px rgba(80,40,10,.4))}
+.pfTabs{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px;border-radius:30px;background:linear-gradient(#D9C29A,#E9D9B8);box-shadow:inset 0 2px 4px rgba(90,55,20,.4),0 1px 0 rgba(255,255,255,.6)}
+.pfTabs button{height:46px;min-height:0;padding:0 4px 2px;border-radius:24px;background:transparent;box-shadow:none;display:flex;align-items:center;justify-content:center;gap:5px;font-family:'Tajawal';font-weight:800;font-size:14.5px;color:#7E5A33}
+.pfTabs button img{width:26px;height:26px;object-fit:contain;opacity:.75}
+.pfTabs button.on{border-style:solid;border-width:0 18px;border-image:url(ui/l/bt_cream_s.webp) 0 70 0 70 fill/0 18px stretch;border-radius:0;color:#5A2E0E;padding:0 0 2px}
+.pfTabs button.on img{opacity:1}
+.pfTabs button .dotN{position:static;margin-right:2px}
+.pfSec{display:flex;align-items:center;justify-content:space-between;padding:0 6px;margin-top:2px}
+.pfSec b{font-family:'Mirza',sans-serif;font-size:19px;color:#6B3A12;text-shadow:0 1px 0 rgba(255,245,225,.8)}
+.pfSec span{font-size:13px;font-weight:800;color:#7A4A1E;direction:ltr}
+.pfShelf{position:relative;border-style:solid;border-width:34px 37px 30px;border-image:url(ui/l/shelf.webp) 70 76 62 76 fill/34px 37px 30px stretch;margin:0 -4px}
+.pfShelf .pR{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:0 2%;margin-top:-6px}
+.pfMd{position:relative;display:flex;flex-direction:column;align-items:center;cursor:pointer;padding-bottom:2px}
+.pfMd .im{position:relative;--h:min(calc(24*var(--vw)),112px);height:var(--h);width:calc(var(--h)*.76)}
+.pfMd .im img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 3px 3px rgba(70,35,8,.45))}
+.pfMd.lock .im img{filter:grayscale(1) brightness(1.08) contrast(.8) opacity(.65) drop-shadow(0 2px 2px rgba(70,35,8,.3))}
+.pfMd.lock .im .lk{position:absolute;width:44%!important;height:auto!important;top:52%;left:50%;transform:translate(-50%,-50%);filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
+.pfMd .tg{margin-top:2px;min-width:86%;max-width:100%;box-sizing:border-box;padding:3px 6px 4px;border-radius:9px;background:linear-gradient(#FFF6E2,#F0DDB6);border:1.5px solid #C9952F;box-shadow:0 2px 0 rgba(120,70,20,.35),inset 0 1px 0 #fff;text-align:center}
+.pfMd.lock .tg{background:linear-gradient(#ECE6DA,#D6CEBF);border-color:#A59A88}
+.pfMd .tg b{display:block;font-size:12px;font-weight:800;color:#5A3416;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pfMd .pp{display:flex;justify-content:center;gap:3px;margin-top:2px}
+.pfMd .pp i{width:7px;height:7px;border-radius:50%;background:#CDBFA6;box-shadow:inset 0 1px 1px rgba(0,0,0,.3)}
+.pfMd .pp i.b{background:#C77B3A}.pfMd .pp i.s{background:#B9C3CF}.pfMd .pp i.g{background:#F2B52C}.pfMd .pp i.p{background:#BFF0EA}.pfMd .pp i.l{background:#E0332B}
+.pfMd .rd{position:absolute;top:4%;left:12%;width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FF8A7A,#D7261C 60%,#9E130C);border:2px solid #FFF3D6;box-shadow:0 1px 3px rgba(0,0,0,.4);animation:pfBob 1s ease-in-out infinite}
+@keyframes pfBob{50%{transform:translateY(-3px)}}
+.pfMd .sh{position:absolute;top:2%;right:10%;width:20px;height:20px;border-radius:50%;background:url(ui/l/bt_rnd_turq.webp) center/100% 100%;display:grid;place-items:center;font-size:11px;color:#FFF7DF;font-weight:800}
+.pfTl{position:relative;width:100%;aspect-ratio:var(--ar);background:var(--tp) center/100% 100% no-repeat;display:flex;align-items:center;justify-content:center;cursor:pointer;filter:drop-shadow(0 3px 3px rgba(80,40,10,.3))}
+.pfTl b{font-family:'Aref Ruqaa',serif;font-size:min(calc(5.6*var(--vw)),26px);line-height:1;margin-top:-4px;color:var(--tc);text-shadow:var(--ts);white-space:nowrap}
+.pfTl small{position:absolute;bottom:-13px;left:50%;transform:translateX(-50%);font-size:10.5px;font-weight:800;color:#6B4320;background:#FFF1D4;border:1.5px solid #C9952F;border-radius:8px;padding:0 7px 1px;white-space:nowrap}
+.pfTl.lock{filter:saturate(.25) brightness(.97);opacity:.82}
+.pfTl.lock b{color:#FFFFFF;text-shadow:0 1px 2px rgba(0,0,0,.75)}
+.pfTl.c.lock b{color:#6A5E50;text-shadow:0 1px 0 rgba(255,255,255,.7)}
+.pfTl.l b{margin-top:8%}
+.pfTl.on small{background:linear-gradient(#45D1CB,#17999A);color:#fff;border-color:#0E6E70}
+.pfTl.c{--tp:url(ui/l/tp_wood.webp);--ar:900/138;--tc:#5A2E0E;--ts:0 1px 0 rgba(255,250,230,.8)}
+.pfTl.r{--tp:url(ui/l/tp_blue.webp);--ar:900/137;--tc:#FFFFFF;--ts:0 2px 0 #1D5D96,0 0 6px rgba(10,50,100,.6)}
+.pfTl.e{--tp:url(ui/l/tp_purple.webp);--ar:900/141;--tc:#FFF8FF;--ts:0 2px 0 #5B2496,0 0 6px rgba(60,10,90,.6)}
+.pfTl.l{--tp:url(ui/l/tp_red.webp);--ar:900/175;--tc:#FFE38A;--ts:0 2px 0 #6E0B08,0 0 8px rgba(255,190,60,.55)}
+.pfTlHero{display:flex;flex-direction:column;align-items:center;gap:6px;padding:4px 0}
+.pfTlHero .pfTl b{font-size:min(calc(7.6*var(--vw)),36px)}
+.pfTlHero>small{font-size:12.5px;font-weight:700;color:#7A4A1E}
+.pfList{display:flex;flex-direction:column;gap:20px;padding:2px 0}
+.pfAw .pR{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:end;padding:0 4%;margin-top:-4px}
+.pfAw .bd{display:flex;flex-direction:column;align-items:center}
+.pfAw .bd img{width:calc(19*var(--vw));max-width:92px;aspect-ratio:1;object-fit:contain;filter:drop-shadow(0 3px 3px rgba(70,35,8,.45))}
+.pfAw .bd.lock img{filter:grayscale(1) brightness(.35) opacity(.35)}
+.pfAw .bd small{font-size:11px;font-weight:800;color:#5A3416;margin-top:1px;white-space:nowrap}
+.pfAw .bd.lock small{color:#8E8170}
+.pfNums{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.pfNums div{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-radius:12px;background:linear-gradient(#FFF7E6,#F1E0BE);border:1.5px solid #D2A453;box-shadow:0 2px 0 rgba(120,70,20,.3)}
+.pfNums small{font-size:12.5px;font-weight:700;color:#7A4A1E}
+.pfNums b{font-size:16px;font-weight:800;color:#5A2E0E;direction:ltr}
+/* modal */
+#pfModal{position:fixed;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(70,40,15,.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);direction:rtl}
+#pfModal.hidden{display:none}
+#pfModal .box{position:relative;width:100%;max-width:400px;border-style:solid;border-width:34px 22px 22px;border-image:url(ui/l/pn_frame_sadu.webp) 68 46 46 fill/34px 22px 22px stretch;padding:6px 4px 4px;display:flex;flex-direction:column;align-items:center;gap:8px;color:#5A3416;animation:pfPop .22s ease-out;filter:drop-shadow(0 10px 16px rgba(60,30,8,.45))}
+@keyframes pfPop{from{transform:scale(.88);opacity:0}}
+#pfModal .x{position:absolute;top:-46px;left:-28px;width:44px;height:44px;min-height:0;padding:0;border-radius:50%;background:url(ui/l/bt_rnd_red.webp) center/100% 100%;box-shadow:none;display:grid;place-items:center}
+#pfModal .big{height:150px;filter:drop-shadow(0 4px 5px rgba(70,35,8,.45))}
+#pfModal .big.lock{filter:grayscale(1) brightness(1.08) contrast(.8) opacity(.65)}
+#pfModal h3{margin:0;font-family:'Mirza',sans-serif;font-size:25px;color:#5A2E0E;line-height:1.1}
+#pfModal .ds{font-size:14px;font-weight:700;color:#7A4A1E;text-align:center;margin:-4px 0 0}
+#pfModal .tiers{display:flex;justify-content:center;gap:4px;width:100%}
+#pfModal .tiers div{display:flex;flex-direction:column;align-items:center;flex:1}
+#pfModal .tiers img{height:52px}
+#pfModal .tiers div.off img{filter:grayscale(1) opacity(.45)}
+#pfModal .tiers small{font-size:10.5px;font-weight:800;color:#6B4320;direction:ltr}
+#pfModal .tiers div.cur small{color:#B3261E}
+#pfModal .pfBar{width:100%;margin:2px 0}
+#pfModal .acts{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%;margin-top:2px}
+.pfBtn{height:54px;min-height:0;min-width:62%;padding:0 6px 3px;border-style:solid;border-width:0 26px;border-radius:0;background:none;box-shadow:none;font-family:'Mirza','Tajawal',sans-serif;font-size:21px;line-height:1;display:flex;align-items:center;justify-content:center;gap:6px}
+.pfBtn.r{border-image:url(ui/l/bt_red_s.webp) 0 72 0 72 fill/0 26px stretch;color:#FFF3D8;text-shadow:0 2px 0 #7A0E09}
+.pfBtn.t{border-image:url(ui/l/bt_turq_s.webp) 0 72 0 72 fill/0 26px stretch;color:#FFFFFF;text-shadow:0 2px 0 #0B6467}
+.pfBtn.c{border-image:url(ui/l/bt_cream_s.webp) 0 70 0 70 fill/0 26px stretch;color:#6B3A12;font-size:18px}
+.pfBtn.off{border-image:url(ui/l/bt_off.webp) 0 80 0 80 fill/0 28px stretch;color:#F4F1EA;text-shadow:0 1px 0 #6E6A64}
+.pfBtn:active{transform:scale(.96)}
+.pfBtn img{height:22px}
+#pfToast{position:fixed;left:50%;top:calc(80px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:31;padding:8px 18px;border-radius:20px;background:linear-gradient(#FFF7E6,#F1E0BE);border:2px solid #C9952F;font-weight:800;color:#5A2E0E;box-shadow:0 4px 10px rgba(60,30,8,.3);transition:opacity .3s;pointer-events:none;white-space:nowrap}
+#pfToast.hidden{opacity:0}
 </style>
 <script>
 // big screens held sideways (foldables, tablets): the OS may ignore the portrait lock, so the game runs in a centred portrait column
@@ -965,7 +1090,7 @@ button.kW,button.kR,button.kG{min-height:46px}
     <button data-go="weapons"><img class="rIc" src="ui/ic_guns.png?v=2" alt=""><span>الأسلحة</span></button>
     <button data-go="clothes"><img class="rIc" src="ui/ic_clothes.png?v=2" alt=""><span>الملابس</span></button>
     <button data-go="leagues"><img class="rIc" src="ui/ic_leagues.png?v=2" alt=""><span>الدوريات</span></button>
-    <button data-go="titles"><img class="rIc" src="ui/ic_trophy.png?v=2" alt=""><span>ألقابي</span></button>
+    <button data-go="profile"><img class="rIc" src="ui/ic_trophy.png?v=2" alt=""><span>ملفي</span><i class="dotN hidden" id="ldPfDot"></i></button>
     <button data-go="friends" class="soon"><img class="rIc" src="ui/ic_friends.png?v=2" alt=""><span>الأصدقاء</span><small>قريباً</small></button>
     <button data-go="settings"><img class="rIc" src="ui/ic_settings.png?v=2" alt=""><span>الإعدادات</span></button>
   </div></div>
@@ -990,6 +1115,8 @@ button.kW,button.kR,button.kG{min-height:46px}
   <div class="bdChest" id="bdChest"></div>
   <button class="goBtn kR" id="boardGo">كمّل</button></div></div>
 <div class="pg hidden" id="lgPage"><div class="pgTop"><button class="hubBack" data-close="lgPage" aria-label="رجوع"></button><h2>الدوريات</h2><span class="pgSp"></span></div><div class="pgBody" id="lgBody"></div></div>
+<div id="pfPage" class="hidden"><div class="pfBg"></div><div class="pfHdr"><button class="pfRb bk" id="pfBack" aria-label="رجوع"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#FFF6DD" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button><h2>ملفي</h2><button class="pfRb gr" id="pfSet" aria-label="الإعدادات"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#FFF6DD" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></div><div class="pfBody" id="pfBody"></div></div>
+<div id="pfModal" class="hidden"><div class="box"></div></div><div id="pfToast" class="hidden"></div>
 <div class="pg hidden" id="tlPage"><div class="pgTop"><button class="hubBack" data-close="tlPage" aria-label="رجوع"></button><h2>ألقابي</h2><span class="pgSp"></span></div><div class="pgBody" id="tlBody"></div></div>
 <div class="hidden" id="maps"><div class="mapsIn">
   <div class="hubBar"><button class="hubBack" id="mapsBack" aria-label="رجوع"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button><h2>الخرائط</h2></div>
@@ -1885,7 +2012,7 @@ function beginReady(force){if(state!=='prep'&&state!=='holster')return;state='re
   if(pTools.has('binoc')){sub='راقب الحكم بالدربيل، بتشوف يده قبل الإشارة';}
   setMsg('استعد…',false,sub);
   cdStart=performance.now();cdShown=-1;signalAt=cdStart+2400+rnd(500,2600);renderHUD();}
-function signal(){state='fight';bell();shot(.0001);const now=performance.now();
+function signal(){state='fight';pFirst=0;bell();shot(.0001);const now=performance.now();
   eNextShot=now+eDelay;eDrawAt=now+eDelay-250;eAmmo=6;eReloadUntil=0;let sub='';
   if(pTools.has('smoke')||eTools.has('smoke')){smokeUntil=now+5000;sub='الدخان غطّى المكان';}
   if(pTools.has('mirror')){if(sunSide!=='player')sub='الشمس مو وراك، مرآتك ما نفعت';else if(eTools.has('litham'))sub='لثامه صد مرآتك';else{blindUntil=now+(curMap().id==='sahel'?1800:900)*(tod==='maghrib'?1.5:1);sub='عميته بالمرآة!';}}
@@ -1918,7 +2045,7 @@ function gyroAim(){if(!ori||state!=='fight'||!drawn||aimMode()!=='gyro')return;c
 let fusing=false;
 function playerShoot(cx,cy){if(state!=='fight'||!drawn||reloading||fusing)return;const now=performance.now();const W=GW();if(now-lastShot<W.rof)return;
   if(ammo<=0){click();$('outAmmoT').innerHTML=MOT()?'نزّل<br>جوالك':'اضغط<br>تلقيم';$('outAmmo').classList.add('on');return;}
-  lastShot=now;ammo--;renderHUD();if(ammo<=0){$('outAmmoT').innerHTML=MOT()?'نزّل<br>جوالك':'اضغط<br>تلقيم';setTimeout(()=>{if(ammo<=0&&!reloading&&state==='fight')$('outAmmo').classList.add('on');},350);}
+  lastShot=now;if(!pFirst&&signalAt)pFirst=now-signalAt;ammo--;renderHUD();if(ammo<=0){$('outAmmoT').innerHTML=MOT()?'نزّل<br>جوالك':'اضغط<br>تلقيم';setTimeout(()=>{if(ammo<=0&&!reloading&&state==='fight')$('outAmmo').classList.add('on');},350);}
   if(W.fuse){fusing=true;hiss();const tx=cx,ty=cy;setTimeout(()=>{fusing=false;if(state!=='fight')return;const m=aimMode();
       const x=m==='touch'?tx:aimDot.x,y=m==='touch'?ty:aimDot.y;discharge(x,y,W);},W.fuse);return;}
   discharge(cx,cy,W);}
@@ -1962,12 +2089,13 @@ function league(r){let i=0;LEAGUES.forEach((l,j)=>{if(r>=l[0])i=j;});return i;}
 const LG_IMG=['rank_bronze','rank_silver','rank_gold','rank_pearl','rank_swords','rank_legend'];
 function lgBadge(i,cls){return '<img class="lgB'+(i>=5?' legend':'')+(cls?' '+cls:'')+'" src="ui/'+LG_IMG[i]+'.png?v=3" alt="'+LEAGUES[i][1]+'">';}
 let lastRes={};
-function settle(w,k){const diff=(foe.rating||save.rating)-save.rating;let d;
+let pFirst=0;
+function settle(w,k){ST().duels++;const diff=(foe.rating||save.rating)-save.rating;let d;
   if(w){d=Math.max(8,Math.min(40,Math.round(20+diff/25)));save.streak++;}
   else{d=-Math.max(8,Math.min(30,Math.round(20-diff/25)));if(k<1)d=Math.round(d*k);save.streak=0;}
   save.rating=Math.max(0,save.rating+d);save.best=Math.max(save.best,save.rating);
   const tag=foe.tag;let gold=0,taken=0;
-  if(w){const mult=(1+Math.min(.5,(save.streak-1)*.1))*(tag==='revenge'?2:tag==='nemesis'?1.5:1);gold=Math.round((foe.prize||20)*mult);save.gold+=gold;
+  if(w){const mult=(1+Math.min(.5,(save.streak-1)*.1))*(tag==='revenge'?2:tag==='nemesis'?1.5:1);gold=Math.round((foe.prize||20)*mult);save.gold+=gold;ST().earned+=gold;
     save.nemesis=save.nemesis.filter(x=>x.name!==foe.name);save.revenge=save.revenge.filter(x=>x.name!==foe.name);}
   else{if(tag==='revenge'){taken=Math.min(save.gold,(foe.stolen||0)*2);save.gold-=taken;save.revenge=save.revenge.filter(x=>x.name!==foe.name);}
     if(!save.nemesis.find(x=>x.name===foe.name)&&!foe.quick){const n=Object.assign({},foe,{tag:'nemesis'});save.nemesis.unshift(n);save.nemesis=save.nemesis.slice(0,2);}}
@@ -1975,7 +2103,7 @@ function settle(w,k){const diff=(foe.rating||save.rating)-save.rating;let d;
 function runAway(){if(!(state==='fight'||state==='ready'||state==='holster'))return;state='end';settle(false,.5);setMsg('انحشت!',false,'');drum(.5);
   setTimeout(()=>finish(false,'انسحبت من المبارزة. خسرت نص النقاط بس، وسمعتك… الله يستر.'),900);}
 function win(){state='end';$('outAmmo').classList.remove('on');setTimeout(()=>{if(state==='end'&&GW().model==='pistol'){pTwirl=Math.PI*4;whoosh();}setTimeout(()=>{drawn=false;},700);},1100);timeScale=.22;slowUntil=performance.now()+1500;fall=0.0001;sfx('vox_die',.9,voxRate()*.95,.15);sfx('fall',.7,.9,1.1);setMsg('كفو!',true,'');
-  const up=foe.lvl>=save.level;const wasHigher=foe.lvl>save.level;save.wins++;if(up)save.level++;save.kills++;GS().k++;settle(true,1);misEvent('win',{gun:save.gun,map:save.map,clean:!tookDmg,higher:wasHigher});const g=lastRes.gold;persist();
+  const up=foe.lvl>=save.level;const wasHigher=foe.lvl>save.level;save.wins++;if(up)save.level++;save.kills++;GS().k++;settle(true,1);misEvent('win',{gun:save.gun,map:save.map,clean:!tookDmg,higher:wasHigher});stWin({clean:!tookDmg,higher:wasHigher,tag:foe.tag});const g=lastRes.gold;persist();
   setTimeout(()=>{phrase([0,2,3,4,5,4,7,-1,7],.14,.45);},400);
   setTimeout(()=>finish(true,'طيّحت '+foe.name+' بـ'+GW().name+'.'+(up?' ارتفع مستواك!':'')),2200);}
 function lose(){state='end';sfx('fall',.9,1,.35);misEvent('lose');$('rfx').classList.remove('on');$('outAmmo').classList.remove('on');settle(false,1);setMsg('',false,'');drum(.8);drawn=false;renderHUD();endAnim='lose';endT=performance.now();exGoal=enemy.position.x;
@@ -2057,7 +2185,7 @@ if(!save.aimV2){save.flipH=false;save.flipV=false;save.sens=100;save.aimV2=1;per
 $('optSens').oninput=e=>{save.sens=+e.target.value;persist();};
 $('setBtn').onclick=()=>{ui('open');renderAimSet();$('menu').classList.add('hidden');$('settings').classList.remove('hidden');};
 let setFrom='menu';
-$('setBack').onclick=()=>{$('settings').classList.add('hidden');if(setFrom==='lobby'){setFrom='menu';return;}$('menu').classList.remove('hidden');menuStats();};
+$('setBack').onclick=()=>{$('settings').classList.add('hidden');$('settings').style.zIndex='';if(setFrom==='lobby'){setFrom='menu';return;}$('menu').classList.remove('hidden');menuStats();};
 const TUT=[['1','اصبر للإشارة','الحكم رافع البيرق الأخضر وأنت تسمع العد. إذا سحبت قبل ما ينزّل البيرق وتسمع رنة "اضرب!"، تخسر بالمخالفة.'],
   ['2','اسحب وطلّق','أول ما تسمع الرنة: اسحب (أو ارفع جوالك)، ووجّه الدائرة على خصمك واضغط. الدائرة تصير حمرا لما تكون عليه، وضربة الراس أقوى بكثير.'],
   ['3','تجهّز صح','قبل كل مبارزة تختار أداتين: الدرع، المرآة، اللثام، المبخرة، الدربيل. كل أداة لها فايدة وثمن، وخصمك يشوف أدواتك.'],
@@ -2108,6 +2236,90 @@ function openTitles(){ui('open');const B=$('tlBody');B.innerHTML='';const h=save
     B.appendChild(g);});
   $('tlPage').classList.remove('hidden');}
 $('mapChip').onclick=openMaps;$('mapsBack').onclick=()=>{click();$('maps').classList.add('hidden');};
+// ---------- v82 profile page (ملفي): medals with 5 tiers, titles, awards ----------
+const TIER=[['b','برونزي'],['s','فضي'],['g','ذهبي'],['p','لؤلؤي'],['l','أسطوري']];
+const TIER_PEARL=[5,10,20,40,80];
+function ST(){if(!save.st)save.st={};const s=save.st;['noon','clean','higher','fast','rev','earned','posters','streakMax','duels'].forEach(k=>{if(typeof s[k]!=='number')s[k]=0;});if(!save.mc)save.mc={};if(!Array.isArray(save.show))save.show=[];return s;}
+const ACH=[
+ {id:'heads',e:0,n:'القنّاص',d:'ضربات راس بكل الأسلحة',lv:[10,50,200,600,1500],v:()=>save.heads||0},
+ {id:'streak',e:1,n:'النار الحامية',d:'أطول سلسلة فوز ورا بعض',lv:[3,5,8,12,20],v:()=>Math.max(ST().streakMax,save.streak||0)},
+ {id:'fast',e:2,n:'سريع اليد',d:'فوز بطلقة أولى أسرع من نص ثانية',lv:[5,25,100,300,800],v:()=>ST().fast},
+ {id:'noon',e:3,n:'ولد القايلة',d:'فوز تحت شمس الظهر',lv:[10,50,150,400,1000],v:()=>ST().noon},
+ {id:'posters',e:4,n:'صيّاد المطلوبين',d:'ملصقات مطلوبين قبضتها',lv:[3,15,50,150,400],v:()=>ST().posters},
+ {id:'wins',e:5,n:'المبارز',d:'مبارزات فزت فيها',lv:[10,50,200,600,1500],v:()=>save.wins||0},
+ {id:'clean',e:6,n:'ما ينلمس',d:'فوز بدون ما تنصاب',lv:[3,15,60,200,500],v:()=>ST().clean},
+ {id:'rev',e:7,n:'آخذ الثار',d:'فوز على خصم غلبك قبل',lv:[1,5,20,60,150],v:()=>ST().rev},
+ {id:'earned',e:8,n:'التاجر',d:'روبيات كسبتها من المبارزات',lv:[1000,10000,50000,200000,1000000],v:()=>ST().earned},
+ {id:'higher',e:9,n:'الشاهين',d:'فوز على خصم أعلى منك بالمستوى',lv:[3,15,60,200,500],v:()=>ST().higher},
+ {id:'spare',e:10,n:'الكريم',d:'خصوم عفيت عنهم',lv:[3,10,30,80,200],v:()=>save.shiyam||0},
+ {id:'league',e:11,n:'سيد الدوريات',d:'أعلى دوري وصلت له',lv:[1,2,3,4,5],v:()=>league(Math.max(save.best||0,save.rating||0)),lvName:i=>LEAGUES[i+1][1]}];
+function achLv(a){const v=a.v();let l=0;a.lv.forEach((t,i)=>{if(v>=t)l=i+1;});return l;}
+function achImg(a,l){return 'ui/l/m_'+TIER[Math.max(0,l-1)][0]+a.e+'.webp';}
+function achClaim(a){return Math.min(achLv(a),5)>(save.mc[a.id]||0);}
+function pfDots(){ST();return ACH.some(achClaim);}
+function stWin(o){const s=ST();if(tod==='noon')s.noon++;if(o.clean)s.clean++;if(o.higher)s.higher++;if(pFirst&&pFirst<500)s.fast++;if(o.tag==='revenge'||o.tag==='nemesis')s.rev++;s.streakMax=Math.max(s.streakMax,save.streak||0);}
+let pfTab=0;
+function pfToast(t){const T=$('pfToast');T.textContent=t;T.classList.remove('hidden');clearTimeout(pfToast.t);pfToast.t=setTimeout(()=>T.classList.add('hidden'),1600);}
+function openProfile(tab){ui('open');ST();if(tab!=null)pfTab=tab;const P=$('pfPage');P.querySelector('.pfBg').style.backgroundImage='url('+((BDROP[save.map]||BDROP.fareej).file)+')';renderProfile();P.classList.remove('hidden');}
+function renderProfile(){const B=$('pfBody');B.innerHTML='';const me=myLook();const lg=league(save.rating),got=ACH.reduce((s,a)=>s+achLv(a),0);
+  const pic=realPortrait(me,'hero',false)||portrait(me,false,false,true);
+  const nm=(save.pname||'').trim()||'اكتب اسمك';
+  const card=el('<div class="pfCard"><div class="pfTop"><div class="pfAv"><div class="ph">'+pic+'</div><div class="rg"></div></div>'
+   +'<div class="pfInfo"><div class="pfName" id="pfName"><b>'+esc(nm)+'</b><svg class="ed" viewBox="0 0 24 24" fill="none" stroke="#7A4A1E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/></svg></div>'
+   +'<div class="pfTitleTag">'+(save.title?esc(save.title):'')+'</div>'
+   +'<div class="pfBadges"><div class="pfLv"><b>'+AR(save.level)+'</b></div><div class="pfLg">'+lgBadge(lg)+'<small>'+LEAGUES[lg][1]+'</small></div></div></div></div>'
+   +'<div class="pfStats"><div class="pfSt"><img src="ui/l/m_g5.webp" alt=""><span><b>'+AR(save.wins||0)+'</b><small>فوز</small></span></div>'
+   +'<div class="pfSt"><img src="ui/l/m_g0.webp" alt=""><span><b>'+AR(save.heads||0)+'</b><small>راس</small></span></div>'
+   +'<div class="pfSt"><img src="ui/trophy.png?v=2" alt=""><span><b>'+AR(save.rating)+'</b><small>نقاط</small></span></div></div>'
+   +'<div class="pfBar"><small>الأوسمة</small><div class="tr"><i style="width:'+Math.max(3,got/60*100)+'%"></i></div><small>⁦'+AR(got)+' / '+AR(60)+'⁩</small></div>'
+   +'<div class="pfShow"><small>واجهتك</small><div class="sl">'+[0,1,2].map(i=>{const a=ACH.find(x=>x.id===save.show[i]);const l=a?achLv(a):0;return a&&l?'<span><img src="'+achImg(a,l)+'" alt=""></span>':'<span class="em"></span>';}).join('')+'</div></div></div>');
+  B.appendChild(card);
+  card.querySelector('#pfName').onclick=pfEditName;
+  const tabs=el('<div class="pfTabs"></div>');[['الأوسمة','ui/l/mi_titles.webp'],['الألقاب','ui/l/mi_leagues.webp'],['الجوائز','ui/l/mi_trophy.webp']].forEach((t,i)=>{const b=el('<button class="tabB'+(pfTab===i?' on':'')+'"><img src="'+t[1]+'" alt="">'+t[0]+(i===0&&pfDots()?'<i class="dotN"></i>':'')+'</button>');b.onclick=()=>{pfTab=i;renderProfile();};tabs.appendChild(b);});
+  B.appendChild(tabs);
+  if(pfTab===0)pfMedals(B);else if(pfTab===1)pfTitles(B);else pfAwards(B);}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function pfEditName(){const N=$('pfName');if(N.querySelector('input'))return;N.innerHTML='<input maxlength="14" value="'+esc(save.pname||'')+'" placeholder="اكتب اسمك">';const I=N.querySelector('input');I.focus();
+  const done=()=>{const v=I.value.replace(/\s+/g,' ').trim().slice(0,14);save.pname=v;persist();renderProfile();};I.onblur=done;I.onkeydown=e=>{if(e.key==='Enter')I.blur();};}
+function pfMedals(B){const got=ACH.filter(a=>achLv(a)>0).length;B.appendChild(el('<div class="pfSec"><b>أوسمتي</b><span>'+AR(got)+' / '+AR(ACH.length)+'</span></div>'));
+  for(let r=0;r<4;r++){const S=el('<div class="pfShelf"><div class="pR"></div></div>'),R=S.firstChild;
+    ACH.slice(r*3,r*3+3).forEach(a=>{const l=achLv(a);const c=el('<div class="pfMd'+(l?'':' lock')+'"><div class="im"><img src="'+achImg(a,l||1)+'" alt="">'+(l?'':'<img class="lk" src="ui/lock.png?v=2" alt="">')+'</div>'
+      +'<div class="tg"><b>'+a.n+'</b><div class="pp">'+TIER.map((t,i)=>'<i class="'+(i<l?t[0]:'')+'"></i>').join('')+'</div></div>'+(achClaim(a)?'<span class="rd"></span>':'')+(save.show.includes(a.id)?'<span class="sh">★</span>':'')+'</div>');
+      c.onclick=()=>pfMedal(a);R.appendChild(c);});
+    B.appendChild(S);}}
+function pfMedal(a){ui('open');const l=achLv(a),v=a.v(),nx=a.lv[l],cl=save.mc[a.id]||0;const M=$('pfModal'),X=M.querySelector('.box');
+  const fmt=t=>a.id==='league'?'':AR(t);
+  X.innerHTML='<button class="x" aria-label="إغلاق"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#FFF3D8" stroke-width="3.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>'
+   +'<img class="big'+(l?'':' lock')+'" src="'+achImg(a,l||1)+'" alt=""><h3>'+a.n+'</h3><p class="ds">'+a.d+(l?' · '+TIER[l-1][1]:'')+'</p>'
+   +'<div class="tiers">'+TIER.map((t,i)=>'<div class="'+(i<l?'':'off')+(i===l?' cur':'')+'"><img src="ui/l/m_'+t[0]+a.e+'.webp" alt=""><small>'+(a.lvName?a.lvName(i).replace('دوري ',''):fmt(a.lv[i]))+'</small></div>').join('')+'</div>'
+   +(nx!=null?'<div class="pfBar"><small>'+TIER[l][1]+'</small><div class="tr"><i style="width:'+Math.max(3,Math.min(100,v/nx*100))+'%"></i></div><small>⁦'+(a.id==='league'?AR(v)+' / '+AR(nx):AR(v)+' / '+AR(nx))+'⁩</small></div>':'<p class="ds">وصلت أعلى درجة!</p>')
+   +'<div class="acts"></div>';
+  const A=X.querySelector('.acts');
+  if(l>cl){const rw=TIER_PEARL.slice(cl,l).reduce((s,x)=>s+x,0);const b=el('<button class="pfBtn r">استلم '+AR(rw)+' <img src="ui/pearl.png?v=2" alt=""></button>');b.onclick=()=>{save.pearls=(save.pearls||0)+rw;save.mc[a.id]=l;persist();ui('buy');pfToast('أخذت '+AR(rw)+' لؤلؤة');pfMedal(a);renderProfile();};A.appendChild(b);}
+  else if(l<5){A.appendChild(el('<button class="pfBtn off">الجايزة الجاية '+AR(TIER_PEARL[l])+' <img src="ui/pearl.png?v=2" alt=""></button>'));}
+  if(l){const on=save.show.includes(a.id);const b=el('<button class="pfBtn '+(on?'c':'t')+'">'+(on?'شيله من الواجهة':'اعرضه بالواجهة')+'</button>');b.onclick=()=>{if(on)save.show=save.show.filter(x=>x!==a.id);else{if(save.show.length>=3)save.show.shift();save.show.push(a.id);}persist();ui('equip');pfMedal(a);renderProfile();};A.appendChild(b);}
+  X.querySelector('.x').onclick=()=>{ui('tap');M.classList.add('hidden');};M.onclick=e=>{if(e.target===M){ui('tap');M.classList.add('hidden');}};
+  M.classList.remove('hidden');}
+function pfTitles(B){const h=save.heads||0,cur=save.title,cls={common:'c',rare:'r',epic:'e',legend:'l'};
+  const ct=TITLES.find(t=>t[1]===cur),nx=TITLES.find(t=>h<t[0]);
+  B.appendChild(el('<div class="pfTlHero"><div class="pfTl '+(ct?cls[rarity(ct[0])]:'c')+'"><b>'+(cur||'بدون لقب')+'</b></div><small>'+(nx?'اللقب الجاي «'+nx[1]+'» بعد '+AR(nx[0]-h)+' ضربة راس':'جمعت كل الألقاب!')+'</small></div>'));
+  ['common','rare','epic','legend'].forEach(r=>{const list=TITLES.filter(t=>rarity(t[0])===r),g=list.filter(t=>h>=t[0]).length;
+    B.appendChild(el('<div class="pfSec"><b>'+RCOL[r][1]+'</b><span>'+AR(g)+' / '+AR(list.length)+'</span></div>'));
+    const L=el('<div class="pfList"></div>');
+    list.forEach(t=>{const open=h>=t[0],on=cur===t[1];const c=el('<div class="pfTl '+cls[r]+(open?'':' lock')+(on?' on':'')+'"><b>'+t[1]+'</b><small>'+(on?'مستخدم ✓':open?'اضغط وتلقّب فيه':AR(t[0])+' ضربة راس')+'</small></div>');
+      if(open)c.onclick=()=>{save.title=on?null:t[1];persist();ui('equip');renderProfile();menuStats();};L.appendChild(c);});
+    B.appendChild(L);});}
+function pfAwards(B){const best=league(Math.max(save.best||0,save.rating||0)),s=ST();
+  B.appendChild(el('<div class="pfSec"><b>شارات الدوريات</b><span>'+AR(best+1)+' / '+AR(6)+'</span></div>'));
+  for(let r=0;r<2;r++){const S=el('<div class="pfShelf pfAw"><div class="pR"></div></div>');
+    [0,1,2].forEach(k=>{const i=r*3+k,open=i<=best;S.firstChild.appendChild(el('<div class="bd'+(open?'':' lock')+'">'+lgBadge(i)+'<small>'+(open?LEAGUES[i][1].replace('دوري ',''):'؟؟؟')+'</small></div>'));});
+    B.appendChild(S);}
+  B.appendChild(el('<div class="pfSec"><b>أرقامك</b><span></span></div>'));
+  const N=[['مبارزات',s.duels],['فوز',save.wins||0],['ضربات راس',save.heads||0],['أعلى نقاط',Math.max(save.best||0,save.rating||0)],['أطول سلسلة',Math.max(s.streakMax,save.streak||0)],['مطلوبين انقبضوا',s.posters],['فوز نظيف',s.clean],['روبيات كسبتها',s.earned]];
+  B.appendChild(el('<div class="pfNums">'+N.map(n=>'<div><small>'+n[0]+'</small><b>'+AR(n[1]||0)+'</b></div>').join('')+'</div>'));}
+$('pfBack').onclick=()=>{$('pfPage').classList.add('hidden');$('pfModal').classList.add('hidden');if(state==='menu')menuStats();if(state==='lobby')updateBoardDot&&updateBoardDot();};
+$('pfSet').onclick=()=>{ui('open');setFrom='lobby';$('settings').style.zIndex='16';renderAimSet();$('settings').classList.remove('hidden');};
+
 // ---------- wanted missions ----------
 const OUTLAWS=['الملثّم','أبو شنب','قاطع الدرب','ذيب الليل','أبو خنجر','سارق الحلال','الأعور','الغدّار','ولد الصحرا','أبو جمرة','الثعلب','راعي الهجن'];
 function misPool(){const L=save.level,own=save.owned,maps=MAPS.filter(m=>mapOpen(m));
@@ -2136,7 +2348,7 @@ function misEvent(t,d){ensureMissions();save.mis.forEach(m=>{if(m.p>=m.n)return;
   if(t==='spare'&&m.t==='spare')inc=1;
   if(inc){m.p=Math.min(m.n,m.p+inc);misMoved=true;if(m.p>=m.n)misLog.push('قبضت على '+m.name+'!');}});
   persist();updateBoardDot();}
-function updateBoardDot(){ensureMissions();const any=save.mis.some(m=>m.p>=m.n&&!m.claimed)||(save.chestP||0)>=CHEST_N;['boardDot','lobMenuDot','ldBoardDot'].forEach(k=>{const d=$(k);if(d)d.classList.toggle('hidden',!any);});}
+function updateBoardDot(){ensureMissions();const any=save.mis.some(m=>m.p>=m.n&&!m.claimed)||(save.chestP||0)>=CHEST_N;const pf=pfDots();['boardDot','lobMenuDot','ldBoardDot'].forEach(k=>{const d=$(k);if(d)d.classList.toggle('hidden',!(any||(k==='lobMenuDot'&&pf)));});const q=$('ldPfDot');if(q)q.classList.toggle('hidden',!pf);}
 let boardThen=null;
 // ---- chests: every captured outlaw opens a small chest; three captures fill the sheikh's chest ----
 const CHEST_N=3;
@@ -2163,7 +2375,7 @@ function renderBoard(){const B=$('bdPosters');B.innerHTML='';renderBigChest();
     const c=el('<div class="post'+(done&&!m.claimed?' done':'')+'" style="--r:'+r+'deg"><span class="pin"></span><span class="wt">مطلوب</span><div class="mt">'+m.txt+'</div>'
       +'<div class="pg"><i style="width:'+Math.round(m.p/m.n*100)+'%"></i></div><span class="pn">'+'\u2066'+AR(m.p)+' / '+AR(m.n)+'\u2069'+'</span><b class="bn">'+m.name+'</b>'+ph
       +'<div class="rw"><span><i class="coin" style="width:11px;height:11px;border-radius:50%;display:inline-block"></i> '+AR(m.gold)+'</span>'+(m.pearls?'<span><i class="pearl" style="width:11px;height:11px;border-radius:50%;display:inline-block"></i> '+AR(m.pearls)+'</span>':'')+'</div></div>');
-    if(done&&!m.claimed){const b=btn('افتح','goBtn',()=>{m.claimed=true;save.gold+=m.gold;save.pearls+=m.pearls;save.chestP=Math.min(CHEST_N,(save.chestP||0)+1);persist();
+    if(done&&!m.claimed){const b=btn('افتح','goBtn',()=>{m.claimed=true;ST().posters++;save.gold+=m.gold;save.pearls+=m.pearls;save.chestP=Math.min(CHEST_N,(save.chestP||0)+1);persist();
         openChest('small',[{k:'r',n:m.gold}].concat(m.pearls?[{k:'p',n:m.pearls}]:[]),'جايزة '+m.name,()=>{const k=save.mis.indexOf(m);if(k>=0){save.mis[k]=newMission(save.mis);persist();}renderBoard();updateBoardDot();});});c.appendChild(b);}
     B.appendChild(c);});}
 $('boardGo').onclick=()=>{click();$('board').classList.add('hidden');const f=boardThen;boardThen=null;if(f)f();};
@@ -2247,6 +2459,7 @@ document.querySelectorAll('#lobDrawer [data-go]').forEach(b=>b.onclick=e=>{e.sto
   if(g==='board')return openBoard();
   if(g==='leagues')return openLeagues();
   if(g==='titles')return openTitles();
+  if(g==='profile')return openProfile();
   if(g==='settings'){ui('open');setFrom='lobby';renderAimSet();$('settings').classList.remove('hidden');return;}
   openHub(g,0,'lobby');});
 addEventListener('pointerdown',e=>{if(state==='lobby'&&$('lobDrawer').classList.contains('open')&&!e.target.closest('#lobDrawer,#lobMenuB'))setDrawer(false);});
