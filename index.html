@@ -889,8 +889,8 @@ button.kW,button.kR,button.kG{min-height:46px}
 .pfName input{width:100%;border:0;background:transparent;text-align:center;font-family:'Marhey','Mirza',sans-serif;font-size:21px;color:#5A2E0E;outline:none}
 .pfName .ed{position:absolute;left:-22px;top:50%;transform:translateY(-50%);width:20px;height:20px;opacity:.75}
 .pfBadges{display:flex;align-items:center;justify-content:space-around;gap:4px}
-.pfLv{position:relative;width:58px;height:58px;display:grid;place-items:center;background:url(ui/star.png?v=2) center/contain no-repeat;filter:drop-shadow(0 2px 2px rgba(90,50,10,.4))}
-.pfLv b{font-family:'Mirza',sans-serif;font-size:22px;color:#5A2A06;margin-top:6px;text-shadow:0 0 3px #FFF1C2,0 0 3px #FFF1C2,0 1px 0 #FFF7DA}
+.pfLv{position:relative;width:62px;height:62px;display:grid;place-items:center;background:url(ui/c/i_star.webp) center/contain no-repeat;filter:drop-shadow(0 2px 2px rgba(90,50,10,.4))}
+.pfLv b{font-family:'Mirza',sans-serif;font-size:21px;color:#7A4508;margin-top:3px;text-shadow:0 0 3px #FFF1C2,0 0 3px #FFF1C2,0 1px 0 #FFF7DA}
 .pfLg{display:flex;flex-direction:column;align-items:center;gap:0}
 .pfLg img{width:70px;height:70px;object-fit:contain;filter:drop-shadow(0 2px 3px rgba(80,40,10,.4))}
 .pfLg small{font-size:11.5px;font-weight:800;color:#7A4A1E;margin-top:-2px;white-space:nowrap}
@@ -1855,7 +1855,7 @@ function applySkin(){gunSteel.emissive.setHex(0);finAnim=null;naqshParts.visible
 function prog(cur,need){const k=Math.min(1,cur/need);return '<div class="prog"><i style="width:'+(k*100)+'%"></i></div>';}
 function el(html){const d=document.createElement('div');d.innerHTML=html;return d.firstChild;}
 let hubView='shop',hubTab=0,hubGun='fard',trySel=null;
-const LOCK='<img src="ui/lock.png?v=2" width="14" height="14" style="object-fit:contain;vertical-align:middle;width:auto" alt="">';
+const LOCK='<img src="ui/c/i_lock.webp" width="14" height="14" style="object-fit:contain;vertical-align:middle;width:auto" alt="">';
 function gunCol(id){const sk=save.wskin[id];if(sk==null||sk==='tier')return hex(TIERS[tierIdx(id)].c);const f=FIN[sk];return f?hex(f.c):'#555';}
 function gunSVG(model,col,naqsh,wd,wid){const id=wid||(model==='pistol'?(naqsh?'naqsh':'fard'):model==='shot'?'shotgun':'fitil');const long=model!=='pistol';
   const off=col==='#8a8a8a';return '<img class="wImg'+(long?' long':'')+(off?' off':'')+'" src="ui/w_'+id+'.png?v=1" alt=""'+(off?'':' data-c="'+col+'" data-p="'+(CAMO_P[String(col).toLowerCase()]||'')+'" onload="camoGun(this)"')+'>';}
@@ -2183,7 +2183,7 @@ function enemyShoot(){const now=performance.now();eParts.flash.visible=true;{con
 const LEAGUES=[[0,'دوري الفريج'],[1100,'دوري السوق'],[1250,'دوري الديوانية'],[1450,'دوري القصر'],[1700,'دوري المجلس الكبير'],[2000,'دوري الأساطير']];
 function league(r){let i=0;LEAGUES.forEach((l,j)=>{if(r>=l[0])i=j;});return i;}
 const LG_IMG=['rank_bronze','rank_silver','rank_gold','rank_pearl','rank_swords','rank_legend'];
-function lgBadge(i,cls){return '<img class="lgB'+(i>=5?' legend':'')+(cls?' '+cls:'')+'" src="ui/'+LG_IMG[i]+'.png?v=3" alt="'+LEAGUES[i][1]+'">';}
+function lgBadge(i,cls){return '<img class="lgB'+(i>=5?' legend':'')+(cls?' '+cls:'')+'" src="ui/c/lg'+i+'.webp" alt="'+LEAGUES[i][1]+'">';}
 let lastRes={};
 let pFirst=0;
 function settle(w,k){ST().duels++;const diff=(foe.rating||save.rating)-save.rating;let d;
@@ -2350,7 +2350,7 @@ const ACH=[
  {id:'spare',e:10,n:'الكريم',d:'خصوم عفيت عنهم',lv:[3,10,30,80,200],v:()=>save.shiyam||0},
  {id:'league',e:11,n:'سيد الدوريات',d:'أعلى دوري وصلت له',lv:[1,2,3,4,5],v:()=>league(Math.max(save.best||0,save.rating||0)),lvName:i=>LEAGUES[i+1][1]}];
 function achLv(a){const v=a.v();let l=0;a.lv.forEach((t,i)=>{if(v>=t)l=i+1;});return l;}
-function achImg(a,l){return 'ui/l/m_'+TIER[Math.max(0,l-1)][0]+a.e+'.webp';}
+function achImg(a,l){return 'ui/c/m_'+TIER[Math.max(0,l-1)][0]+a.e+'.webp';}
 function achClaim(a){return Math.min(achLv(a),5)>(save.mc[a.id]||0);}
 function pfDots(){ST();return ACH.some(achClaim);}
 function stWin(o){const s=ST();if(tod==='noon')s.noon++;if(o.clean)s.clean++;if(o.higher)s.higher++;if(pFirst&&pFirst<500)s.fast++;if(o.tag==='revenge'||o.tag==='nemesis')s.rev++;s.streakMax=Math.max(s.streakMax,save.streak||0);}
@@ -2364,9 +2364,9 @@ function renderProfile(){const B=$('pfBody');B.innerHTML='';const me=myLook();co
    +'<div class="pfInfo"><div class="pfName" id="pfName"><b>'+esc(nm)+'</b><svg class="ed" viewBox="0 0 24 24" fill="none" stroke="#7A4A1E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/></svg></div>'
    +'<div class="pfTitleTag">'+(save.title?esc(save.title):'')+'</div>'
    +'<div class="pfBadges"><div class="pfLv"><b>'+AR(save.level)+'</b></div><div class="pfLg">'+lgBadge(lg)+'<small>'+LEAGUES[lg][1]+'</small></div></div></div></div>'
-   +'<div class="pfStats"><div class="pfSt"><img src="ui/l/m_g5.webp" alt=""><span><b>'+AR(save.wins||0)+'</b><small>فوز</small></span></div>'
-   +'<div class="pfSt"><img src="ui/l/m_g0.webp" alt=""><span><b>'+AR(save.heads||0)+'</b><small>راس</small></span></div>'
-   +'<div class="pfSt"><img src="ui/trophy.png?v=2" alt=""><span><b>'+AR(save.rating)+'</b><small>نقاط</small></span></div></div>'
+   +'<div class="pfStats"><div class="pfSt"><img src="ui/c/m_g5.webp" alt=""><span><b>'+AR(save.wins||0)+'</b><small>فوز</small></span></div>'
+   +'<div class="pfSt"><img src="ui/c/m_g0.webp" alt=""><span><b>'+AR(save.heads||0)+'</b><small>راس</small></span></div>'
+   +'<div class="pfSt"><img src="ui/c/i_trophy.webp" alt=""><span><b>'+AR(save.rating)+'</b><small>نقاط</small></span></div></div>'
    +'<div class="pfBar"><small>الأوسمة</small><div class="tr"><i style="width:'+Math.max(3,got/60*100)+'%"></i></div><small>⁦'+AR(got)+' / '+AR(60)+'⁩</small></div>'
    +'<div class="pfShow"><small>واجهتك</small><div class="sl">'+[0,1,2].map(i=>{const a=ACH.find(x=>x.id===save.show[i]);const l=a?achLv(a):0;return a&&l?'<span><img src="'+achImg(a,l)+'" alt=""></span>':'<span class="em"></span>';}).join('')+'</div></div></div>');
   B.appendChild(card);
@@ -2387,7 +2387,7 @@ function pfMedal(a){ui('open');const l=achLv(a),v=a.v(),nx=a.lv[l],cl=save.mc[a.
   const fmt=t=>a.id==='league'?'':AR(t);
   X.innerHTML='<button class="x" aria-label="إغلاق"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#FFF3D8" stroke-width="3.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>'
    +'<img class="big'+(l?'':' lock')+'" src="'+achImg(a,l||1)+'" alt=""><h3>'+a.n+'</h3><p class="ds">'+a.d+(l?' · '+TIER[l-1][1]:'')+'</p>'
-   +'<div class="tiers">'+TIER.map((t,i)=>'<div class="'+(i<l?'':'off')+(i===l?' cur':'')+'"><img src="ui/l/m_'+t[0]+a.e+'.webp" alt=""><small>'+(a.lvName?a.lvName(i).replace('دوري ',''):fmt(a.lv[i]))+'</small></div>').join('')+'</div>'
+   +'<div class="tiers">'+TIER.map((t,i)=>'<div class="'+(i<l?'':'off')+(i===l?' cur':'')+'"><img src="ui/c/m_'+t[0]+a.e+'.webp" alt=""><small>'+(a.lvName?a.lvName(i).replace('دوري ',''):fmt(a.lv[i]))+'</small></div>').join('')+'</div>'
    +(nx!=null?'<div class="pfBar"><small>'+TIER[l][1]+'</small><div class="tr"><i style="width:'+Math.max(3,Math.min(100,v/nx*100))+'%"></i></div><small>⁦'+(a.id==='league'?AR(v)+' / '+AR(nx):AR(v)+' / '+AR(nx))+'⁩</small></div>':'<p class="ds">وصلت أعلى درجة!</p>')
    +'<div class="acts"></div>';
   const A=X.querySelector('.acts');
