@@ -20,3 +20,6 @@ Kept as the source for every cut/keyed asset in the game. Re-cut from these, nev
 
 Prompts used are in the plan doc and the chat history. Style master for badges: badge_6_legend_CHOSEN.png.
 | bishts_sheet.png | ui/c_bisht_brown.png, c_bisht_black.png, c_bisht_navy.png (cut by component, navy not on sale yet) |
+- buttons_soft_A.png / buttons_soft_B.png — request 12, soft jelly capsule buttons (B = with rounded gold end caps + stud, the chosen style; red/turquoise/gold/cream, pressed + disabled states).
+- medals_bronze/silver/pearl/legend.png — requests 13-16, the same 12 emblems as medals_gold.png per tier.
+- page_bg_sheet.png — request 10: sand Sadu tile, honey-wood header bar, gold avatar ring with turquoise gems.
