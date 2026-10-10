@@ -249,7 +249,8 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 #taunt::after{content:'';position:absolute;left:50%;bottom:-16px;border:10px solid transparent;border-top:14px solid #2A1A0E;transform:translateX(-50%)}
 #taunt.on{opacity:1;transform:translate(-50%,0) scale(1)}
 #skipEnd{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 24px);z-index:6;text-align:center;color:#FFF4DF;font-weight:700;font-size:14px;opacity:0;pointer-events:none;text-shadow:0 1px 4px #000;transition:opacity .4s}
-#skipEnd.on{opacity:.85}
+#skipEnd.on{opacity:1}
+#skipEnd{font-size:16px!important;font-weight:800!important;bottom:calc(var(--sb) + 22px)!important;width:fit-content;margin:0 auto;padding:6px 16px;border-radius:16px;background:rgba(30,16,6,.6);border:1px solid rgba(255,230,168,.4)}
 #binoc{position:fixed;left:12px;top:calc(env(safe-area-inset-top,0px) + 250px);width:128px;height:128px;z-index:4;pointer-events:none;display:none;border-radius:50%;box-shadow:0 0 0 4px #2A1A0E,0 4px 14px rgba(0,0,0,.45)}
 #binoc span{position:absolute;bottom:-26px;left:0;right:0;text-align:center;font-size:13px;font-weight:700;color:#FFF4DF;text-shadow:0 1px 4px rgba(0,0,0,.9)}
 #tell{position:fixed;z-index:6;pointer-events:none;display:none;transform:translate(-50%,-100%);font-family:'Mirza','Tajawal',sans-serif;font-weight:700;font-weight:700;font-size:20px;color:#fff;background:#B3261E;border-radius:10px;padding:2px 10px;box-shadow:0 2px 8px rgba(0,0,0,.4);animation:pulse .35s infinite alternate}
@@ -403,7 +404,7 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 @media (prefers-reduced-motion: reduce){#msg{transition:none}#sub:not(:empty){width:fit-content;max-width:calc(100% - 32px);margin:0 auto;background:rgba(30,16,6,.72);border:1px solid rgba(255,226,122,.35);border-radius:18px;padding:6px 16px;text-shadow:none}#eTag{width:164px;background:rgba(30,16,6,.62);border-radius:10px;padding:4px 7px 6px;box-shadow:0 2px 8px rgba(0,0,0,.35)}#eTag .nm{text-shadow:none;font-size:15px}#eTag .nm small{color:#FFE27A}}
 #menu{justify-content:flex-start;gap:12px;padding-top:max(28px,env(safe-area-inset-top));padding-bottom:max(22px,env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(40,22,8,.5) 0%,rgba(40,22,8,0) 24%,rgba(40,22,8,0) 56%,rgba(30,16,6,.72) 70%,rgba(30,16,6,.9) 100%),url(menu_art.jpg?v=1) center 38%/cover no-repeat,#3A2410}
 #menu h1{font-size:72px}#menu>p:not(.how){font-size:14px;line-height:1.55;max-width:300px;text-shadow:0 1px 3px rgba(0,0,0,.8)}
-#menu #startBtn{margin-top:auto}#menu .stats{order:9;font-size:13px;gap:22px;text-shadow:0 1px 3px #000}#menu .stats b{font-size:17px}
+#menu #startBtn{margin-top:auto}#menu .stats{order:9;font-size:14px;font-weight:800;gap:12px;text-shadow:0 1px 3px #000}#menu .stats>div{min-width:84px;padding:6px 10px;border-radius:12px;background:rgba(30,16,6,.72);border:1px solid rgba(201,162,74,.6)}#menu .stats b{font-family:'Tajawal',sans-serif;font-weight:800;font-size:20px;color:#FFE27A}
 
 /* ---- polished UI kit (wood / lacquer / Sadu) ---- */
 .kW,.kR,.kG{background:none!important;box-shadow:none!important;border-radius:0!important;border-style:solid;border-color:transparent;border-width:13px 17px;padding:2px 10px!important;color:#FFEBC2;text-shadow:0 2px 0 rgba(0,0,0,.55),0 0 6px rgba(0,0,0,.35);filter:drop-shadow(0 4px 3px rgba(0,0,0,.45));transition:transform .08s,filter .08s}
@@ -635,6 +636,121 @@ button.kW,button.kR,button.kG{min-height:46px}
 @keyframes cfIn{from{opacity:0;transform:translateY(24px) scale(.6)}to{opacity:1;transform:none}}
 @keyframes cfSpin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion: reduce){.cfBox,#chestFx.open .cfGlow,.bdChest img.rdy{animation:none!important}}
+
+/* ---- v75: lobby banner polish ---- */
+.hnBan.kP .hnRow1{gap:8px;align-items:center}
+.hnBan.kP .hnWho{min-width:0;overflow:hidden}
+.hnBan.kP .hnWho b{font-size:clamp(20px,6.4vw,28px)!important;line-height:1.15!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hnBan.kP .hnWho b .ttl{font-size:inherit!important}
+.hnBan.kP .hnWho span{font-size:12.5px!important;font-weight:800;color:#5A3410;opacity:1!important;margin-top:2px}
+.hnLv{flex:none;display:flex!important;align-items:center;gap:6px;direction:rtl}
+.lvStar{align-items:center!important;position:relative;width:52px;height:52px;flex:none;background:url(ui/star.png?v=1) center/contain no-repeat;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 2px 2px rgba(0,0,0,.35))}
+.lvStar b{font-family:'Tajawal',sans-serif!important;font-weight:800!important;font-size:19px!important;color:#5A2E08!important;line-height:1;margin-top:3px;text-shadow:0 1px 0 rgba(255,240,190,.8)!important}
+.lvStar:after{content:'المستوى';position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:800;color:#5A3410;white-space:nowrap}
+.hnSt{display:flex!important;flex-direction:column;align-items:flex-start!important;line-height:1.1}
+.hnSt .stR{display:flex;align-items:center;gap:4px;direction:ltr}
+.hnSt .stR b{font-family:'Tajawal',sans-serif!important;font-weight:800;font-size:18px!important;color:#3A2410!important}
+.hnSt small{font-size:11px!important;font-weight:800;color:#5A3410!important}
+.stI{width:20px;height:20px;flex:none;background:center/contain no-repeat}
+.stI.tr{background-image:url(ui/trophy.png?v=1)}.stI.cn{background-image:url(ui/coin.png?v=1);background-size:118%}
+.hnBan.kP .hnMid,.hnBan.kP .hnMid .r span{font-size:13px!important;font-weight:800;color:#3A2410}
+.hnBan.kP .hnWal b{font-family:'Tajawal',sans-serif;font-weight:800;font-size:19px;color:#3A2410}
+.hnBan.kP .eTime{font-size:13px!important;font-weight:800;color:#3A2410}
+.strk{font-style:normal;white-space:nowrap;background:rgba(179,38,30,.12);border-radius:10px;padding:1px 7px;color:#9E1D17;font-weight:800}
+.hnBan.kP .hnMid .r>span:first-child{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ---- v75: round icons, pages, maps, leagues, titles ---- */
+:root{--sb:max(env(safe-area-inset-bottom,0px),var(--vvb,0px),8px)}
+.rIc{display:block;object-fit:contain;filter:drop-shadow(0 2px 2px rgba(0,0,0,.4))}
+.ldGrid{grid-template-columns:repeat(4,1fr)!important;gap:6px!important;padding:10px 8px!important}
+.ldGrid button{min-height:86px!important;padding:6px 2px!important;gap:3px!important;font-size:13px!important;font-weight:800}
+.ldGrid .rIc{width:46px;height:46px}
+.ldGrid small{font-size:10px!important;margin-top:-2px}
+.menuGrid button.kW .rIc{width:34px;height:34px;margin:-4px 0}
+.mapChip{background:none!important}.mapChip .rIc{width:50px;height:50px}.mapChip span{display:none}
+.hubTop .hubWal .plusB{background:none!important;box-shadow:none!important;width:28px!important;height:28px!important}
+.hubTop .hubWal .plusB .rIc{width:28px;height:28px}
+.pg{position:fixed;inset:0;z-index:13;display:flex;flex-direction:column;color:#FFE6A8;direction:rtl;
+  background:radial-gradient(ellipse at 50% 0,rgba(201,162,74,.25),transparent 60%),radial-gradient(ellipse at 50% 120%,rgba(0,0,0,.6),transparent 60%),linear-gradient(180deg,#4A2C14,#2A170A)}
+.pg.hidden{display:none}
+.pg:before{content:'';position:absolute;left:0;right:0;top:0;height:14px;background:url(ui/ribbon_sadu.png?v=1) center/auto 100% repeat-x;opacity:.85}
+.pgTop{display:flex;align-items:center;gap:10px;padding:calc(18px + env(safe-area-inset-top,0px)) 14px 8px}
+.pgTop h2{flex:1;margin:0;text-align:center;font-family:'Mirza','Tajawal',sans-serif;font-size:32px;color:#FFE6A8;text-shadow:0 3px 0 #1E0F05}
+.pgSp{width:48px;flex:none}
+.pgBody{flex:1;overflow-y:auto;padding:6px 14px calc(24px + var(--sb));display:flex;flex-direction:column;gap:10px;max-width:560px;width:100%;margin:0 auto;box-sizing:border-box;scrollbar-width:none}
+.pgBody::-webkit-scrollbar{display:none}
+.pgNote{margin:6px 4px 0;font-size:13px;line-height:1.7;opacity:.85;text-align:center}
+.lgHero{display:flex;align-items:center;gap:14px;padding:14px;border-radius:16px;background:linear-gradient(180deg,rgba(255,230,168,.16),rgba(0,0,0,.25));border:2px solid #C9A24A;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.lgHero .lgHB{height:96px}
+.lgHero small{display:block;font-size:13px;font-weight:700;opacity:.85}
+.lgHero b{display:block;font-family:'Mirza','Tajawal',sans-serif;font-size:30px;line-height:1.15}
+.lgHero span{display:flex;align-items:center;gap:6px;font-weight:800;font-size:16px;margin-top:4px}
+.lgRow{position:relative;display:flex;align-items:center;gap:12px;padding:12px;border-radius:14px;background:linear-gradient(180deg,#F5E2B8,#E2C48C);color:#3A2410;box-shadow:inset 0 0 0 2px rgba(122,78,26,.35),0 4px 10px rgba(0,0,0,.35)}
+.lgRow .lgRB{height:70px;flex:none}
+.lgRow.cur{box-shadow:inset 0 0 0 3px #E8B54A,0 0 18px rgba(255,200,90,.55),0 4px 10px rgba(0,0,0,.35);background:linear-gradient(180deg,#FFF0C8,#EBCB8E)}
+.lgRow.lock{background:linear-gradient(180deg,#8C7A62,#6E5E48);color:#F3E3C4}
+.lgRow.lock .lgRB{filter:grayscale(1) brightness(.75)}
+.lgT{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.lgT b{font-family:'Mirza','Tajawal',sans-serif;font-size:24px;line-height:1.15}
+.lgT small{font-size:12.5px;font-weight:800;opacity:.85}
+.lgPb{height:12px;margin:4px 0 2px;border-radius:7px;background:rgba(58,36,16,.25);overflow:hidden}
+.lgPb i{display:block;height:100%;background:linear-gradient(180deg,#FFE9A0,#E8B54A 45%,#A8701E)}
+.lgU{display:flex;gap:6px;margin-top:5px;flex-wrap:wrap}
+.lgMap{position:relative;width:120px;height:44px;border-radius:8px;background:center 55%/cover;box-shadow:0 0 0 2px rgba(255,236,190,.7)}
+.lgMap em{position:absolute;inset:auto 0 0 0;font-style:normal;font-size:11.5px;font-weight:800;color:#FFF4DF;background:linear-gradient(transparent,rgba(0,0,0,.75));padding:8px 6px 3px;border-radius:0 0 8px 8px}
+.lgMap.soon{background:repeating-linear-gradient(45deg,#6B4423 0 8px,#5A3A1E 8px 16px)}
+.lgRow.lock .lgMap{filter:grayscale(.7) brightness(.8)}
+.lgTag{position:absolute;top:-9px;left:12px;background:#B3261E;color:#FFF4DF;font-size:12px;font-weight:800;padding:2px 10px;border-radius:10px;box-shadow:0 2px 0 #5A0F0B}
+.lgOk{position:absolute;top:10px;left:12px;width:26px;height:26px;border-radius:50%;background:#2E7D4F;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;border:2px solid #FFE6A8}
+.lgLk{position:absolute;top:8px;left:10px;width:26px;height:26px;border-radius:50%;background:#FFF4DF;display:flex;align-items:center;justify-content:center;border:2px solid #7A4E1A}
+.lgLk img{width:15px!important;height:15px!important}
+.tlHero{position:relative;text-align:center;padding:16px 12px 14px;border-radius:16px;background:linear-gradient(180deg,rgba(255,230,168,.14),rgba(0,0,0,.28));border:2px solid #C9A24A;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.tlHero>small{font-size:13px;font-weight:700;opacity:.85}
+.tlRib{margin:6px auto 8px;width:min(86%,320px);height:64px;display:flex;align-items:center;justify-content:center;background:url(ui/ribbon_sadu.png?v=1) center/100% 100% no-repeat;filter:drop-shadow(0 4px 4px rgba(0,0,0,.5))}
+.tlRib b{font-family:'Mirza','Tajawal',sans-serif;font-size:30px;color:#FFE9B8;text-shadow:0 2px 0 rgba(0,0,0,.6);margin-top:-4px}
+.tlHero.legend .tlRib b{color:#FFE27A;text-shadow:0 0 10px #F2A21C,0 2px 0 #000}
+.tlHeads{display:block;font-size:14px;font-weight:700}.tlHeads b{font-size:20px;color:#FFE27A}
+.tlNext{margin:10px auto 0;max-width:340px;text-align:right}
+.tlNext span{font-size:13.5px;font-weight:800}.tlNext span b{font-family:'Mirza','Tajawal',sans-serif;font-size:18px;color:#FFE27A}
+.tlNext small{display:block;text-align:left;font-size:12px;font-weight:800;opacity:.85}
+.tlNext .lgPb{background:rgba(255,230,168,.15)}
+.tlSec{display:flex;align-items:center;gap:8px;margin-top:8px;padding:0 4px}
+.tlSec b{font-family:'Mirza','Tajawal',sans-serif;font-size:22px;color:var(--rc);text-shadow:0 2px 0 rgba(0,0,0,.5)}
+.tlSec:after{content:'';flex:1;height:2px;background:linear-gradient(90deg,transparent,var(--rc))}
+.tlSec span{order:3;font-size:13px;font-weight:800;opacity:.85}
+.tlGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tlCard{position:relative;min-height:84px;padding:12px 10px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;cursor:pointer;
+  background:linear-gradient(180deg,#F5E2B8,#E2C48C);color:#3A2410;box-shadow:inset 0 0 0 3px var(--rc),inset 0 0 0 5px rgba(255,255,255,.35),0 4px 10px rgba(0,0,0,.35)}
+.tlCard b{font-family:'Mirza','Tajawal',sans-serif;font-size:24px;line-height:1.1;color:var(--rc);text-shadow:0 1px 0 rgba(255,255,255,.6)}
+.tlCard small{font-size:12px;font-weight:800}
+.tlCard.legend{background:linear-gradient(180deg,#FFF0C8,#EBCB8E);box-shadow:inset 0 0 0 3px var(--rc),0 0 14px rgba(242,162,28,.55),0 4px 10px rgba(0,0,0,.35)}
+.tlCard.on{box-shadow:inset 0 0 0 4px #2E7D4F,0 0 0 2px #FFE6A8,0 4px 10px rgba(0,0,0,.35)}
+.tlCard.on small{color:#1F6E3B}
+.tlCard.lock{background:linear-gradient(180deg,#7E6E58,#5E5040);color:#E9DCC4;cursor:default}
+.tlCard.lock b{color:#D8CBB2;text-shadow:none;opacity:.8}
+/* maps */
+#maps{background:radial-gradient(ellipse at 50% 0,rgba(201,162,74,.25),transparent 60%),linear-gradient(180deg,#4A2C14,#2A170A)!important;padding-bottom:calc(24px + var(--sb))!important}
+.mapCard{border:0!important;border-radius:16px!important;background:#2A170A!important;color:#FFE6A8!important;box-shadow:0 0 0 2px #C9A24A,0 0 0 5px #3A2410,0 0 0 6px rgba(201,162,74,.5),0 10px 20px rgba(0,0,0,.5)!important;margin:6px}
+.mapCard .mArt{height:180px!important;background-position:50% 58%!important}
+.mapCard .mShade{position:absolute;left:0;right:0;top:90px;height:90px;background:linear-gradient(transparent,#2A170A);pointer-events:none}
+.mapCard .mi{position:relative;margin-top:-34px;padding:0 14px 14px!important}
+.mapCard b{font-size:30px!important;text-shadow:0 3px 0 #000}
+.mapCard p{color:#F3D9A4;font-weight:700}
+.mapCard .tw{background:rgba(179,38,30,.9)!important;padding:3px 10px!important}.mapCard .tw.ok{background:#2E7D4F!important}
+.mapCard.on{box-shadow:0 0 0 3px #7FD3A2,0 0 0 6px #1F5A37,0 0 18px rgba(127,211,162,.5),0 10px 20px rgba(0,0,0,.5)!important}
+.mapCard .sel{top:10px!important;left:10px!important;padding:3px 12px!important;border:2px solid #FFE6A8}
+.mapCard .lockB{height:180px!important;background:rgba(20,10,4,.45)}
+.mapCard .lockB .mlB{height:72px;filter:drop-shadow(0 3px 4px #000)}
+.mapCard .lockB span{font-size:16px}.mapCard .lockB small{font-size:12px;opacity:.9}
+/* bottom safe area on every phone */
+.hnBan{padding-bottom:var(--sb)!important}
+.hubR{padding-bottom:calc(96px + var(--sb))!important}
+.selBar{padding-bottom:calc(10px + var(--sb))!important}
+.hud.bottom{padding-bottom:calc(12px + var(--sb))!important}
+#menu{padding-bottom:calc(16px + var(--sb))!important}
+#board{padding-bottom:calc(20px + var(--sb))!important}
+@media (max-width:400px){.hubTop h2{font-size:22px!important}.hubTop .hubWal{gap:6px!important;padding:4px 8px 4px 4px!important}.hubTop .hubWal b{font-size:14px!important}.hubTop .hubWal .coinB,.hubTop .hubWal .pearlB{width:16px!important;height:16px!important}}
+.hubTop{gap:6px}.hubTop h2{order:0}
 /* thin scroll hint that shows while any list is moving */
 #scrollHint{position:fixed;z-index:30;width:5px;border-radius:3px;background:rgba(58,36,16,.72);box-shadow:0 0 0 1px rgba(255,236,190,.35);pointer-events:none;opacity:0;transition:opacity .35s}
 #scrollHint.on{opacity:1;transition:opacity .1s}
@@ -674,7 +790,7 @@ button.kW,button.kR,button.kG{min-height:46px}
 <div id="eTag"><div class="nm"><span id="eName"></span><small id="eLvl"></small></div><div class="bar" id="eBar"><i></i><span class="hpN" id="eHPt"></span></div></div>
 
 <div class="prep hidden" id="prep">
-  <div class="prepHead"><span>تجهّز: اختار أداتين</span><b id="prepTime">٧</b></div>
+  <div class="prepHead"><span>تجهّز: اختار أداتين</span><b id="prepTime">7</b></div>
   <div class="sunInfo" id="sunInfo"></div>
   <div class="ptools" id="ptools"></div>
   <div class="tdesc" id="tdesc">اضغط على أداة عشان تختارها. خصمك يشوف أدواتك، وأنت تشوف أدواته.</div>
@@ -684,10 +800,10 @@ button.kW,button.kR,button.kG{min-height:46px}
 <div class="screen" id="menu">
   <h1>القايلة</h1>
   <p>مبارزات وقت الظهر. لا تسحب قبل الإشارة، ولما تسمع "اضرب!" اسحب وطلّق على خصمك.</p>
-  <div class="stats"><div><b id="sWins">٠</b>فوز</div><div><b id="sLvl">١</b>المستوى</div><div><b id="sGold">٠</b>روبية</div></div>
+  <div class="stats"><div><b id="sWins">0</b>فوز</div><div><b id="sLvl">1</b>المستوى</div><div><b id="sGold">0</b>روبية</div></div>
   <div id="menuTitle"></div>
   <button class="big kR" id="startBtn">ابدأ المبارزة</button>
-  <div class="menuGrid"><button class="kW" id="shopBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16l-1.5 11h-13z"/><path d="M8 9V7a4 4 0 0 1 8 0v2"/></svg>المتجر</button><button class="kW" id="armBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h15l2 2v2H9l-1 2H5z"/><path d="M8 12l-2 7h4l1-5"/></svg>الأسلحة</button><button class="kW" id="clothBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l4 3 4-3 4 4-3 3v11H7V10L4 7z"/></svg>الملابس</button><button class="kW" id="carBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg>ألقابي</button><button class="kW" id="boardBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="1"/><circle cx="12" cy="10" r="3"/><path d="M8 18c1-2.5 7-2.5 8 0"/></svg>المطلوبين<i class="dotN hidden" id="boardDot"></i></button><button class="kW" id="setBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>الإعدادات</button></div>
+  <div class="menuGrid"><button class="kW" id="shopBtn"><img class="rIc" src="ui/ic_shop.png?v=1" alt="">المتجر</button><button class="kW" id="armBtn"><img class="rIc" src="ui/ic_guns.png?v=1" alt="">الأسلحة</button><button class="kW" id="clothBtn"><img class="rIc" src="ui/ic_clothes.png?v=1" alt="">الملابس</button><button class="kW" id="carBtn"><img class="rIc" src="ui/ic_trophy.png?v=1" alt="">ألقابي</button><button class="kW" id="boardBtn"><img class="rIc" src="ui/ic_wanted.png?v=1" alt="">المطلوبين<i class="dotN hidden" id="boardDot"></i></button><button class="kW" id="setBtn"><img class="rIc" src="ui/ic_settings.png?v=1" alt="">الإعدادات</button></div>
   <p class="how" style="display:none">بحركة الجوال: نزّل الجوال لتحت وانتظر، ولما تطلع الإشارة ارفعه قدامك واضغط على الخصم. بدونها: اضغط "اسحب" بعد الإشارة، وبعدين اضغط على الخصم.</p>
 </div>
 
@@ -711,7 +827,7 @@ button.kW,button.kR,button.kG{min-height:46px}
   <div class="hubTop">
     <button class="hubBack" id="hubBack" aria-label="رجوع"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
     <h2 id="hubTitle"></h2>
-    <div class="hubWal"><button class="plusB" id="hubPlus" aria-label="المتجر">+</button><div><i class="coinB">ر</i><b id="wR">٠</b></div><div><i class="pearlB"></i><b id="wP">٠</b></div></div>
+    <div class="hubWal"><button class="plusB" id="hubPlus" aria-label="المتجر"><img class="rIc" src="ui/ic_plus.png?v=1" alt=""></button><div><i class="coinB">ر</i><b id="wR">0</b></div><div><i class="pearlB"></i><b id="wP">0</b></div></div>
   </div>
   <div id="hubShow" class="hidden"></div>
   <div class="hubMe hidden"><b id="hubMeName">أنت</b><span id="hubMeTitle"></span></div>
@@ -728,24 +844,26 @@ button.kW,button.kR,button.kG{min-height:46px}
 </div>
 
 <div id="lobby" class="hidden">
-  <div class="lobHead"><button class="hubBack" id="lobBack" aria-label="رجوع"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button><div><b>الساحة</b><small>خصوم الحاسوب بمستواك، والأونلاين قريباً</small></div><button class="mapChip" id="mapChip"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></svg><span id="mapChipT">الفريج</span></button><button class="lobMenuB" id="lobMenuB" aria-label="القائمة" aria-expanded="false"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg><i class="dotN hidden" id="lobMenuDot"></i></button></div>
+  <div class="lobHead"><button class="hubBack" id="lobBack" aria-label="رجوع"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button><div><b>الساحة</b><small>خصوم الحاسوب بمستواك، والأونلاين قريباً</small></div><button class="mapChip" id="mapChip"><img class="rIc" src="ui/ic_map.png?v=1" alt=""><span id="mapChipT">الفريج</span></button><button class="lobMenuB" id="lobMenuB" aria-label="القائمة" aria-expanded="false"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg><i class="dotN hidden" id="lobMenuDot"></i></button></div>
   <div class="lobDrawer" id="lobDrawer" aria-hidden="true"><div class="ldGrid">
-    <button data-go="shop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16l-1.5 11h-13z"/><path d="M8 9V7a4 4 0 0 1 8 0v2"/></svg><span>المتجر</span></button>
-    <button data-go="board"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="1"/><circle cx="12" cy="10" r="3"/><path d="M8 18c1-2.5 7-2.5 8 0"/></svg><span>المطلوبين</span><i class="dotN hidden" id="ldBoardDot"></i></button>
-    <button data-go="weapons"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h15l2 2v2H9l-1 2H5z"/><path d="M8 12l-2 7h4l1-5"/></svg><span>الأسلحة</span></button>
-    <button data-go="clothes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l4 3 4-3 4 4-3 3v11H7V10L4 7z"/></svg><span>الملابس</span></button>
-    <button data-go="friends" class="soon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.3c3 .2 5.5 2.4 5.5 5.7"/></svg><span>الأصدقاء</span><small>قريباً</small></button>
-    <button data-go="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg><span>الإعدادات</span></button>
+    <button data-go="shop"><img class="rIc" src="ui/ic_shop.png?v=1" alt=""><span>المتجر</span></button>
+    <button data-go="board"><img class="rIc" src="ui/ic_wanted.png?v=1" alt=""><span>المطلوبين</span><i class="dotN hidden" id="ldBoardDot"></i></button>
+    <button data-go="weapons"><img class="rIc" src="ui/ic_guns.png?v=1" alt=""><span>الأسلحة</span></button>
+    <button data-go="clothes"><img class="rIc" src="ui/ic_clothes.png?v=1" alt=""><span>الملابس</span></button>
+    <button data-go="leagues"><img class="rIc" src="ui/ic_leagues.png?v=1" alt=""><span>الدوريات</span></button>
+    <button data-go="titles"><img class="rIc" src="ui/ic_trophy.png?v=1" alt=""><span>ألقابي</span></button>
+    <button data-go="friends" class="soon"><img class="rIc" src="ui/ic_friends.png?v=1" alt=""><span>الأصدقاء</span><small>قريباً</small></button>
+    <button data-go="settings"><img class="rIc" src="ui/ic_settings.png?v=1" alt=""><span>الإعدادات</span></button>
   </div></div>
   <button class="lobArrow" id="lobPrev" aria-label="السابق"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
   <button class="lobArrow" id="lobNext" aria-label="التالي"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
   <div class="hnBan kP" id="lobBan">
     <div class="youTab" id="youTab">أنت</div>
     <div class="hnRow1"><span class="hnBadge" id="bBadge"></span><div class="hnWho"><b id="bName">أنت</b><span id="bSub"></span></div>
-      <div class="hnLv"><b id="bLv">م١</b><div><b id="bRat">١٠٠٠</b><small id="bRatL">نقطة</small></div></div></div>
+      <div class="hnLv"><div class="lvStar"><b id="bLv">1</b></div><div class="hnSt"><span class="stR"><i class="stI" id="bRatI"></i><b id="bRat">1,000</b></span><small id="bRatL">نقطة</small></div></div></div>
     <div class="hnRow2">
       <div class="hnMid" id="bMid"></div>
-      <div class="hnWal"><span><i class="coinB">ر</i><b id="bGold">٠</b></span><span><i class="pearlB"></i><b id="bPearl">٠</b></span></div>
+      <div class="hnWal"><span><i class="coinB">ر</i><b id="bGold">0</b></span><span><i class="pearlB"></i><b id="bPearl">0</b></span></div>
     </div>
     <div class="hnRow3"><i class="eIco"></i><span class="eLbl">الطاقة</span><div class="eSeg" id="eSeg"></div><span class="eTime" id="eTime"></span><button id="lobGo" class="goBtn kR">بارز</button></div>
   </div>
@@ -757,11 +875,13 @@ button.kW,button.kR,button.kG{min-height:46px}
   <div class="bdWood"><div class="bdPosters" id="bdPosters"></div><div class="bdShoe"><span>كل ما قبضت على مطلوب يتجدد مكانه طلب جديد</span></div></div>
   <div class="bdChest" id="bdChest"></div>
   <button class="goBtn kR" id="boardGo">كمّل</button></div></div>
+<div class="pg hidden" id="lgPage"><div class="pgTop"><button class="hubBack" data-close="lgPage" aria-label="رجوع"></button><h2>الدوريات</h2><span class="pgSp"></span></div><div class="pgBody" id="lgBody"></div></div>
+<div class="pg hidden" id="tlPage"><div class="pgTop"><button class="hubBack" data-close="tlPage" aria-label="رجوع"></button><h2>ألقابي</h2><span class="pgSp"></span></div><div class="pgBody" id="tlBody"></div></div>
 <div class="hidden" id="maps"><div class="mapsIn">
   <div class="hubBar"><button class="hubBack" id="mapsBack" aria-label="رجوع"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button><h2>الخرائط</h2></div>
   <div class="mapList" id="mapList"></div></div></div>
 <div id="mm" class="hidden"><div class="mmBox"><div class="mmSil"><svg viewBox="0 0 100 160"><path d="M50 8c-9 0-15 6-15 14 0 4 1 7 3 9-10 3-17 10-17 22v40c0 4 3 6 6 6h4v48h12V105h14v42h12V99h4c3 0 6-2 6-6V53c0-12-7-19-17-22 2-2 3-5 3-9 0-8-6-14-15-14z" fill="#1a120b"/><text x="50" y="30" text-anchor="middle" font-size="22" font-weight="800" fill="#E8B54A">؟</text></svg><i class="spin"></i></div>
-  <b id="mmT">ندوّر لك خصم…</b><small id="mmS">٠ ثانية</small><button id="mmCancel">إلغاء</button></div></div>
+  <b id="mmT">ندوّر لك خصم…</b><small id="mmS">0 ثانية</small><button id="mmCancel">إلغاء</button></div></div>
 <div class="screen hidden" id="endScreen">
   <div class="parch" id="parch">
   <div class="pHead"><div class="pPics"><div class="pic" id="picMe"></div><div class="pic" id="picHim"></div></div>
@@ -781,12 +901,13 @@ button.kW,button.kR,button.kG{min-height:46px}
 <script>
 (function(){
 const $=id=>document.getElementById(id);
-const AR=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
+// numbers are shown in English digits like big mobile games: 1,250 · 12,400 · 1.2M
+const AR=n=>{if(typeof n==='number'&&isFinite(n)){const a=Math.abs(n);if(a>=1e6)return (n/1e6).toFixed(a>=1e7?0:1).replace(/\.0$/,'')+'M';return Number.isInteger(n)?n.toLocaleString('en-US'):String(n);}return String(n);};
 const KEY='alqayla-v1';
 const WEAPONS={
- fard:{draw:0,model:'pistol',flashZ:-.26,rof:260,name:'الفرد',ammo:6,mul:1,reload:1300,cost:0,lvl:1,aim:{spread:20,sway:3,sens:1},desc:'مسدس البداية: ٦ طلقات وتلقيم سريع، ودائرة تصويب متوسطة وثابتة'},
- naqsh:{draw:70,model:'pistol',flashZ:-.28,rof:300,name:'فرد أبو نقش',ammo:5,mul:1.2,reload:1550,cost:400,lvl:3,aim:{spread:12,sway:8,sens:.85},desc:'ضربته أقوى بـ٢٠٪ ودائرته ضيقة، بس ثقيل يتمايل، و٥ طلقات وتلقيمه أبطأ'},
- shotgun:{draw:150,model:'shot',flashZ:-.74,rof:750,pellets:7,pBody:[7,9],pHead:[12,14],name:'الشوزن',ammo:2,mul:1,reload:1900,cost:900,lvl:5,aim:{spread:44,sway:3,sens:.95},desc:'يطلق ٧ حبات مرة وحدة بدائرة عريضة: سهل يصيب، بس طلقتين بس وتلقيمه بطيء'},
+ fard:{draw:0,model:'pistol',flashZ:-.26,rof:260,name:'الفرد',ammo:6,mul:1,reload:1300,cost:0,lvl:1,aim:{spread:20,sway:3,sens:1},desc:'مسدس البداية: 6 طلقات وتلقيم سريع، ودائرة تصويب متوسطة وثابتة'},
+ naqsh:{draw:70,model:'pistol',flashZ:-.28,rof:300,name:'فرد أبو نقش',ammo:5,mul:1.2,reload:1550,cost:400,lvl:3,aim:{spread:12,sway:8,sens:.85},desc:'ضربته أقوى بـ20% ودائرته ضيقة، بس ثقيل يتمايل، و5 طلقات وتلقيمه أبطأ'},
+ shotgun:{draw:150,model:'shot',flashZ:-.74,rof:750,pellets:7,pBody:[7,9],pHead:[12,14],name:'الشوزن',ammo:2,mul:1,reload:1900,cost:900,lvl:5,aim:{spread:44,sway:3,sens:.95},desc:'يطلق 7 حبات مرة وحدة بدائرة عريضة: سهل يصيب، بس طلقتين بس وتلقيمه بطيء'},
  fitil:{draw:240,model:'fitil',flashZ:-1.02,rof:0,fuse:430,name:'أم فتيل',ammo:1,mul:2.7,reload:2000,cost:1500,lvl:7,aim:{spread:6,sway:10,sens:.8},desc:'طلقة وحدة جبارة ودائرة ضيقة جداً، بس الفتيل يتأخر نص ثانية: لازم تتوقع وين بيروح خصمك'}};
 const WID=Object.keys(WEAPONS);
 let save={mis:[],map:'fareej',energy:null,energyT:0,aim:'',flipV:false,flipH:false,sens:100,rating:1000,best:1000,streak:0,revenge:[],nemesis:[],wg:{},shiyam:0,pearls:0,outfit:{thobe:'th_white',head:'hd_white',iqal:'iq_black',bisht:'bs_none'},ownedC:['th_white','hd_white','iq_black','bs_none'],wskin:{},lastGift:'',gun:'fard',owned:['fard'],w:{},wins:0,level:1,gold:0,blood:true,motion:false,sound:true,music:true,kills:0,heads:0,fard:{k:0,h:0},skin:'tier',title:null};
@@ -871,7 +992,7 @@ function laugh(deep){if(!save.sound)return;const a=ac();if(!a)return;let t=a.cur
 const TAUNTS=['ههههه.. يبيلك تمرين!','هذا كله اللي عندك؟','روح تعلّم وتعال!','لا تزعل، الجايات أكثر من الرايحات','القايلة مو لك يا بعد قلبي','قوم.. محد شافك','سلّم لي على الفريج!'];
 function bubble(txt){const b=$('taunt');b.textContent=txt;b.classList.add('on');}
 function whoosh(){if(!save.sound)return;const a=ac();if(!a)return;const t=a.currentTime;const n=a.createBufferSource();n.buffer=noiseBuf(.25);const f=a.createBiquadFilter();f.type='bandpass';f.Q.value=2;f.frequency.setValueAtTime(400,t);f.frequency.exponentialRampToValueAtTime(3000,t+.2);const g=a.createGain();g.gain.setValueAtTime(.5,t);g.gain.exponentialRampToValueAtTime(.001,t+.25);n.connect(f);f.connect(g);g.connect(a.destination);n.start(t);}
-function click(){if(!save.sound)return;const a=ac();if(!a)return;const t=a.currentTime;const o=a.createOscillator();o.type='square';o.frequency.value=900;const g=a.createGain();g.gain.setValueAtTime(.12,t);g.gain.exponentialRampToValueAtTime(.001,t+.05);o.connect(g).connect(a.destination);o.start(t);o.stop(t+.06);}
+let lastClk=0;function click(){if(!save.sound)return;const nw=performance.now();if(nw-lastClk<350)return;lastClk=nw;const a=ac();if(!a)return;const t=a.currentTime;const o=a.createOscillator();o.type='square';o.frequency.value=900;const g=a.createGain();g.gain.setValueAtTime(.12,t);g.gain.exponentialRampToValueAtTime(.001,t+.05);o.connect(g).connect(a.destination);o.start(t);o.stop(t+.06);}
 // ---- Gulf heritage kit: oud-like pluck (Karplus-Strong), mirwas, tar ----
 const PL={};
 function plBuf(f){const a=ac();const k=Math.round(f);if(PL[k])return PL[k];const sr=a.sampleRate,len=Math.floor(sr*1.6),N=Math.max(2,Math.round(sr/f));const b=a.createBuffer(1,len,sr),y=b.getChannelData(0);
@@ -987,16 +1108,27 @@ let waves=null;
   palm(5,-12);palm(6.2,-22);palm(5.4,-33);palm(6.6,-42);
   const rock=new THREE.Mesh(new THREE.DodecahedronGeometry(.6),M(0x9A8B78));rock.position.set(3.4,.35,-9);curG.add(rock);curEnv.push(rock);})();
 const MAPS=[
- {id:'fareej',name:'الفريج',lvl:1,desc:'سكة بين بيوت الطين. مبارزة نظيفة بدون مفاجآت.',twist:'',sky:'linear-gradient(180deg,#9FD0E8 0%,#CFE7EE 38%,#F7EBCB 62%,#F3E3BE 100%)',fog:0xF3E3BE,gnd:0xE2C48C},
- {id:'souq',name:'السوق',lvl:3,desc:'بسطات وشراشف تظلل السكة.',twist:'الظل: المرآة ما تشتغل لأحد',sky:'linear-gradient(180deg,#E8B98A 0%,#F2D3A8 45%,#EBCB98 100%)',fog:0xE9C99A,gnd:0xCDAE7C},
- {id:'barr',name:'البر',lvl:5,desc:'رمل وخيام وجمل، والهوا ما يهدا.',twist:'الهوا: الطلقة تنحرف مع الريح، عوّض بتصويبك',sky:'linear-gradient(180deg,#F3C27A 0%,#F7DCA8 45%,#F5E3BE 100%)',fog:0xF2D9A8,gnd:0xE6C48A},
- {id:'sahel',name:'الساحل',lvl:8,desc:'بيوت على البحر وأبوام راسية.',twist:'شمس البحر: المرآة تعمي ضعف الوقت',sky:'linear-gradient(180deg,#5FB4E0 0%,#A8DCF0 45%,#EAF4EE 100%)',fog:0xDCEFF0,gnd:0xE8D2A0}];
+ {id:'fareej',lg:0,name:'الفريج',lvl:1,desc:'سكة بين بيوت الطين. مبارزة نظيفة بدون مفاجآت.',twist:'',sky:'linear-gradient(180deg,#9FD0E8 0%,#CFE7EE 38%,#F7EBCB 62%,#F3E3BE 100%)',fog:0xF3E3BE,gnd:0xE2C48C},
+ {id:'souq',lg:1,name:'السوق',lvl:3,desc:'بسطات وشراشف تظلل السكة.',twist:'الظل: المرآة ما تشتغل لأحد',sky:'linear-gradient(180deg,#E8B98A 0%,#F2D3A8 45%,#EBCB98 100%)',fog:0xE9C99A,gnd:0xCDAE7C},
+ {id:'barr',lg:2,name:'البر',lvl:5,desc:'رمل وخيام وجمل، والهوا ما يهدا.',twist:'الهوا: الطلقة تنحرف مع الريح، عوّض بتصويبك',sky:'linear-gradient(180deg,#F3C27A 0%,#F7DCA8 45%,#F5E3BE 100%)',fog:0xF2D9A8,gnd:0xE6C48A},
+ {id:'sahel',lg:3,name:'الساحل',lvl:8,desc:'بيوت على البحر وأبوام راسية.',twist:'شمس البحر: المرآة تعمي ضعف الوقت',sky:'linear-gradient(180deg,#5FB4E0 0%,#A8DCF0 45%,#EAF4EE 100%)',fog:0xDCEFF0,gnd:0xE8D2A0}];
 // painted backdrops for the duel view (world-fixed so aiming pans across them); the 3D houses stay for the lobby
 const BDROP={fareej:{file:'bg_fareej.jpg?v=1',vp:.52,ar:941/1672},souq:{file:'bg_souq.jpg?v=1',vp:.53,ar:941/1672},barr:{file:'bg_barr.jpg?v=1',vp:.49,ar:941/1672},sahel:{file:'bg_sahel.jpg?v=1',vp:.47,ar:941/1672}},bdTex={};
 const bdMesh=new THREE.Mesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({fog:false,depthWrite:false,toneMapped:false}));bdMesh.visible=false;bdMesh.renderOrder=-10;scene.add(bdMesh);
-function loadBd(id){const b=BDROP[id];if(!b||bdTex[id])return;bdTex[id]='loading';new THREE.TextureLoader().load(b.file,t=>{bdTex[id]=t;},undefined,()=>{bdTex[id]='fail';});}
+// painted backdrops get padded with matching sky above and mirrored edges, so the frame never shows when the camera tilts (death fall, recoil)
+const BPAD={t:.7,s:.4,b:.4};
+function extTex(im){const W=im.width,H=im.height,pw=Math.round(W*BPAD.s),pt=Math.round(H*BPAD.t),pb=Math.round(H*BPAD.b),c=document.createElement('canvas');c.width=W+2*pw;c.height=H+pt+pb;const x=c.getContext('2d');
+  x.drawImage(im,pw,pt);
+  x.save();x.translate(pw,0);x.scale(-1,1);x.drawImage(im,0,0,pw,H,0,pt,pw,H);x.restore();
+  x.save();x.translate(pw+W+pw,0);x.scale(-1,1);x.drawImage(im,W-pw,0,pw,H,0,pt,pw,H);x.restore();
+  x.save();x.translate(0,pt+H+pt+H);x.scale(1,-1);x.drawImage(c,0,pt+H-pb,c.width,pb,0,pt+H,c.width,pb);x.restore();
+  const d=x.getImageData(0,pt+2,c.width,1).data;let r=0,g=0,bb=0,n=0;for(let i=0;i<c.width;i++){r+=d[i*4];g+=d[i*4+1];bb+=d[i*4+2];n++;}r/=n;g/=n;bb/=n;
+  const gr=x.createLinearGradient(0,0,0,pt+3);gr.addColorStop(0,'rgb('+Math.round(r*.8)+','+Math.round(g*.84)+','+Math.round(bb*.92)+')');gr.addColorStop(1,'rgb('+Math.round(r)+','+Math.round(g)+','+Math.round(bb)+')');x.fillStyle=gr;x.fillRect(0,0,c.width,pt+2);
+  const fade=x.createLinearGradient(0,pt,0,pt+H*.06);fade.addColorStop(0,'rgba('+Math.round(r)+','+Math.round(g)+','+Math.round(bb)+',1)');fade.addColorStop(1,'rgba('+Math.round(r)+','+Math.round(g)+','+Math.round(bb)+',0)');x.fillStyle=fade;x.fillRect(0,pt,c.width,H*.06);
+  const t=new THREE.CanvasTexture(c);t.minFilter=THREE.LinearFilter;t._src=im;return t;}
+function loadBd(id){const b=BDROP[id];if(!b||bdTex[id])return;bdTex[id]='loading';new THREE.TextureLoader().load(b.file,t=>{bdTex[id]=extTex(t.image);},undefined,()=>{bdTex[id]='fail';});}
 MAPS.forEach(m=>loadBd(m.id));
-const bdNight={};MAPS.forEach(m=>{if(BDROP[m.id])new THREE.TextureLoader().load('bg_'+m.id+'_n.jpg?v=1',t=>{bdNight[m.id]=t;});});
+const bdNight={};MAPS.forEach(m=>{if(BDROP[m.id])new THREE.TextureLoader().load('bg_'+m.id+'_n.jpg?v=1',t=>{bdNight[m.id]=extTex(t.image);});});
 // lobby backdrop: k = painting height relative to depth (smaller = farther wall), base = wall-foot line in screen slope below eye level, wb = wall-foot height in the painting
 const LB={ar:1672/941,D:11,par:.82,k:4.6,base:-.035,wb:.345,eT:.45,eB:.6,eye:1.38};
 const lbMesh=new THREE.Mesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({fog:false,toneMapped:false}));lbMesh.visible=false;lbMesh.renderOrder=-10;scene.add(lbMesh);let lbTex=null,lbHid=null;
@@ -1020,17 +1152,17 @@ const TOD={noon:{name:'الظهر',sun:[0xFFF2D6,.9],hemi:[0xFFF6E0,0xB8935A,.95
   night:{name:'الليل',sun:[0x9DB4FF,.42],hemi:[0x7C90C8,0x2C2A3A,.62],w:.17,grade:[['#24305E','#3A4A80','#4A5684'],'#C8D8FF',.18]}};
 let tod='noon';const bdTod={};
 function gradeTex(id,k){const key=id+'_'+k;if(bdTod[key])return bdTod[key];const t=bdTex[id];if(!t||!t.isTexture)return null;const g=TOD[k].grade,b=BDROP[id];
-  const im=t.image,c=document.createElement('canvas');c.width=im.width;c.height=im.height;const x=c.getContext('2d'),H=c.height,W=c.width,hz=H*(1-b.vp);x.drawImage(im,0,0);
+  const im=t._src||t.image,c=document.createElement('canvas');c.width=im.width;c.height=im.height;const x=c.getContext('2d'),H=c.height,W=c.width,hz=H*(1-b.vp);x.drawImage(im,0,0);
   x.globalCompositeOperation='multiply';const gr=x.createLinearGradient(0,0,0,H);gr.addColorStop(0,g[0][0]);gr.addColorStop(Math.max(.05,hz/H),g[0][1]);gr.addColorStop(1,g[0][2]);x.fillStyle=gr;x.fillRect(0,0,W,H);
   x.globalCompositeOperation='screen';const sx=k==='night'?W*.7:W*.5,sy=k==='night'?H*.2:hz-H*.02,rg=x.createRadialGradient(sx,sy,0,sx,sy,W*(k==='night'?.35:.7));rg.addColorStop(0,g[1]);rg.addColorStop(1,'rgba(0,0,0,0)');x.globalAlpha=g[2];x.fillStyle=rg;x.fillRect(0,0,W,H);x.globalAlpha=1;
   if(k==='night'){x.fillStyle='#F4F1E4';x.shadowColor='#DDE6FF';x.shadowBlur=W*.05;x.beginPath();x.arc(sx,sy,W*.035,0,7);x.fill();x.shadowBlur=0;x.fillStyle='rgba(36,48,94,.9)';x.beginPath();x.arc(sx+W*.016,sy-W*.008,W*.03,0,7);x.fill();
     x.globalCompositeOperation='source-over';for(let i=0;i<70;i++){const yy=Math.random()*hz*.85;x.globalAlpha=.25+Math.random()*.6;x.fillStyle='#FFF';x.fillRect(Math.random()*W,yy,1.4,1.4);}x.globalAlpha=1;}
-  const ct=new THREE.CanvasTexture(c);ct.minFilter=THREE.LinearFilter;bdTod[key]=ct;return ct;}
+  const ct=extTex(c);bdTod[key]=ct;return ct;}
 function setTod(k){tod=k;const T=TOD[k];sun.color.setHex(T.sun[0]);sun.intensity=T.sun[1];hemi.color.setHex(T.hemi[0]);hemi.groundColor.setHex(T.hemi[1]);hemi.intensity=T.hemi[2];}
 function pickTod(){let r=Math.random(),k='noon';for(const n of ['noon','maghrib','night']){r-=TOD[n].w;if(r<=0){k=n;break;}}return k;}
 function updBdrop(){updLobbyBd();const m=curMap(),b=BDROP[m.id];let t=bdTex[m.id];if(tod==='night'&&bdNight[m.id])t=bdNight[m.id];else if(tod!=='noon'&&t&&t.isTexture)t=gradeTex(m.id,tod)||t;const on=!!(b&&t&&t.isTexture&&camMode==='duel');
   if(on){if(bdMesh.material.map!==t){bdMesh.material.map=t;bdMesh.material.needsUpdate=true;}
-    const D=90,H=2*D*Math.tan(baseFov*Math.PI/360)*1.25;bdMesh.scale.set(H*b.ar,H,1);bdMesh.position.set(0,cam.position.y+(b.vp-.5)*H,-D);}
+    const D=90,H=2*D*Math.tan(baseFov*Math.PI/360)*1.25;bdMesh.scale.set(H*b.ar*(1+2*BPAD.s),H*(1+BPAD.t+BPAD.b),1);bdMesh.position.set(0,1.62+(b.vp-.5)*H+(BPAD.t-BPAD.b)/2*H,-D);}
   bdMesh.visible=on;if(mapG[m.id])mapG[m.id].visible=!on;ground.visible=!on;}
 const SHT=(()=>{const c=document.createElement('canvas');c.width=c.height=64;const x=c.getContext('2d');const g=x.createRadialGradient(32,32,0,32,32,32);g.addColorStop(0,'rgba(60,35,10,.55)');g.addColorStop(.6,'rgba(60,35,10,.25)');g.addColorStop(1,'rgba(60,35,10,0)');x.fillStyle=g;x.fillRect(0,0,64,64);return new THREE.CanvasTexture(c);})();
 function footShadow(){const m=new THREE.Mesh(new THREE.PlaneGeometry(1.1,.7),new THREE.MeshBasicMaterial({map:SHT,transparent:true,depthWrite:false,fog:false}));m.rotation.x=-Math.PI/2;m.position.y=.015;m.renderOrder=-5;return m;}
@@ -1323,7 +1455,7 @@ let state='menu',foe=FOES[0],eHP=MAXHP,pHP=MAXHP,ammo=6,drawn=false,reloading=fa
 const ray=new THREE.Raycaster(),ndc=new THREE.Vector2();
 
 function setMsg(t,go,sub){const m=$('msg');m.textContent=t||'';m.className=go?'go':'';$('sub').textContent=sub||'';}
-function renderHUD(){{const fw=v=>'calc('+v+'% + '+(v*.2).toFixed(1)+'px)';$('eBar').firstChild.style.width=fw(Math.max(0,eHP/MAXHP*100));$('pBar').firstChild.style.width=fw(Math.max(0,pHP/MAXHP*100));}$('pHPt').textContent=AR(Math.max(0,Math.round(pHP)))+' / '+AR(MAXHP);$('eHPt').textContent=AR(Math.max(0,Math.round(eHP)));$('runBtn').disabled=!(state==='fight'||state==='ready'||state==='holster');
+function renderHUD(){{const fw=v=>'calc('+v+'% + '+(v*.2).toFixed(1)+'px)';$('eBar').firstChild.style.width=fw(Math.max(0,eHP/MAXHP*100));$('pBar').firstChild.style.width=fw(Math.max(0,pHP/MAXHP*100));}$('pHPt').textContent='\u2066'+AR(Math.max(0,Math.round(pHP)))+' / '+AR(MAXHP)+'\u2069';$('eHPt').textContent=AR(Math.max(0,Math.round(eHP)));$('runBtn').disabled=!(state==='fight'||state==='ready'||state==='holster');
   const a=$('ammo');a.innerHTML='';for(let i=0;i<GST().ammo;i++){const b=document.createElement('b');if(i>=ammo)b.className='e';a.appendChild(b);}
   $('tCoffee').disabled=used.coffee||state!=='fight';$('pShield').classList.toggle('hidden',!shieldP);
   $('reloadBtn').disabled=ammo===GST().ammo||reloading||!(state==='fight');
@@ -1447,13 +1579,13 @@ function renderHub(){const L=$('armList');L.innerHTML='';$('wR').textContent=AR(
 function viewShop(L){$('hubTitle').textContent='المتجر';tabs(null);
   const today=new Date().toDateString();
   L.appendChild(el('<div class="sec">هدية اليوم</div>'));
-  const g=el('<div class="item"><span class="sw" style="background:radial-gradient(circle at 35% 35%,#FFE9A8,#C9A24A)"></span><div class="txt"><b>١٠٠ روبية + ٥ لؤلؤ</b><small>ترجع كل يوم</small></div></div>');
+  const g=el('<div class="item"><span class="sw" style="background:radial-gradient(circle at 35% 35%,#FFE9A8,#C9A24A)"></span><div class="txt"><b>100 روبية + 5 لؤلؤ</b><small>ترجع كل يوم</small></div></div>');
   const got=save.lastGift===today;g.appendChild(btn(got?'استلمتها':'استلم',got?'on':'',()=>{save.lastGift=today;save.gold+=100;save.pearls+=5;persist();click();renderHub();},got));L.appendChild(g);
   // deal of the day: deterministic per day
   const prem=[];CSLOTS.forEach(s=>CLOTHES[s].items.forEach(it=>{if(it.p&&!save.ownedC.includes(it.id))prem.push(Object.assign({slot:s},it));}));
   L.appendChild(el('<div class="sec">عرض اليوم</div>'));
   if(prem.length){let hsh=0;for(const ch of today)hsh=(hsh*31+ch.charCodeAt(0))>>>0;const d=prem[hsh%prem.length];const deal=Object.assign({},d,{p:Math.round(d.p*.7)});
-    const it=el('<div class="item"><span class="sw" style="background:'+hex(d.c)+'"></span><div class="txt"><b>'+d.name+'<span class="badge2">خصم ٣٠٪</span></b><small>'+CLOTHES[d.slot].name+'، بدل '+AR(d.p)+' لؤلؤ</small></div>'+PRICE(deal)+'</div>');
+    const it=el('<div class="item"><span class="sw" style="background:'+hex(d.c)+'"></span><div class="txt"><b>'+d.name+'<span class="badge2">خصم 30%</span></b><small>'+CLOTHES[d.slot].name+'، بدل '+AR(d.p)+' لؤلؤ</small></div>'+PRICE(deal)+'</div>');
     it.appendChild(btn('اشترِ','',()=>{if(pay(deal)){save.ownedC.push(d.id);save.outfit[d.slot]=d.id;persist();click();renderHub();}},!canPay(deal)));L.appendChild(it);}
   else L.appendChild(el('<div class="item"><div class="txt"><b>عندك كل الملابس المميزة</b></div></div>'));
   L.appendChild(el('<div class="sec">الأطقم</div>'));
@@ -1461,7 +1593,7 @@ function viewShop(L){$('hubTitle').textContent='المتجر';tabs(null);
   SETS.forEach(S=>{const all=Object.values(S.ids).every(id=>save.ownedC.includes(id)||id==='th_white'||id==='hd_white');const it=el('<div class="item"><div class="txt"><b>'+S.name+'</b><small>'+Object.entries(S.ids).map(([s,id])=>citem(s,id).name).join('، ')+'</small></div>'+PRICE(S)+'</div>');
     it.appendChild(btn(all?'عندك':'اشترِ',all?'on':'',()=>{if(pay(S)){Object.entries(S.ids).forEach(([s,id])=>{if(!save.ownedC.includes(id))save.ownedC.push(id);save.outfit[s]=id;});persist();click();renderHub();}},all||!canPay(S)));L.appendChild(it);});
   L.appendChild(el('<div class="sec">شحن اللؤلؤ</div>'));
-  [[100,'٠٫٩٩ دولار'],[550,'٤٫٩٩ دولار'],[1200,'٩٫٩٩ دولار']].forEach(([n,pr])=>{const it=el('<div class="item"><span class="sw" style="background:radial-gradient(circle at 35% 35%,#fff,#D9D3E6 60%,#A9A2B8)"></span><div class="txt"><b>'+AR(n)+' لؤلؤة</b><small>السعر عند النشر: '+pr+'</small></div></div>');
+  [[100,'0.99 دولار'],[550,'4.99 دولار'],[1200,'9.99 دولار']].forEach(([n,pr])=>{const it=el('<div class="item"><span class="sw" style="background:radial-gradient(circle at 35% 35%,#fff,#D9D3E6 60%,#A9A2B8)"></span><div class="txt"><b>'+AR(n)+' لؤلؤة</b><small>السعر عند النشر: '+pr+'</small></div></div>');
     it.appendChild(btn('شحن تجريبي','',()=>{save.pearls+=n;persist();click();renderHub();}));L.appendChild(it);});
   L.appendChild(el('<p class="note">النسخة تجريبية: الشحن مجاني وما فيه دفع حقيقي. اللؤلؤ للملابس بس، الأسلحة وألوانها ما تنباع أبداً.</p>'));}
 // ---- weapon specs (higher bar = better for the player; reload shown in seconds, lower is better) ----
@@ -1470,8 +1602,8 @@ function wSpecs(id){const w=WEAPONS[id],g=gStat(id),pel=w.pellets||0;
   const rpm=Math.round(60000/Math.max(w.rof+(w.fuse||0),180)),acc=Math.round(100*(1-g.spread/66)),stab=Math.round(100-g.sway*6),aim=Math.round(g.sens*100);
   const S=(n,v,max,t,lo)=>({n,v,max,t,lo});
   return {dmg:S('الضرر',Math.round(body),60,AR(Math.round(body))),head:S('ضربة الراس',Math.round(hd),130,AR(Math.round(hd))),ammo:S('الطلقات',g.ammo,8,AR(g.ammo)),
-    acc:S('الدقة',acc,100,AR(acc)+'٪'),stab:S('الثبات',stab,100,AR(stab)+'٪'),rpm:S('سرعة الرمي',rpm,240,AR(rpm)+'/د'),
-    rl:S('التلقيم',+(g.reload/1000).toFixed(1),2.6,AR((g.reload/1000).toFixed(1))+'ث',1),drw:S('السحب',+(g.draw/1000).toFixed(2),.32,g.draw?AR((g.draw/1000).toFixed(2))+'ث':'فوري',1),aim:S('سرعة التصويب',aim,100,AR(aim)+'٪')};}
+    acc:S('الدقة',acc,100,AR(acc)+'%'),stab:S('الثبات',stab,100,AR(stab)+'%'),rpm:S('سرعة الرمي',rpm,240,AR(rpm)+'/د'),
+    rl:S('التلقيم',+(g.reload/1000).toFixed(1),2.6,AR((g.reload/1000).toFixed(1))+'ث',1),drw:S('السحب',+(g.draw/1000).toFixed(2),.32,g.draw?AR((g.draw/1000).toFixed(2))+'ث':'فوري',1),aim:S('سرعة التصويب',aim,100,AR(aim)+'%')};}
 function specTable(ST,C,cn){const box=el('<div class="spec"></div>');
   if(C)box.appendChild(el('<p class="spCmp">الأسهم مقارنة مع سلاحك الحالي: '+cn+'</p>'));
   ['drw','dmg','head','ammo','acc','stab','rpm','rl','aim'].forEach(k=>{const d=ST[k],c=C&&C[k];let ar='';
@@ -1577,7 +1709,7 @@ const TOOLS=[
  {id:'shield',name:'الدرع',desc:'يصد طلقة وحدة عنك، بس ثقيل فسحبك يصير أبطأ شوي.'},
  {id:'mirror',name:'المرآة',desc:'تعمي خصمك بانعكاس الشمس فيتأخر سحبه. تشتغل بس إذا الشمس وراك، واللثام يصدها.'},
  {id:'litham',name:'اللثام',desc:'يحميك من مرآة الخصم، بس يغطي جزء من فوق الشاشة.'},
- {id:'smoke',name:'المبخرة',desc:'دخان يضعف تصويب الطرفين أول ٥ ثواني. ينفعك إذا خصمك أدق منك.'},
+ {id:'smoke',name:'المبخرة',desc:'دخان يضعف تصويب الطرفين أول 5 ثواني. ينفعك إذا خصمك أدق منك.'},
  {id:'binoc',name:'الدربيل',desc:'تراقب الحكم من قريب، وتشوف يده تتحرك قبل ما ينزّل البيرق، فتعرف الإشارة قبل خصمك بنص ثانية. قوي، عشان جذي ياخذ الخانتين.'}
 ];
 const TNAME=Object.fromEntries(TOOLS.map(t=>[t.id,t.name]));
@@ -1791,10 +1923,10 @@ $('optSens').oninput=e=>{save.sens=+e.target.value;persist();};
 $('setBtn').onclick=()=>{renderAimSet();$('menu').classList.add('hidden');$('settings').classList.remove('hidden');};
 let setFrom='menu';
 $('setBack').onclick=()=>{$('settings').classList.add('hidden');if(setFrom==='lobby'){setFrom='menu';return;}$('menu').classList.remove('hidden');menuStats();};
-const TUT=[['١','اصبر للإشارة','الحكم رافع البيرق الأخضر وأنت تسمع العد. إذا سحبت قبل ما ينزّل البيرق وتسمع رنة "اضرب!"، تخسر بالمخالفة.'],
-  ['٢','اسحب وطلّق','أول ما تسمع الرنة: اسحب (أو ارفع جوالك)، ووجّه الدائرة على خصمك واضغط. الدائرة تصير حمرا لما تكون عليه، وضربة الراس أقوى بكثير.'],
-  ['٣','تجهّز صح','قبل كل مبارزة تختار أداتين: الدرع، المرآة، اللثام، المبخرة، الدربيل. كل أداة لها فايدة وثمن، وخصمك يشوف أدواتك.'],
-  ['٤','ارتقِ بالساحة','كل فوز يرفع نقاطك ودوريك ويعطيك روبيات تطور فيها سلاحك. والخصم اللي تسلبه يرجع يطالب بثأره!']];
+const TUT=[['1','اصبر للإشارة','الحكم رافع البيرق الأخضر وأنت تسمع العد. إذا سحبت قبل ما ينزّل البيرق وتسمع رنة "اضرب!"، تخسر بالمخالفة.'],
+  ['2','اسحب وطلّق','أول ما تسمع الرنة: اسحب (أو ارفع جوالك)، ووجّه الدائرة على خصمك واضغط. الدائرة تصير حمرا لما تكون عليه، وضربة الراس أقوى بكثير.'],
+  ['3','تجهّز صح','قبل كل مبارزة تختار أداتين: الدرع، المرآة، اللثام، المبخرة، الدربيل. كل أداة لها فايدة وثمن، وخصمك يشوف أدواتك.'],
+  ['4','ارتقِ بالساحة','كل فوز يرفع نقاطك ودوريك ويعطيك روبيات تطور فيها سلاحك. والخصم اللي تسلبه يرجع يطالب بثأره!']];
 let tutI=0;function showTut(){$('tut').classList.remove('hidden');const s=TUT[tutI];$('tutStep').textContent=s[0];$('tutT').textContent=s[1];$('tutP').textContent=s[2];
   $('tutDots').innerHTML=TUT.map((_,i)=>'<i class="'+(i===tutI?'on':'')+'"></i>').join('');$('tutNext').textContent=tutI===TUT.length-1?'يلا نبارز':'التالي';}
 function endTut(){save.tut=1;persist();$('tut').classList.add('hidden');}
@@ -1804,14 +1936,42 @@ function mapArt(id){const bd=BDROP[id];if(bd)return '<div class="mArt" style="ba
   if(id==='barr')return '<svg viewBox="0 0 360 120" preserveAspectRatio="xMidYMid slice"><rect width="360" height="120" fill="#F7DCA8"/>'+sun+'<path d="M0 80q60-30 130 0t130-6 100 10v36H0z" fill="#E6C48A"/><path d="M0 100q90-24 180 0t180 0v20H0z" fill="#D8B275"/><path d="M40 92l40-28 40 28z" fill="#241C16"/><rect x="40" y="88" width="80" height="12" fill="#241C16"/><g fill="#B9874E"><rect x="230" y="70" width="44" height="18" rx="6"/><circle cx="252" cy="68" r="10"/><rect x="270" y="56" width="8" height="22" transform="rotate(25 274 67)"/><rect x="236" y="86" width="5" height="18"/><rect x="264" y="86" width="5" height="18"/></g><path d="M320 40v60" stroke="#6B4423" stroke-width="3"/><path d="M320 42l26 6-26 8z" fill="#B3261E"/></svg>';
   if(id==='sahel')return '<svg viewBox="0 0 360 120" preserveAspectRatio="xMidYMid slice"><rect width="360" height="120" fill="#A8DCF0"/>'+sun+'<rect y="66" width="360" height="54" fill="#2A8FB0"/><path d="M0 80q20-4 40 0t40 0 40 0 40 0 40 0 40 0 40 0 40 0 40 0" stroke="#7FD0E8" fill="none" stroke-width="2"/><path d="M0 50h90v70H0z" fill="#C99E66"/><path d="M90 96h40l20 24H90z" fill="#F0D9A6"/><g transform="translate(220 52)"><path d="M-30 20h66l-12 12h-44z" fill="#7A4E2A"/><path d="M0 20V-24" stroke="#5A3A1E" stroke-width="3"/><path d="M-26 16L18-28 4 18z" fill="#F4EBD8"/></g><g transform="translate(110 30)"><path d="M0 70V10" stroke="#8A6239" stroke-width="5"/><path d="M0 10q-22 0-30 14M0 10q22 0 30 14M0 10q-12-12-26-12M0 10q12-12 26-12" stroke="#5E8C3A" stroke-width="6" fill="none"/></g></svg>';
   return '<svg viewBox="0 0 360 120" preserveAspectRatio="xMidYMid slice"><rect width="360" height="120" fill="#CFE7EE"/>'+sun+'<rect y="86" width="360" height="34" fill="#E2C48C"/><rect x="0" y="40" width="110" height="60" fill="#C99E66"/><rect x="250" y="34" width="110" height="66" fill="#B98D57"/><rect x="40" y="62" width="20" height="36" fill="#7A4E2A"/><rect x="290" y="58" width="20" height="40" fill="#7A4E2A"/>'+[0,1,2,3,4,5,6,7].map(i=>'<rect x="'+(i*14+4)+'" y="34" width="8" height="8" fill="#C99E66"/><rect x="'+(i*14+254)+'" y="28" width="8" height="8" fill="#B98D57"/>').join('')+'<rect x="130" y="54" width="100" height="40" fill="#B98D57"/><g transform="translate(200 20)"><path d="M0 70V10" stroke="#8A6239" stroke-width="5"/><path d="M0 10q-22 0-30 14M0 10q22 0 30 14M0 10q-12-12-26-12M0 10q12-12 26-12" stroke="#5E8C3A" stroke-width="6" fill="none"/></g></svg>';}
+function mapOpen(m){if(save.mapsOld==null){save.mapsOld=MAPS.filter(x=>save.level>=x.lvl).map(x=>x.id);persist();}return league(save.best||save.rating)>=m.lg||save.mapsOld.includes(m.id);}
 function openMaps(){click();$('maps').classList.remove('hidden');const L=$('mapList');L.innerHTML='';
-  MAPS.forEach(m=>{const open=save.level>=m.lvl,on=save.map===m.id;const c=el('<div class="mapCard'+(open?'':' lock')+(on?' on':'')+'">'+mapArt(m.id)+(open?'':'<div class="lockB">'+LOCK.replace(/#3A2410/g,'#FFF4DF').replace('width="14" height="14"','width="34" height="34"')+'<span>تنفتح بالمستوى '+AR(m.lvl)+'</span></div>')+(on?'<span class="sel">المختارة ✓</span>':'')
-    +'<div class="mi"><b>'+m.name+'</b><p>'+m.desc+'</p>'+(m.twist?'<span class="tw">'+m.twist+'</span>':'<span class="tw" style="background:#2E7D4F">بدون مفاجآت</span>')+'</div></div>');
-    if(open)c.onclick=()=>{save.map=m.id;persist();bell();$('maps').classList.add('hidden');$('mapChipT').textContent=m.name;applyMap(m.id);};else c.onclick=()=>{click();};L.appendChild(c);});}
+  MAPS.forEach(m=>{const open=mapOpen(m),on=save.map===m.id,bd=BDROP[m.id];
+    const c=el('<div class="mapCard'+(open?'':' lock')+(on?' on':'')+'"><div class="mArt" style="background-image:url('+bd.file+')"></div><div class="mShade"></div>'
+      +(on?'<span class="sel">✓ المختارة</span>':'')
+      +(open?'':'<div class="lockB">'+lgBadge(m.lg,'mlB')+'<span>توصل '+LEAGUES[m.lg][1]+'</span><small>'+AR(LEAGUES[m.lg][0])+' نقطة</small></div>')
+      +'<div class="mi"><b>'+m.name+'</b><p>'+m.desc+'</p>'+(m.twist?'<span class="tw">'+m.twist+'</span>':'<span class="tw ok">بدون مفاجآت</span>')+'</div></div>');
+    if(open)c.onclick=()=>{save.map=m.id;persist();bell();$('maps').classList.add('hidden');$('mapChipT').textContent=m.name;applyMap(m.id);};L.appendChild(c);});}
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>{$(b.dataset.close).classList.add('hidden');if(state==='menu')menuStats();});
+function openLeagues(){const B=$('lgBody'),cur=league(save.rating),best=league(save.best||save.rating);B.innerHTML='';
+  B.appendChild(el('<div class="lgHero">'+lgBadge(cur,'lgHB')+'<div><small>دوريك الحين</small><b>'+LEAGUES[cur][1]+'</b><span><i class="stI tr"></i>'+AR(save.rating)+' نقطة</span></div></div>'));
+  const unl=i=>{const ms=MAPS.filter(m=>m.lg===i);return ms.length?ms.map(m=>'<span class="lgMap" style="background-image:url('+BDROP[m.id].file+')"><em>ساحة '+m.name+'</em></span>').join(''):'<span class="lgMap soon"><em>ساحة جديدة قريباً</em></span>';};
+  for(let i=LEAGUES.length-1;i>=0;i--){const nx=LEAGUES[i+1],done=i<cur,isCur=i===cur,lock=i>cur;
+    const pr=isCur?(nx?Math.max(3,Math.min(100,(save.rating-LEAGUES[i][0])/(nx[0]-LEAGUES[i][0])*100)):100):0;
+    B.appendChild(el('<div class="lgRow'+(isCur?' cur':'')+(lock?' lock':'')+(done?' done':'')+'">'+lgBadge(i,'lgRB')+(lock&&i>best?'<span class="lgLk">'+LOCK+'</span>':'')
+      +'<div class="lgT"><b>'+LEAGUES[i][1]+'</b><small>'+(i?'من '+AR(LEAGUES[i][0])+' نقطة':'البداية')+'</small>'
+      +(isCur?'<div class="pb lgPb"><i style="width:'+pr+'%"></i></div><small class="lgNx">'+(nx?'باقي '+AR(nx[0]-save.rating)+' نقطة للدوري الجاي':'وصلت القمة')+'</small>':'')
+      +'<div class="lgU">'+unl(i)+'</div></div>'+(isCur?'<span class="lgTag">أنت هنا</span>':done?'<span class="lgOk">✓</span>':'')+'</div>'));}
+  B.appendChild(el('<p class="pgNote">كل دوري يفتح ساحة جديدة. الساحات اللي تفتحها تبقى لك حتى لو نزلت دوري.</p>'));
+  $('lgPage').classList.remove('hidden');setTimeout(()=>{const c=B.querySelector('.lgRow.cur');if(c)c.scrollIntoView({block:'center'});},30);}
+const RCOL={common:['#9A7448','عادي'],rare:['#2F7FB5','نادر'],epic:['#8B4BC7','ملحمي'],legend:['#E0A21C','أسطوري']};
+function openTitles(){const B=$('tlBody');B.innerHTML='';const h=save.heads,nx=TITLES.find(t=>h<t[0]),cur=save.title,ct=TITLES.find(t=>t[1]===cur);
+  B.appendChild(el('<div class="tlHero'+(ct?' '+rarity(ct[0]):'')+'"><small>لقبك</small><div class="tlRib"><b>'+(cur||'بدون لقب')+'</b></div>'
+    +'<span class="tlHeads"><b>'+AR(h)+'</b> ضربة راس بكل الأسلحة</span>'
+    +(nx?'<div class="tlNext"><span>اللقب الجاي: <b>'+nx[1]+'</b></span><div class="pb lgPb"><i style="width:'+Math.max(3,h/nx[0]*100)+'%"></i></div><small>'+'\u2066'+AR(h)+' / '+AR(nx[0])+'\u2069'+'</small></div>':'<div class="tlNext"><span>جمعت كل الألقاب!</span></div>')+'</div>'));
+  ['common','rare','epic','legend'].forEach(r=>{const list=TITLES.filter(t=>rarity(t[0])===r);const got=list.filter(t=>h>=t[0]).length;
+    B.appendChild(el('<div class="tlSec" style="--rc:'+RCOL[r][0]+'"><b>'+RCOL[r][1]+'</b><span>'+'\u2066'+AR(got)+' / '+AR(list.length)+'\u2069'+'</span></div>'));
+    const g=el('<div class="tlGrid"></div>');
+    list.forEach(t=>{const open=h>=t[0],on=cur===t[1];const c=el('<div class="tlCard '+r+(open?'':' lock')+(on?' on':'')+'" style="--rc:'+RCOL[r][0]+'"><b>'+t[1]+'</b><small>'+(open?(on?'مستخدم ✓':'اضغط وتلقّب فيه'):AR(t[0])+' ضربة راس')+'</small>'+(open?'':'<span class="lgLk">'+LOCK+'</span>')+'</div>');
+      if(open)c.onclick=()=>{save.title=t[1];persist();bell();openTitles();menuStats();};g.appendChild(c);});
+    B.appendChild(g);});
+  $('tlPage').classList.remove('hidden');}
 $('mapChip').onclick=openMaps;$('mapsBack').onclick=()=>{click();$('maps').classList.add('hidden');};
 // ---------- wanted missions ----------
 const OUTLAWS=['الملثّم','أبو شنب','قاطع الدرب','ذيب الليل','أبو خنجر','سارق الحلال','الأعور','الغدّار','ولد الصحرا','أبو جمرة','الثعلب','راعي الهجن'];
-function misPool(){const L=save.level,own=save.owned,maps=MAPS.filter(m=>save.level>=m.lvl);
+function misPool(){const L=save.level,own=save.owned,maps=MAPS.filter(m=>mapOpen(m));
   const P=[{t:'win',n:3+Math.min(3,Math.floor(L/4)),txt:n=>'افز '+AR(n)+' مبارزات',w:3},
     {t:'head',n:4+Math.min(8,L),txt:n=>'سوّ '+AR(n)+' ضربات راس',w:3},
     {t:'clean',n:1,txt:()=>'افز مبارزة بدون ما تنصاب',w:2},
@@ -1857,12 +2017,12 @@ function openChest(kind,loot,title,done){const F=$('chestFx');F.className='';F.c
   $('cfOk').onclick=()=>{click();F.className='hidden';if(done)done();};}
 function openBoard(then){ensureMissions();boardThen=then||null;$('board').classList.remove('hidden');renderBoard();misMoved=false;}
 function renderBoard(){const B=$('bdPosters');B.innerHTML='';renderBigChest();
-  $('bdCount').textContent=AR(save.mis.filter(m=>m.p>=m.n).length)+' / ٣';
+  $('bdCount').textContent='\u2066'+AR(save.mis.filter(m=>m.p>=m.n).length)+' / 3\u2069';
   save.mis.forEach((m,i)=>{const done=m.p>=m.n;const r=[-2.2,1.5,-1][i];
     const sil='<svg viewBox="0 0 80 80"><path d="M6 80c2-16 14-22 34-22s32 6 34 22z" fill="#5A3A1E"/><path d="M14 66 L40 14 L66 66 Q40 74 14 66z" fill="#5A3A1E"/><ellipse cx="40" cy="38" rx="14" ry="17" fill="#4A2E16"/><text x="40" y="46" text-anchor="middle" font-size="22" font-weight="800" fill="#E8B54A" opacity=".8">؟</text></svg>';
     const ph='<div class="ph">'+(done?portrait(m.look,false,false,true)+'<span class="stamp">'+(m.claimed?'تم الاستلام':'انقبض!')+'</span>':sil)+'</div>';
     const c=el('<div class="post'+(done&&!m.claimed?' done':'')+'" style="--r:'+r+'deg"><span class="pin"></span><span class="wt">مطلوب</span><div class="mt">'+m.txt+'</div>'
-      +'<div class="pg"><i style="width:'+Math.round(m.p/m.n*100)+'%"></i></div><span class="pn">'+AR(m.p)+' / '+AR(m.n)+'</span><b class="bn">'+m.name+'</b>'+ph
+      +'<div class="pg"><i style="width:'+Math.round(m.p/m.n*100)+'%"></i></div><span class="pn">'+'\u2066'+AR(m.p)+' / '+AR(m.n)+'\u2069'+'</span><b class="bn">'+m.name+'</b>'+ph
       +'<div class="rw"><span><i class="coin" style="width:11px;height:11px;border-radius:50%;display:inline-block"></i> '+AR(m.gold)+'</span>'+(m.pearls?'<span><i class="pearl" style="width:11px;height:11px;border-radius:50%;display:inline-block"></i> '+AR(m.pearls)+'</span>':'')+'</div></div>');
     if(done&&!m.claimed){const b=btn('افتح','goBtn',()=>{m.claimed=true;save.gold+=m.gold;save.pearls+=m.pearls;save.chestP=Math.min(CHEST_N,(save.chestP||0)+1);persist();
         openChest('small',[{k:'r',n:m.gold}].concat(m.pearls?[{k:'p',n:m.pearls}]:[]),'جايزة '+m.name,()=>{const k=save.mis.indexOf(m);if(k>=0){save.mis[k]=newMission(save.mis);persist();}renderBoard();updateBoardDot();});});c.appendChild(b);}
@@ -1936,9 +2096,9 @@ function buildLineup(){lineup.forEach(o=>{lobbyG.remove(o.g);o.g.traverse(c=>{if
   lobFoes=[Math.max(1,L-1),L,L,L+1,L+2].map(l=>makeFoe(l,used));{const ids=Object.keys(MODELS),o=Math.floor(Math.random()*ids.length);lobFoes.forEach((f,i)=>{f.model=ids[(i+o)%ids.length];});}
   const items=[{kind:'quick'},{kind:'you'}].concat(save.revenge.map(f=>({kind:'foe',f:Object.assign({},f,{tag:'revenge',title:botTitle(f.lvl,f.name)})})),save.nemesis.map(f=>({kind:'foe',f:Object.assign({},f,{tag:'nemesis',title:botTitle(f.lvl,f.name)})})),lobFoes.map(f=>({kind:'foe',f})));
   items.forEach((it,i)=>{const G=new THREE.Group();G.position.set(i*LGAP,.34,LZ);
-    if(it.kind==='quick'){makeChar({thobe:0x14100C,shemagh:0x14100C,iqal:0x14100C},G);lobHero(G,'idle',true);addSign(G,['مبارزة سريعة','خصم عشوائي'],'quick',2.2,.44);}
-    else if(it.kind==='you'){const lk=Object.assign({},myLook());makeChar(lk,G);lobHero(G,'idle',false,lk);}
-    else{const f=it.f;makeChar(f,G);lobHero(G,(f.tag==='nemesis'||i%3===1)?'look':'idle',false,f,modelFor(f));addSign(G,[f.name,f.tag==='revenge'?'يبي ثأره':f.tag==='nemesis'?'غلبك قبل':'المستوى '+AR(f.lvl)],f.tag||'',2.2,.44);}
+    if(it.kind==='quick'){makeChar({thobe:0x14100C,shemagh:0x14100C,iqal:0x14100C},G);lobHero(G,'idle',true);addSign(G,['مبارزة سريعة','خصم عشوائي'],'quick',1.98,.5);}
+    else if(it.kind==='you'){const lk=Object.assign({},myLook());makeChar(lk,G);lobHero(G,'pidle',false,lk);}
+    else{const f=it.f;makeChar(f,G);lobHero(G,(f.tag==='nemesis'||i%2===1)?'look':'pidle',false,f,modelFor(f));addSign(G,[f.name,f.tag==='revenge'?'يبي ثأره':f.tag==='nemesis'?'غلبك قبل':'المستوى '+AR(f.lvl)],f.tag||'',1.98,.5);}
     G.rotation.y=0;lobbyG.add(G);G.add(footShadow());lineup.push(Object.assign({g:G},it));});}
 function setDrawer(open){$('lobDrawer').classList.toggle('open',open);$('lobDrawer').setAttribute('aria-hidden',String(!open));$('lobMenuB').setAttribute('aria-expanded',String(open));}
 $('lobMenuB').onclick=e=>{e.stopPropagation();click();setDrawer(!$('lobDrawer').classList.contains('open'));};
@@ -1946,6 +2106,8 @@ document.querySelectorAll('#lobDrawer [data-go]').forEach(b=>b.onclick=e=>{e.sto
   if(g==='friends'){click();const s=b.querySelector('small');s.textContent='مع الأونلاين';setTimeout(()=>s.textContent='قريباً',1500);return;}
   click();setDrawer(false);
   if(g==='board')return openBoard();
+  if(g==='leagues')return openLeagues();
+  if(g==='titles')return openTitles();
   if(g==='settings'){setFrom='lobby';renderAimSet();$('settings').classList.remove('hidden');return;}
   openHub(g,0,'lobby');});
 addEventListener('pointerdown',e=>{if(state==='lobby'&&$('lobDrawer').classList.contains('open')&&!e.target.closest('#lobDrawer,#lobMenuB'))setDrawer(false);});
@@ -1960,7 +2122,7 @@ function useEnergy(){energyNow();if(save.energy<=0)return false;if(save.energy==
 function renderEnergy(){const en=energyNow();$('eSeg').innerHTML=Array.from({length:EMAX},(_,i)=>'<i class="'+(i<en?'on':'')+'"></i>').join('');
   if(en<EMAX){const left=EREG-(Date.now()-save.energyT);const m=Math.floor(left/60000),s=Math.floor(left%60000/1000);$('eTime').textContent=AR(m)+':'+AR(String(s).padStart(2,'0'));}else $('eTime').textContent='ممتلئة';
   const it=lineup[lobI];if(!it)return;const empty=en<=0;
-  if(empty&&it.kind!=='you'){$('lobGo').textContent='عبّها بـ٢٠ لؤلؤ';$('lobGo').dataset.refill='1';}
+  if(empty&&it.kind!=='you'){$('lobGo').textContent='عبّها بـ20 لؤلؤ';$('lobGo').dataset.refill='1';}
   else{delete $('lobGo').dataset.refill;$('lobGo').textContent=it.kind==='foe'?'بارز':'دوّر لي خصم';}}
 setInterval(()=>{if(state==='lobby')renderEnergy();},1000);
 function showSel(){const it=lineup[lobI];if(!it)return;const you=it.kind==='you',q=it.kind==='quick';const f=it.f;
@@ -1969,11 +2131,11 @@ function showSel(){const it=lineup[lobI];if(!it)return;const you=it.kind==='you'
   const lg=league(save.rating),nx=LEAGUES[lg+1];$('bBadge').innerHTML=lgBadge(you||q?lg:league(f.rating));
   if(you||q){if(q){$('bName').textContent='مبارزة سريعة';$('bSub').innerHTML='خصم عشوائي بمستواك';}
     else{$('bName').innerHTML=save.title?titleHTML(save.title):LEAGUES[lg][1];$('bSub').innerHTML=save.title?LEAGUES[lg][1]:'المستوى '+AR(save.level);}
-    $('bLv').textContent='م'+AR(save.level);$('bRat').textContent=AR(save.rating);$('bRatL').textContent='نقطة';
+    $('bLv').textContent=AR(save.level);$('bRat').textContent=AR(save.rating);$('bRatL').textContent='نقاط الدوري';$('bRatI').className='stI tr';
     const pr=nx?Math.round((save.rating-LEAGUES[lg][0])/(nx[0]-LEAGUES[lg][0])*100):100;
-    $('bMid').innerHTML='<div class="r"><span>'+(nx?'باقي '+AR(nx[0]-save.rating)+' نقطة لـ'+nx[1]:'وصلت أعلى دوري')+'</span><span>'+(save.streak>1?'سلسلة '+AR(save.streak):'')+'</span></div><div class="pb"><i style="width:'+Math.max(4,pr)+'%"></i></div>';}
-  else{$('bName').textContent=f.name;$('bSub').innerHTML=(f.title?titleHTML(f.title)+' · ':'')+(f.tag==='revenge'?'سلبته ويبي ثأره (جائزة ×٢)':f.tag==='nemesis'?'غلبك قبل (+٥٠٪)':LEAGUES[league(f.rating)][1]+' · '+AR(f.rating)+' نقطة');
-    $('bLv').textContent='م'+AR(f.lvl);$('bRat').textContent=AR(f.prize);$('bRatL').textContent='جائزة';
+    $('bMid').innerHTML='<div class="r"><span>'+(nx?'باقي '+AR(nx[0]-save.rating)+' لـ'+nx[1]:'وصلت أعلى دوري')+'</span><span>'+(save.streak>1?'<em class="strk">🔥 '+AR(save.streak)+'</em>':'')+'</span></div><div class="pb"><i style="width:'+Math.max(4,pr)+'%"></i></div>';}
+  else{$('bName').textContent=f.name;$('bSub').innerHTML=(f.title?titleHTML(f.title)+' · ':'')+(f.tag==='revenge'?'سلبته ويبي ثأره (جائزة ×2)':f.tag==='nemesis'?'غلبك قبل (+50%)':LEAGUES[league(f.rating)][1]+' · '+AR(f.rating)+' نقطة');
+    $('bLv').textContent=AR(f.lvl);$('bRat').textContent=AR(f.prize);$('bRatL').textContent='الجائزة';$('bRatI').className='stI cn';
     const sp=Math.round(Math.max(.08,(950-f.react)/600)*100),ac2=Math.round(Math.max(.08,(f.acc-.28)/.44)*100);
     const dG=Math.max(8,Math.min(40,Math.round(20+(f.rating-save.rating)/25))),dL=Math.max(8,Math.min(30,Math.round(20-(f.rating-save.rating)/25)));
     $('bMid').innerHTML='<div class="r"><span style="min-width:40px">السرعة</span><div class="pb red"><i style="width:'+sp+'%"></i></div></div><div class="r"><span style="min-width:40px">الدقة</span><div class="pb red"><i style="width:'+ac2+'%"></i></div></div>'
@@ -2033,18 +2195,18 @@ function renderRes(){const r=lastRes;const lg=league(save.rating),L=lgBadge(lg,'
    +(lg<lg0?'<div class="promo dn2">'+lgBadge(lg,'lgBig')+'<b>نزلت دوري</b><small>رجعت '+LEAGUES[lg][1]+'. باقي لك '+AR(LEAGUES[lg0][0]-save.rating)+' نقطة وترجع</small></div>':'')
    +'<div><span>الدوري</span><span class="lgRow">'+L+'</span></div>'
    +(r.w?'<div><span>الجائزة</span><span class="up">+'+AR(r.gold)+' روبية</span></div>':'')
-   +(r.w&&r.streak>1?'<div><span>سلسلة انتصارات</span><span class="up">'+AR(r.streak)+' (+'+AR(Math.min(50,(r.streak-1)*10))+'٪)</span></div>':'')
+   +(r.w&&r.streak>1?'<div><span>سلسلة انتصارات</span><span class="up">'+AR(r.streak)+' (+'+AR(Math.min(50,(r.streak-1)*10))+'%)</span></div>':'')
    +(r.tag==='revenge'&&r.w?'<div><span>ثأر</span><span class="up">خلصت منه، جائزة مضاعفة</span></div>':'')
-   +(r.tag==='nemesis'&&r.w?'<div><span>رديت اعتبارك</span><span class="up">+٥٠٪ جائزة</span></div>':'')
+   +(r.tag==='nemesis'&&r.w?'<div><span>رديت اعتبارك</span><span class="up">+50% جائزة</span></div>':'')
    +(r.taken?'<div><span>استرد ثأره</span><span class="dn">−'+AR(r.taken)+' روبية</span></div>':'')
    +(misMoved?'<div><span>المطلوبين</span><span class="up">'+(misLog.length?misLog.join('، '):'تقدّمت')+'</span></div>':'');}
 $('stealBtn').onclick=()=>{const s=Math.round((foe.prize||20)*.6);save.gold+=s;const v=Object.assign({},foe,{tag:'revenge',stolen:s,lvl:foe.lvl+1,prize:Math.round(foe.prize*1.2),react:Math.max(300,foe.react-60),acc:Math.min(.8,foe.acc+.05)});
   save.revenge=[v].concat(save.revenge.filter(x=>x.name!==foe.name)).slice(0,2);persist();click();
   $('choice').classList.add('hidden');$('againBtn').classList.remove('hidden');$('endText').textContent='سلبته '+AR(s)+' روبية. بيرجع لك أقوى يطالب بثأره، انتبه.';};
 $('spareBtn').onclick=()=>{save.rating+=3;save.shiyam++;misEvent('spare');persist();phrase([0,2,4,7],.12,.4);
-  $('choice').classList.add('hidden');$('againBtn').classList.remove('hidden');$('endText').textContent='عفيت عنه. هذي الشيم: +٣ نقاط (عفوك '+AR(save.shiyam)+' مرة).';renderRes();};
+  $('choice').classList.add('hidden');$('againBtn').classList.remove('hidden');$('endText').textContent='عفيت عنه. هذي الشيم: +3 نقاط (عفوك '+AR(save.shiyam)+' مرة).';renderRes();};
 $('armBtn').onclick=()=>openHub('weapons');$('shopBtn').onclick=()=>openHub('shop');$('clothBtn').onclick=()=>openHub('clothes');$('hubBack').onclick=closeHub;$('hubPlus').onclick=()=>{click();openHub('shop',0,hubFrom);};
-$('carBtn').onclick=()=>{renderCareer();$('menu').classList.add('hidden');$('career').classList.remove('hidden');};
+$('carBtn').onclick=()=>openTitles();
 $('carBack').onclick=()=>{$('career').classList.add('hidden');$('menu').classList.remove('hidden');menuStats();};
 $('menuBtn').onclick=()=>{resetDuelCam();state='menu';$('endScreen').classList.add('hidden');$('menu').classList.remove('hidden');menuStats();};
 
@@ -2060,7 +2222,7 @@ function loop(now){requestAnimationFrame(loop);windOn(state==='prep'||state==='r
   const t=now/1000;
   if(state==='prep'){$('prepTime').textContent=AR(Math.max(0,Math.ceil((prepEnd-now)/1000)));if(now>=prepEnd)afterPrep();}
   if(state==='ready'){const k=Math.floor((now-cdStart)/800);
-    if(k!==cdShown&&k<3){cdShown=k;$('msg').textContent=['٣','٢','١'][k];if(save.sound){const a=ac();if(a){mirwas(a.currentTime,.6,[190,230,280][k]);dumm(a.currentTime,.35);jingle(a.currentTime,.12);}}}
+    if(k!==cdShown&&k<3){cdShown=k;$('msg').textContent=['3','2','1'][k];if(save.sound){const a=ac();if(a){mirwas(a.currentTime,.6,[190,230,280][k]);dumm(a.currentTime,.35);jingle(a.currentTime,.12);}}}
     else if(k>=3&&cdShown<3){cdShown=3;$('msg').textContent='…';}
     if(now>=signalAt)signal();}
   // motion control: sustained thresholds to ignore jitter
@@ -2150,7 +2312,7 @@ function loop(now){requestAnimationFrame(loop);windOn(state==='prep'||state==='r
   const camZ=(timeScale<1)?-2.2:0;cam.position.z+=(camZ-cam.position.z)*Math.min(1,dt*3);
   updParts(dt);
   {const lob=state==='lobby'||state==='mm';
-    if(lob){camX+=(lobI*LGAP-camX)*Math.min(1,dt*7);{const asp=innerWidth/innerHeight,bh=(($('lobBan').offsetHeight||200)+46)/innerHeight;const dz=Math.max(6,Math.min(9.5,3.05/asp));
+    if(lob){camX+=(lobI*LGAP-camX)*Math.min(1,dt*7);{const asp=innerWidth/innerHeight,bh=(($('lobBan').offsetHeight||200)+46)/innerHeight;const dz=Math.max(7.4,Math.min(11,3.7/asp));
       // straight-on at chest height (no tilt); the picture is shifted up with a lens offset so the banner never covers the feet
       const top=(.07+(1-bh))/2,k=Math.max(0,1-2*top);const W=innerWidth,H=innerHeight;
       cam.fov=2*Math.atan(Math.tan(baseFov*Math.PI/360)*(1+k))*180/Math.PI;cam.setViewOffset(W,H*(1+k),0,H*k,W,H);cam.updateProjectionMatrix();
@@ -2188,6 +2350,8 @@ const fs=()=>{const d=document.documentElement,r=d.requestFullscreen||d.webkitRe
       const h=Math.max(28,vis*vis/tot),y=r.top+6+(vis-12-h)*(el.scrollTop/Math.max(1,tot-vis));
       sh.style.height=h+'px';sh.style.top=y+'px';sh.style.left=(r.left+5)+'px';sh.classList.add('on');clearTimeout(ht);ht=setTimeout(()=>sh.classList.remove('on'),700);};
     document.addEventListener('scroll',e=>show(e.target),true);}
+  {const vv=window.visualViewport;const upd=()=>{if(!vv)return;const cov=Math.max(0,innerHeight-(vv.height+vv.offsetTop));document.documentElement.style.setProperty('--vvb',Math.round(cov)+'px');};if(vv){vv.addEventListener('resize',upd);vv.addEventListener('scroll',upd);}addEventListener('resize',upd);upd();}
+  addEventListener('pointerdown',e=>{ac();if(e.target.closest('button,.cd,.mapCard,.lgRow,.tlCard,.post .goBtn'))click();},true);
   if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});})();
 </script>
 </body>

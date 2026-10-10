@@ -34,6 +34,12 @@ iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds
 - League badges (v73 set, ChatGPT): rank_bronze palm · rank_silver dallah · rank_gold mabkhara (green) · rank_pearl oyster+arch · rank_swords falcon (blue) · rank_legend khanjar+crown (red). Crown and red only on legend. lgBadge(i). Shown in the lobby banner (#bBadge) and results (league row, plus a promotion/demotion card computed from rating before/after).
 - Chests (v71): claiming a wanted poster opens a small chest (openChest overlay #chestFx: closed chest shakes, then swaps to ui/*_open.png) and adds 1 to save.chestP; at CHEST_N=3 the sheikh's chest on the board (#bdChest) opens: rupees, 10-20 pearls, 30% chance of an unowned rupee-priced clothing item (bigLoot). Chests are earned only, never sold.
 - Time of day (v72): each duel picks TOD noon 55% / maghrib 28% / night 17% (pickTod, setTod sets sun+hemi lights). Sunset is a colour-graded canvas copy of the noon painting (gradeTex). Night uses painted ChatGPT versions bg_*_n.jpg (bdNight), falling back to grading. Night: no sun, mirrors useless. Maghrib: low sun, mirror blinds 1.5x. Lobby/hub always noon.
+- v75 (owner's 18 notes): numbers in English digits via AR() (1,250 / 1.2M), fractions wrapped in LRI/PDI; new round icon set ui/ic_*.png (plus, map, shop, guns, clothes, trophy, wanted, settings, leagues, friends, speaker, x) used in drawer (8 items, 4x2), main menu, map button, wallet plus.
+- Pages (.pg): #lgPage leagues ladder (openLeagues: current/next/locked, map each league unlocks) and #tlPage titles (openTitles: hero ribbon, next-title bar, rarity sections, cards). Old #career list no longer used.
+- Maps belong to leagues: MAPS[].lg (fareej 0, souq 1, barr 2, sahel 3); mapOpen(m) uses league(save.best); maps opened before v75 kept via save.mapsOld.
+- Lobby banner: level shown as a star medallion (no more "م"), rating with trophy icon, streak chip. Signs sit right above heads (y 1.98, scale .5); lobby camera farther (dz 3.7/asp, 7.4-11); lobby poses pidle/look.
+- Backdrops are padded (extTex, BPAD) and world-anchored at eye 1.62 so the death fall never shows edges. Bottom safe area: CSS var --sb = max(safe-area, visualViewport overlap, 8px).
+- Every button press makes the same click (global pointerdown; click() de-duped 350ms); audio starts on first touch.
 - A global thin scroll hint (#scrollHint) appears on any scrolled list.
 - Testing: Playwright + swiftshader in /home/claude/srv (copy index.html there, inject `window.__q=c=>eval(c);` before `function endLose(){`; do NOT copy sw.js into srv — it breaks local tests). Scripts t_audit.py (full flow), t45 (fight fx), t52 (weapons), t56 (clothes), t55 (holster).
 
@@ -52,6 +58,7 @@ iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds
 5. Known weak spots to be honest about: low-detail Meshy-Lite characters (fixed only in step 6), simple first-person gun, gray inside a few trigger guards.
 
 ## Working rules learned
+- Every ChatGPT request goes on the owner's PC as a numbered folder: `القايلة - ملفات اللعبة\طلبات شات جي بي تي\NN <name>\` with `الأمر.txt` (UTF-8 BOM, the prompt) + `مرجع N - <file>.png` references. 01 = round icon sheet (pending).
 - ChatGPT refuses detailed "firearm/sniper" prompts — describe guns as stylized cartoon game items/antique props.
 - Ask ChatGPT for single sheets, no text, flat gray background; Claude cuts/keys them (better than ChatGPT slicing).
 - Generate neutral/white bases and recolour in code instead of one image per colour.
