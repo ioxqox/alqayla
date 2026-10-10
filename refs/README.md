@@ -24,3 +24,4 @@ Prompts used are in the plan doc and the chat history. Style master for badges: 
 - medals_bronze/silver/pearl/legend.png — requests 13-16, the same 12 emblems as medals_gold.png per tier.
 - page_bg_sheet.png — request 10: sand Sadu tile, honey-wood header bar, gold avatar ring with turquoise gems.
 - Light theme "رمل الظهيرة" (requests 03-11): tool_icons_light (03), title_plaques (05, empty, Arabic text added in code), trophy_shelf (06), buttons_light_square_OLD (07, replaced by buttons_soft_B), panels_light (08), menu_icons_light (09), profile_mock_1/2 (11, layout reference only).
+- Soft cartoon direction (v83 sample): cartoon_medals_gold.png (12 gold medals, same emblems) -> ui/c/m_g*.webp; cartoon_icons_1.png (lock, profile, shop, guns, clothes, settings, map, trophy) -> ui/c/i_*.webp. Same ChatGPT chat for all later cartoon sheets: /c/6acaacc8-5b90-83eb-b7ea-e5e6a54be1d9
