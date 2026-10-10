@@ -19,3 +19,4 @@ Kept as the source for every cut/keyed asset in the game. Re-cut from these, nev
 | clothes_sheet_1/2.png | ui/c_*.png clothing bases |
 
 Prompts used are in the plan doc and the chat history. Style master for badges: badge_6_legend_CHOSEN.png.
+| bishts_sheet.png | ui/c_bisht_brown.png, c_bisht_black.png, c_bisht_navy.png (cut by component, navy not on sale yet) |

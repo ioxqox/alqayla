@@ -1647,7 +1647,7 @@ function clImgOf(slot,it){if(!it||!it.id)return null;const id=it.id;
   if(slot==='thobe')return {f:'c_thobe',m:id==='th_white'?'':'mul',c:it.c};
   if(slot==='head')return id==='hd_white'?{f:'c_ghutra',m:''}:{f:'c_shemagh',m:id==='hd_red'?'':'red',c:it.c};
   if(slot==='iqal')return id==='iq_gold'?{f:'c_iqalg',m:''}:id==='iq_silver'?{f:'c_iqalg',m:'silver'}:{f:'c_iqal',m:id==='iq_black'?'':'lift',c:it.c};
-  if(slot==='bisht'){if(id==='bs_none')return null;if(id==='bs_royal')return {f:'c_bishtr',m:''};return {f:'c_bisht',m:id==='bs_beige'?'':'mul',c:it.c};}
+  if(slot==='bisht'){if(id==='bs_none')return null;if(id==='bs_royal')return {f:'c_bishtr',m:''};if(id==='bs_brown')return {f:'c_bisht_brown',m:''};if(id==='bs_black')return {f:'c_bisht_black',m:''};if(id==='bs_navy')return {f:'c_bisht_navy',m:''};return {f:'c_bisht',m:id==='bs_beige'?'':'mul',c:it.c};}
   return null;}
 const _clC={};
 function clTint(img){const m=img.dataset.m,c=+img.dataset.c,k=img.dataset.f+m+c;if(!m||img.dataset.done)return;img.dataset.done=1;if(_clC[k]){img.src=_clC[k];return;}
