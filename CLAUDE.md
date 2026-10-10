@@ -6,7 +6,7 @@ checked (screenshots) before reporting. Goal: a professional, polished, Gulf-her
 iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds or code).
 
 ## Where things live
-- Repo: github.com/ioxqox/alqayla (GitHub Pages). Live: https://ioxqox.github.io/alqayla/?v=NN (bump NN each release; last used 80).
+- Repo: github.com/ioxqox/alqayla (GitHub Pages). Live: https://ioxqox.github.io/alqayla/?v=NN (bump NN each release; last used 81).
 - Claude can push directly (GitHub app installed). Commit as `Claude <noreply@anthropic.com>`.
 - Plan & tracker doc (Claude Docs): https://claude.ai/code/artifact/a512277a-dd89-43db-aa94-a63e087aa06d
 - Owner's PC (Windows, "killua", RTX 3080), mirror folder: `C:\Users\MA\Documents\MY PROJECT 2026\القايلة - ملفات اللعبة`
@@ -70,3 +70,4 @@ iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds
 - Owner decisions (v79 talk): tool names must be plain everyday words (heritage stays in art/theme, not tool names). Monetization like League of Legends: cosmetics + battle pass only, never pay-to-win.
 - v80: owner rejected the ribbon titles/tags on the maps page → page titles (#maps h2, .pgTop h2) are btn_wood plaques (::before border-image), map cards framed with tile_wood 9-slice (16px), chosen map = glow + btn_green "✓ المختارة" plaque, league chip + twist pills are btn_wood/btn_red/btn_green plaques. Leagues card (.lgMe) bar/text inset so they stay inside the Sadu frame.
 - Owner APPROVED (v80): tools list with secret pick + reveal + 3s swap of one tool; exclusive premium gun collections (look + shot effect, no stats; kill camos stay earned-only); starter pack. Two tools replaced at his request: الصفارة الوهمية → النسخة الوهمية (decoy double, منظار exposes it), سدادات الأذن → التركيز (first second after draw in slow-motion for you, then hand shakes 2s). Build the tools system next.
+- v81: UI kit edges cleaned (grey fringe → nearest inner colour, outer ring softened) for tile_*/btn_*/panel_sadu/ribbon/btn_round*/lock/star/ic_* (cache ?v=2). Wide frames use new ui/panel_wood|dark|paper.png (720x300, built from tile_* by tiling mirrored centre/edges, bottom edge = flipped top, slice 51) instead of stretching tile_*. Maps: info area is an embossed plate (.mi), chosen tag sits on the frame like "أنت هنا" (red pill), page-title plaques padded so text stays inside.

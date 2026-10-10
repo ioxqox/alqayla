@@ -40,16 +40,16 @@ html,body{height:100%;margin:0;overflow:hidden;background:#F3E3BE;font-family:'T
 .myBar{flex:1;display:flex;flex-direction:column;gap:6px}
 .row2{display:flex;justify-content:space-between;align-items:center}
 .youLbl{font-weight:800;color:#FFF4DF;text-shadow:0 1px 4px rgba(0,0,0,.8);font-size:15px}
-.runBtn{pointer-events:auto;position:relative;width:70px;height:72px;min-height:0;border-radius:50%;padding:0 0 2px;font-family:'Mirza','Tajawal',sans-serif;font-size:17px;font-weight:700;color:#FFE7A3;text-shadow:0 2px 0 #5A0A06,0 0 4px rgba(60,0,0,.8);background:url(ui/btn_round_red.png?v=1) center/100% 100% no-repeat!important;border:0!important;box-shadow:none!important;filter:drop-shadow(0 4px 3px rgba(0,0,0,.5))}
+.runBtn{pointer-events:auto;position:relative;width:70px;height:72px;min-height:0;border-radius:50%;padding:0 0 2px;font-family:'Mirza','Tajawal',sans-serif;font-size:17px;font-weight:700;color:#FFE7A3;text-shadow:0 2px 0 #5A0A06,0 0 4px rgba(60,0,0,.8);background:url(ui/btn_round_red.png?v=2) center/100% 100% no-repeat!important;border:0!important;box-shadow:none!important;filter:drop-shadow(0 4px 3px rgba(0,0,0,.5))}
 .runBtn:active{transform:scale(.94)}
 #lobTag{position:fixed;z-index:4;display:none;pointer-events:none;transform:translate(-50%,-100%);min-width:110px;max-width:calc(72*var(--vw));text-align:center;padding:9px 24px 11px;isolation:isolate;font-family:'Mirza','Tajawal',sans-serif;white-space:nowrap;filter:drop-shadow(0 6px 6px rgba(0,0,0,.45))}
-#lobTag:before{content:'';position:absolute;inset:0;z-index:-1;border-style:solid;border-width:13px 17px;border-image:url(ui/btn_wood.png?v=1) 38 50 fill/13px 17px stretch}
+#lobTag:before{content:'';position:absolute;inset:0;z-index:-1;border-style:solid;border-width:13px 17px;border-image:url(ui/btn_wood.png?v=2) 38 50 fill/13px 17px stretch}
 #lobTag:after{content:'';position:absolute;left:50%;bottom:-8px;width:16px;height:16px;z-index:-2;transform:translateX(-50%) rotate(45deg);background:linear-gradient(135deg,#7A4A22,#3E220E);border-right:3px solid #D9A84E;border-bottom:3px solid #D9A84E;border-radius:0 0 4px 0}
 #lobTag b{display:block;font-size:20px;line-height:1.1;color:#FFE7AE;text-shadow:0 2px 0 rgba(0,0,0,.7),0 0 6px rgba(0,0,0,.35)}
 #lobTag i{display:block;font-style:normal;font-family:'Tajawal',sans-serif;font-weight:800;font-size:11.5px;color:#F3D9A4;text-shadow:0 1px 0 rgba(0,0,0,.6)}
-#lobTag.revenge:before{border-image-source:url(ui/btn_red.png?v=1)}#lobTag.revenge:after{background:linear-gradient(135deg,#9A2C20,#5A100B)}
+#lobTag.revenge:before{border-image-source:url(ui/btn_red.png?v=2)}#lobTag.revenge:after{background:linear-gradient(135deg,#9A2C20,#5A100B)}
 #lobTag.nemesis:before{filter:brightness(.62) saturate(1.2)}#lobTag.nemesis:after{background:linear-gradient(135deg,#4A2A14,#24120A)}#lobTag.nemesis i{color:#FF9A7A}
-#lobTag.you:before{border-image-source:url(ui/btn_green.png?v=1)}#lobTag.you:after{background:linear-gradient(135deg,#2E7A42,#14401F)}
+#lobTag.you:before{border-image-source:url(ui/btn_green.png?v=2)}#lobTag.you:after{background:linear-gradient(135deg,#2E7A42,#14401F)}
 #lobTag.in{animation:ltIn .28s ease-out}@keyframes ltIn{from{opacity:0;transform:translate(-50%,-80%) scale(.9)}to{opacity:1;transform:translate(-50%,-100%) scale(1)}}
 #eTag{position:fixed;z-index:5;pointer-events:none;width:150px;transform:translate(-50%,-100%);display:none}
 #eTag .nm{display:flex;justify-content:space-between;gap:6px;font-family:'Mirza','Tajawal',sans-serif;font-weight:700;color:#FFF4DF;text-shadow:0 1px 4px rgba(0,0,0,.9);font-size:15px}
@@ -270,7 +270,7 @@ html.nightTod #smokeFx i{background:radial-gradient(ellipse at center,rgba(96,10
 #splats{position:fixed;inset:0;z-index:4;pointer-events:none;overflow:hidden}
 #splats i{position:absolute;opacity:.62;transition:opacity 1.6s ease-in,transform 1.6s ease-in}
 #taunt{position:fixed;left:50%;top:22%;z-index:6;pointer-events:none;transform:translate(-50%,-10px) scale(.6);opacity:0;transition:all .25s cubic-bezier(.2,1.6,.4,1);max-width:calc(80*var(--vw));padding:12px 18px;border-radius:20px;background:#FFF4DF;color:#2A1A0E;font-family:'Mirza','Tajawal',sans-serif;font-weight:700;font-size:24px;text-align:center;box-shadow:0 4px 0 #6B3A14,0 10px 24px rgba(0,0,0,.4);border:3px solid #2A1A0E}
-#taunt::before{content:'';position:absolute;inset:0;z-index:-1;border-style:solid;border-width:17px 22px;border-image:url(ui/btn_paper.png?v=1) 30 34 fill/17px 22px stretch}
+#taunt::before{content:'';position:absolute;inset:0;z-index:-1;border-style:solid;border-width:17px 22px;border-image:url(ui/btn_paper.png?v=2) 30 34 fill/17px 22px stretch}
 #taunt::after{content:'';position:absolute;left:50%;bottom:-9px;width:18px;height:18px;transform:translateX(-50%) rotate(45deg);z-index:-2;background:linear-gradient(135deg,#E6B866 0%,#B07A2C 55%,#7A4E1A 100%);border-radius:0 0 5px 0;box-shadow:2px 2px 0 #5A3410}
 #taunt{background:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:17px 30px!important;isolation:isolate;color:#3A2410!important;font-size:23px!important;line-height:1.25;text-shadow:0 1px 0 rgba(255,255,255,.6);filter:drop-shadow(0 6px 8px rgba(0,0,0,.5))}
 #taunt.on{opacity:1;transform:translate(-50%,0) scale(1)}
@@ -438,47 +438,47 @@ html.nightTod #smokeFx i{background:radial-gradient(ellipse at center,rgba(96,10
 
 /* ---- polished UI kit (wood / lacquer / Sadu) ---- */
 .kW,.kR,.kG{background:none!important;box-shadow:none!important;border-radius:0!important;border-style:solid;border-color:transparent;border-width:13px 17px;padding:2px 10px!important;color:#FFEBC2;text-shadow:0 2px 0 rgba(0,0,0,.55),0 0 6px rgba(0,0,0,.35);filter:drop-shadow(0 4px 3px rgba(0,0,0,.45));transition:transform .08s,filter .08s}
-.kW{border-image:url(ui/btn_wood.png?v=1) 38 50 fill/13px 17px stretch}
-.kR{border-image:url(ui/btn_red.png?v=1) 38 50 fill/13px 17px stretch;color:#FFE7A3}
-.kG{border-image:url(ui/btn_green.png?v=1) 40 50 fill/13px 17px stretch;color:#FFF1C9}
+.kW{border-image:url(ui/btn_wood.png?v=2) 38 50 fill/13px 17px stretch}
+.kR{border-image:url(ui/btn_red.png?v=2) 38 50 fill/13px 17px stretch;color:#FFE7A3}
+.kG{border-image:url(ui/btn_green.png?v=2) 40 50 fill/13px 17px stretch;color:#FFF1C9}
 .kW:active,.kR:active,.kG:active{transform:translateY(2px) scale(.98);filter:drop-shadow(0 2px 2px rgba(0,0,0,.45)) brightness(.92)}
 .kW:disabled,.kR:disabled,.kG:disabled{filter:grayscale(.8) brightness(.75)}
 #menu .big.kR{min-height:72px;min-width:250px;font-size:32px;border-width:16px 21px;border-image-width:16px 21px}
 .menuGrid button.kW{min-height:58px;font-size:20px}
 .menuGrid button.kW svg{filter:drop-shadow(0 1px 0 rgba(0,0,0,.6))}
-.hnBan.kP{background:none;border-top:0;box-shadow:none;border-style:solid;border-color:transparent;border-width:24px 20px 22px;border-image:url(ui/panel_sadu.png?v=1) 60 52 58 52 fill/24px 20px 22px stretch;filter:drop-shadow(0 -4px 10px rgba(0,0,0,.45))}
+.hnBan.kP{background:none;border-top:0;box-shadow:none;border-style:solid;border-color:transparent;border-width:24px 20px 22px;border-image:url(ui/panel_sadu.png?v=2) 60 52 58 52 fill/24px 20px 22px stretch;filter:drop-shadow(0 -4px 10px rgba(0,0,0,.45))}
 .hnBan.kP .hnRow1{background:none;box-shadow:none;border-bottom:2px solid rgba(122,78,26,.25);padding-top:2px}
-.hnBan.kP .youTab{background:url(ui/ribbon_sadu.png?v=1) center/100% 100% no-repeat;border:0;box-shadow:none;width:170px;height:46px;top:-58px;align-items:center;padding:0 0 4px;color:#FFE9B8;text-shadow:0 2px 0 rgba(0,0,0,.6)}
+.hnBan.kP .youTab{background:url(ui/ribbon_sadu.png?v=2) center/100% 100% no-repeat;border:0;box-shadow:none;width:170px;height:46px;top:-58px;align-items:center;padding:0 0 4px;color:#FFE9B8;text-shadow:0 2px 0 rgba(0,0,0,.6)}
 .hnBan.kP .hnRow1{padding-top:8px}.hnBan.kP .hnRow3{padding:4px 10px 6px}
 .hnBan.kP #lobGo.kR{min-width:0;flex:none;font-size:21px;border-width:12px 16px;border-image-width:12px 16px;padding:0 8px!important;margin-right:auto;max-width:48%}
 .hnBan.kP .hnRow3{gap:6px;min-width:0}.hnBan.kP .eSeg{flex:1 1 auto;min-width:0;overflow:hidden}.hnBan.kP .eSeg i{width:9px;flex:none}.hnBan.kP .eTime{min-width:0}
 .hnBan.kP #lobGo.kR{font-size:19px;max-width:44%;white-space:nowrap}
 
-.parch.kP2,.parch{clip-path:none;background:none;box-shadow:none;border-radius:0;border-style:solid;border-color:transparent;border-width:30px 24px 28px;border-image:url(ui/panel_sadu.png?v=1) 60 52 58 52 fill/30px 24px 28px stretch;padding:4px 6px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.55))}
-.hubBack{background:url(ui/btn_round.png?v=1) center/100% 100% no-repeat!important;border:0!important;border-radius:50%!important;width:48px!important;height:48px!important;min-height:48px!important;padding:0!important;margin-left:0!important;color:#FFE7A3!important;box-shadow:none!important;filter:drop-shadow(0 3px 2px rgba(0,0,0,.5))}
+.parch.kP2,.parch{clip-path:none;background:none;box-shadow:none;border-radius:0;border-style:solid;border-color:transparent;border-width:30px 24px 28px;border-image:url(ui/panel_sadu.png?v=2) 60 52 58 52 fill/30px 24px 28px stretch;padding:4px 6px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.55))}
+.hubBack{background:url(ui/btn_round.png?v=2) center/100% 100% no-repeat!important;border:0!important;border-radius:50%!important;width:48px!important;height:48px!important;min-height:48px!important;padding:0!important;margin-left:0!important;color:#FFE7A3!important;box-shadow:none!important;filter:drop-shadow(0 3px 2px rgba(0,0,0,.5))}
 .hubBack svg{filter:drop-shadow(0 1px 1px #000)}
 .opt{background:linear-gradient(180deg,rgba(60,34,14,.85),rgba(40,22,8,.9));border:2px solid #B8873A;box-shadow:inset 0 1px 0 rgba(255,220,150,.35),0 3px 0 rgba(0,0,0,.35);border-radius:10px}
-.seg button{border-style:solid;border-color:transparent;border-width:11px 14px;border-image:url(ui/btn_wood.png?v=1) 38 50 fill/11px 14px stretch;background:none!important;box-shadow:none;border-radius:0;padding:0 4px;color:#FFEBC2;text-shadow:0 1px 0 #000}
-.seg button.on{border-image-source:url(ui/btn_red.png?v=1)}
+.seg button{border-style:solid;border-color:transparent;border-width:11px 14px;border-image:url(ui/btn_wood.png?v=2) 38 50 fill/11px 14px stretch;background:none!important;box-shadow:none;border-radius:0;padding:0 4px;color:#FFEBC2;text-shadow:0 1px 0 #000}
+.seg button.on{border-image-source:url(ui/btn_red.png?v=2)}
 button.kW,button.kR,button.kG{min-height:46px}
 .ammo{gap:2px;align-items:flex-end}.ammo b{width:11px;height:28px;border:0;border-radius:0;background:url(ui/bullet.png?v=1) center/contain no-repeat;filter:drop-shadow(0 1px 1px rgba(0,0,0,.6))}.ammo b.e{background:url(ui/bullet_e.png?v=1) center/contain no-repeat;opacity:.75}
 
-.lobMenuB{background:url(ui/ic_menu.png?v=1) center/100% 100% no-repeat!important;border:0!important;border-radius:50%;width:50px;height:50px;color:transparent;filter:drop-shadow(0 3px 2px rgba(0,0,0,.5))}
+.lobMenuB{background:url(ui/ic_menu.png?v=2) center/100% 100% no-repeat!important;border:0!important;border-radius:50%;width:50px;height:50px;color:transparent;filter:drop-shadow(0 3px 2px rgba(0,0,0,.5))}
 .lobMenuB svg{opacity:0}.lobMenuB[aria-expanded="true"]{filter:drop-shadow(0 0 6px #FFD36A) brightness(1.1)}
-.mapChip{border-style:solid;border-color:transparent;border-width:9px 13px;border-image:url(ui/btn_wood.png?v=1) 38 50 fill/9px 13px stretch;background:none!important;border-radius:0;color:#FFEBC2;text-shadow:0 1px 0 #000;padding:0 6px;filter:drop-shadow(0 3px 2px rgba(0,0,0,.45))}
-.lobArrow{background:url(ui/btn_round.png?v=1) center/100% 100% no-repeat!important;border:0!important;color:#FFE7A3!important;text-shadow:0 2px 0 #000;filter:drop-shadow(0 3px 2px rgba(0,0,0,.5))}
-.ldGrid button{border-style:solid;border-color:transparent;border-width:12px;border-image:url(ui/tile_wood.png?v=1) 28 fill/12px stretch;background:none!important;border-radius:0;color:#FFEBC2;text-shadow:0 1px 0 #000}
-.pearlB{background:url(ui/ic_pearl.png?v=1) center/100% 100% no-repeat!important;border:0!important}
-.tile{background:none!important;border-style:solid!important;border-color:transparent!important;border-width:12px!important;border-image:url(ui/tile_paper.png?v=1) 26 fill/12px stretch!important;border-radius:0!important;box-shadow:none!important;filter:drop-shadow(0 3px 3px rgba(0,0,0,.35))}
-.bar.big,.bar{border:0!important;border-radius:0!important;background:none!important;overflow:visible;box-shadow:none!important;border-style:solid!important;border-color:transparent!important;border-width:6px 18px!important;border-image:url(ui/bar_empty.png?v=1) 10 34 fill/6px 18px stretch!important;filter:drop-shadow(0 2px 2px rgba(0,0,0,.5))}
+.mapChip{border-style:solid;border-color:transparent;border-width:9px 13px;border-image:url(ui/btn_wood.png?v=2) 38 50 fill/9px 13px stretch;background:none!important;border-radius:0;color:#FFEBC2;text-shadow:0 1px 0 #000;padding:0 6px;filter:drop-shadow(0 3px 2px rgba(0,0,0,.45))}
+.lobArrow{background:url(ui/btn_round.png?v=2) center/100% 100% no-repeat!important;border:0!important;color:#FFE7A3!important;text-shadow:0 2px 0 #000;filter:drop-shadow(0 3px 2px rgba(0,0,0,.5))}
+.ldGrid button{border-style:solid;border-color:transparent;border-width:12px;border-image:url(ui/tile_wood.png?v=2) 28 fill/12px stretch;background:none!important;border-radius:0;color:#FFEBC2;text-shadow:0 1px 0 #000}
+.pearlB{background:url(ui/ic_pearl.png?v=2) center/100% 100% no-repeat!important;border:0!important}
+.tile{background:none!important;border-style:solid!important;border-color:transparent!important;border-width:12px!important;border-image:url(ui/tile_paper.png?v=2) 26 fill/12px stretch!important;border-radius:0!important;box-shadow:none!important;filter:drop-shadow(0 3px 3px rgba(0,0,0,.35))}
+.bar.big,.bar{border:0!important;border-radius:0!important;background:none!important;overflow:visible;box-shadow:none!important;border-style:solid!important;border-color:transparent!important;border-width:6px 18px!important;border-image:url(ui/bar_empty.png?v=2) 10 34 fill/6px 18px stretch!important;filter:drop-shadow(0 2px 2px rgba(0,0,0,.5))}
 .bar>i{border-radius:2px;margin:0 -4px}
 
 .coinB{background:url(ui/coin.png?v=1) center/118% 118% no-repeat!important;border:0!important;color:transparent!important;font-size:0!important}
 .pearlB{background-image:url(ui/pearl.png?v=1)!important}
-.eIco{width:24px;height:24px;flex:none;background:url(ui/ic_energy.png?v=1) center/contain no-repeat}
-.hubBack{background-image:url(ui/ic_back.png?v=1)!important;transform:scaleX(-1)}.hubBack svg{opacity:0}
+.eIco{width:24px;height:24px;flex:none;background:url(ui/ic_energy.png?v=2) center/contain no-repeat}
+.hubBack{background-image:url(ui/ic_back.png?v=2)!important;transform:scaleX(-1)}.hubBack svg{opacity:0}
 
-.hnMid .pb,.prog{height:16px;border-radius:0;overflow:visible;box-shadow:none;background:none;border-style:solid;border-color:transparent;border-width:5px 15px;border-image:url(ui/bar_empty.png?v=1) 10 34 fill/5px 15px stretch;filter:drop-shadow(0 2px 2px rgba(0,0,0,.35))}
+.hnMid .pb,.prog{height:16px;border-radius:0;overflow:visible;box-shadow:none;background:none;border-style:solid;border-color:transparent;border-width:5px 15px;border-image:url(ui/bar_empty.png?v=2) 10 34 fill/5px 15px stretch;filter:drop-shadow(0 2px 2px rgba(0,0,0,.35))}
 .hnMid .pb i,.prog i{border-radius:2px;margin:0 -3px;background:linear-gradient(180deg,#FFE9A0,#E8B54A 45%,#A8701E);box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
 .hnMid .pb.red i{background:linear-gradient(180deg,#F07A6E,#B3261E 50%,#7A140F)}
 
@@ -491,7 +491,7 @@ button.kW,button.kR,button.kG{min-height:46px}
 .hnBan.kP .youTab{top:-42px}
 .hnBan.kP .hnRow3{flex-wrap:nowrap}.hnBan.kP .eSeg i{width:7px}.hnBan.kP .eSeg{gap:1px}.hnBan.kP .eTime{font-size:11px;white-space:nowrap}
 .hnBan.kP #lobGo.kR{font-size:18px;max-width:40%;min-height:42px}
-.mapChip{width:50px;height:50px;min-height:0!important;padding:0!important;font-size:0!important;border:0!important;border-image:none!important;background:url(ui/btn_round.png?v=1) center/100% 100% no-repeat!important;justify-content:center;color:#FFE7A3}
+.mapChip{width:50px;height:50px;min-height:0!important;padding:0!important;font-size:0!important;border:0!important;border-image:none!important;background:url(ui/btn_round.png?v=2) center/100% 100% no-repeat!important;justify-content:center;color:#FFE7A3}
 .mapChip svg{width:22px;height:22px;filter:drop-shadow(0 1px 1px #000)}
 .hubWal{padding:8px 10px!important;background:linear-gradient(180deg,rgba(60,34,14,.92),rgba(40,22,8,.95))!important;border:2px solid #B8873A}
 .hubWal small{display:none}.hubWal>div{justify-content:flex-start}.hubWal b{font-size:17px}.hubWal .plusB{position:absolute!important;left:auto!important;right:-6px!important;top:-26px!important;transform:none!important;width:40px!important;height:40px!important;min-width:0!important;min-height:0!important;border-radius:50%!important;box-shadow:0 2px 0 rgba(0,0,0,.4),0 0 0 2px #FFE6A8}
@@ -572,7 +572,7 @@ button.kW,button.kR,button.kG{min-height:46px}
 .wHead>.wImg{display:none}
 /* item cards: picture / name / footer strip, nothing stacked on top of each other */
 .cgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:6px}
-.cd{position:relative;display:flex;flex-direction:column;min-width:0;aspect-ratio:1/1.08;cursor:pointer;border-style:solid;border-color:transparent;border-width:10px;border-image:url(ui/tile_paper.png?v=1) 26 fill/10px stretch;filter:drop-shadow(0 3px 3px rgba(0,0,0,.35));color:#3A2410;transition:transform .08s}
+.cd{position:relative;display:flex;flex-direction:column;min-width:0;aspect-ratio:1/1.08;cursor:pointer;border-style:solid;border-color:transparent;border-width:10px;border-image:url(ui/tile_paper.png?v=2) 26 fill/10px stretch;filter:drop-shadow(0 3px 3px rgba(0,0,0,.35));color:#3A2410;transition:transform .08s}
 .cd:active{transform:scale(.97)}
 .cd.sel{filter:drop-shadow(0 0 0 #B3261E) drop-shadow(0 0 3px #B3261E) drop-shadow(0 0 3px #B3261E)}
 .cd.on .cdNm{color:#1F6E3B}
@@ -674,7 +674,7 @@ button.kW,button.kR,button.kG{min-height:46px}
 .hnBan.kP .hnWho b .ttl{font-size:inherit!important}
 .hnBan.kP .hnWho span{font-size:12.5px!important;font-weight:800;color:#5A3410;opacity:1!important;margin-top:2px;white-space:normal!important;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .hnLv{flex:none;display:flex!important;align-items:center;gap:6px;direction:rtl}
-.lvStar{align-items:center!important;position:relative;width:56px;height:56px;flex:none;background:url(ui/star.png?v=1) center/contain no-repeat;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 2px 2px rgba(0,0,0,.35))}
+.lvStar{align-items:center!important;position:relative;width:56px;height:56px;flex:none;background:url(ui/star.png?v=2) center/contain no-repeat;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 2px 2px rgba(0,0,0,.35))}
 .lvStar b{font-family:'Tajawal',sans-serif!important;font-weight:900!important;font-size:21px!important;color:#2B1203!important;line-height:1;margin-top:4px;letter-spacing:-.5px;text-shadow:0 1px 0 rgba(255,238,180,.95),0 -1px 0 rgba(90,40,0,.55),0 0 1px rgba(0,0,0,.4)!important}
 .lvStar:after{content:'المستوى';position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:800;color:#5A3410;white-space:nowrap}
 .hnSt{display:flex!important;flex-direction:column;align-items:flex-start!important;line-height:1.1}
@@ -703,7 +703,7 @@ button.kW,button.kR,button.kG{min-height:46px}
 .pg{position:fixed;inset:0;z-index:13;display:flex;flex-direction:column;color:#FFE6A8;direction:rtl;
   background:radial-gradient(ellipse at 50% 0,rgba(201,162,74,.25),transparent 60%),radial-gradient(ellipse at 50% 120%,rgba(0,0,0,.6),transparent 60%),linear-gradient(180deg,#4A2C14,#2A170A)}
 .pg.hidden{display:none}
-.pg:before{content:'';position:absolute;left:0;right:0;top:0;height:14px;background:url(ui/ribbon_sadu.png?v=1) center/auto 100% repeat-x;opacity:.85}
+.pg:before{content:'';position:absolute;left:0;right:0;top:0;height:14px;background:url(ui/ribbon_sadu.png?v=2) center/auto 100% repeat-x;opacity:.85}
 .pgTop{display:flex;align-items:center;gap:10px;padding:calc(18px + env(safe-area-inset-top,0px)) 14px 8px}
 .pgTop h2{flex:1;margin:0;text-align:center;font-family:'Mirza','Tajawal',sans-serif;font-size:32px;color:#FFE6A8;text-shadow:0 3px 0 #1E0F05}
 .pgSp{width:48px;flex:none}
@@ -736,7 +736,7 @@ button.kW,button.kR,button.kG{min-height:46px}
 .lgLk img{width:15px!important;height:15px!important}
 .tlHero{position:relative;text-align:center;padding:16px 12px 14px;border-radius:16px;background:linear-gradient(180deg,rgba(255,230,168,.14),rgba(0,0,0,.28));border:2px solid #C9A24A;box-shadow:0 8px 20px rgba(0,0,0,.4)}
 .tlHero>small{font-size:13px;font-weight:700;opacity:.85}
-.tlRib{margin:6px auto 8px;width:min(86%,320px);height:64px;display:flex;align-items:center;justify-content:center;background:url(ui/ribbon_sadu.png?v=1) center/100% 100% no-repeat;filter:drop-shadow(0 4px 4px rgba(0,0,0,.5))}
+.tlRib{margin:6px auto 8px;width:min(86%,320px);height:64px;display:flex;align-items:center;justify-content:center;background:url(ui/ribbon_sadu.png?v=2) center/100% 100% no-repeat;filter:drop-shadow(0 4px 4px rgba(0,0,0,.5))}
 .tlRib b{font-family:'Mirza','Tajawal',sans-serif;font-size:30px;color:#FFE9B8;text-shadow:0 2px 0 rgba(0,0,0,.6);margin-top:-4px}
 .tlHero.legend .tlRib b{color:#FFE27A;text-shadow:0 0 10px #F2A21C,0 2px 0 #000}
 .tlHeads{display:block;font-size:14px;font-weight:700}.tlHeads b{font-size:20px;color:#FFE27A}
@@ -779,8 +779,8 @@ button.kW,button.kR,button.kG{min-height:46px}
 .tlSec:after{height:3px!important;border-radius:2px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--rc) 70%,#000) 30%,var(--rc) 85%,color-mix(in srgb,var(--rc) 40%,#fff))!important;box-shadow:0 1px 0 rgba(0,0,0,.55),0 -1px 0 rgba(255,255,255,.12)}
 .tlSec b:after{content:'';display:inline-block;width:8px;height:8px;margin-inline-start:8px;transform:rotate(45deg) translateY(-2px);background:linear-gradient(135deg,color-mix(in srgb,var(--rc) 40%,#fff),var(--rc));box-shadow:0 1px 2px rgba(0,0,0,.6)}
 /* v77: 3D shop icon tiles (painted frames from the UI kit) and glossy swatches */
-.shI{position:relative;flex:none;width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:url(ui/tile_paper.png?v=1) center/100% 100% no-repeat;filter:drop-shadow(0 3px 2px rgba(0,0,0,.35))}
-.shI.tW{background-image:url(ui/tile_wood.png?v=1)}.shI.tL{background-image:url(ui/tile_pearl.png?v=1)}
+.shI{position:relative;flex:none;width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:url(ui/tile_paper.png?v=2) center/100% 100% no-repeat;filter:drop-shadow(0 3px 2px rgba(0,0,0,.35))}
+.shI.tW{background-image:url(ui/tile_wood.png?v=2)}.shI.tL{background-image:url(ui/tile_pearl.png?v=2)}
 .shI img{max-width:70%;max-height:66%;object-fit:contain;margin-top:3px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.45))}
 .shI.tL img{margin-top:12px;max-height:58%}
 .shI .cImg{max-width:70%!important;max-height:66%!important;height:auto!important;margin:3px 0 0!important}
@@ -788,13 +788,13 @@ button.kW,button.kR,button.kG{min-height:46px}
 .sw:after{content:'';position:absolute;left:8%;right:8%;top:6%;height:38%;border-radius:8px 8px 40% 40%;background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,0))}
 .ctabs{grid-template-columns:repeat(5,minmax(0,1fr))!important}
 .ctabs .cStar{display:block;width:72%;height:72%;margin:auto;object-fit:contain;filter:drop-shadow(0 2px 2px rgba(0,0,0,.4))}
-.ctabs button{background:url(ui/tile_paper.png?v=1) center/100% 100% no-repeat!important;border:0!important;outline:0!important;box-shadow:none!important;border-radius:0!important;filter:drop-shadow(0 3px 2px rgba(0,0,0,.3));display:flex;align-items:center;justify-content:center;padding:14%!important}
-.ctabs button.on{background-image:url(ui/tile_pearl.png?v=1)!important;transform:translateY(-2px);filter:drop-shadow(0 0 6px rgba(255,200,90,.8)) drop-shadow(0 3px 2px rgba(0,0,0,.3))}
+.ctabs button{background:url(ui/tile_paper.png?v=2) center/100% 100% no-repeat!important;border:0!important;outline:0!important;box-shadow:none!important;border-radius:0!important;filter:drop-shadow(0 3px 2px rgba(0,0,0,.3));display:flex;align-items:center;justify-content:center;padding:14%!important}
+.ctabs button.on{background-image:url(ui/tile_pearl.png?v=2)!important;transform:translateY(-2px);filter:drop-shadow(0 0 6px rgba(255,200,90,.8)) drop-shadow(0 3px 2px rgba(0,0,0,.3))}
 .ctabs button.on>*{margin-top:12%!important}
 /* v77 leagues: own card on a Sadu panel, then a separate ladder of framed wooden boxes */
-.lgMe{position:relative;margin:30px 2px 6px;color:#3A2410;border-style:solid;border-color:transparent;border-width:24px 20px 22px;border-image:url(ui/panel_sadu.png?v=1) 60 52 58 52 fill/24px 20px 22px stretch;filter:drop-shadow(0 6px 10px rgba(0,0,0,.5))}
+.lgMe{position:relative;margin:30px 2px 6px;color:#3A2410;border-style:solid;border-color:transparent;border-width:24px 20px 22px;border-image:url(ui/panel_sadu.png?v=2) 60 52 58 52 fill/24px 20px 22px stretch;filter:drop-shadow(0 6px 10px rgba(0,0,0,.5))}
 .lgMeRib{top:-50px!important}
-.lgMeRib{position:absolute;left:50%;top:-40px;transform:translateX(-50%);width:150px;height:42px;display:flex;align-items:center;justify-content:center;padding-bottom:3px;background:url(ui/ribbon_sadu.png?v=1) center/100% 100% no-repeat;font-family:'Mirza','Tajawal',sans-serif;font-size:22px;color:#FFE9B8;text-shadow:0 2px 0 rgba(0,0,0,.6)}
+.lgMeRib{position:absolute;left:50%;top:-40px;transform:translateX(-50%);width:150px;height:42px;display:flex;align-items:center;justify-content:center;padding-bottom:3px;background:url(ui/ribbon_sadu.png?v=2) center/100% 100% no-repeat;font-family:'Mirza','Tajawal',sans-serif;font-size:22px;color:#FFE9B8;text-shadow:0 2px 0 rgba(0,0,0,.6)}
 .lgMeIn{display:flex;align-items:center;gap:12px;padding:6px 12px 0}
 .lgMe .lgHB{height:92px;flex:none;filter:drop-shadow(0 4px 4px rgba(0,0,0,.4))}
 .lgMeT{flex:1;min-width:0}
@@ -808,10 +808,10 @@ button.kW,button.kR,button.kG{min-height:46px}
 .lgSecT{display:flex;align-items:center;gap:10px;margin:14px 4px 2px;color:#FFE6A8;font-family:'Mirza','Tajawal',sans-serif;font-size:20px;text-shadow:0 2px 0 rgba(0,0,0,.5)}
 .lgSecT:before,.lgSecT:after{content:'';flex:1;height:3px;border-radius:2px;background:linear-gradient(90deg,transparent,#C9A24A);box-shadow:0 1px 0 rgba(0,0,0,.5)}
 .lgSecT:after{background:linear-gradient(270deg,transparent,#C9A24A)}
-.lgRow,.lgRow.cur,.lgRow.lock{border-style:solid!important;border-color:transparent!important;border-width:16px!important;border-image:url(ui/tile_wood.png?v=1) 34 fill/16px stretch!important;background:none!important;border-radius:0!important;padding:4px 6px!important;color:#FFE6C0!important;box-shadow:none!important;filter:drop-shadow(0 5px 5px rgba(0,0,0,.45))}
+.lgRow,.lgRow.cur,.lgRow.lock{border-style:solid!important;border-color:transparent!important;border-width:16px!important;border-image:url(ui/panel_wood.png?v=1) 51 fill/16px stretch!important;background:none!important;border-radius:0!important;padding:4px 6px!important;color:#FFE6C0!important;box-shadow:none!important;filter:drop-shadow(0 5px 5px rgba(0,0,0,.45))}
 .lgRow .lgT small{color:#F0D6A4}
-.lgRow.lock{border-image-source:url(ui/tile_dark.png?v=1)!important;color:#D9CBB0!important}
-.lgRow.cur{border-image-source:url(ui/tile_paper.png?v=1)!important;color:#3A2410!important;filter:drop-shadow(0 0 10px rgba(255,200,90,.7)) drop-shadow(0 5px 5px rgba(0,0,0,.45))}
+.lgRow.lock{border-image-source:url(ui/panel_dark.png?v=1)!important;color:#D9CBB0!important}
+.lgRow.cur{border-image-source:url(ui/panel_paper.png?v=1)!important;color:#3A2410!important;filter:drop-shadow(0 0 10px rgba(255,200,90,.7)) drop-shadow(0 5px 5px rgba(0,0,0,.45))}
 .lgRow.cur .lgT small{color:#6A4416}
 .lgRow .lgLk{top:-14px!important;left:-12px!important}
 .lgRow .lgTag{top:-24px!important;left:4px!important}
@@ -820,24 +820,23 @@ button.kW,button.kR,button.kG{min-height:46px}
 #readyBtn.kR{min-height:60px;font-size:26px!important}
 #drawBtn.kR:disabled,#drawBtn.kR.dis{filter:grayscale(.6) brightness(.8)}
 /* v80 maps page + page titles: painted wooden plaques and frames (same kit as the lobby name plate) */
-#maps .hubBar h2,.pgTop h2{position:relative;isolation:isolate;flex:none!important;margin:0 auto!important;min-width:150px;padding:4px 30px 6px!important;background:none!important;font-size:25px!important;color:#FFE7AE!important;text-shadow:0 2px 0 rgba(0,0,0,.7)!important;filter:drop-shadow(0 5px 5px rgba(0,0,0,.5))}
-#maps .hubBar h2:before,.pgTop h2:before{content:'';position:absolute;inset:0;z-index:-1;border-style:solid;border-width:13px 17px;border-image:url(ui/btn_wood.png?v=1) 38 50 fill/13px 17px stretch}
+#maps .hubBar h2,.pgTop h2{position:relative;isolation:isolate;flex:none!important;margin:0 auto!important;min-width:150px;padding:13px 34px 15px!important;line-height:1.1!important;background:none!important;font-size:25px!important;color:#FFE7AE!important;text-shadow:0 2px 0 rgba(0,0,0,.7)!important;filter:drop-shadow(0 5px 5px rgba(0,0,0,.5))}
+#maps .hubBar h2:before,.pgTop h2:before{content:'';position:absolute;inset:0;z-index:-1;border-style:solid;border-width:13px 17px;border-image:url(ui/btn_wood.png?v=2) 38 50 fill/13px 17px stretch}
 .pgTop .pgSp{flex:none!important;width:46px}
-#maps .mapCard{border-style:solid!important;border-color:transparent!important;border-width:16px!important;border-image:url(ui/tile_wood.png?v=1) 34 fill/16px stretch!important;border-radius:0!important;box-shadow:none!important;background:none!important;margin:4px 2px 10px!important;overflow:visible!important;filter:drop-shadow(0 8px 10px rgba(0,0,0,.55))}
+#maps .mapCard{border-style:solid!important;border-color:transparent!important;border-width:16px!important;border-image:url(ui/panel_wood.png?v=1) 51 fill/16px stretch!important;border-radius:0!important;box-shadow:none!important;background:none!important;margin:18px 2px 10px!important;overflow:visible!important;filter:drop-shadow(0 8px 10px rgba(0,0,0,.55))}
 #maps .mapCard .mArt{border-radius:4px 4px 0 0;box-shadow:inset 0 0 0 2px rgba(0,0,0,.35)}
 #maps .mapCard .mShade{top:96px!important;background:linear-gradient(transparent,#3A2210)!important}
-#maps .mapCard .mi{background:linear-gradient(#3A2210,#2E1A0B);border-radius:0 0 4px 4px;padding-top:6px!important}
+#maps .mapCard .mShade{display:none!important}
+#maps .mapCard .mi{margin:8px 6px 6px!important;padding:8px 14px 12px!important;border-radius:9px;background:linear-gradient(180deg,#5A3618 0%,#432612 45%,#331C0C 100%)!important;box-shadow:inset 0 2px 0 rgba(255,222,160,.28),inset 0 -3px 0 rgba(0,0,0,.45),inset 0 0 0 1px rgba(201,162,74,.55),inset 0 12px 18px rgba(255,200,120,.06),0 3px 0 #1E1006,0 5px 8px rgba(0,0,0,.45)}
 #maps .mapCard.on{filter:drop-shadow(0 0 10px rgba(255,214,110,.9)) drop-shadow(0 8px 10px rgba(0,0,0,.55))!important}
-#maps .mapCard.on .mi{background:linear-gradient(#3A2210,#2E1A0B)}
-#maps .mapCard .sel,#maps .mapCard .mLg{position:absolute;top:10px!important;isolation:isolate;display:flex;align-items:center;gap:5px;padding:2px 14px 4px!important;background:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;font-family:'Mirza','Tajawal',sans-serif;font-size:16px!important;font-weight:700;color:#FFE7AE!important;text-shadow:0 2px 0 rgba(0,0,0,.7);filter:drop-shadow(0 3px 3px rgba(0,0,0,.55));width:auto;height:auto;z-index:2}
-#maps .mapCard .sel:before,#maps .mapCard .mLg:before{content:'';position:absolute;inset:0;z-index:-1;border-style:solid;border-width:10px 13px;border-image:url(ui/btn_wood.png?v=1) 38 50 fill/10px 13px stretch}
-#maps .mapCard .sel{left:10px!important}#maps .mapCard .sel:before{border-image-source:url(ui/btn_green.png?v=1)}
-#maps .mapCard .mLg{right:10px;left:auto}
+#maps .mapCard .mLg{position:absolute;top:10px!important;right:10px;left:auto;isolation:isolate;display:flex;align-items:center;gap:5px;padding:12px 16px 13px!important;background:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;font-style:normal;z-index:2;filter:drop-shadow(0 3px 3px rgba(0,0,0,.55))}
+#maps .mapCard .mLg:before{content:'';position:absolute;inset:0;z-index:-1;border-style:solid;border-width:10px 13px;border-image:url(ui/btn_wood.png?v=2) 38 50 fill/10px 13px stretch}
+#maps .mapCard .sel{position:absolute;top:-27px!important;left:14px!important;bottom:auto!important;right:auto;width:auto!important;height:auto!important;background:#B3261E!important;color:#FFF4DF!important;font-family:'Tajawal',sans-serif!important;font-size:12.5px!important;font-weight:800;padding:2px 12px!important;border:0!important;border-radius:10px!important;box-shadow:0 2px 0 #5A0F0B!important;filter:none!important;text-shadow:none!important;z-index:3}
 #maps .mapCard .mLg em{font-style:normal;font-size:14px;color:#FFE7AE}
 #maps .mapCard .mLg .mLgB{height:26px}
 #maps .mapCard .tw{position:relative;isolation:isolate;background:none!important;border-radius:0!important;padding:7px 18px 9px!important;line-height:1.2;font-size:13px!important;color:#FFEBC2!important;text-shadow:0 1px 0 rgba(0,0,0,.6)}
-#maps .mapCard .tw:before{content:'';position:absolute;inset:0;z-index:-1;border-style:solid;border-width:9px 12px;border-image:url(ui/btn_red.png?v=1) 38 50 fill/9px 12px stretch}
-#maps .mapCard .tw.ok:before{border-image-source:url(ui/btn_green.png?v=1)}
+#maps .mapCard .tw:before{content:'';position:absolute;inset:0;z-index:-1;border-style:solid;border-width:9px 12px;border-image:url(ui/btn_red.png?v=2) 38 50 fill/9px 12px stretch}
+#maps .mapCard .tw.ok:before{border-image-source:url(ui/btn_green.png?v=2)}
 /* maps */
 #maps{background:radial-gradient(ellipse at 50% 0,rgba(201,162,74,.25),transparent 60%),linear-gradient(180deg,#4A2C14,#2A170A)!important;padding-bottom:calc(24px + var(--sb))!important}
 .mapCard{border:0!important;border-radius:16px!important;background:#2A170A!important;color:#FFE6A8!important;box-shadow:0 0 0 2px #C9A24A,0 0 0 5px #3A2410,0 0 0 6px rgba(201,162,74,.5),0 10px 20px rgba(0,0,0,.5)!important;margin:6px}
@@ -917,7 +916,7 @@ button.kW,button.kR,button.kG{min-height:46px}
   <div class="stats"><div><b id="sWins">0</b>فوز</div><div><b id="sLvl">1</b>المستوى</div><div><b id="sGold">0</b>روبية</div></div>
   <div id="menuTitle"></div>
   <button class="big kR" id="startBtn">ابدأ المبارزة</button>
-  <div class="menuGrid"><button class="kW" id="shopBtn"><img class="rIc" src="ui/ic_shop.png?v=1" alt="">المتجر</button><button class="kW" id="armBtn"><img class="rIc" src="ui/ic_guns.png?v=1" alt="">الأسلحة</button><button class="kW" id="clothBtn"><img class="rIc" src="ui/ic_clothes.png?v=1" alt="">الملابس</button><button class="kW" id="carBtn"><img class="rIc" src="ui/ic_trophy.png?v=1" alt="">ألقابي</button><button class="kW" id="boardBtn"><img class="rIc" src="ui/ic_wanted.png?v=1" alt="">المطلوبين<i class="dotN hidden" id="boardDot"></i></button><button class="kW" id="setBtn"><img class="rIc" src="ui/ic_settings.png?v=1" alt="">الإعدادات</button></div>
+  <div class="menuGrid"><button class="kW" id="shopBtn"><img class="rIc" src="ui/ic_shop.png?v=2" alt="">المتجر</button><button class="kW" id="armBtn"><img class="rIc" src="ui/ic_guns.png?v=2" alt="">الأسلحة</button><button class="kW" id="clothBtn"><img class="rIc" src="ui/ic_clothes.png?v=2" alt="">الملابس</button><button class="kW" id="carBtn"><img class="rIc" src="ui/ic_trophy.png?v=2" alt="">ألقابي</button><button class="kW" id="boardBtn"><img class="rIc" src="ui/ic_wanted.png?v=2" alt="">المطلوبين<i class="dotN hidden" id="boardDot"></i></button><button class="kW" id="setBtn"><img class="rIc" src="ui/ic_settings.png?v=2" alt="">الإعدادات</button></div>
   <p class="how" style="display:none">بحركة الجوال: نزّل الجوال لتحت وانتظر، ولما تطلع الإشارة ارفعه قدامك واضغط على الخصم. بدونها: اضغط "اسحب" بعد الإشارة، وبعدين اضغط على الخصم.</p>
 </div>
 
@@ -941,7 +940,7 @@ button.kW,button.kR,button.kG{min-height:46px}
   <div class="hubTop">
     <button class="hubBack" id="hubBack" aria-label="رجوع"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
     <h2 id="hubTitle"></h2>
-    <div class="hubWal"><button class="plusB" id="hubPlus" aria-label="المتجر"><img class="rIc" src="ui/ic_plus.png?v=1" alt=""></button><div><i class="coinB">ر</i><b id="wR">0</b></div><div><i class="pearlB"></i><b id="wP">0</b></div></div>
+    <div class="hubWal"><button class="plusB" id="hubPlus" aria-label="المتجر"><img class="rIc" src="ui/ic_plus.png?v=2" alt=""></button><div><i class="coinB">ر</i><b id="wR">0</b></div><div><i class="pearlB"></i><b id="wP">0</b></div></div>
   </div>
   <div id="hubShow" class="hidden"></div>
   <div class="hubMe hidden"><b id="hubMeName">أنت</b><span id="hubMeTitle"></span></div>
@@ -959,16 +958,16 @@ button.kW,button.kR,button.kG{min-height:46px}
 
 <div id="lobTag" class="lt"></div>
 <div id="lobby" class="hidden">
-  <div class="lobHead"><button class="hubBack" id="lobBack" aria-label="رجوع"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button><div><b>الساحة</b><small>خصوم الحاسوب بمستواك، والأونلاين قريباً</small></div><button class="mapChip" id="mapChip"><img class="rIc" src="ui/ic_map.png?v=1" alt=""><span id="mapChipT">الفريج</span></button><button class="lobMenuB" id="lobMenuB" aria-label="القائمة" aria-expanded="false"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg><i class="dotN hidden" id="lobMenuDot"></i></button></div>
+  <div class="lobHead"><button class="hubBack" id="lobBack" aria-label="رجوع"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button><div><b>الساحة</b><small>خصوم الحاسوب بمستواك، والأونلاين قريباً</small></div><button class="mapChip" id="mapChip"><img class="rIc" src="ui/ic_map.png?v=2" alt=""><span id="mapChipT">الفريج</span></button><button class="lobMenuB" id="lobMenuB" aria-label="القائمة" aria-expanded="false"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg><i class="dotN hidden" id="lobMenuDot"></i></button></div>
   <div class="lobDrawer" id="lobDrawer" aria-hidden="true"><div class="ldGrid">
-    <button data-go="shop"><img class="rIc" src="ui/ic_shop.png?v=1" alt=""><span>المتجر</span></button>
-    <button data-go="board"><img class="rIc" src="ui/ic_wanted.png?v=1" alt=""><span>المطلوبين</span><i class="dotN hidden" id="ldBoardDot"></i></button>
-    <button data-go="weapons"><img class="rIc" src="ui/ic_guns.png?v=1" alt=""><span>الأسلحة</span></button>
-    <button data-go="clothes"><img class="rIc" src="ui/ic_clothes.png?v=1" alt=""><span>الملابس</span></button>
-    <button data-go="leagues"><img class="rIc" src="ui/ic_leagues.png?v=1" alt=""><span>الدوريات</span></button>
-    <button data-go="titles"><img class="rIc" src="ui/ic_trophy.png?v=1" alt=""><span>ألقابي</span></button>
-    <button data-go="friends" class="soon"><img class="rIc" src="ui/ic_friends.png?v=1" alt=""><span>الأصدقاء</span><small>قريباً</small></button>
-    <button data-go="settings"><img class="rIc" src="ui/ic_settings.png?v=1" alt=""><span>الإعدادات</span></button>
+    <button data-go="shop"><img class="rIc" src="ui/ic_shop.png?v=2" alt=""><span>المتجر</span></button>
+    <button data-go="board"><img class="rIc" src="ui/ic_wanted.png?v=2" alt=""><span>المطلوبين</span><i class="dotN hidden" id="ldBoardDot"></i></button>
+    <button data-go="weapons"><img class="rIc" src="ui/ic_guns.png?v=2" alt=""><span>الأسلحة</span></button>
+    <button data-go="clothes"><img class="rIc" src="ui/ic_clothes.png?v=2" alt=""><span>الملابس</span></button>
+    <button data-go="leagues"><img class="rIc" src="ui/ic_leagues.png?v=2" alt=""><span>الدوريات</span></button>
+    <button data-go="titles"><img class="rIc" src="ui/ic_trophy.png?v=2" alt=""><span>ألقابي</span></button>
+    <button data-go="friends" class="soon"><img class="rIc" src="ui/ic_friends.png?v=2" alt=""><span>الأصدقاء</span><small>قريباً</small></button>
+    <button data-go="settings"><img class="rIc" src="ui/ic_settings.png?v=2" alt=""><span>الإعدادات</span></button>
   </div></div>
   <button class="lobArrow" id="lobPrev" aria-label="السابق"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
   <button class="lobArrow" id="lobNext" aria-label="التالي"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
@@ -1633,7 +1632,7 @@ function applySkin(){gunSteel.emissive.setHex(0);finAnim=null;naqshParts.visible
 function prog(cur,need){const k=Math.min(1,cur/need);return '<div class="prog"><i style="width:'+(k*100)+'%"></i></div>';}
 function el(html){const d=document.createElement('div');d.innerHTML=html;return d.firstChild;}
 let hubView='shop',hubTab=0,hubGun='fard',trySel=null;
-const LOCK='<img src="ui/lock.png?v=1" width="14" height="14" style="object-fit:contain;vertical-align:middle;width:auto" alt="">';
+const LOCK='<img src="ui/lock.png?v=2" width="14" height="14" style="object-fit:contain;vertical-align:middle;width:auto" alt="">';
 function gunCol(id){const sk=save.wskin[id];if(sk==null||sk==='tier')return hex(TIERS[tierIdx(id)].c);const f=FIN[sk];return f?hex(f.c):'#555';}
 function gunSVG(model,col,naqsh,wd,wid){const id=wid||(model==='pistol'?(naqsh?'naqsh':'fard'):model==='shot'?'shotgun':'fitil');const long=model!=='pistol';
   const off=col==='#8a8a8a';return '<img class="wImg'+(long?' long':'')+(off?' off':'')+'" src="ui/w_'+id+'.png?v=1" alt=""'+(off?'':' data-c="'+col+'" data-p="'+(CAMO_P[String(col).toLowerCase()]||'')+'" onload="camoGun(this)"')+'>';}
@@ -1799,7 +1798,7 @@ function viewWeapon(L){const id=hubGun,w=WEAPONS[id],own=save.owned.includes(id)
 // ---- clothes ----
 function viewClothes(L){$('hubTitle').textContent='الملابس';tabs(null);
   const ct=el('<div class="ctabs"></div>');CSLOTS.forEach((s,i)=>{const b=document.createElement('button');b.innerHTML=clothSVG(s,CICON[s]);b.title=CLOTHES[s].name;b.setAttribute('aria-label',CLOTHES[s].name);if(i===hubTab)b.className='on';b.onclick=()=>{hubTab=i;trySel=null;click();renderHub();};ct.appendChild(b);});
-  {const b=document.createElement('button');b.innerHTML='<img class="cStar" src="ui/star.png?v=1" alt="">';b.setAttribute('aria-label','التقدم');if(hubTab===CSLOTS.length)b.className='on';b.onclick=()=>{hubTab=CSLOTS.length;trySel=null;click();renderHub();};ct.appendChild(b);}
+  {const b=document.createElement('button');b.innerHTML='<img class="cStar" src="ui/star.png?v=2" alt="">';b.setAttribute('aria-label','التقدم');if(hubTab===CSLOTS.length)b.className='on';b.onclick=()=>{hubTab=CSLOTS.length;trySel=null;click();renderHub();};ct.appendChild(b);}
   L.appendChild(ct);
   if(hubTab<CSLOTS.length){const s=CSLOTS[hubTab];L.appendChild(el('<div class="sec">'+CLOTHES[s].name+'</div>'));const g=el('<div class="cgrid"></div>');
     CLOTHES[s].items.forEach(it=>{const own=cOwned(it),on=save.outfit[s]===it.id,sel=trySel&&trySel.id===it.id;
@@ -2077,7 +2076,7 @@ function fixMap(){const m=MAPS.find(x=>x.id===save.map);if(!m||!mapOpen(m)){save
 function openMaps(){ui('open');$('maps').classList.remove('hidden');const L=$('mapList');L.innerHTML='';
   MAPS.forEach(m=>{const open=mapOpen(m),on=save.map===m.id,bd=BDROP[m.id];
     const c=el('<div class="mapCard'+(open?'':' lock')+(on?' on':'')+'"><div class="mArt" style="background-image:url('+bd.file+')"></div><div class="mShade"></div>'
-      +(on?'<span class="sel">✓ المختارة</span>':'')+(open?'<span class="mLg">'+lgBadge(m.lg,'mLgB')+'<em>'+LEAGUES[m.lg][1]+'</em></span>':'')
+      +(on?'<span class="sel">المختارة</span>':'')+(open?'<span class="mLg">'+lgBadge(m.lg,'mLgB')+'<em>'+LEAGUES[m.lg][1]+'</em></span>':'')
       +(open?'':'<div class="lockB">'+lgBadge(m.lg,'mlB')+'<span>توصل '+LEAGUES[m.lg][1]+'</span><small>'+AR(LEAGUES[m.lg][0])+' نقطة</small></div>')
       +'<div class="mi"><b>'+m.name+'</b><p>'+m.desc+'</p>'+(m.twist?'<span class="tw">'+m.twist+'</span>':'<span class="tw ok">بدون مفاجآت</span>')+'</div></div>');
     if(open)c.onclick=()=>{save.map=m.id;persist();bell();$('maps').classList.add('hidden');$('mapChipT').textContent=m.name;applyMap(m.id);};L.appendChild(c);});}
@@ -2214,7 +2213,7 @@ const lobbyG=new THREE.Group();scene.add(lobbyG);const LZ=40,LGAP=1.45;
   for(let x=-30;x<52;x+=7)lp(x+rnd(-1,1),LZ-5,rnd(.8,1.05));
   const lanterns=M(0xFFD27A,{emissive:0x7A4E1A});for(let x=-20;x<40;x+=5){const l=new THREE.Mesh(new THREE.BoxGeometry(.18,.26,.18),lanterns);l.position.set(x+2.5,1.75,LZ-1.9);lobbyG.add(l);}
 })();
-const SIGN_IMG={w:new Image(),r:new Image()};SIGN_IMG.w.src='ui/btn_wood.png?v=1';SIGN_IMG.r.src='ui/btn_red.png?v=1';
+const SIGN_IMG={w:new Image(),r:new Image()};SIGN_IMG.w.src='ui/btn_wood.png?v=2';SIGN_IMG.r.src='ui/btn_red.png?v=2';
 function signTex(lines,kind){const c=document.createElement('canvas');c.width=512;c.height=280;const x=c.getContext('2d');
   const si=(kind==='revenge'||kind==='nemesis')?SIGN_IMG.r:SIGN_IMG.w;
   if(si.complete&&si.naturalWidth){
