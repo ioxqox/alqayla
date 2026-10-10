@@ -6,7 +6,7 @@ checked (screenshots) before reporting. Goal: a professional, polished, Gulf-her
 iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds or code).
 
 ## Where things live
-- Repo: github.com/ioxqox/alqayla (GitHub Pages). Live: https://ioxqox.github.io/alqayla/?v=NN (bump NN each release; last used 76).
+- Repo: github.com/ioxqox/alqayla (GitHub Pages). Live: https://ioxqox.github.io/alqayla/?v=NN (bump NN each release; last used 77).
 - Claude can push directly (GitHub app installed). Commit as `Claude <noreply@anthropic.com>`.
 - Plan & tracker doc (Claude Docs): https://claude.ai/code/artifact/a512277a-dd89-43db-aa94-a63e087aa06d
 - Owner's PC (Windows, "killua", RTX 3080), mirror folder: `C:\Users\MA\Documents\MY PROJECT 2026\القايلة - ملفات اللعبة`
@@ -39,7 +39,7 @@ iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds
 - Maps belong to leagues: MAPS[].lg (fareej 0, souq 1, barr 2, sahel 3); mapOpen(m) uses league(save.best); maps opened before v75 kept via save.mapsOld.
 - Lobby banner: level shown as a star medallion (no more "م"), rating with trophy icon, streak chip. Signs sit right above heads (y 1.98, scale .5); lobby camera farther (dz 3.7/asp, 7.4-11); lobby poses pidle/look.
 - Backdrops are padded (extTex, BPAD) and world-anchored at eye 1.62 so the death fall never shows edges. Bottom safe area: CSS var --sb = max(safe-area, visualViewport overlap, 8px).
-- Every button press makes the same click (global pointerdown; click() de-duped 350ms); audio starts on first touch.
+- UI sounds (v77): sfx_ui_{tap,tab,back,open,close,buy,err,equip,toggle}.mp3 rendered offline by /home/claude/sfxgen/gen.py (numpy); ui(kind) plays them; a global pointerdown handler classifies any clickable via uiKind() (buttons, onclick, cursor:pointer, back/tab/toggle). pay() plays buy/err; open* functions play open; equip on gun/clothes change. They follow the sound switch only (music separate).
 - A global thin scroll hint (#scrollHint) appears on any scrolled list.
 - Testing: Playwright + swiftshader in /home/claude/srv (copy index.html there, inject `window.__q=c=>eval(c);` before `function endLose(){`; do NOT copy sw.js into srv — it breaks local tests). Scripts t_audit.py (full flow), t45 (fight fx), t52 (weapons), t56 (clothes), t55 (holster).
 
@@ -64,3 +64,5 @@ iOS game "High Noon" in mechanics/feel only — never copy its name, art, sounds
 - Generate neutral/white bases and recolour in code instead of one image per colour.
 - device_commit_files sometimes writes a stale snapshot: verify size with device_list_dir after copying.
 - v76 (owner's notes after v75): maps unlock by league only (mapsOld removed, fixMap resets save.map); lobby sprite signs replaced by one HTML plate #lobTag over the selected character (clamped on screen), lobby camera farther (dz 9.2-13, LGAP 1.45); duel backdrop bottom mirror bug fixed (was overwriting the painting = the "paper" seam), #sky set to the painting's top colour so camera tilts never show an edge; padded backdrop textures built on demand, only 2 kept (bdFor); maghrib removed from rotation (noon 72% / night 28%), night lights brighter; mirror glare is a sun-flash centred on the enemy; smoothNormals() on character meshes (faceted look); portraits with gold bevel frames and softer light; polished metallic borders for titles/leagues cards, lock image without the white circle; level star number dark/engraved; banner subtitle wraps to 2 lines; انحاش uses ui/btn_round; big screens held sideways (foldables/tablets) run in a centred portrait column (html.lbx, AW/AH/AOX replace innerWidth/innerHeight, CSS vw -> var(--vw)).
+- v77: shop icons are painted tiles (.shI with tile_wood/paper/pearl + coins, cloth art, shells/chest); clothes category tabs use tile frames and ui/star.png; .sw swatches glossy; lobby plate #lobTag uses btn_wood/red/green border-image (nemesis = darkened wood); leagues page = "مركزك" Sadu card (.lgMe: badge, points/best/wins, bar) + "سلّم الدوريات" ladder in wooden tile boxes, ascending from الفريج, no auto-scroll; taunt bubble uses btn_paper 9-slice with brass tail. ChatGPT request 02 = bishts (brown, simple black, navy) pending.
+- Pending discussion with owner (do not build before he agrees): tools/items redesign (unlock by league, pros/cons, counters, new tools like the lasso flip) and monetization/economy.
