@@ -1361,6 +1361,28 @@ button.kW,button.kR,button.kG{min-height:46px}
 #crPage{background:linear-gradient(#F7E6C8,#EED5AC)!important;color:var(--s-ink)!important}
 #crPage:before{display:none}
 /* v94 polish */
+.hnBan.kP .hnWho span .ttl{display:inline-block!important;width:auto!important;font-size:12px!important;padding:0 12px 2px!important;box-shadow:0 2px 0 var(--tb)!important;margin-bottom:2px}
+.ttl{padding:1px 14px 3px!important;border-radius:999px!important;border:2px solid var(--tb)!important;background:var(--tg)!important;color:var(--tc)!important;text-shadow:var(--ts)!important;box-shadow:0 3px 0 var(--tb)!important;font-family:'Marhey','Tajawal',sans-serif!important;line-height:1.3!important;animation:none!important}
+.ttl.common{--tg:linear-gradient(#CFF3A4,#8FD45A);--tb:#5FA332;--tc:#fff;--ts:0 2px 0 #4A8A26}
+.ttl.rare{--tg:linear-gradient(#9FDAFF,#5BB2F0);--tb:#2F7CC0;--tc:#fff;--ts:0 2px 0 #2F6FAD}
+.ttl.epic{--tg:linear-gradient(#DDB7FF,#AE78EE);--tb:#7A45BE;--tc:#fff;--ts:0 2px 0 #6A37A8}
+.ttl.legend{--tg:linear-gradient(#FFE07A,#FFB830);--tb:#D2701A;--tc:#8A2A0E;--ts:0 1px 0 rgba(255,250,220,.9)}
+.ttl.myth{--tg:linear-gradient(#FF9A6A,#E2452E);--tb:#A8251A;--tc:#FFF4D6;--ts:0 2px 0 #8E1D12}
+.pfTl.c .tm,.pfTl.r .tm,.pfTl.e .tm,.pfTl.m .tm{text-shadow:0 1px 1px rgba(0,0,0,.35)}
+
+.pfTl{flex-direction:column}
+.pfTl .tm{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:var(--tc);opacity:.85;margin:-2px 0 4px;text-shadow:none}
+.pfTl.c .tm,.pfTl.r .tm,.pfTl.e .tm,.pfTl.m .tm{color:rgba(255,255,255,.92)}
+.pfTl.l .tm{color:#7A2A0E}
+.tlMean{font-style:normal;font-size:13px;font-weight:800;color:var(--s-ink2,#7A4A1E)}
+.pfTl.m{--tg:linear-gradient(#FF9A6A,#E2452E);--tb:#A8251A;--tc:#FFF4D6;--ts:0 2px 0 #8E1D12,0 0 8px rgba(255,180,60,.6)}
+.pfTl.m.lock{--tg:linear-gradient(#FF9A6A,#E2452E);--tb:#A8251A}
+.pfTl.m:not(.lock){animation:tlFire 1.6s ease-in-out infinite alternate}
+@keyframes tlFire{from{box-shadow:0 5px 0 var(--tb),0 0 8px rgba(255,120,40,.4),inset 0 2px 0 rgba(255,255,255,.6)}to{box-shadow:0 5px 0 var(--tb),0 0 20px rgba(255,140,40,.8),inset 0 2px 0 rgba(255,255,255,.6)}}
+.ttl.myth{border:2px solid #E2452E;box-shadow:0 0 10px #FF7A3A}
+
+.lgRow .lgTag{top:10px!important;left:12px!important}
+.lgSea{display:block;margin-top:4px;font-size:11.5px;font-weight:800;color:var(--s-ink2,#7A4A1E);opacity:.85;text-align:center}
 .hnBan.kP .hnWho{align-items:center;text-align:center}
 .hnBan.kP .hnWho b{display:block;width:100%;text-align:center}
 .hnBan.kP .hnWho span{text-align:center;width:100%}
@@ -1404,6 +1426,15 @@ button.kW,button.kR,button.kG{min-height:46px}
 .pfTl.l.lock{--tg:linear-gradient(#FFE07A,#FFB830);--tb:#D2701A}
 .pfTl.lock b{color:var(--tc)!important;text-shadow:var(--ts)!important}
 .pfTl.lock:after{content:'';position:absolute;right:14px;top:50%;width:26px;height:26px;margin-top:-15px;background:url(ui/c/i_lock.webp) center/contain no-repeat}
+
+.rkRow{display:flex;align-items:center;gap:6px;justify-content:flex-start;margin:2px 0 4px}
+.rkRow em{font-style:normal;font-size:13px;font-weight:800;color:var(--s-ink2,#7A4A1E)}
+.rkPips{display:flex;gap:4px;direction:ltr}
+.rkPips i{width:12px;height:12px;border-radius:50%;background:#EAD8BC;border:2px solid var(--s-bd);box-shadow:inset 0 2px 2px rgba(120,70,30,.25)}
+.rkPips i.on{background:radial-gradient(circle at 40% 35%,#FFF1B0,#F2B632 60%,#C9821A);border-color:#B87414}
+.resCard .rkUp{display:flex;justify-content:space-between;align-items:center;border-radius:14px;padding:6px 10px!important;margin:4px 0;background:linear-gradient(#EFFFD9,#D3F2AE);border:2px solid #8BC75A}
+.resCard .rkUp.dn{background:linear-gradient(#FFEDE6,#F8D3C6);border-color:#E29A84}
+.resCard .rkUp b{font-family:'Marhey','Tajawal',sans-serif;color:var(--s-ink)}
 </style>
 <script>
 // big screens held sideways (foldables, tablets): the OS may ignore the portrait lock, so the game runs in a centred portrait column
@@ -1432,7 +1463,7 @@ button.kW,button.kR,button.kG{min-height:46px}
 <div id="msg"></div><div id="sub"></div>
 <div id="flashFx"></div>
 <div id="coach" class="hidden"><img src="ui/c/i_profile.webp" alt=""><div><b id="coachT"></b><span id="coachS"></span></div></div>
-<div id="unlockT" class="hidden"><img id="unlockI" src="" alt=""><div><small>انفتح لك!</small><b id="unlockN"></b><span id="unlockS"></span></div></div>
+<div id="unlockT" class="hidden"><img id="unlockI" src="" alt=""><div><small id="unlockH">انفتح لك!</small><b id="unlockN"></b><span id="unlockS"></span></div></div>
 <div id="hsStamp"><img class="hsPow" src="ui/c/x/pow.webp" alt=""><img class="hsI2" src="ui/c/x/hs.webp" alt=""><b>ضربة راس!</b><img class="hsStars" src="ui/c/x/stars3.webp" alt=""></div>
 <div class="hud bottom hidden" id="hudBot">
   <button id="drawBtn" class="kR">اسحب</button>
@@ -1487,7 +1518,7 @@ button.kW,button.kR,button.kG{min-height:46px}
     <label class="opt"><span>الحساسية</span><input type="range" id="optSens" min="50" max="200" step="10" style="width:150px;accent-color:#62B323"></label></div>
     <div class="sec">عن اللعبة</div>
     <button class="kW" id="optCredits" style="width:100%">شكر وتقدير</button>
-    <p class="setVer">القايلة · النسخة 94</p>
+    <p class="setVer">القايلة · النسخة 95</p>
   </div>
 </div>
 <div class="hidden" id="hub">
@@ -1597,7 +1628,7 @@ const WEAPONS={
  shotgun:{draw:150,model:'shot',flashZ:-.74,rof:700,pellets:7,pBody:[7.6,9.6],pHead:[12.6,14.6],name:'الشوزن',ammo:2,mul:1,reload:1570,cost:900,lvl:5,aim:{spread:44,sway:3,sens:.95},desc:'يطلق 7 حبات مرة وحدة بدائرة عريضة: سهل يصيب، بس طلقتين بس وتلقيمه بطيء'},
  fitil:{draw:240,model:'fitil',flashZ:-1.02,rof:0,fuse:430,name:'أم فتيل',ammo:1,mul:4.1,reload:1900,cost:1500,lvl:7,aim:{spread:6,sway:10,sens:.8},desc:'طلقة وحدة جبارة ودائرة ضيقة جداً، بس الفتيل يتأخر نص ثانية: لازم تتوقع وين بيروح خصمك'}};
 const WID=Object.keys(WEAPONS);
-let save={mis:[],map:'fareej',energy:null,energyT:0,aim:'',flipV:false,flipH:false,sens:100,rating:1000,best:1000,streak:0,revenge:[],nemesis:[],wg:{},shiyam:0,pearls:0,outfit:{thobe:'th_white',head:'hd_white',iqal:'iq_black',bisht:'bs_none'},ownedC:['th_white','hd_white','iq_black','bs_none'],wskin:{},lastGift:'',gun:'fard',owned:['fard'],w:{},wins:0,level:1,gold:0,blood:true,motion:false,sound:true,music:true,kills:0,heads:0,fard:{k:0,h:0},skin:'tier',title:null};
+let save={mis:[],map:'fareej',energy:null,energyT:0,aim:'',flipV:false,flipH:false,sens:100,rating:0,best:0,lgV2:1,streak:0,revenge:[],nemesis:[],wg:{},shiyam:0,pearls:0,outfit:{thobe:'th_white',head:'hd_white',iqal:'iq_black',bisht:'bs_none'},ownedC:['th_white','hd_white','iq_black','bs_none'],wskin:{},lastGift:'',gun:'fard',owned:['fard'],w:{},wins:0,level:1,gold:0,blood:true,motion:false,sound:true,music:true,kills:0,heads:0,fard:{k:0,h:0},skin:'tier',title:null};
 try{const r=localStorage.getItem(KEY);if(r)save=Object.assign(save,JSON.parse(r));}catch(e){}
 WID.forEach(id=>{if(!save.w[id])save.w[id]={k:0,h:0};});if(save.fard&&!save.w.fard.k&&!save.w.fard.h){save.w.fard={k:save.fard.k||0,h:save.fard.h||0};}delete save.fard;
 if(!save.owned.includes(save.gun))save.gun='fard';
@@ -1656,9 +1687,9 @@ const SHEMS=[0xC0392B,0xF4F4F0,0x2B2B2B];
 // a bot's title must be believable next to yours: its headshots are estimated from YOUR headshots and the level gap
 function botTitle(l,name){let hs=0;for(const ch of (name||''))hs=(hs*31+ch.charCodeAt(0))>>>0;const f=.55+(hs%60)/100;
   const est=Math.round(Math.max(0,save.heads*f*(1+(l-save.level)*.12)));let t=null;TITLES.forEach(x=>{if(x[0]<=est)t=x[1];});return t;}
-function makeFoe(lvl,used){const k=Math.min(1,(lvl-1)/8);let n;do{n=NAMES[Math.floor(Math.random()*NAMES.length)];}while(used.has(n));used.add(n);
-  return {title:botTitle(lvl,n),name:n,lvl,react:Math.round(950-k*600+rnd(-40,40)),acc:+(.28+k*.44+rnd(-.03,.03)).toFixed(2),rate:Math.round(1350-k*600+rnd(-60,60)),
-    rating:Math.max(600,Math.round(save.rating+(lvl-save.level)*60+rnd(-40,40))),thobe:THOBES[Math.floor(Math.random()*THOBES.length)],iqal:Math.random()<.2?0xD4A73A:null,bisht:Math.random()<.18?[0x1A1612,0x6B4423,0xC8AE84][Math.floor(Math.random()*3)]:null,shemagh:SHEMS[Math.floor(Math.random()*SHEMS.length)],prize:20+lvl*10+(lvl>save.level?Math.round((lvl-save.level)*15):0)};}
+function makeFoe(lvl,used){const fr=Math.max(0,Math.round(save.rating+(lvl-save.level)*70+rnd(-40,40)));const k=skillK(fr);let n;do{n=NAMES[Math.floor(Math.random()*NAMES.length)];}while(used.has(n));used.add(n);
+  return {title:botTitle(lvl,n),name:n,lvl,react:Math.round(1000-k*700+rnd(-40,40)),acc:+(.30+k*.48+rnd(-.03,.03)).toFixed(2),rate:Math.round(1300-k*780+rnd(-60,60)),head:+(.06+k*.24).toFixed(2),
+    rating:fr,thobe:THOBES[Math.floor(Math.random()*THOBES.length)],iqal:Math.random()<.2?0xD4A73A:null,bisht:Math.random()<.18?[0x1A1612,0x6B4423,0xC8AE84][Math.floor(Math.random()*3)]:null,shemagh:SHEMS[Math.floor(Math.random()*SHEMS.length)],prize:20+lvl*10+league(fr)*12+(lvl>save.level?Math.round((lvl-save.level)*15):0)};}
 const FOES=[
  {name:'ولد الفريج',react:900,acc:.32,rate:1300,thobe:0xF2F0EA,shemagh:0xC0392B},
  {name:'أبو سعد',react:760,acc:.42,rate:1150,thobe:0xD9CDB4,shemagh:0xF4F4F0},
@@ -2219,9 +2250,11 @@ const FIN=[
  {h:25000,name:'سهيل',c:0x0E1A3A,anim:'suhail',r:.15},
  {h:50000,name:'الصقر',c:0x17120C,em:0x4A3008,r:.15},
  {h:100000,name:'شمس القايلة',c:0xF2A21C,anim:'sun',r:.1}];
-const TITLES=[[10,'النشمي'],[25,'ولد الديرة'],[50,'الكفو'],[100,'السبع'],[150,'ولد البر'],[250,'الصيّاد'],[400,'المِصيب'],[600,'الحُرّ'],[1000,'القنّاص'],[1500,'الكاسر'],[2500,'الداهية'],[3500,'الفارس'],[5000,'الذيب'],[7500,'الشاهين'],[10000,'عين الصقر'],[15000,'المهيب'],[25000,'نجم سهيل'],[35000,'الضرغام'],[50000,'ملك الميدان'],[100000,'الأسطورة']];
-const rarity=n=>n>=35000?'legend':n>=7500?'epic':n>=1000?'rare':'common';
-const RNAME={common:'عادي',rare:'نادر',epic:'ملحمي',legend:'أسطوري'};
+const OLD_T=['النشمي','ولد الديرة','الكفو','السبع','ولد البر','الصيّاد','المِصيب','الحُرّ','القنّاص','الكاسر','الداهية','الفارس','الذيب','الشاهين','عين الصقر','المهيب','نجم سهيل','الضرغام','ملك الميدان','الأسطورة'];
+const TITLES=[[10,'الشبل'],[25,'الثعلب'],[50,'الوعل'],[100,'الذيب'],[175,'الفهد'],[250,'النمر'],[400,'الجواد'],[600,'الأصيل'],[850,'الشاهين'],[1200,'الحُر'],[1600,'العُقاب'],[2100,'النسر'],[2800,'الليث'],[3600,'الضرغام'],[4500,'صقر الصحرا'],[5500,'عين الصقر'],[6750,'فارس الصحرا'],[8000,'سيف البر'],[9000,'ملك الميدان'],[10000,'الأسطورة']];
+const TDESC={'الشبل':'أول الطريق، ولد الأسد اللي بيكبر','الثعلب':'الذكي اللي يعرف متى يضرب','الوعل':'ثابت على الصخر ما يطيح','الذيب':'ما ينام وعينه على خصمه','الفهد':'أسرع من يركض بالبر','النمر':'هادي لين يهجم','الجواد':'الخيل الكريمة اللي ما تتعب','الأصيل':'أصل وفصل، ما يخون','الشاهين':'أسرع طير بالانقضاض','الحُر':'سيد الصقور عند أهل البر','العُقاب':'يشوف فريسته من بعيد','النسر':'يحلّق فوق الكل','الليث':'الأسد إذا زأر','الضرغام':'الأسد الجسور اللي ما يتراجع','صقر الصحرا':'ملك السما فوق الرمل','عين الصقر':'ما تفوته حركة','فارس الصحرا':'خيال ما ينغلب','سيف البر':'حده ما يرد','ملك الميدان':'الساحة ساحته','الأسطورة':'اسمه يتناقلونه المجالس'};
+const rarity=n=>n>=8000?'myth':n>=4500?'legend':n>=1600?'epic':n>=400?'rare':'common';
+const RNAME={common:'عادي',rare:'نادر',epic:'ملحمي',legend:'أسطوري',myth:'خرافي'};
 const hex=c=>'#'+c.toString(16).padStart(6,'0');
 function rawTier(id){const s=save.w[id];let i=0;TIERS.forEach((t,j)=>{if(s.k>=t.k&&s.h>=t.h)i=j;});return i;}
 function tierIdx(id){id=id||save.gun;const i=rawTier(id);if(i>=4&&WID.every(x=>save.owned.includes(x)&&rawTier(x)>=4))return 5;return i;}
@@ -2642,20 +2675,26 @@ function enemyShoot(){const now=performance.now();eParts.flash.visible=true;{con
   let hit=Math.random()<acc;
   if(hit&&now<dodgeUntil){setMsg('',false,'تفاديت طلقته!');renderHUD();return;}if(!hit&&Math.random()<.45)sfx('ric',.35,.9+Math.random()*.3,.08);
   if(hit&&shieldP&&!ep){shieldP=false;setMsg('',false,'درعك صد الطلقة!');renderHUD();return;}if(hit&&shieldP&&ep){shieldP=false;}
-  if(hit){const head=Math.random()<.12;const dmg=Math.round((head?rnd(24,30):rnd(10,15))*(ep?1.25:1));pHP-=dmg;lastDeathHead=head;tookDmg=true;buzz(head?[60,40,90]:55);popDmg(AW/2,AH*.7,'-'+AR(dmg),false,true);
+  if(hit){const head=Math.random()<(foe.head||.12);const dmg=Math.round((head?rnd(24,30):rnd(10,15))*(ep?1.25:1));pHP-=dmg;lastDeathHead=head;tookDmg=true;buzz(head?[60,40,90]:55);popDmg(AW/2,AH*.7,'-'+AR(dmg),false,true);
     $('hurt').style.opacity=save.blood?1:.5;setTimeout(()=>$('hurt').style.opacity=0,220);
     cam.rotation.z=rnd(-.06,.06);splat(head?4:2,save.blood);shake=head?1:.6;try{navigator.vibrate&&navigator.vibrate(head?[60,30,90]:50);}catch(e){}if(pHP<=0)lose();}
   renderHUD();}
-const LEAGUES=[[0,'دوري الفريج'],[1100,'دوري السوق'],[1250,'دوري الديوانية'],[1450,'دوري القصر'],[1700,'دوري المجلس الكبير'],[2000,'دوري الأساطير']];
+const LEAGUES=[[0,'دوري الفريج'],[300,'دوري السوق'],[800,'دوري الديوانية'],[1500,'دوري القصر'],[2400,'دوري المجلس الكبير'],[3500,'دوري الأساطير']];
+const LG_FLOOR=[0,300,800];
+function lgRank(r){const lg=league(r);if(lg>=LEAGUES.length-1)return -1;const a=LEAGUES[lg][0],b=LEAGUES[lg+1][0];return Math.min(2,Math.floor((r-a)/(b-a)*3));}
+function rankTxt(r){const k=lgRank(r);return k<0?'':'الدرجة '+AR(3-k);}
+function lgFull(r){const t=rankTxt(r);return LEAGUES[league(r)][1]+(t?' · '+t:'');}
+function skillK(r){return Math.pow(Math.min(1,Math.max(0,r/3800)),.9);}
 function league(r){let i=0;LEAGUES.forEach((l,j)=>{if(r>=l[0])i=j;});return i;}
 const LG_IMG=['rank_bronze','rank_silver','rank_gold','rank_pearl','rank_swords','rank_legend'];
 function lgBadge(i,cls){return '<img class="lgB'+(i>=5?' legend':'')+(cls?' '+cls:'')+'" src="ui/c/lg'+i+'.webp" alt="'+LEAGUES[i][1]+'">';}
 let lastRes={};
 let pFirst=0;
 function settle(w,k){ST().duels++;const diff=(foe.rating||save.rating)-save.rating;let d;
-  if(w){d=Math.max(8,Math.min(40,Math.round(20+diff/25)));save.streak++;}
-  else{d=-Math.max(8,Math.min(30,Math.round(20-diff/25)));if(k<1)d=Math.round(d*k);save.streak=0;}
-  save.rating=Math.max(0,save.rating+d);save.best=Math.max(save.best,save.rating);
+  const lgNow=league(save.rating);
+  if(w){d=Math.max(15,Math.min(45,Math.round(28+diff/20)));save.streak++;}
+  else{d=-Math.max(10,Math.min(35,Math.round(22-diff/20)));if(lgNow===0)d=Math.round(d*.5);if(k<1)d=Math.round(d*k);save.streak=0;}
+  {const fl=LG_FLOOR.filter(x=>save.best>=x).pop()||0;const nr=Math.max(fl,0,save.rating+d);d=nr-save.rating;save.rating=nr;}save.best=Math.max(save.best,save.rating);save.sbest=Math.max(save.sbest||0,league(save.rating));
   const tag=foe.tag;let gold=0,taken=0;
   if(w){const mult=(1+Math.min(.5,(save.streak-1)*.1))*(tag==='revenge'?2:tag==='nemesis'?1.5:1);gold=Math.round((foe.prize||20)*mult);save.gold+=gold;ST().earned+=gold;
     save.nemesis=save.nemesis.filter(x=>x.name!==foe.name);save.revenge=save.revenge.filter(x=>x.name!==foe.name);}
@@ -2763,6 +2802,8 @@ document.querySelectorAll('#aimSeg button').forEach(b=>b.onclick=async()=>{save.
   if(b.dataset.m==='gyro'&&window.DeviceMotionEvent&&typeof DeviceMotionEvent.requestPermission==='function'){try{await DeviceMotionEvent.requestPermission();}catch(err){}}renderAimSet();});
 $('optFlipV').onchange=e=>{save.flipV=e.target.checked;persist();};$('optFlipH').onchange=e=>{save.flipH=e.target.checked;persist();};
 if(save.aim==='touch'||save.aim==='gyro')save.aim='';if(!save.motionV3){save.motion=true;save.motionV3=1;persist();}
+if(save.title&&!TITLES.some(t=>t[1]===save.title)){const i=OLD_T.indexOf(save.title);save.title=i>=0&&(save.heads||0)>=TITLES[i][0]?TITLES[i][1]:null;}
+if(!save.lgV2){const mp=r=>{const o=[1000,1100,1250,1450,1700,2000,2400],n=[0,300,800,1500,2400,3500,4500];if(r==null||r<=1000)return 0;for(let i=1;i<o.length;i++)if(r<=o[i])return Math.round(n[i-1]+(r-o[i-1])/(o[i]-o[i-1])*(n[i]-n[i-1]));return Math.round(4500+(r-2400)*2);};save.rating=mp(save.rating);save.best=Math.max(save.rating,mp(save.best));(save.nemesis||[]).concat(save.revenge||[]).forEach(f=>{f.rating=mp(f.rating);});save.lgV2=1;persist();}
 if(!save.aimV2){save.flipH=false;save.flipV=false;save.sens=100;save.aimV2=1;persist();}
 $('optSens').oninput=e=>{save.sens=+e.target.value;persist();};
 $('setBtn').onclick=()=>{ui('open');renderAimSet();$('menu').classList.add('hidden');$('settings').classList.remove('hidden');};
@@ -2779,7 +2820,14 @@ function coach(t,sub,hi){const C=$('coach');if(!t){C.classList.add('hidden');doc
 function tutFoe(){const f=makeFoe(1,new Set());Object.assign(f,{name:'المعلّم بو سالم',lvl:1,react:1900,acc:.06,rate:2200,tut:true,quick:true,prize:60,title:null});return f;}
 function easyFoe(){const f=makeFoe(1,new Set());Object.assign(f,{lvl:1,react:1300,acc:.14,rate:1800,easy:true,quick:true});return f;}
 function toolsOpen(){return (save.wins||0)>=2||save.toolsOpen;}
-function unlockToast(img,n,sub){$('unlockI').src=img;$('unlockN').textContent=n;$('unlockS').textContent=sub;const U=$('unlockT');U.classList.remove('hidden','on');void U.offsetWidth;U.classList.add('on');bell();setTimeout(()=>U.classList.add('hidden'),4200);}
+const SEASON_LEN=28*864e5,SEASON_EPOCH=Date.UTC(2026,9,1),SEASON_PEARL=[10,20,35,55,80,120];
+function seasonId(){return Math.floor((Date.now()-SEASON_EPOCH)/SEASON_LEN);}
+function seasonDaysLeft(){return Math.max(1,Math.ceil((SEASON_EPOCH+(seasonId()+1)*SEASON_LEN-Date.now())/864e5));}
+function checkSeason(){const id=seasonId();if(save.sid==null){save.sid=id;save.sbest=league(save.rating||0);persist();return;}
+  if(save.sid>=id)return;const lg=Math.max(save.sbest||0,league(save.rating||0)),pr=SEASON_PEARL[lg]||10;save.pearls+=pr;
+  const top=LEAGUES[3][0];if(save.rating>top)save.rating=top+Math.round((save.rating-top)/2);save.sid=id;save.sbest=league(save.rating);persist();
+  setTimeout(()=>unlockToast('ui/c/i_pearl.webp','انتهى الموسم!','جايزتك '+AR(pr)+' لؤلؤة على '+LEAGUES[lg][1]+(save.rating>=top?'، ونقاطك فوق القصر نزلت للنص':''),'موسم جديد'),1500);}
+function unlockToast(img,n,sub,head){$('unlockH').textContent=head||'انفتح لك!';$('unlockI').src=img;$('unlockN').textContent=n;$('unlockS').textContent=sub;const U=$('unlockT');U.classList.remove('hidden','on');void U.offsetWidth;U.classList.add('on');bell();setTimeout(()=>U.classList.add('hidden'),4200);}
 function checkUnlocks(){if(!save.ul)save.ul={};const u=save.ul;
   if(toolsOpen()&&!u.tools){u.tools=1;persist();setTimeout(()=>unlockToast('ui/c/t_shield.webp','الأدوات','قبل كل مبارزة تختار أداة بالسر، وخصمك بعد'),900);return;}
   if((save.wins||0)>=3&&!u.board){u.board=1;persist();setTimeout(()=>unlockToast('ui/c/i_wanted.webp','لوحة المطلوبين','اقبض على المطلوبين وافتح صندوق الشيخ'),900);return;}
@@ -2807,9 +2855,9 @@ function openMaps(){ui('open');$('maps').classList.remove('hidden');const L=$('m
 document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>{$(b.dataset.close).classList.add('hidden');if(state==='menu')menuStats();});
 function openLeagues(){ui('open');const B=$('lgBody'),cur=league(save.rating),best=league(save.best||save.rating);B.innerHTML='';
   {const nx=LEAGUES[cur+1],pr=nx?Math.max(3,Math.min(100,(save.rating-LEAGUES[cur][0])/(nx[0]-LEAGUES[cur][0])*100)):100;
-   B.appendChild(el('<div class="lgMe kP"><div class="lgMeRib">مركزك</div><div class="lgMeIn">'+lgBadge(cur,'lgHB')+'<div class="lgMeT"><b>'+LEAGUES[cur][1]+'</b>'
+   B.appendChild(el('<div class="lgMe kP"><div class="lgMeRib">مركزك</div><div class="lgMeIn">'+lgBadge(cur,'lgHB')+'<div class="lgMeT"><b>'+LEAGUES[cur][1]+'</b>'+(lgRank(save.rating)>=0?'<div class="rkRow"><em>'+rankTxt(save.rating)+'</em><span class="rkPips">'+[0,1,2].map(i=>'<i'+(i<=lgRank(save.rating)?' class="on"':'')+'></i>').join('')+'</span></div>':'')
     +'<div class="lgMeSt"><span><b><i class="stI tr"></i>'+AR(save.rating)+'</b><small>نقاطك</small></span><span><b>'+AR(Math.max(save.best||0,save.rating))+'</b><small>أعلى نقاط</small></span><span><b>'+AR(save.wins||0)+'</b><small>فوز</small></span></div></div></div>'
-    +'<div class="pb lgPb"><i style="width:'+pr+'%"></i></div><small class="lgMeNx">'+(nx?'باقي '+AR(nx[0]-save.rating)+' نقطة لـ'+nx[1]:'وصلت القمة')+'</small></div>'));}
+    +'<div class="pb lgPb"><i style="width:'+pr+'%"></i></div><small class="lgMeNx">'+(nx?'باقي '+AR(nx[0]-save.rating)+' نقطة لـ'+nx[1]:'وصلت القمة')+'</small><small class="lgSea">الموسم يخلص بعد '+AR(seasonDaysLeft())+' يوم · فوق القصر تنزل نقاطك للنص</small></div>'));}
   B.appendChild(el('<div class="lgSecT"><span>سلّم الدوريات</span></div>'));
   const unl=i=>{const ms=MAPS.filter(m=>m.lg===i);return ms.length?ms.map(m=>'<span class="lgMap" style="background-image:url('+BDROP[m.id].file+')"><em>ساحة '+m.name+'</em></span>').join(''):'<span class="lgMap soon"><em>ساحة جديدة قريباً</em></span>';};
   for(let i=0;i<LEAGUES.length;i++){const nx=LEAGUES[i+1],done=i<cur,isCur=i===cur,lock=i>cur;
@@ -2819,13 +2867,13 @@ function openLeagues(){ui('open');const B=$('lgBody'),cur=league(save.rating),be
       +'<div class="lgU">'+unl(i)+'</div></div>'+(isCur?'<span class="lgTag">أنت هنا</span>':done?'<span class="lgOk">✓</span>':'')+'</div>'));}
   B.appendChild(el('<p class="pgNote">كل دوري يفتح ساحة جديدة. الساحات اللي تفتحها تبقى لك حتى لو نزلت دوري.</p>'));
   $('lgPage').classList.remove('hidden');B.scrollTop=0;}
-const RCOL={common:['#9A7448','عادي'],rare:['#2F7FB5','نادر'],epic:['#8B4BC7','ملحمي'],legend:['#E0A21C','أسطوري']};
+const RCOL={common:['#9A7448','عادي'],rare:['#2F7FB5','نادر'],epic:['#8B4BC7','ملحمي'],legend:['#E0A21C','أسطوري'],myth:['#D6402A','خرافي']};
 function openTitles(){return openProfile(1);}
 function openTitlesOld(){ui('open');const B=$('tlBody');B.innerHTML='';const h=save.heads,nx=TITLES.find(t=>h<t[0]),cur=save.title,ct=TITLES.find(t=>t[1]===cur);
   B.appendChild(el('<div class="tlHero'+(ct?' '+rarity(ct[0]):'')+'"><small>لقبك</small><div class="tlRib"><b>'+(cur||'بدون لقب')+'</b></div>'
     +'<span class="tlHeads"><b>'+AR(h)+'</b> '+HSI+' بكل الأسلحة</span>'
     +(nx?'<div class="tlNext"><span>اللقب الجاي: <b>'+nx[1]+'</b></span><div class="pb lgPb"><i style="width:'+Math.max(3,h/nx[0]*100)+'%"></i></div><small>'+'\u2066'+AR(h)+' / '+AR(nx[0])+'\u2069'+'</small></div>':'<div class="tlNext"><span>جمعت كل الألقاب!</span></div>')+'</div>'));
-  ['common','rare','epic','legend'].forEach(r=>{const list=TITLES.filter(t=>rarity(t[0])===r);const got=list.filter(t=>h>=t[0]).length;
+  ['common','rare','epic','legend','myth'].forEach(r=>{const list=TITLES.filter(t=>rarity(t[0])===r);const got=list.filter(t=>h>=t[0]).length;
     B.appendChild(el('<div class="tlSec" style="--rc:'+RCOL[r][0]+'"><b>'+RCOL[r][1]+'</b><span>'+'\u2066'+AR(got)+' / '+AR(list.length)+'\u2069'+'</span></div>'));
     const g=el('<div class="tlGrid"></div>');
     list.forEach(t=>{const open=h>=t[0],on=cur===t[1];const c=el('<div class="tlCard '+r+(open?'':' lock')+(on?' on':'')+'" style="--rc:'+RCOL[r][0]+'"><b>'+t[1]+'</b><small>'+(open?(on?'مستخدم ✓':'اضغط وتلقّب فيه'):AR(t[0])+' '+HSI)+'</small>'+(open?'':'<span class="lgLk">'+LOCK+'</span>')+'</div>');
@@ -2897,13 +2945,13 @@ function pfMedal(a){ui('open');const l=achLv(a),v=a.v(),nx=a.lv[l],cl=save.mc[a.
   if(l){const on=save.show.includes(a.id);const b=el('<button class="sBtn sGl '+(on?'c':'g')+'">'+(on?'شيله من الواجهة':'اعرضه بالواجهة')+'</button>');b.onclick=()=>{if(on)save.show=save.show.filter(x=>x!==a.id);else{if(save.show.length>=3)save.show.shift();save.show.push(a.id);}persist();ui('equip');pfMedal(a);renderProfile();};A.appendChild(b);}
   X.querySelector('.x').onclick=()=>{ui('tap');M.classList.add('hidden');};M.onclick=e=>{if(e.target===M){ui('tap');M.classList.add('hidden');}};
   M.classList.remove('hidden');}
-function pfTitles(B){const h=save.heads||0,cur=save.title,cls={common:'c',rare:'r',epic:'e',legend:'l'};
+function pfTitles(B){const h=save.heads||0,cur=save.title,cls={common:'c',rare:'r',epic:'e',legend:'l',myth:'m'};
   const ct=TITLES.find(t=>t[1]===cur),nx=TITLES.find(t=>h<t[0]);
-  B.appendChild(el('<div class="pfTlHero"><div class="pfTl '+(ct?cls[rarity(ct[0])]:'c')+'"><b>'+(cur||'بدون لقب')+'</b></div><small>'+(nx?'اللقب الجاي «'+nx[1]+'» بعد '+AR(nx[0]-h)+' '+HSI:'جمعت كل الألقاب!')+'</small></div>'));
-  ['common','rare','epic','legend'].forEach(r=>{const list=TITLES.filter(t=>rarity(t[0])===r),g=list.filter(t=>h>=t[0]).length;
+  B.appendChild(el('<div class="pfTlHero"><div class="pfTl '+(ct?cls[rarity(ct[0])]:'c')+'"><b>'+(cur||'بدون لقب')+'</b></div>'+(ct?'<em class="tlMean">'+TDESC[cur]+'</em>':'')+'<small>'+(nx?'اللقب الجاي «'+nx[1]+'» بعد '+AR(nx[0]-h)+' '+HSI:'جمعت كل الألقاب!')+'</small></div>'));
+  ['common','rare','epic','legend','myth'].forEach(r=>{const list=TITLES.filter(t=>rarity(t[0])===r),g=list.filter(t=>h>=t[0]).length;
     B.appendChild(el('<div class="pfSec"><b>'+RCOL[r][1]+'</b><span>'+AR(g)+' / '+AR(list.length)+'</span></div>'));
     const L=el('<div class="pfList"></div>');
-    list.forEach(t=>{const open=h>=t[0],on=cur===t[1];const c=el('<div class="pfTl '+cls[r]+(open?'':' lock')+(on?' on':'')+'"><b>'+t[1]+'</b><small>'+(on?'مستخدم ✓':open?'اضغط وتلقّب فيه':AR(t[0])+' '+HSI)+'</small></div>');
+    list.forEach(t=>{const open=h>=t[0],on=cur===t[1];const c=el('<div class="pfTl '+cls[r]+(open?'':' lock')+(on?' on':'')+'"><b>'+t[1]+'</b><i class="tm">'+TDESC[t[1]]+'</i><small>'+(on?'مستخدم ✓':open?'اضغط وتلقّب فيه':AR(t[0])+' '+HSI)+'</small></div>');
       if(open)c.onclick=()=>{save.title=on?null:t[1];persist();ui('equip');renderProfile();menuStats();};L.appendChild(c);});
     B.appendChild(L);});}
 function pfAwards(B){const best=league(Math.max(save.best||0,save.rating||0)),s=ST();
@@ -3062,7 +3110,7 @@ document.querySelectorAll('#lobDrawer [data-go]').forEach(b=>b.onclick=e=>{e.sto
   openHub(g,0,'lobby');});
 addEventListener('pointerdown',e=>{if(state==='lobby'&&$('lobDrawer').classList.contains('open')&&!e.target.closest('#lobDrawer,#lobMenuB'))setDrawer(false);});
 function resumeLobby(){fixMap();setTod('noon');state='lobby';$('lobby').classList.remove('hidden');$('hudTop').classList.add('hidden');$('hudBot').classList.add('hidden');camMode='duel';$('mapChipT').textContent=curMap().name;applyMap(save.map);updateBoardDot();showSel();}
-function openLobby(){fixMap();setTod('noon');ac();state='lobby';setDrawer(false);updateBoardDot();$('mapChipT').textContent=curMap().name;if(!save.tut&&!save.ftue&&!(save.wins>0)){tutI=0;setTimeout(showTut,400);}else if(!save.tut){save.tut=1;persist();}checkUnlocks();if(ghutraFly){scene.remove(ghutraFly.o);ghutraFly=null;}eDrawn=false;fall=0;timeScale=1;
+function openLobby(){fixMap();checkSeason();setTod('noon');ac();state='lobby';setDrawer(false);updateBoardDot();$('mapChipT').textContent=curMap().name;if(!save.tut&&!save.ftue&&!(save.wins>0)){tutI=0;setTimeout(showTut,400);}else if(!save.tut){save.tut=1;persist();}checkUnlocks();if(ghutraFly){scene.remove(ghutraFly.o);ghutraFly=null;}eDrawn=false;fall=0;timeScale=1;
   ['menu','endScreen','hub'].forEach(id=>$(id).classList.add('hidden'));$('hudTop').classList.add('hidden');$('hudBot').classList.add('hidden');$('eTag').style.display='none';$('lobby').classList.remove('hidden');
   setMsg('');buildLineup();lobI=1;camX=LGAP;showSel();}
 const EMAX=10,EREG=6*60*1000;
@@ -3083,14 +3131,14 @@ function showSel0(){const it=lineup[lobI];if(!it)return;const you=it.kind==='you
   $('bGold').textContent=AR(save.gold);$('bPearl').textContent=AR(save.pearls);
   const lg=league(save.rating),nx=LEAGUES[lg+1];$('bBadge').innerHTML=lgBadge(you||q?lg:league(f.rating));
   if(you||q){if(q){$('bName').textContent='مبارزة سريعة';$('bSub').innerHTML='خصم عشوائي بمستواك';}
-    else{$('bName').innerHTML=save.title?titleHTML(save.title):LEAGUES[lg][1];$('bSub').innerHTML=save.title?LEAGUES[lg][1]:'المستوى '+AR(save.level);}
+    else{$('bName').innerHTML=save.title?titleHTML(save.title):LEAGUES[lg][1];$('bSub').innerHTML=save.title?lgFull(save.rating):rankTxt(save.rating)||('المستوى '+AR(save.level));}
     $('bLv').textContent=AR(save.level);$('bRat').textContent=AR(save.rating);$('bRatL').textContent='نقاط الدوري';$('bRatI').className='stI tr';
     const pr=nx?Math.round((save.rating-LEAGUES[lg][0])/(nx[0]-LEAGUES[lg][0])*100):100;
     $('bMid').innerHTML='<div class="r"><span class="fit">'+(nx?'باقي '+AR(nx[0]-save.rating)+' نقطة لـ'+nx[1]:'وصلت أعلى دوري')+'</span><span>'+(save.streak>1?'<em class="strk">🔥 '+AR(save.streak)+'</em>':'')+'</span></div><div class="pb"><i style="width:'+Math.max(4,pr)+'%"></i></div>';}
   else{$('bName').textContent=f.name;$('bSub').innerHTML=(f.title?titleHTML(f.title)+'<br>':'')+(f.tag==='revenge'?'سلبته ويبي ثأره (جائزة ×2)':f.tag==='nemesis'?'غلبك قبل (+50%)':LEAGUES[league(f.rating)][1]);
     $('bLv').textContent=AR(f.lvl);$('bRat').textContent=AR(f.prize);$('bRatL').textContent='الجائزة';$('bRatI').className='stI cn';
     const sp=Math.round(Math.max(.08,(950-f.react)/600)*100),ac2=Math.round(Math.max(.08,(f.acc-.28)/.44)*100);
-    const dG=Math.max(8,Math.min(40,Math.round(20+(f.rating-save.rating)/25))),dL=Math.max(8,Math.min(30,Math.round(20-(f.rating-save.rating)/25)));
+    const dG=Math.max(15,Math.min(45,Math.round(28+(f.rating-save.rating)/20)));let dL=Math.max(10,Math.min(35,Math.round(22-(f.rating-save.rating)/20)));if(league(save.rating)===0)dL=Math.round(dL*.5);{const fl=LG_FLOOR.filter(x=>save.best>=x).pop()||0;dL=Math.min(dL,Math.max(0,save.rating-fl));}
     $('bMid').innerHTML='<div class="r"><span style="min-width:40px">السرعة</span><div class="pb red"><i style="width:'+sp+'%"></i></div></div><div class="r"><span style="min-width:40px">الدقة</span><div class="pb red"><i style="width:'+ac2+'%"></i></div></div>'
       +'<div class="r"><span>فوز \u2066+'+AR(dG)+'\u2069 · خسارة \u2066−'+AR(dL)+'\u2069</span>'+(f.tag==='revenge'?'<span style="color:#7A140F">لو غلبك ياخذ '+AR((f.stolen||0)*2)+'</span>':'')+'</div>';}
   renderEnergy();}
@@ -3142,10 +3190,10 @@ function portrait(L,dead,hole,smirk){const sk='#C99064',th=hex(L.thobe==null?0xF
    +(dead?'<path d="M35 51q5-3 10 0" stroke="#F5E2B8" stroke-width="2" fill="none"/>':smirk?'<path d="M34 49q7 5 13-2" stroke="#F5E2B8" stroke-width="2.4" fill="none" stroke-linecap="round"/>':'<path d="M35 50h10" stroke="#F5E2B8" stroke-width="2"/>')
    +(hole?'<circle cx="46" cy="27" r="4.5" fill="#2A1A0E"/><circle cx="46" cy="27" r="2.2" fill="#7A140F"/><path d="M46 31v8" stroke="#9E1D17" stroke-width="2" stroke-linecap="round"/>':'')
    +'</svg>';}
-function renderRes(){const r=lastRes;const lg=league(save.rating),L=lgBadge(lg,'sm')+LEAGUES[lg][1],lg0=league(save.rating-(r.d||0));
+function renderRes(){const r=lastRes;const lg=league(save.rating),L=lgBadge(lg,'sm')+lgFull(save.rating),lg0=league(save.rating-(r.d||0));
   $('resCard').innerHTML='<div><span>النقاط</span><span class="'+(r.d>=0?'up':'dn')+'">\u2066'+AR(save.rating)+' \u2190 '+(r.d>=0?'+':'−')+AR(Math.abs(r.d))+'\u2069</span></div>'
    +(lg>lg0?'<div class="promo up2">'+lgBadge(lg,'lgBig')+'<b>ترقّيت!</b><small>وصلت '+LEAGUES[lg][1]+'</small></div>':'')
-   +(lg<lg0?'<div class="promo dn2">'+lgBadge(lg,'lgBig')+'<b>نزلت دوري</b><small>رجعت '+LEAGUES[lg][1]+'. باقي لك '+AR(LEAGUES[lg0][0]-save.rating)+' نقطة وترجع</small></div>':'')
+   +(lg===lg0&&r.d&&lgRank(save.rating)!==lgRank(save.rating-r.d)?'<div class="rkUp '+(r.d>0?'up':'dn')+'"><span>'+(r.d>0?'طلعت درجة':'نزلت درجة')+'</span><b>'+rankTxt(save.rating)+'</b></div>':'')+(lg<lg0?'<div class="promo dn2">'+lgBadge(lg,'lgBig')+'<b>نزلت دوري</b><small>رجعت '+LEAGUES[lg][1]+'. باقي لك '+AR(LEAGUES[lg0][0]-save.rating)+' نقطة وترجع</small></div>':'')
    +'<div><span>الدوري</span><span class="lgRow">'+L+'</span></div>'+(duelHeads?'<div><span>ضربات الراس</span><span class="up">'+HSI+' \u2066×'+AR(duelHeads)+'\u2069</span></div>':'')
    +(r.w?'<div class="rwRow"><span>الجائزة</span><span class="up">\u2066+'+AR(r.gold)+'\u2069 روبية</span></div>':'')
    +(r.w&&r.streak>1?'<div><span>سلسلة انتصارات</span><span class="up">\u2066'+AR(r.streak)+' (+'+AR(Math.min(50,(r.streak-1)*10))+'%)\u2069</span></div>':'')
