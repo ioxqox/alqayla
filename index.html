@@ -1243,6 +1243,21 @@ button.kW,button.kR,button.kG{min-height:46px}
 .post .pg:before,.post .pg::before{display:none!important;content:none!important}
 .cfLoot>div{background:linear-gradient(#FFF8EC,#F4DFBC)!important;border:3px solid var(--s-bd)!important;border-radius:20px!important;box-shadow:0 5px 0 var(--s-lip)!important;color:var(--s-ink)!important}
 .cfLoot b,.cfLoot small{color:var(--s-ink)!important;text-shadow:none!important}
+.bar.big,.bar,.hnMid .pb,.prog{border:3px solid var(--s-bd)!important;border-radius:999px!important;background:#EAD8BC!important;box-shadow:inset 0 2px 3px rgba(120,70,30,.28),0 3px 0 var(--s-lip)!important;overflow:hidden!important;filter:none!important;padding:0!important}
+.bar>i,.hnMid .pb i,.prog i{margin:0!important;border-radius:999px!important;position:relative;box-shadow:inset 0 -3px 0 rgba(0,0,0,.14)!important}
+.bar>i:after,.hnMid .pb i:after,.prog i:after{content:'';position:absolute;left:6px;right:6px;top:2px;height:32%;border-radius:999px;background:rgba(255,255,255,.45)}
+#pBar>i{background:linear-gradient(#8BE3A2,#3DB565)!important}
+#eBar>i{background:linear-gradient(#FF8E7E,#E0473A)!important}
+.mmBox{background:linear-gradient(#FFF8EC,#F4DFBC)!important;border:3px solid var(--s-bd);border-radius:26px!important;box-shadow:0 6px 0 var(--s-lip),0 14px 30px rgba(60,30,10,.35)!important}
+.mmSil{width:150px!important;height:160px!important}.mmSil img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 4px rgba(90,40,10,.3))}
+.mmSil{margin-bottom:26px}.mmSil .spin{top:auto;bottom:-30px;left:50%;width:28px;height:28px;margin:0 0 0 -14px;border-width:4px;border-color:rgba(232,169,58,.25);border-top-color:var(--s-red)}
+.mmBox b{font-family:'Marhey','Tajawal',sans-serif!important;color:var(--s-ink)!important}.mmBox small{color:var(--s-ink2)!important}
+#mmCancel{min-width:140px;margin-top:6px}
+.pg:before{display:none!important}
+#cover .holS{aspect-ratio:449/560!important}
+.ammo b{width:12px!important;height:27px!important;background:url(ui/c/x/bullet.webp) center bottom/contain no-repeat!important;border:0!important;border-radius:0!important;filter:drop-shadow(0 2px 1px rgba(60,30,10,.45))!important}
+.ammo b.e{background-image:url(ui/c/x/bullet_e.webp)!important;opacity:.55}
+.ammo.shl b{width:14px!important;background-image:url(ui/c/x/shell.webp)!important}.ammo.shl b.e{background-image:url(ui/c/x/bullet_e.webp)!important}
 .trW{width:64px;height:40px;flex:none;display:flex;align-items:center;justify-content:center}.trW img{max-width:100%;max-height:100%;object-fit:contain}
 .bNav{position:absolute;left:0;right:0;bottom:0;z-index:3;pointer-events:auto;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:end;gap:4px;padding:6px 8px calc(6px + var(--sb,0px));background:linear-gradient(#FCEFD9,#F1D9B2);border-top:3px solid var(--s-bd);border-radius:22px 22px 0 0;box-shadow:0 -4px 14px rgba(90,40,10,.22),inset 0 2px 0 #fff}
 .bNav button{min-height:0;height:58px;padding:2px 0 0;background:none!important;box-shadow:none!important;border:0;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;color:var(--s-ink2);font-family:'Tajawal',sans-serif;font-weight:800;font-size:11.5px;position:relative}
@@ -1285,7 +1300,7 @@ button.kW,button.kR,button.kG{min-height:46px}
   <div class="bbar" id="bbar"><div class="lbl"><span>الدربيل: إشارة الحكم</span><span id="bTxt"></span></div><div class="trk"><i id="bFill"></i></div></div>
 </div>
 <div id="tell">الحين!</div>
-<div id="cover"><div class="holS"><img class="hg" src="ui/hol_gun.png?v=1" alt=""><img class="he" src="ui/hol_empty.png?v=1" alt=""><img class="hf" src="ui/hol_full.png?v=1" alt=""></div><b id="coverT">السلاح بالحزام</b><small id="coverS"></small></div>
+<div id="cover"><div class="holS"><img class="hg" src="ui/c/x/hol_gun.webp" alt=""><img class="he" src="ui/c/x/hol_e.webp" alt=""><img class="hf" src="ui/c/x/hol_f.webp" alt=""></div><b id="coverT">السلاح بالحزام</b><small id="coverS"></small></div>
 <div id="xh"><svg id="xhSvg" width="2" height="2"><circle id="xhRing" cx="0" cy="0" r="18" fill="rgba(255,255,255,.12)" stroke="#FFF4DF" stroke-width="2"/><g id="xhTicks" stroke="#FFF4DF" stroke-width="2.5" stroke-linecap="round"></g><circle cx="0" cy="0" r="2.5" fill="#FFF4DF"/></svg></div>
 <div id="taunt"></div><div id="outAmmo"><b>خلصت<br>الطلقات</b><svg viewBox="0 0 24 24" fill="none" stroke="#FFE27A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v13M6 11l6 6 6-6"/><rect x="7" y="19" width="10" height="2" fill="#FFE27A"/></svg><b id="outAmmoT">اضغط<br>تلقيم</b></div><div id="rfx"><svg id="rfxSvg" viewBox="-100 -100 200 200"></svg><b>تلقيم…</b></div><div id="splats"></div><div id="skipEnd">اضغط للتخطي</div>
 <div id="binoc"><span>الحكم</span></div>
@@ -1342,7 +1357,7 @@ button.kW,button.kR,button.kG{min-height:46px}
     <label class="opt"><span>الحساسية</span><input type="range" id="optSens" min="50" max="200" step="10" style="width:150px;accent-color:#62B323"></label></div>
     <div class="sec">عن اللعبة</div>
     <button class="kW" id="optCredits" style="width:100%">شكر وتقدير</button>
-    <p class="setVer">القايلة · النسخة 87</p>
+    <p class="setVer">القايلة · النسخة 88</p>
   </div>
 </div>
 <div class="hidden" id="hub">
@@ -1422,8 +1437,8 @@ button.kW,button.kR,button.kG{min-height:46px}
 <div class="hidden" id="maps"><div class="mapsIn">
   <div class="hubBar"><button class="hubBack" id="mapsBack" aria-label="رجوع"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button><h2>الخرائط</h2></div>
   <div class="mapList" id="mapList"></div></div></div>
-<div id="mm" class="hidden"><div class="mmBox"><div class="mmSil"><svg viewBox="0 0 100 160"><path d="M50 8c-9 0-15 6-15 14 0 4 1 7 3 9-10 3-17 10-17 22v40c0 4 3 6 6 6h4v48h12V105h14v42h12V99h4c3 0 6-2 6-6V53c0-12-7-19-17-22 2-2 3-5 3-9 0-8-6-14-15-14z" fill="#1a120b"/><text x="50" y="30" text-anchor="middle" font-size="22" font-weight="800" fill="#E8B54A">؟</text></svg><i class="spin"></i></div>
-  <b id="mmT">ندوّر لك خصم…</b><small id="mmS">0 ثانية</small><button id="mmCancel">إلغاء</button></div></div>
+<div id="mm" class="hidden"><div class="mmBox"><div class="mmSil"><img src="ui/c/x/mystery.webp" alt=""><i class="spin"></i></div>
+  <b id="mmT">ندوّر لك خصم…</b><small id="mmS">0 ثانية</small><button id="mmCancel" class="kW">إلغاء</button></div></div>
 <div class="screen hidden" id="endScreen">
   <div class="parch" id="parch">
   <div class="pHead"><div class="pPics"><div class="pic" id="picMe"></div><div class="pic" id="picHim"></div></div>
@@ -2026,7 +2041,7 @@ const ray=new THREE.Raycaster(),ndc=new THREE.Vector2();
 
 function setMsg(t,go,sub){const m=$('msg');m.textContent=t||'';m.className=go?'go':'';$('sub').textContent=sub||'';}
 function renderHUD(){{const fw=v=>'calc('+v+'% + '+(v*.2).toFixed(1)+'px)';$('eBar').firstChild.style.width=fw(Math.max(0,eHP/MAXHP*100));$('pBar').firstChild.style.width=fw(Math.max(0,pHP/MAXHP*100));}$('pHPt').textContent='\u2066'+AR(Math.max(0,Math.round(pHP)))+' / '+AR(MAXHP)+'\u2069';$('eHPt').textContent=AR(Math.max(0,Math.round(eHP)));$('runBtn').disabled=!(state==='fight'||state==='ready'||state==='holster');
-  const a=$('ammo');a.innerHTML='';for(let i=0;i<GST().ammo;i++){const b=document.createElement('b');if(i>=ammo)b.className='e';a.appendChild(b);}
+  const a=$('ammo');a.innerHTML='';a.classList.toggle('shl',GW().model==='shot');for(let i=0;i<GST().ammo;i++){const b=document.createElement('b');if(i>=ammo)b.className='e';a.appendChild(b);}
   $('tCoffee').disabled=used.coffee||state!=='fight';$('pShield').classList.toggle('hidden',!shieldP);
   $('reloadBtn').disabled=ammo===GST().ammo||reloading||!(state==='fight');
   $('drawBtn').classList.toggle('hidden',MOT()||drawn||drawPending);
@@ -2540,7 +2555,8 @@ function openLeagues(){ui('open');const B=$('lgBody'),cur=league(save.rating),be
   B.appendChild(el('<p class="pgNote">كل دوري يفتح ساحة جديدة. الساحات اللي تفتحها تبقى لك حتى لو نزلت دوري.</p>'));
   $('lgPage').classList.remove('hidden');B.scrollTop=0;}
 const RCOL={common:['#9A7448','عادي'],rare:['#2F7FB5','نادر'],epic:['#8B4BC7','ملحمي'],legend:['#E0A21C','أسطوري']};
-function openTitles(){ui('open');const B=$('tlBody');B.innerHTML='';const h=save.heads,nx=TITLES.find(t=>h<t[0]),cur=save.title,ct=TITLES.find(t=>t[1]===cur);
+function openTitles(){return openProfile(1);}
+function openTitlesOld(){ui('open');const B=$('tlBody');B.innerHTML='';const h=save.heads,nx=TITLES.find(t=>h<t[0]),cur=save.title,ct=TITLES.find(t=>t[1]===cur);
   B.appendChild(el('<div class="tlHero'+(ct?' '+rarity(ct[0]):'')+'"><small>لقبك</small><div class="tlRib"><b>'+(cur||'بدون لقب')+'</b></div>'
     +'<span class="tlHeads"><b>'+AR(h)+'</b> ضربة راس بكل الأسلحة</span>'
     +(nx?'<div class="tlNext"><span>اللقب الجاي: <b>'+nx[1]+'</b></span><div class="pb lgPb"><i style="width:'+Math.max(3,h/nx[0]*100)+'%"></i></div><small>'+'\u2066'+AR(h)+' / '+AR(nx[0])+'\u2069'+'</small></div>':'<div class="tlNext"><span>جمعت كل الألقاب!</span></div>')+'</div>'));
