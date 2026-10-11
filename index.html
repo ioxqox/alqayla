@@ -1328,6 +1328,17 @@ button.kW,button.kR,button.kG{min-height:46px}
 @keyframes dmgPop{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}18%{opacity:1;transform:translate(-50%,-70%) scale(1.25)}35%{transform:translate(-50%,-80%) scale(1)}100%{opacity:0;transform:translate(-50%,-170%) scale(.95)}}
 .flyC{position:fixed;width:30px;height:30px;z-index:60;pointer-events:none;animation:flyC .8s cubic-bezier(.5,-.3,.6,1) forwards;filter:drop-shadow(0 2px 2px rgba(90,40,10,.4))}
 @keyframes flyC{0%{transform:translate(0,0) scale(.6);opacity:0}15%{opacity:1;transform:translate(0,-30px) scale(1.15)}100%{transform:translate(var(--dx),var(--dy)) scale(.6);opacity:.2}}
+#coach{position:fixed;left:12px;right:12px;bottom:calc(150px + var(--sb,0px));z-index:34;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:22px;background:linear-gradient(#FFF8EC,#F4DFBC);border:3px solid var(--s-bd);box-shadow:0 5px 0 var(--s-lip),0 10px 24px rgba(60,30,10,.35);pointer-events:none}
+#coach.hidden{display:none}#coach.pop{animation:cPop .45s cubic-bezier(.2,1.5,.4,1)}
+#coach img{width:46px;height:46px;flex:none;object-fit:contain}
+#coach b{display:block;font-family:'Marhey','Tajawal',sans-serif;font-size:19px;color:var(--s-ink)}#coach span{display:block;font-size:13.5px;font-weight:700;color:var(--s-ink2);line-height:1.45}
+@keyframes cPop{0%{transform:translateY(20px) scale(.9);opacity:0}100%{transform:none;opacity:1}}
+.coachHi{animation:hiP 1s ease-in-out infinite!important}
+@keyframes hiP{0%,100%{box-shadow:0 0 0 0 rgba(255,210,90,0)}50%{box-shadow:0 0 0 8px rgba(255,210,90,.55)}}
+#unlockT{position:fixed;left:50%;top:calc(6px + env(safe-area-inset-top,0px));pointer-events:none;z-index:62;width:min(330px,86vw);transform:translateX(-50%);display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:24px;background:linear-gradient(#FFF8EC,#F4DFBC);border:3px solid #E8B54A;box-shadow:0 6px 0 #C79A3A,0 14px 30px rgba(60,30,10,.4)}
+#unlockT.hidden{display:none}#unlockT.on{animation:uIn 4.2s ease forwards}
+#unlockT img{width:62px;height:62px;object-fit:contain;flex:none}#unlockT small{display:block;font-size:12px;font-weight:800;color:#2E8A4E}#unlockT b{display:block;font-family:'Marhey','Tajawal',sans-serif;font-size:22px;color:var(--s-ink)}#unlockT span{display:block;font-size:12.5px;font-weight:700;color:var(--s-ink2);line-height:1.45}
+@keyframes uIn{0%{opacity:0;transform:translateX(-50%) scale(.7)}8%{opacity:1;transform:translateX(-50%) scale(1.06)}12%{transform:translateX(-50%) scale(1)}88%{opacity:1;transform:translateX(-50%)}100%{opacity:0;transform:translateX(-50%) translateY(-20px)}}
 .trW{width:64px;height:40px;flex:none;display:flex;align-items:center;justify-content:center}.trW img{max-width:100%;max-height:100%;object-fit:contain}
 .bNav{position:absolute;left:0;right:0;bottom:0;z-index:3;pointer-events:auto;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:end;gap:4px;padding:6px 8px calc(6px + var(--sb,0px));background:linear-gradient(#FCEFD9,#F1D9B2);border-top:3px solid var(--s-bd);border-radius:22px 22px 0 0;box-shadow:0 -4px 14px rgba(90,40,10,.22),inset 0 2px 0 #fff}
 .bNav button{min-height:0;height:58px;padding:2px 0 0;background:none!important;box-shadow:none!important;border:0;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;color:var(--s-ink2);font-family:'Tajawal',sans-serif;font-weight:800;font-size:11.5px;position:relative}
@@ -1376,6 +1387,8 @@ button.kW,button.kR,button.kG{min-height:46px}
 <div id="binoc"><span>الحكم</span></div>
 <div id="msg"></div><div id="sub"></div>
 <div id="flashFx"></div>
+<div id="coach" class="hidden"><img src="ui/c/i_profile.webp" alt=""><div><b id="coachT"></b><span id="coachS"></span></div></div>
+<div id="unlockT" class="hidden"><img id="unlockI" src="" alt=""><div><small>انفتح لك!</small><b id="unlockN"></b><span id="unlockS"></span></div></div>
 <div id="hsStamp"><img class="hsPow" src="ui/c/x/pow.webp" alt=""><img class="hsI2" src="ui/c/x/hs.webp" alt=""><b>ضربة راس!</b><img class="hsStars" src="ui/c/x/stars3.webp" alt=""></div>
 <div class="hud bottom hidden" id="hudBot">
   <button id="drawBtn" class="kR">اسحب</button>
@@ -1430,7 +1443,7 @@ button.kW,button.kR,button.kG{min-height:46px}
     <label class="opt"><span>الحساسية</span><input type="range" id="optSens" min="50" max="200" step="10" style="width:150px;accent-color:#62B323"></label></div>
     <div class="sec">عن اللعبة</div>
     <button class="kW" id="optCredits" style="width:100%">شكر وتقدير</button>
-    <p class="setVer">القايلة · النسخة 91</p>
+    <p class="setVer">القايلة · النسخة 92</p>
   </div>
 </div>
 <div class="hidden" id="hub">
@@ -2482,7 +2495,9 @@ function startDuel(f){ac();resetDuelCam();eWasDrawn=false;tookDmg=false;misLog=[
   $('bbar').style.display='none';$('tell').style.display='none';
   applyMap(save.map);const MP=curMap();setTod(pickTod());sunSide=MP.id==='souq'||tod==='night'?'none':Math.random()<.5?'player':'enemy';windX=MP.id==='barr'?(Math.random()<.5?-1:1)*rnd(14,26+foe.lvl*2):0;$('wind').style.display=windX?'flex':'none';if(windX){$('windA').style.transform='scaleX('+(windX>0?-1:1)+')';$('windT').textContent=Math.abs(windX)>30?'هوا قوي':Math.abs(windX)>20?'هوا':'نسمة';}pTools=new Set();eTools=pickEnemyTools();shieldP=false;shieldE=eTools.has('shield');drawPending=false;
   showEChips();$('litham').style.display='none';$('hudBot').classList.add('hidden');
-  state='prep';eSwapIn=null;setMsg('تجهّز',false,'');setPh('pick');showEChips();$('prep').classList.remove('hidden');
+  state='prep';eSwapIn=null;setMsg('تجهّز',false,'');
+  if(foe.tut||!toolsOpen()){eTools=new Set();shieldE=false;showEChips();coach(foe.tut?'أول شي: انتظر الإشارة':'الأدوات تنفتح بعد فوزين',foe.tut?(MOT()?'نزّل جوالك، وارفعه بس لما تسمع «اضرب!»':'لا تضغط «اسحب» قبل ما تسمع «اضرب!»'):'هالحين ركّز على السحب والتصويب');setTimeout(()=>{if(state==='prep')afterPrep();},foe.tut?2600:1400);renderHUD();return;}
+  setPh('pick');showEChips();$('prep').classList.remove('hidden');
   renderHUD();}
 function afterPrep(){if(state!=='prep')return;
   if(MOT()){state='holster';$('prep').classList.add('hidden');$('hudBot').classList.remove('hidden');upSince=downSince=0;setMsg('',false,'');renderHUD();return;}
@@ -2497,7 +2512,7 @@ function beginReady(force){if(state!=='prep'&&state!=='holster')return;state='re
   if(pTools.has('binoc')){sub='راقب الحكم بالدربيل، بتشوف يده قبل الإشارة';}
   setMsg('استعد…',false,sub);
   cdStart=performance.now();cdShown=-1;signalAt=cdStart+2400+rnd(500,2600);renderHUD();}
-function signal(){state='fight';pFirst=0;bell();shot(.0001);const now=performance.now();
+function signal(){if(foe.tut)coach('الحين!',MOT()?'ارفع جوالك بسرعة':'اضغط «اسحب» بسرعة',MOT()?null:'drawBtn');state='fight';pFirst=0;bell();shot(.0001);const now=performance.now();
   eNextShot=now+eDelay;eDrawAt=now+eDelay-250;eAmmo=6;eReloadUntil=0;let sub='';
   if(pTools.has('smoke')||eTools.has('smoke')){smokeUntil=now+5000;sub='الدخان غطّى المكان';}
   if(pTools.has('mirror')){if(sunSide!=='player')sub='الشمس مو وراك، مرآتك ما نفعت';else if(eTools.has('litham'))sub='لثامه صد مرآتك';else{blindUntil=now+(curMap().id==='sahel'?1800:900)*(tod==='maghrib'?1.5:1);sub='عميته بالمرآة!';}}
@@ -2515,8 +2530,8 @@ function signal(){state='fight';pFirst=0;bell();shot(.0001);const now=performanc
 let flashTok=0,flashO=0;function flashFx(o,ms){const f=$('flashFx');if(flashO>o&&performance.now()<flashTok)return;flashO=o;flashTok=performance.now()+ms;f.style.transition='none';f.style.opacity=o;const tk=flashTok;setTimeout(()=>{if(tk!==flashTok)return;f.style.transition='opacity '+(ms/1000)+'s';f.style.opacity=0;flashO=0;},Math.min(ms,400));}
 function tryDodge(){const now=performance.now();if(state!=='fight'||!pDodge)return;if(now<flashP){setMsg('',false,'القنبلة عمتك، ما تقدر تراوغ');return;}pDodge=false;dodgeUntil=now+650;noShootUntil=now+450;whoosh();buzz(25);
   cam.position.x+=.18;setTimeout(()=>{cam.position.x-=.18;},260);setMsg('',false,'راوغت!');$('tDodge').disabled=true;renderHUD();}
-function foul(){state='end';settle(false,1);$('prep').classList.add('hidden');setMsg('استعجلت!',false,'سحبت قبل الإشارة');drum(.6);setTimeout(()=>finish(false,'سحبت قبل الإشارة، وهذا عيب بالمبارزة. اصبر لين تسمع "اضرب!".'),1200);}
-function doDraw(){if(state==='ready'){foul();return;}if(state==='fight'&&!drawn&&!drawPending){if(!sfx('draw',.9))whoosh();recenter();if(GW().model==='pistol')pTwirl=Math.PI*2;setTimeout(click,330);}if(state!=='fight'||drawn||drawPending)return;const dl=gStat(save.gun).draw+(shieldP||pTools.has('shield')?160:0)+(pTools.has('rope')?110:0)+Math.max(0,ropeP-performance.now());if(dl>0){drawPending=true;renderHUD();setTimeout(()=>{drawPending=false;if(state!=='fight')return;drawn=true;click();renderHUD();},dl);}else{drawn=true;click();renderHUD();}}
+function foul(){if(foe.tut){state='prep';drawn=false;coach('استعجلت! نعيدها','اصبر لين يطيح البيرق وتسمع «اضرب!»');setMsg('استعجلت!',false,'');setTimeout(()=>{if(state==='prep')beginReady(true);},1600);return;}state='end';settle(false,1);$('prep').classList.add('hidden');setMsg('استعجلت!',false,'سحبت قبل الإشارة');drum(.6);setTimeout(()=>finish(false,'سحبت قبل الإشارة، وهذا عيب بالمبارزة. اصبر لين تسمع "اضرب!".'),1200);}
+function doDraw(){if(state==='ready'){foul();return;}if(foe.tut&&state==='fight')setTimeout(()=>{if(state==='fight'&&foe.tut)coach('وجّه الدائرة عليه وطلّق',aimMode()==='gyro'?'حرّك جوالك، والدائرة تصير حمرا لما تكون عليه. الراس ضربته أقوى':'اسحب إصبعك على الشاشة، والدائرة تصير حمرا لما تكون عليه');},500);if(state==='fight'&&!drawn&&!drawPending){if(!sfx('draw',.9))whoosh();recenter();if(GW().model==='pistol')pTwirl=Math.PI*2;setTimeout(click,330);}if(state!=='fight'||drawn||drawPending)return;const dl=gStat(save.gun).draw+(shieldP||pTools.has('shield')?160:0)+(pTools.has('rope')?110:0)+Math.max(0,ropeP-performance.now());if(dl>0){drawPending=true;renderHUD();setTimeout(()=>{drawPending=false;if(state!=='fight')return;drawn=true;click();renderHUD();},dl);}else{drawn=true;click();renderHUD();}}
 function holster(){if(state==='fight'&&drawn){drawn=false;renderHUD();}}
 
 function popDmg(x,y,t,big,mine){const d=document.createElement('div');d.className='dmg'+(big?' big':'')+(mine?' mine':'');d.textContent=t;d.style.left=x+'px';d.style.top=y+'px';document.body.appendChild(d);setTimeout(()=>d.remove(),800);}
@@ -2616,7 +2631,7 @@ function hsStamp(kill){const S=$('hsStamp');S.className='';void S.offsetWidth;S.
   S.querySelector('b').textContent=kill?'قتلة بالراس!':'ضربة راس!';S.querySelector('.hsI2').src='ui/c/x/'+(kill?'hs_gold':'hs')+'.webp';
   ding(kill);buzz(kill?[20,30,60]:30);clearTimeout(S._t);S._t=setTimeout(()=>S.classList.remove('on','kill'),kill?1500:950);}
 function ding(big){if(!save.sound)return;const a=ac();if(!a)return;const t=a.currentTime;[[1318,0],[1760,.07]].concat(big?[[2349,.14]]:[]).forEach(([f,d])=>{const o=a.createOscillator(),g=a.createGain();o.type='triangle';o.frequency.value=f;g.gain.setValueAtTime(0,t+d);g.gain.linearRampToValueAtTime(.22,t+d+.01);g.gain.exponentialRampToValueAtTime(.001,t+d+.5);o.connect(g);g.connect(fxOut(a));o.start(t+d);o.stop(t+d+.55);});}
-function win(){buzz([30,50,30,50,120]);state='end';$('outAmmo').classList.remove('on');setTimeout(()=>{if(state==='end'&&GW().model==='pistol'){pTwirl=Math.PI*4;whoosh();}setTimeout(()=>{drawn=false;},700);},1100);timeScale=.22;slowUntil=performance.now()+1500;fall=0.0001;sfx('vox_die',.9,voxRate()*.95,.15);sfx('fall',.7,.9,1.1);setMsg('كفو!',true,'');
+function win(){coach(null);if(foe.tut)setTimeout(()=>coach('كفو! أول فوز لك','كل فوز يعطيك روبيات ونقاط ترفع دوريك'),300);buzz([30,50,30,50,120]);state='end';$('outAmmo').classList.remove('on');setTimeout(()=>{if(state==='end'&&GW().model==='pistol'){pTwirl=Math.PI*4;whoosh();}setTimeout(()=>{drawn=false;},700);},1100);timeScale=.22;slowUntil=performance.now()+1500;fall=0.0001;sfx('vox_die',.9,voxRate()*.95,.15);sfx('fall',.7,.9,1.1);setMsg('كفو!',true,'');
   const up=foe.lvl>=save.level;const wasHigher=foe.lvl>save.level;save.wins++;if(up)save.level++;save.kills++;GS().k++;settle(true,1);misEvent('win',{gun:save.gun,map:save.map,clean:!tookDmg,higher:wasHigher});stWin({clean:!tookDmg,higher:wasHigher,tag:foe.tag});const g=lastRes.gold;persist();
   setTimeout(()=>{phrase([0,2,3,4,5,4,7,-1,7],.14,.45);},400);
   setTimeout(()=>finish(true,'طيّحت '+foe.name+' بـ'+GW().name+'.'+(up?' ارتفع مستواك!':'')),2200);}
@@ -2628,7 +2643,7 @@ function endLose(){if(endAnim!=='lose')return;endAnim=null;$('taunt').classList.
   finish(false,foe.name+' كان أسرع منك هالمرة. هاردلك، جرب مرة ثانية.');}
 addEventListener('pointerdown',()=>{if(endAnim==='lose'&&performance.now()-endT>900)endLose();});
 function resetDuelCam(){$('rfx').classList.remove('on');$('outAmmo').classList.remove('on');$('splats').innerHTML='';camMode='duel';cam.userData.lk=null;cam.clearViewOffset();cam.fov=baseFov;cam.updateProjectionMatrix();cam.position.set(0,1.62,0);cam.rotation.set(0,0,0);cam.lookAt(0,1.3,-12);pg.visible=true;endAnim=null;$('taunt').classList.remove('on');$('skipEnd').classList.remove('on');}
-function finish(w,t){persist();renderRes();if(w&&lastRes.gold)setTimeout(()=>coinFly(document.querySelector('.rwRow'),lastRes.gold),650);$('choice').classList.toggle('hidden',!(w&&!foe.quick&&lastRes.tag!=='revenge'));$('againBtn').classList.toggle('hidden',w&&!foe.quick&&lastRes.tag!=='revenge');const notes=snap0?unlockNotes(snap0):[];$('endUnlock').innerHTML=notes.map(x=>'<div>'+x+'</div>').join('');applySkin();$('bbar').style.display='none';$('tell').style.display='none';$('litham').style.display='none';$('prep').classList.add('hidden');$('endTitle').textContent=w?'كفو!':'هاردلك';$('endText').textContent=t;
+function finish(w,t){coach(null);persist();renderRes();if(w)setTimeout(checkUnlocks,1200);if(w&&lastRes.gold)setTimeout(()=>coinFly(document.querySelector('.rwRow'),lastRes.gold),650);$('choice').classList.toggle('hidden',!(w&&!foe.quick&&lastRes.tag!=='revenge'));$('againBtn').classList.toggle('hidden',w&&!foe.quick&&lastRes.tag!=='revenge');const notes=snap0?unlockNotes(snap0):[];$('endUnlock').innerHTML=notes.map(x=>'<div>'+x+'</div>').join('');applySkin();$('bbar').style.display='none';$('tell').style.display='none';$('litham').style.display='none';$('prep').classList.add('hidden');$('endTitle').textContent=w?'كفو!':'هاردلك';$('endText').textContent=t;
   {const me=myLook(),him=foe;const run=lastRes.d!=null&&!w&&/انسحبت/.test(t);
     $('picMe').className='pic'+(w?'':' lose');$('picHim').className='pic'+(w?' lose':'');
     $('picMe').innerHTML=realPortrait(me,'hero',!w&&!run)||portrait(me,!w&&!run,!w&&lastDeathHead,w);$('picHim').innerHTML=realPortrait(him,modelFor(him),w)||portrait(him,w,w&&lastKillHead,!w);
@@ -2705,14 +2720,28 @@ $('optSens').oninput=e=>{save.sens=+e.target.value;persist();};
 $('setBtn').onclick=()=>{ui('open');renderAimSet();$('menu').classList.add('hidden');$('settings').classList.remove('hidden');};
 let setFrom='menu';
 $('setBack').onclick=()=>{$('settings').classList.add('hidden');$('settings').style.zIndex='';if(setFrom==='lobby'){setFrom='menu';return;}$('menu').classList.remove('hidden');menuStats();};
-const TUT=[['1','اصبر للإشارة','الحكم رافع البيرق الأخضر وأنت تسمع العد. إذا سحبت قبل ما ينزّل البيرق وتسمع رنة "اضرب!"، تخسر بالمخالفة.'],
+const TUT_OLD=[['1','اصبر للإشارة','الحكم رافع البيرق الأخضر وأنت تسمع العد. إذا سحبت قبل ما ينزّل البيرق وتسمع رنة "اضرب!"، تخسر بالمخالفة.'],
   ['2','اسحب وطلّق','أول ما تسمع الرنة: اسحب (أو ارفع جوالك)، ووجّه الدائرة على خصمك واضغط. الدائرة تصير حمرا لما تكون عليه، وضربة الراس أقوى بكثير.'],
   ['3','تجهّز صح','قبل كل مبارزة تختار أداتين: الدرع، المرآة، اللثام، المبخرة، الدربيل. كل أداة لها فايدة وثمن، وخصمك يشوف أدواتك.'],
   ['4','ارتقِ بالساحة','كل فوز يرفع نقاطك ودوريك ويعطيك روبيات تطور فيها سلاحك. والخصم اللي تسلبه يرجع يطالب بثأره!']];
+// ---- first-time experience: a guided duel with a teacher, then an easy one, features open one by one ----
+function coach(t,sub,hi){const C=$('coach');if(!t){C.classList.add('hidden');document.querySelectorAll('.coachHi').forEach(e=>e.classList.remove('coachHi'));return;}
+  $('coachT').textContent=t;$('coachS').textContent=sub||'';C.classList.remove('hidden');C.classList.remove('pop');void C.offsetWidth;C.classList.add('pop');
+  document.querySelectorAll('.coachHi').forEach(e=>e.classList.remove('coachHi'));if(hi&&$(hi))$(hi).classList.add('coachHi');}
+function tutFoe(){const f=makeFoe(1,new Set());Object.assign(f,{name:'المعلّم بو سالم',lvl:1,react:1900,acc:.06,rate:2200,tut:true,quick:true,prize:60,title:null});return f;}
+function easyFoe(){const f=makeFoe(1,new Set());Object.assign(f,{lvl:1,react:1300,acc:.14,rate:1800,easy:true,quick:true});return f;}
+function toolsOpen(){return (save.wins||0)>=2||save.toolsOpen;}
+function unlockToast(img,n,sub){$('unlockI').src=img;$('unlockN').textContent=n;$('unlockS').textContent=sub;const U=$('unlockT');U.classList.remove('hidden','on');void U.offsetWidth;U.classList.add('on');bell();setTimeout(()=>U.classList.add('hidden'),4200);}
+function checkUnlocks(){if(!save.ul)save.ul={};const u=save.ul;
+  if(toolsOpen()&&!u.tools){u.tools=1;persist();setTimeout(()=>unlockToast('ui/c/t_shield.webp','الأدوات','قبل كل مبارزة تختار أداة بالسر، وخصمك بعد'),900);return;}
+  if((save.wins||0)>=3&&!u.board){u.board=1;persist();setTimeout(()=>unlockToast('ui/c/i_wanted.webp','لوحة المطلوبين','اقبض على المطلوبين وافتح صندوق الشيخ'),900);return;}
+  if(((save.w[save.gun]||{}).k||0)>=10&&!u.parts){u.parts=1;persist();setTimeout(()=>unlockToast('ui/c/p/tune.webp','تخصيص السلاح','ركّب ماسورة جديدة من شاشة السلاح'),900);}}
+function startTutorial(){save.ftue=1;persist();$('tut').classList.add('hidden');startDuel(tutFoe());}
+const TUT=[['هلا','هلا بك بالقايلة!','مبارزة شعبية على أصولها: تصبر لين الإشارة، تسحب أسرع من خصمك، وتطلّق. خلنا نتعلم مع المعلّم بو سالم.']];
 let tutI=0;function showTut(){$('tut').classList.remove('hidden');const s=TUT[tutI];$('tutStep').textContent=s[0];$('tutT').textContent=s[1];$('tutP').textContent=s[2];
-  $('tutDots').innerHTML=TUT.map((_,i)=>'<i class="'+(i===tutI?'on':'')+'"></i>').join('');$('tutNext').textContent=tutI===TUT.length-1?'يلا نبارز':'التالي';}
+  $('tutDots').innerHTML=TUT.map((_,i)=>'<i class="'+(i===tutI?'on':'')+'"></i>').join('');$('tutNext').textContent='يلا نتعلم';$('tutSkip').textContent='أعرف ألعب';}
 function endTut(){save.tut=1;persist();$('tut').classList.add('hidden');}
-$('tutNext').onclick=()=>{click();if(tutI<TUT.length-1){tutI++;showTut();}else endTut();};$('tutSkip').onclick=endTut;
+$('tutNext').onclick=()=>{click();save.tut=1;startTutorial();};$('tutSkip').onclick=()=>{save.ftue=1;endTut();};
 function mapArt(id){const bd=BDROP[id];if(bd)return '<div class="mArt" style="background-image:url('+bd.file+')"></div>';const sun='<circle cx="300" cy="28" r="16" fill="#FFE27A"/>';
   if(id==='souq')return '<svg viewBox="0 0 360 120" preserveAspectRatio="xMidYMid slice"><rect width="360" height="120" fill="#F2D3A8"/>'+sun+'<rect y="88" width="360" height="32" fill="#CDAE7C"/>'+[0,1,2,3,4,5].map(i=>{const x=i*62,c=['#B3261E','#2C6E8A','#E8B54A','#3E7D3A','#8E3A8A','#B3261E'][i];return '<rect x="'+(x+6)+'" y="40" width="50" height="50" fill="#B98D57"/><path d="M'+x+' 44l31-14 31 14z" fill="'+c+'"/><circle cx="'+(x+20)+'" cy="80" r="7" fill="#C9A043"/><circle cx="'+(x+36)+'" cy="80" r="7" fill="#E07A1E"/>';}).join('')+'<path d="M0 14q90 14 180 0t180 0" stroke="#3A2A1A" fill="none"/>'+[...Array(14)].map((_,i)=>'<path d="M'+(i*26+6)+' 16l6 10 6-10z" fill="'+['#B3261E','#E8B54A','#2C6E8A'][i%3]+'"/>').join('')+'</svg>';
   if(id==='barr')return '<svg viewBox="0 0 360 120" preserveAspectRatio="xMidYMid slice"><rect width="360" height="120" fill="#F7DCA8"/>'+sun+'<path d="M0 80q60-30 130 0t130-6 100 10v36H0z" fill="#E6C48A"/><path d="M0 100q90-24 180 0t180 0v20H0z" fill="#D8B275"/><path d="M40 92l40-28 40 28z" fill="#241C16"/><rect x="40" y="88" width="80" height="12" fill="#241C16"/><g fill="#B9874E"><rect x="230" y="70" width="44" height="18" rx="6"/><circle cx="252" cy="68" r="10"/><rect x="270" y="56" width="8" height="22" transform="rotate(25 274 67)"/><rect x="236" y="86" width="5" height="18"/><rect x="264" y="86" width="5" height="18"/></g><path d="M320 40v60" stroke="#6B4423" stroke-width="3"/><path d="M320 42l26 6-26 8z" fill="#B3261E"/></svg>';
@@ -2985,7 +3014,7 @@ document.querySelectorAll('#lobDrawer [data-go]').forEach(b=>b.onclick=e=>{e.sto
   openHub(g,0,'lobby');});
 addEventListener('pointerdown',e=>{if(state==='lobby'&&$('lobDrawer').classList.contains('open')&&!e.target.closest('#lobDrawer,#lobMenuB'))setDrawer(false);});
 function resumeLobby(){fixMap();setTod('noon');state='lobby';$('lobby').classList.remove('hidden');$('hudTop').classList.add('hidden');$('hudBot').classList.add('hidden');camMode='duel';$('mapChipT').textContent=curMap().name;applyMap(save.map);updateBoardDot();showSel();}
-function openLobby(){fixMap();setTod('noon');ac();state='lobby';setDrawer(false);updateBoardDot();$('mapChipT').textContent=curMap().name;if(!save.tut){tutI=0;setTimeout(showTut,400);}if(ghutraFly){scene.remove(ghutraFly.o);ghutraFly=null;}eDrawn=false;fall=0;timeScale=1;
+function openLobby(){fixMap();setTod('noon');ac();state='lobby';setDrawer(false);updateBoardDot();$('mapChipT').textContent=curMap().name;if(!save.tut&&!save.ftue&&!(save.wins>0)){tutI=0;setTimeout(showTut,400);}else if(!save.tut){save.tut=1;persist();}checkUnlocks();if(ghutraFly){scene.remove(ghutraFly.o);ghutraFly=null;}eDrawn=false;fall=0;timeScale=1;
   ['menu','endScreen','hub'].forEach(id=>$(id).classList.add('hidden'));$('hudTop').classList.add('hidden');$('hudBot').classList.add('hidden');$('eTag').style.display='none';$('lobby').classList.remove('hidden');
   setMsg('');buildLineup();lobI=1;camX=LGAP;showSel();}
 const EMAX=10,EREG=6*60*1000;
@@ -3028,7 +3057,7 @@ $('mmCancel').onclick=()=>{clearInterval(mmT);mmT=null;$('mm').classList.add('hi
 $('lobGo').onclick=()=>{click();const it=lineup[lobI];
   if($('lobGo').dataset.refill){if(save.pearls>=20){save.pearls-=20;save.energy=EMAX;save.energyT=Date.now();persist();bell();showSel();}else{$('bSub').textContent='ما عندك لؤلؤ كافي، انتظر الطاقة ترجع';}return;}
   if(!useEnergy()){renderEnergy();return;}
-  if(it.kind==='foe')startDuel(it.f);else matchmake();};
+  if((save.wins||0)<2){startDuel(easyFoe());return;}if(it.kind==='foe')startDuel(it.f);else matchmake();};
 {let sx=null;renderer.domElement.addEventListener('pointerdown',e=>{if(state==='lobby')sx=e.clientX;});
   addEventListener('pointerup',e=>{if(state==='lobby'&&sx!==null){const dx=e.clientX-sx;
     if(Math.abs(dx)>40)lobMove(dx<0?1:-1);
