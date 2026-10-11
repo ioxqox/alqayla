@@ -1216,6 +1216,19 @@ button.kW,button.kR,button.kG{min-height:46px}
 
 
 /* v85: bottom nav, settings, credits */
+.hubR .tabs button.kW{color:var(--s-ink)!important}
+.hubR .tabs button.kG{color:#fff!important}
+.wChips>div{background:linear-gradient(#FFF9F0,#F5E3C4)!important;border:2px solid #E2C29A!important;border-radius:14px!important;box-shadow:0 3px 0 #D3AF83!important;color:var(--s-ink)!important}
+.wChips>div small{color:var(--s-ink2)!important}.wChips>div b{color:var(--s-ink)!important}
+.selBar{background:linear-gradient(var(--s-cr),var(--s-cr2))!important;border-top:3px solid var(--s-bd)!important;border-radius:22px 22px 0 0!important;box-shadow:0 -4px 14px rgba(90,40,10,.2)!important;color:var(--s-ink)!important}
+.selBar .tx b,.selBar .tx small{color:var(--s-ink)!important;text-shadow:none!important}
+#menu .stats>div{background:linear-gradient(rgba(252,239,217,.94),rgba(244,221,185,.94))!important;border:3px solid var(--s-bd)!important;border-radius:18px!important;box-shadow:0 4px 0 var(--s-lip)!important;color:var(--s-ink)!important;text-shadow:none!important}
+#menu .stats b{color:var(--s-ink)!important}
+.wImg.gen{filter:drop-shadow(0 3px 3px rgba(90,40,10,.3))}
+.cdImg .wImg.gen.long{transform:none!important;width:100%!important}
+#hubShow img.gen.long{width:min(calc(86*var(--vw)),380px)!important}
+.cd.lock .cdImg:has(.wImg.gen:not(.off)){filter:none;opacity:1}
+.trW{width:64px;height:40px;flex:none;display:flex;align-items:center;justify-content:center}.trW img{max-width:100%;max-height:100%;object-fit:contain}
 .bNav{position:absolute;left:0;right:0;bottom:0;z-index:3;pointer-events:auto;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:end;gap:4px;padding:6px 8px calc(6px + var(--sb,0px));background:linear-gradient(#FCEFD9,#F1D9B2);border-top:3px solid var(--s-bd);border-radius:22px 22px 0 0;box-shadow:0 -4px 14px rgba(90,40,10,.22),inset 0 2px 0 #fff}
 .bNav button{min-height:0;height:58px;padding:2px 0 0;background:none!important;box-shadow:none!important;border:0;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;color:var(--s-ink2);font-family:'Tajawal',sans-serif;font-weight:800;font-size:11.5px;position:relative}
 .bNav button img{width:34px;height:34px;object-fit:contain;filter:drop-shadow(0 2px 2px rgba(90,40,10,.3))}
@@ -1314,7 +1327,7 @@ button.kW,button.kR,button.kG{min-height:46px}
     <label class="opt"><span>الحساسية</span><input type="range" id="optSens" min="50" max="200" step="10" style="width:150px;accent-color:#62B323"></label></div>
     <div class="sec">عن اللعبة</div>
     <button class="kW" id="optCredits" style="width:100%">شكر وتقدير</button>
-    <p class="setVer">القايلة · النسخة 85</p>
+    <p class="setVer">القايلة · النسخة 86</p>
   </div>
 </div>
 <div class="hidden" id="hub">
@@ -2041,8 +2054,11 @@ function el(html){const d=document.createElement('div');d.innerHTML=html;return 
 let hubView='shop',hubTab=0,hubGun='fard',trySel=null;
 const LOCK='<img src="ui/c/i_lock.webp" width="14" height="14" style="object-fit:contain;vertical-align:middle;width:auto" alt="">';
 function gunCol(id){const sk=save.wskin[id];if(sk==null||sk==='tier')return hex(TIERS[tierIdx(id)].c);const f=FIN[sk];return f?hex(f.c):'#555';}
+const WGEN={fard:1,naqsh:1,shotgun:1,fitil:1,khams:1,qannas:1,mutaama:1};
+function finIdx(col){col=String(col).toLowerCase();for(let i=0;i<TIERS.length;i++)if(hex(TIERS[i].c).toLowerCase()===col)return i;for(let j=0;j<FIN.length;j++)if(hex(FIN[j].c).toLowerCase()===col)return 6+j;return 0;}
 function gunSVG(model,col,naqsh,wd,wid){const id=wid||(model==='pistol'?(naqsh?'naqsh':'fard'):model==='shot'?'shotgun':'fitil');const long=model!=='pistol';
-  const off=col==='#8a8a8a';return '<img class="wImg'+(long?' long':'')+(off?' off':'')+'" src="ui/w_'+id+'.png?v=1" alt=""'+(off?'':' data-c="'+col+'" data-p="'+(CAMO_P[String(col).toLowerCase()]||'')+'" onload="camoGun(this)"')+'>';}
+  const off=col==='#8a8a8a';if(WGEN[id]&&window.__wgOK!==false)return '<img class="wImg gen'+(long?' long':'')+(off?' off':'')+'" src="ui/c/w/'+id+'_'+(off?0:finIdx(col))+'.webp" alt="">';
+  return '<img class="wImg'+(long?' long':'')+(off?' off':'')+'" src="ui/w_'+id+'.png?v=1" alt=""'+(off?'':' data-c="'+col+'" data-p="'+(CAMO_P[String(col).toLowerCase()]||'')+'" onload="camoGun(this)"')+'>';}
 // full-body "camo" finish: whole weapon in polished metal of the finish colour, engraved swirl/Sadu pattern, darker grip with metal inlay lines
 const _camoC={};
 function _hx(c){const n=parseInt(c.slice(1),16);return [(n>>16&255),(n>>8&255),(n&255)];}
@@ -2188,7 +2204,7 @@ function viewWeapon(L){const id=hubGun,w=WEAPONS[id],own=save.owned.includes(id)
       if(cur){const k=Math.min(S.k/t.k,t.h?S.h/t.h:1);pr=prog(k,1)+'<small>'+AR(S.k)+' من '+AR(t.k)+' قتلة'+(t.h?'، '+AR(S.h)+' من '+AR(t.h)+' راس':'')+'</small>';}
       const req=t.lock?t.lock:(i===0?'البداية':(AR(t.k)+' قتلة'+(t.h?' و'+AR(t.h)+' ضربة راس':'')));
       if(i)trk.appendChild(el('<div class="line"></div>'));
-      trk.appendChild(el('<div class="st '+(done?'done':cur?'cur':'')+'"><span class="dot">'+(done?'✓':AR(i+1))+'</span><span class="sw" style="width:30px;height:30px;background:'+hex(t.c)+'"></span><div class="txt" style="flex:1"><b>'+t.name+'</b><small>'+req+'</small>'+pr+'</div></div>'));});
+      trk.appendChild(el('<div class="st '+(done?'done':cur?'cur':'')+'"><span class="dot">'+(done?'✓':AR(i+1))+'</span><span class="trW">'+gunSVG(w.model,hex(t.c),id==='naqsh',0,id)+'</span><div class="txt" style="flex:1"><b>'+t.name+'</b><small>'+req+'</small>'+pr+'</div></div>'));});
     L.appendChild(trk);
     if(!own)L.appendChild(el('<p class="note">الدرب يبدأ لما تملك السلاح.</p>'));
   }else{
