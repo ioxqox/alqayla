@@ -1518,7 +1518,7 @@ button.kW,button.kR,button.kG{min-height:46px}
     <label class="opt"><span>الحساسية</span><input type="range" id="optSens" min="50" max="200" step="10" style="width:150px;accent-color:#62B323"></label></div>
     <div class="sec">عن اللعبة</div>
     <button class="kW" id="optCredits" style="width:100%">شكر وتقدير</button>
-    <p class="setVer">القايلة · النسخة 95</p>
+    <p class="setVer">القايلة · النسخة 96</p>
   </div>
 </div>
 <div class="hidden" id="hub">
@@ -1995,11 +1995,25 @@ let lobRigs=[];
 // recolour the white cloth of the real model: thobe below the neck, ghutra above it
 function tintHero(R,f){const th=new THREE.Color(f.thobe!=null?f.thobe:0xF4F2EC),sh=new THREE.Color(f.shemagh!=null?f.shemagh:0xF8F8F4),iq=new THREE.Color(f.iqal!=null?f.iqal:0x1C1612);
     R.root.traverse(o=>{if(!o.isMesh)return;const m=o.material.clone();o.material=m;m.normalMap=null;m.roughness=1;
-    const hasN=!!o.geometry.attributes._notint;const bd=R.def.band;m.onBeforeCompile=sh0=>{sh0.uniforms.uBand={value:new THREE.Vector2(bd[0],bd[1])};sh0.uniforms.uTh={value:th};sh0.uniforms.uSh={value:sh};sh0.uniforms.uIq={value:iq};
-      const hasG=!!o.geometry.attributes._ghutra;sh0.vertexShader=sh0.vertexShader.replace('#include <common>','#include <common>\nvarying float vBindY;varying float vBindZ;varying float vG;varying float vN;'+(hasG?'attribute float _ghutra;':'')+(hasN?'attribute float _notint;':'')).replace('#include <begin_vertex>','#include <begin_vertex>\nvBindY=position.y;vBindZ=position.z;vN='+(hasN?'_notint':'0.')+';vG='+(hasG?'_ghutra':'step(158.,position.y)')+';');
-      sh0.fragmentShader=sh0.fragmentShader.replace('#include <common>','#include <common>\nvarying float vBindY;varying float vBindZ;varying float vG;varying float vN;uniform vec2 uBand;uniform vec3 uTh;uniform vec3 uSh;uniform vec3 uIq;')
-        .replace('#include <map_fragment>','#include <map_fragment>\n{vec3 c=diffuseColor.rgb;float mx=max(c.r,max(c.g,c.b)),mn=min(c.r,min(c.g,c.b));float w=smoothstep(.18,.4,mx)*(1.-smoothstep(.27,.4,mx-mn))*(1.-smoothstep(.9,.99,vN));float head=smoothstep(.35,.65,vG);vec3 t=mix(uTh,uSh,head);float l=clamp(dot(c,vec3(.3,.59,.11))*1.12,0.,1.);diffuseColor.rgb=mix(c,t*l,w);float dk=(1.-smoothstep(.2,.45,mx))*(1.-smoothstep(3.6,4.8,abs(vBindY-(uBand.x*vBindZ+uBand.y))))*step(.5,vG);diffuseColor.rgb=mix(diffuseColor.rgb,uSh*.9,dk);}');};
-    m.customProgramCacheKey=()=>'tint6'+(hasN?'n':'');m.needsUpdate=true;});addIqal(R,f.iqal!=null?f.iqal:0x161210);}
+    const hasN=!!o.geometry.attributes._notint;const bd=R.def.band;m.onBeforeCompile=sh0=>{sh0.uniforms.uBand={value:new THREE.Vector2(bd[0],bd[1])};sh0.uniforms.uTh={value:th};sh0.uniforms.uSh={value:sh};sh0.uniforms.uIq={value:iq};sh0.uniforms.uBi={value:new THREE.Color(f.bisht!=null?f.bisht:0)};sh0.uniforms.uBiOn={value:f.bisht!=null?1:0};sh0.uniforms.uBiTr={value:f.trim?1:0};
+      const hasG=!!o.geometry.attributes._ghutra;sh0.vertexShader=sh0.vertexShader.replace('#include <common>','#include <common>\nvarying float vBindY;varying float vBindZ;varying float vBindX;varying float vG;varying float vN;'+(hasG?'attribute float _ghutra;':'')+(hasN?'attribute float _notint;':'')).replace('#include <begin_vertex>','#include <begin_vertex>\nvBindY=position.y;vBindZ=position.z;vBindX=position.x;vN='+(hasN?'_notint':'0.')+';vG='+(hasG?'_ghutra':'step(158.,position.y)')+';');
+      sh0.fragmentShader=sh0.fragmentShader.replace('#include <common>','#include <common>\nvarying float vBindY;varying float vBindZ;varying float vBindX;varying float vG;varying float vN;uniform vec2 uBand;uniform vec3 uTh;uniform vec3 uSh;uniform vec3 uIq;uniform vec3 uBi;uniform float uBiOn;uniform float uBiTr;\n'+bishtGLSL())
+        .replace('#include <map_fragment>','#include <map_fragment>\n{vec3 c=diffuseColor.rgb;float mx=max(c.r,max(c.g,c.b)),mn=min(c.r,min(c.g,c.b));float w=smoothstep(.18,.4,mx)*(1.-smoothstep(.27,.4,mx-mn))*(1.-smoothstep(.9,.99,vN));float head=smoothstep(.35,.65,vG);vec3 t=mix(uTh,uSh,head);float l=clamp(dot(c,vec3(.3,.59,.11))*1.12,0.,1.);diffuseColor.rgb=mix(c,t*l,w);float dk=(1.-smoothstep(.2,.45,mx))*(1.-smoothstep(3.6,4.8,abs(vBindY-(uBand.x*vBindZ+uBand.y))))*step(.5,vG);diffuseColor.rgb=mix(diffuseColor.rgb,uSh*.9,dk);if(uBiOn>.5){vec2 bm=biMask(vec3(vBindX,vBindY,vBindZ),vN,vG);if(bm.x>.5){diffuseColor.rgb=mix(uBi*(.75+.4*l),vec3(.86,.66,.25),uBiTr*bm.y);}}}');};
+    m.customProgramCacheKey=()=>'tint7'+(hasN?'n':'');m.needsUpdate=true;});addIqal(R,f.iqal!=null?f.iqal:0x161210);if(f.bisht!=null)addBisht(R,f.bisht,!!f.trim);}
+// skinned bisht: an inflated copy of the body that follows the skeleton (bind units = cm, +z = front)
+const BISHT_P={inf:1.9,top:149,low:40,gap:5.5,flare:.04};
+function bishtGLSL(){const P=BISHT_P;return 'vec2 biMask(vec3 b,float n,float g){if(n>.97||g>.5||b.y>'+P.top.toFixed(1)+'||b.y<'+P.low.toFixed(1)+')return vec2(0.);float ax=abs(b.x);float ta=((ax-18.)*31.-(b.y-144.)*50.)/3457.;float pa=abs((ax-18.)*(-50.)-(b.y-144.)*31.)/58.8;float onA=step(13.,ax)*(1.-step(11.,pa));if(onA>.5&&ta>.66)return vec2(0.);float slv=onA*(1.-smoothstep(.0,.035,.66-ta));float gp='+P.gap.toFixed(1)+';if(b.z>0.&&ax<gp)return vec2(0.);float edge=(b.z>0.)?(1.-smoothstep(1.2,2.2,ax-gp)):0.;float hem=1.-smoothstep(1.5,3.,b.y-'+P.low.toFixed(1)+');return vec2(1.,max(max(edge,hem),slv));}\n';}
+function addBisht(R,col,trim){const list=[];R.root.traverse(o=>{if(o.isSkinnedMesh)list.push(o);});
+  list.forEach(sm=>{const g=sm.geometry;const hasN=!!g.attributes._notint,hasG=!!g.attributes._ghutra;
+    const m=new THREE.MeshStandardMaterial({color:col,roughness:.82,metalness:0,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:-8,polygonOffsetUnits:-8});
+    m.onBeforeCompile=sh=>{const P=BISHT_P;sh.uniforms.uTrim={value:trim?1:0};
+      sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vB;varying float vN;varying float vG;'+(hasN?'attribute float _notint;':'')+(hasG?'attribute float _ghutra;':''))
+        .replace('#include <begin_vertex>','#include <begin_vertex>\nvB=position;vN='+(hasN?'_notint':'0.')+';vG='+(hasG?'_ghutra':'step(158.,position.y)')+';vec3 nR=normalize(vec3(position.x,0.,position.z-3.)+vec3(0.,0.,.001));vec3 nD=normalize(mix(normalize(objectNormal),nR,smoothstep(112.,96.,position.y)));transformed+=nD*('+P.inf.toFixed(2)+'+max(0.,110.-position.y)*'+P.flare.toFixed(3)+');');
+      sh.fragmentShader=sh.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vB;varying float vN;varying float vG;uniform float uTrim;\n'+bishtGLSL())
+        .replace('#include <map_fragment>','#include <map_fragment>\n{vec2 bm=biMask(vB,vN,vG);if(bm.x<.5)discard;diffuseColor.rgb=mix(diffuseColor.rgb,vec3(.86,.66,.25),uTrim*bm.y);}');};
+    m.customProgramCacheKey=()=>'bisht3'+(hasN?'n':'')+(hasG?'g':'');
+    const b=new THREE.SkinnedMesh(g,m);b.bind(sm.skeleton,sm.bindMatrix);b.frustumCulled=false;b.castShadow=sm.castShadow;b.userData.bishtSk=1;
+    b.position.copy(sm.position);b.quaternion.copy(sm.quaternion);b.scale.copy(sm.scale);sm.parent.add(b);});}
 // a clean double-cord iqal that follows the head bone (fitted to the model's head in bind pose, units = cm)
 function addIqal(R,col){let sm=null;R.root.traverse(o=>{if(o.isSkinnedMesh&&!sm)sm=o;});if(!sm)return;const sk=sm.skeleton;
   const bi=sk.bones.findIndex(b=>/Head$/.test(b.name));if(bi<0)return;const head=sk.bones[bi];
@@ -2011,10 +2025,10 @@ function addIqal(R,col){let sm=null;R.root.traverse(o=>{if(o.isSkinnedMesh&&!sm)
   const holder=new THREE.Group();holder.matrixAutoUpdate=false;holder.matrix.copy(L);ring.scale.set(1,1,1);holder.add(ring);head.add(holder);}
 function fitBisht(G){G.traverse(o=>{if(o.userData.btop){o.visible=false;return;}if(o.userData.bisht){o.scale.x*=.74;o.scale.z*=.62;o.scale.y*=.95;o.position.x*=.74;o.position.z*=.62;o.position.y*=.9;}});}
 function lobHero(G,anim,dark,look,mid){if(!HERO||save.realChar===false)return;
-  G.traverse(o=>{if(o.isMesh&&o.material&&!(look&&o.userData.bisht)){o.material=o.material.clone();o.material.visible=false;}});
+  G.traverse(o=>{if(o.isMesh&&o.material){o.material=o.material.clone();o.material.visible=false;}});
   const R=heroInstance(mid);R.root.userData.hero=1;
   if(dark)R.root.traverse(o=>{if(o.isMesh){o.material=o.material.clone();o.material.color.setHex(0x1a1410);o.material.map=null;o.material.needsUpdate=true;}});
-  if(look){tintHero(R,look);fitBisht(G);}G.add(R.root);R.play(anim,0);R.mix.update(Math.random()*8);if(anim==='laugh')R.A.laugh.timeScale=.8;lobRigs.push(R);}
+  if(look){tintHero(R,look);}G.add(R.root);R.play(anim,0);R.mix.update(Math.random()*8);if(anim==='laugh')R.A.laugh.timeScale=.8;lobRigs.push(R);}
 const _q1=new THREE.Quaternion(),_q2=new THREE.Quaternion(),_v1=new THREE.Vector3(),_Y=new THREE.Vector3(0,1,0);
 function aimBone(b,dir,w){if(!b)return;b.parent.updateMatrixWorld(true);b.parent.getWorldQuaternion(_q1);_q2.setFromUnitVectors(_Y,dir);_q1.invert().multiply(_q2);b.quaternion.slerp(_q1,w);b.updateMatrixWorld(true);}
 const _vD=new THREE.Vector3(),_vA=new THREE.Vector3();
@@ -2055,8 +2069,8 @@ function rigUpdate(dt){refUpdate(dt);if(!eRig)return;const R=eRig,now=performanc
 function buildEnemy(f,real){while(enemy.children.length)enemy.remove(enemy.children[0]);eParts=makeChar(f,enemy);enemy.position.set(0,0,EZ);enemy.rotation.set(0,0,0);eRig=null;
   if(real&&HERO&&save.realChar!==false){
     // keep the simple body as invisible hit boxes; show the real model instead
-    const tinted=true;enemy.traverse(o=>{if(o.isMesh&&o.material&&!(tinted&&o.userData.bisht)){o.material=o.material.clone();o.material.visible=false;}});
-    eRig=heroInstance(modelFor(f));if(tinted){tintHero(eRig,f);fitBisht(enemy);}enemy.add(eRig.root);enemy.add(footShadow());
+    const tinted=true;enemy.traverse(o=>{if(o.isMesh&&o.material){o.material=o.material.clone();o.material.visible=false;}});
+    eRig=heroInstance(modelFor(f));if(tinted){tintHero(eRig,f);}enemy.add(eRig.root);enemy.add(footShadow());
     const g=eParts.gun;g.parent.remove(g);enemy.add(g);g.rotation.set(0,0,0);g.traverse(o=>{if(o.isMesh&&o!==eParts.flash&&o.material)o.material.visible=true;});eParts.flash.material=new THREE.MeshBasicMaterial({color:0xFFE08A});g.visible=false;}}
 
 // ---------- referee ----------
