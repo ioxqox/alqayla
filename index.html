@@ -1443,7 +1443,7 @@ button.kW,button.kR,button.kG{min-height:46px}
     <label class="opt"><span>الحساسية</span><input type="range" id="optSens" min="50" max="200" step="10" style="width:150px;accent-color:#62B323"></label></div>
     <div class="sec">عن اللعبة</div>
     <button class="kW" id="optCredits" style="width:100%">شكر وتقدير</button>
-    <p class="setVer">القايلة · النسخة 92</p>
+    <p class="setVer">القايلة · النسخة 93</p>
   </div>
 </div>
 <div class="hidden" id="hub">
@@ -1627,7 +1627,7 @@ const FOES=[
 let AC=null;
 function ac(){if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)();}catch(e){}if(AC)loadSfx(AC);}if(AC&&AC.state==='suspended')AC.resume();return AC;}
 // ---- recorded sound effects (falls back to the synthesized ones until they load) ----
-const SFX={},SFXN=['shot','bell','ric','load','draw','fall','wind','vox_t3','vox_t4','vox_t6','vox_t7','vox_hit','vox_die','ui_tap','ui_tab','ui_back','ui_open','ui_close','ui_buy','ui_err','ui_equip','ui_toggle'];
+const SFX={},SFXN=['shot','bell','ric','load','draw','fall','wind','vox_t3','vox_t4','vox_t6','vox_t7','vox_hit','vox_die','ui_tap','ui_tab','ui_back','ui_open','ui_close','ui_buy','ui_err','ui_equip','ui_toggle','reveal','dodge','flash','knife','rope','coins'];
 // voiced taunts: TAUNTS index -> clip
 const VOX={2:'vox_t3',3:'vox_t4',5:'vox_t6',6:'vox_t7'};
 function voxRate(){const m=typeof modelFor==='function'?modelFor(foe):'hero';return m==='shanab'?.88:m==='shayeb'?.93:1;}
@@ -2479,7 +2479,7 @@ function botSwap(){eSwapIn=null;const lg=league(foe.rating||0);if(foe.lvl<3)retu
   if(out)eTools.delete(out);if(tCost(eTools)+(TBY[want].cost||1)<=N){eTools.add(want);eSwapIn=want;}else if(out)eTools.add(out);
   shieldE=eTools.has('shield');}
 function setPh(ph){prepPh=ph;const now=performance.now();phEnd=now+PH[ph];prepEnd=phEnd;
-  if(ph==='reveal'){$('eReveal').dataset.shown='';drum(.5);[...eTools].forEach((k,i)=>setTimeout(()=>{if(state==='prep')click();},220*i+260));setTimeout(()=>{if(state==='prep')bell();},220*eTools.size+300);showEChips();$('prep').classList.add('rev');setTimeout(()=>$('prep').classList.remove('rev'),700);}
+  if(ph==='reveal'){$('eReveal').dataset.shown='';sfx('reveal',.85)||drum(.5);[...eTools].forEach((k,i)=>setTimeout(()=>{if(state==='prep')click();},220*i+260));setTimeout(()=>{if(state==='prep')bell();},220*eTools.size+300);showEChips();$('prep').classList.add('rev');setTimeout(()=>$('prep').classList.remove('rev'),700);}
   if(ph==='swap'){swapOut=null;swapDone=false;botSwap();showEChips();}
   renderPrep();}
 function prepNext(){if(state!=='prep')return;if(prepPh==='pick')setPh('reveal');else if(prepPh==='reveal')setPh('swap');else afterPrep();}
@@ -2521,6 +2521,7 @@ function signal(){if(foe.tut)coach('الحين!',MOT()?'ارفع جوالك بس
   if(pTools.has('rope'))sx.push(eTools.has('knife')?'قص حبلك بسكينه':'ربطت يده بالحبل!');
   if(eTools.has('rope'))sx.push(pTools.has('knife')?'قصيت حبله بسكينك':'ربط يدك بالحبل!');
   if(eTools.has('rope')&&!pTools.has('knife'))ropeP=now+700;
+  {const rp=pTools.has('rope')||eTools.has('rope'),kn=(pTools.has('knife')&&!eTools.has('rope'))||(eTools.has('knife')&&!pTools.has('rope'))||(rp&&(pTools.has('knife')||eTools.has('knife'))),fl=pTools.has('flash')||eTools.has('flash');if(rp)sfx('rope',.8);if(kn)sfx('knife',.85,1,rp?.22:0);if(fl)sfx('flash',eTools.has('flash')&&!pTools.has('litham')?.95:.6,1,.05);}
   if(pTools.has('knife')&&!eTools.has('rope')){if(shieldE)sx.push('درعه صد سكينك');else{eHP-=12;popDmg(AW/2,AH*.32,'-'+AR(12),false);sx.push('سكينك صابته!');}noShootUntil=Math.max(noShootUntil,now+300);}
   if(eTools.has('knife')&&!pTools.has('rope')){if(shieldP)sx.push('درعك صد سكينه');else{pHP-=12;popDmg(AW/2,AH*.7,'-'+AR(12),false,true);tookDmg=true;sx.push('رماك بسكين!');}}
   if(pTools.has('flash')){flashFx(.55,350);if(eTools.has('litham'))sx.push('نظارته صدت قنبلتك');else{blindUntil=Math.max(blindUntil,now+1000);flashE=now+1000;sx.push('عميته بالقنبلة الضوئية!');}}
@@ -2528,7 +2529,7 @@ function signal(){if(foe.tut)coach('الحين!',MOT()?'ارفع جوالك بس
   sub=sx.slice(0,2).join(' · ');
   setMsg('اضرب!',true,sub);setTimeout(()=>{if(state==='fight')setMsg('');},sub?1800:700);renderHUD();}
 let flashTok=0,flashO=0;function flashFx(o,ms){const f=$('flashFx');if(flashO>o&&performance.now()<flashTok)return;flashO=o;flashTok=performance.now()+ms;f.style.transition='none';f.style.opacity=o;const tk=flashTok;setTimeout(()=>{if(tk!==flashTok)return;f.style.transition='opacity '+(ms/1000)+'s';f.style.opacity=0;flashO=0;},Math.min(ms,400));}
-function tryDodge(){const now=performance.now();if(state!=='fight'||!pDodge)return;if(now<flashP){setMsg('',false,'القنبلة عمتك، ما تقدر تراوغ');return;}pDodge=false;dodgeUntil=now+650;noShootUntil=now+450;whoosh();buzz(25);
+function tryDodge(){const now=performance.now();if(state!=='fight'||!pDodge)return;if(now<flashP){setMsg('',false,'القنبلة عمتك، ما تقدر تراوغ');return;}pDodge=false;dodgeUntil=now+650;noShootUntil=now+450;sfx('dodge',.9)||whoosh();buzz(25);
   cam.position.x+=.18;setTimeout(()=>{cam.position.x-=.18;},260);setMsg('',false,'راوغت!');$('tDodge').disabled=true;renderHUD();}
 function foul(){if(foe.tut){state='prep';drawn=false;coach('استعجلت! نعيدها','اصبر لين يطيح البيرق وتسمع «اضرب!»');setMsg('استعجلت!',false,'');setTimeout(()=>{if(state==='prep')beginReady(true);},1600);return;}state='end';settle(false,1);$('prep').classList.add('hidden');setMsg('استعجلت!',false,'سحبت قبل الإشارة');drum(.6);setTimeout(()=>finish(false,'سحبت قبل الإشارة، وهذا عيب بالمبارزة. اصبر لين تسمع "اضرب!".'),1200);}
 function doDraw(){if(state==='ready'){foul();return;}if(foe.tut&&state==='fight')setTimeout(()=>{if(state==='fight'&&foe.tut)coach('وجّه الدائرة عليه وطلّق',aimMode()==='gyro'?'حرّك جوالك، والدائرة تصير حمرا لما تكون عليه. الراس ضربته أقوى':'اسحب إصبعك على الشاشة، والدائرة تصير حمرا لما تكون عليه');},500);if(state==='fight'&&!drawn&&!drawPending){if(!sfx('draw',.9))whoosh();recenter();if(GW().model==='pistol')pTwirl=Math.PI*2;setTimeout(click,330);}if(state!=='fight'||drawn||drawPending)return;const dl=gStat(save.gun).draw+(shieldP||pTools.has('shield')?160:0)+(pTools.has('rope')?110:0)+Math.max(0,ropeP-performance.now());if(dl>0){drawPending=true;renderHUD();setTimeout(()=>{drawPending=false;if(state!=='fight')return;drawn=true;click();renderHUD();},dl);}else{drawn=true;click();renderHUD();}}
@@ -2567,7 +2568,7 @@ function discharge(cx,cy,W){const now=performance.now();const gs=GST();if(windX)
   pFlash.visible=true;pFlash.scale.setScalar(W.model==='pistol'?1:1.8);{const mp=pFlash.getWorldPosition(new THREE.Vector3()),fd=cam.getWorldDirection(new THREE.Vector3());mp.addScaledVector(fd,.25);gunSmoke(mp,fd,W.model!=='pistol');}pLight.intensity=W.model==='pistol'?3:5;setTimeout(()=>{pFlash.visible=false;pLight.intensity=0;},W.model==='pistol'?55:90);
   pg.rotation.x=W.model==='pistol'?.22:W.model==='shot'?.4:.5;if(W.model!=='pistol')cam.rotation.z+=rnd(-.03,.03);
   const steady=breathOK&&pTools.has('breath');if(steady){breathOK=false;breathT=0;}const sp=steady?0:gs.spread*(now<smokeUntil&&!pTools.has('binoc')?1.8:1);const n=gs.pel||1;let total=0,anyHead=false,blocked=false,hitCount=0;const pc=pPierce;pPierce=false;
-  if(eDodge&&Math.random()<.55&&now>flashE){const r0=hitAt(cx,cy,n===1);if(r0&&r0.enemy){eDodge=false;enemy.position.x+=.5;setTimeout(()=>{enemy.position.x-=.5;},300);setMsg('',false,'راوغ طلقتك!');renderHUD();return;}}
+  if(eDodge&&Math.random()<.55&&now>flashE){const r0=hitAt(cx,cy,n===1);if(r0&&r0.enemy){eDodge=false;sfx('dodge',.75)||whoosh();enemy.position.x+=.5;setTimeout(()=>{enemy.position.x-=.5;},300);setMsg('',false,'راوغ طلقتك!');renderHUD();return;}}
   for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,rr=Math.sqrt(Math.random())*sp;const px=cx+Math.cos(a)*rr,py=cy+Math.sin(a)*rr;
     const res=hitAt(px,py,n===1);if(!res)continue;
     if(res.enemy){if((shieldE&&!pc)||blocked){if(!blocked){shieldE=false;blocked=true;burst(res.point,12,false);setMsg('',false,'درعه صد طلقتك!');}continue;}if(shieldE&&pc){shieldE=false;}
@@ -2623,9 +2624,9 @@ function runAway(){if(!(state==='fight'||state==='ready'||state==='holster'))ret
 function hitFx(x,y,head){if(timeScale===1){timeScale=.03;slowUntil=performance.now()+(head?95:55);}
   const m=document.createElement('i');m.className='hitX'+(head?' hd':'');m.style.left=x+'px';m.style.top=y+'px';document.body.appendChild(m);setTimeout(()=>m.remove(),380);}
 // reward coins fly up and the number counts up (results screen)
-function coinFly(fromEl,n,kind){if(!fromEl||!n)return;const r=fromEl.getBoundingClientRect();const k=Math.min(10,4+Math.floor(n/40));
+function coinFly(fromEl,n,kind){if(!fromEl||!n)return;const r=fromEl.getBoundingClientRect();const k=Math.min(10,4+Math.floor(n/40));const cs=sfx('coins',.7,1,.78);
   for(let i=0;i<k;i++){const c=document.createElement('img');c.className='flyC';c.src='ui/c/i_'+(kind||'coin')+'.webp';c.style.left=(r.left+r.width*.3+Math.random()*30)+'px';c.style.top=(r.top+r.height/2)+'px';
-    c.style.setProperty('--dx',(AW-60-r.left-r.width*.3)+'px');c.style.setProperty('--dy',(-r.top+24)+'px');c.style.animationDelay=(i*70)+'ms';document.body.appendChild(c);setTimeout(()=>{c.remove();if(i%2===0)click();},800+i*70);}
+    c.style.setProperty('--dx',(AW-60-r.left-r.width*.3)+'px');c.style.setProperty('--dy',(-r.top+24)+'px');c.style.animationDelay=(i*70)+'ms';document.body.appendChild(c);setTimeout(()=>{c.remove();if(i%2===0&&!cs)click();},800+i*70);}
   const sp=fromEl.querySelector('.up');if(sp){const t0=performance.now(),txt=sp.textContent;const step=()=>{const k2=Math.min(1,(performance.now()-t0)/900);sp.textContent='+'+AR(Math.round(n*k2))+' روبية';if(k2<1)requestAnimationFrame(step);else sp.textContent=txt;};step();}}
 function hsStamp(kill){const S=$('hsStamp');S.className='';void S.offsetWidth;S.classList.add('on');if(kill)S.classList.add('kill');
   S.querySelector('b').textContent=kill?'قتلة بالراس!':'ضربة راس!';S.querySelector('.hsI2').src='ui/c/x/'+(kill?'hs_gold':'hs')+'.webp';
@@ -2911,7 +2912,7 @@ function renderBigChest(){const C=$('bdChest');if(!C)return;const p=save.chestP|
       openChest('big',loot,'صندوق الشيخ',()=>{renderBoard();updateBoardDot();});});C.appendChild(b);}}
 function openChest(kind,loot,title,done){const F=$('chestFx');F.className='';F.classList.add(kind==='big'?'big':'small');
   const cb=kind==='big'?'c/x/chest_big':'c/i_chest';$('cfBox').src='ui/'+cb+'.webp';{const pre=new Image();pre.src='ui/'+cb+'_open.webp';}$('cfT').textContent=title;$('cfLoot').innerHTML='';$('cfOk').classList.add('hidden');
-  whoosh();setTimeout(()=>{F.classList.add('open');$('cfBox').src='ui/'+cb+'_open.webp';bell();phrase(kind==='big'?[0,4,7,12]:[0,4,7],.1,.35);
+  whoosh();setTimeout(()=>{F.classList.add('open');$('cfBox').src='ui/'+cb+'_open.webp';bell();phrase(kind==='big'?[0,4,7,12]:[0,4,7],.1,.35);sfx('coins',.6,1,.15);
     $('cfLoot').innerHTML=loot.map((x,i)=>'<div style="animation-delay:'+(i*.18)+'s">'+(x.k==='r'?'<i class="coinB"></i><b>+'+AR(x.n)+'</b><small>روبية</small>':x.k==='p'?'<i class="pearlB"></i><b>+'+AR(x.n)+'</b><small>لؤلؤ</small>':'<span class="cfC">'+clothSVG(x.sl,x.it)+'</span><b>'+x.it.name+'</b><small>'+CLOTHES[x.sl].name+' جديد</small>')+'</div>').join('');
     setTimeout(()=>$('cfOk').classList.remove('hidden'),350+loot.length*180);},kind==='big'?1100:750);
   $('cfOk').onclick=()=>{click();F.className='hidden';if(done)done();};}
