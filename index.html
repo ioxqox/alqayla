@@ -1305,6 +1305,29 @@ button.kW,button.kR,button.kG{min-height:46px}
 .ptCard button{margin-top:auto;width:100%;min-height:34px!important;font-size:14px!important;padding:2px 4px!important}
 .ptCard button .coinB{display:inline-block;width:16px;height:16px;vertical-align:-3px}
 .ptCard button.on:disabled{opacity:1!important;filter:none!important;background:linear-gradient(#ADEB64,var(--s-grn2))!important;color:#fff!important;border-color:var(--s-grnl)!important;box-shadow:0 3px 0 var(--s-grnl)!important}
+#hsStamp{position:fixed;left:50%;top:24%;z-index:35;pointer-events:none;width:210px;height:150px;margin-left:-105px;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transform:scale(.4)}
+#hsStamp.on{animation:hsIn .95s cubic-bezier(.2,1.6,.4,1) forwards}#hsStamp.kill.on{animation:hsIn 1.5s cubic-bezier(.2,1.6,.4,1) forwards}
+#hsStamp .hsPow{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:.95;animation:hsSpin 1.5s linear}
+#hsStamp .hsI2{position:relative;width:72px;height:72px;object-fit:contain;filter:drop-shadow(0 3px 2px rgba(90,40,10,.4))}
+#hsStamp b{position:relative;font-family:'Marhey','Tajawal',sans-serif;font-size:26px;color:#fff;text-shadow:0 3px 0 #9E1D17,0 0 6px rgba(158,29,23,.6);-webkit-text-stroke:1px #9E1D17;margin-top:-6px}
+#hsStamp .hsStars{position:absolute;top:-30px;width:120px;display:none}#hsStamp.kill .hsStars{display:block}
+#hsStamp.kill b{font-size:30px;color:#FFE27A;text-shadow:0 3px 0 #7A4A08,0 0 10px rgba(255,200,80,.8);-webkit-text-stroke:1px #7A4A08}
+@keyframes hsIn{0%{opacity:0;transform:scale(.3) rotate(-12deg)}18%{opacity:1;transform:scale(1.15) rotate(3deg)}30%{transform:scale(1) rotate(0)}80%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.1) translateY(-14px)}}
+@keyframes hsSpin{from{transform:rotate(-10deg) scale(.9)}to{transform:rotate(8deg) scale(1)}}
+@media (prefers-reduced-motion: reduce){#hsStamp.on{animation-duration:.01s;opacity:1;transform:none}}
+.hsI{display:inline-block;width:1.25em;height:1.25em;vertical-align:-.3em;background:url(ui/c/x/hs.webp) center/contain no-repeat;margin:0 .1em}
+.klI{display:inline-block;width:1.25em;height:1.25em;vertical-align:-.3em;background:url(ui/c/x/kl.webp) center/contain no-repeat;margin:0 .1em}
+.hitX{position:fixed;width:26px;height:26px;margin:-13px 0 0 -13px;z-index:30;pointer-events:none;animation:hitX .38s ease-out forwards}
+.hitX:before,.hitX:after{content:'';position:absolute;left:50%;top:50%;width:26px;height:5px;margin:-2.5px 0 0 -13px;border-radius:3px;background:#fff;box-shadow:0 0 0 1.5px rgba(80,30,10,.6)}
+.hitX:before{transform:rotate(45deg)}.hitX:after{transform:rotate(-45deg)}
+.hitX.hd:before,.hitX.hd:after{background:#FF5A4E;box-shadow:0 0 6px rgba(255,90,78,.8)}
+@keyframes hitX{0%{transform:scale(1.5);opacity:1}100%{transform:scale(.9);opacity:0}}
+.dmg{font-family:'Marhey','Tajawal',sans-serif!important;font-size:28px!important;color:#fff!important;-webkit-text-stroke:1px #6B3A14;text-shadow:0 3px 0 #6B3A14!important;animation:dmgPop .85s ease-out forwards!important}
+.dmg.big{font-size:38px!important;color:#FFE27A!important;-webkit-text-stroke:1.5px #9E1D17;text-shadow:0 3px 0 #9E1D17!important}
+.dmg.mine{color:#FF8A80!important}
+@keyframes dmgPop{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}18%{opacity:1;transform:translate(-50%,-70%) scale(1.25)}35%{transform:translate(-50%,-80%) scale(1)}100%{opacity:0;transform:translate(-50%,-170%) scale(.95)}}
+.flyC{position:fixed;width:30px;height:30px;z-index:60;pointer-events:none;animation:flyC .8s cubic-bezier(.5,-.3,.6,1) forwards;filter:drop-shadow(0 2px 2px rgba(90,40,10,.4))}
+@keyframes flyC{0%{transform:translate(0,0) scale(.6);opacity:0}15%{opacity:1;transform:translate(0,-30px) scale(1.15)}100%{transform:translate(var(--dx),var(--dy)) scale(.6);opacity:.2}}
 .trW{width:64px;height:40px;flex:none;display:flex;align-items:center;justify-content:center}.trW img{max-width:100%;max-height:100%;object-fit:contain}
 .bNav{position:absolute;left:0;right:0;bottom:0;z-index:3;pointer-events:auto;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:end;gap:4px;padding:6px 8px calc(6px + var(--sb,0px));background:linear-gradient(#FCEFD9,#F1D9B2);border-top:3px solid var(--s-bd);border-radius:22px 22px 0 0;box-shadow:0 -4px 14px rgba(90,40,10,.22),inset 0 2px 0 #fff}
 .bNav button{min-height:0;height:58px;padding:2px 0 0;background:none!important;box-shadow:none!important;border:0;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;color:var(--s-ink2);font-family:'Tajawal',sans-serif;font-weight:800;font-size:11.5px;position:relative}
@@ -1353,6 +1376,7 @@ button.kW,button.kR,button.kG{min-height:46px}
 <div id="binoc"><span>الحكم</span></div>
 <div id="msg"></div><div id="sub"></div>
 <div id="flashFx"></div>
+<div id="hsStamp"><img class="hsPow" src="ui/c/x/pow.webp" alt=""><img class="hsI2" src="ui/c/x/hs.webp" alt=""><b>ضربة راس!</b><img class="hsStars" src="ui/c/x/stars3.webp" alt=""></div>
 <div class="hud bottom hidden" id="hudBot">
   <button id="drawBtn" class="kR">اسحب</button>
   <div class="row">
@@ -1406,7 +1430,7 @@ button.kW,button.kR,button.kG{min-height:46px}
     <label class="opt"><span>الحساسية</span><input type="range" id="optSens" min="50" max="200" step="10" style="width:150px;accent-color:#62B323"></label></div>
     <div class="sec">عن اللعبة</div>
     <button class="kW" id="optCredits" style="width:100%">شكر وتقدير</button>
-    <p class="setVer">القايلة · النسخة 90</p>
+    <p class="setVer">القايلة · النسخة 91</p>
   </div>
 </div>
 <div class="hidden" id="hub">
@@ -1520,6 +1544,7 @@ let save={mis:[],map:'fareej',energy:null,energyT:0,aim:'',flipV:false,flipH:fal
 try{const r=localStorage.getItem(KEY);if(r)save=Object.assign(save,JSON.parse(r));}catch(e){}
 WID.forEach(id=>{if(!save.w[id])save.w[id]={k:0,h:0};});if(save.fard&&!save.w.fard.k&&!save.w.fard.h){save.w.fard={k:save.fard.k||0,h:save.fard.h||0};}delete save.fard;
 if(!save.owned.includes(save.gun))save.gun='fard';
+const HSI='<i class="hsI" title="ضربة راس" aria-label="ضربة راس"></i>',KLI='<i class="klI" title="قتلة" aria-label="قتلة"></i>';
 const GW=()=>WEAPONS[save.gun],GS=()=>save.w[save.gun];
 // ---- customization parts: each one gives something and takes something; damage never changes ----
 const DRAW_BASE=80;
@@ -2290,7 +2315,7 @@ function viewWeapons(L){$('hubTitle').textContent='الأسلحة';tabs(null);
 function viewWeapon(L){const id=hubGun,w=WEAPONS[id],own=save.owned.includes(id),S=save.w[id],ti=tierIdx(id);$('hubTitle').textContent=w.name;
   const ST=wSpecs(id),cmp=save.gun!==id&&save.owned.includes(save.gun)?wSpecs(save.gun):null;
   const head=el('<div class="wHead"><p>'+w.desc+'</p><div class="wChips">'+['drw','dmg','ammo','acc','rl'].map(k=>{const d=ST[k];return '<div><small>'+d.n+'</small><b>'+d.t+'</b></div>';}).join('')+'</div>'
-    +(own?'<p class="wKills">'+AR(S.k)+' قتلة، '+AR(S.h)+' ضربة راس بهالسلاح</p>':'')+'</div>');
+    +(own?'<p class="wKills">'+AR(S.k)+' '+KLI+' · '+AR(S.h)+' '+HSI+' بهالسلاح</p>':'')+'</div>');
   if(!own&&save.level<w.lvl)head.appendChild(el('<div class="reqBox">'+LOCK+'<span>يفتح بالمستوى '+AR(w.lvl)+'، وسعره '+AR(w.cost)+' روبية. باقي لك '+AR(w.lvl-save.level)+' مستوى.</span></div>'));
   L.appendChild(head);
   {const sb=$('selBar');sb.classList.remove('hidden');let b;
@@ -2304,8 +2329,8 @@ function viewWeapon(L){const id=hubGun,w=WEAPONS[id],own=save.owned.includes(id)
   else if(hubTab===2){
     const trk=el('<div class="trk"></div>');
     TIERS.forEach((t,i)=>{const done=i<=ti&&own,cur=own&&i===ti+1&&!t.lock;let pr='';
-      if(cur){const k=Math.min(S.k/t.k,t.h?S.h/t.h:1);pr=prog(k,1)+'<small>'+AR(S.k)+' من '+AR(t.k)+' قتلة'+(t.h?'، '+AR(S.h)+' من '+AR(t.h)+' راس':'')+'</small>';}
-      const req=t.lock?t.lock:(i===0?'البداية':(AR(t.k)+' قتلة'+(t.h?' و'+AR(t.h)+' ضربة راس':'')));
+      if(cur){const k=Math.min(S.k/t.k,t.h?S.h/t.h:1);pr=prog(k,1)+'<small>'+AR(S.k)+' من '+AR(t.k)+' '+KLI+(t.h?' · '+AR(S.h)+' من '+AR(t.h)+' '+HSI:'')+'</small>';}
+      const req=t.lock?t.lock:(i===0?'البداية':(AR(t.k)+' '+KLI+(t.h?' · '+AR(t.h)+' '+HSI:'')));
       if(i)trk.appendChild(el('<div class="line"></div>'));
       trk.appendChild(el('<div class="st '+(done?'done':cur?'cur':'')+'"><span class="dot">'+(done?'✓':AR(i+1))+'</span><span class="trW">'+gunSVG(w.model,hex(t.c),id==='naqsh',0,id)+'</span><div class="txt" style="flex:1"><b>'+t.name+'</b><small>'+req+'</small>'+pr+'</div></div>'));});
     L.appendChild(trk);
@@ -2317,8 +2342,8 @@ function viewWeapon(L){const id=hubGun,w=WEAPONS[id],own=save.owned.includes(id)
     const g=el('<div class="cgrid"></div>');
     const tile=(col,name,open,on,req,fn,anim)=>{const t=card2(gunSVG(w.model,col,id==='naqsh',0,id),name,{on,lock:!open,ft:open?(on?'مستخدم':'متاح'):req,fc:open?(on?'tier':'own'):''});if(anim)t.classList.add('fin-'+anim);if(open&&own)t.onclick=()=>{click();fn();};return t;};
     g.appendChild(tile(hex(TIERS[ti].c),TIERS[ti].name,true,sk==='tier','',()=>set('tier')));
-    FIN.forEach((f,i)=>g.appendChild(tile(hex(f.c),f.name,save.heads>=f.h,sk===i,AR(f.h)+' راس',()=>set(i),f.anim)));L.appendChild(g);
-    const nx=FIN.find(f=>save.heads<f.h);if(nx)L.appendChild(el('<div class="item"><div class="txt"><b>اللون الجاي: '+nx.name+'</b>'+prog(save.heads,nx.h)+'<small>'+AR(save.heads)+' من '+AR(nx.h)+' ضربة راس</small></div></div>'));
+    FIN.forEach((f,i)=>g.appendChild(tile(hex(f.c),f.name,save.heads>=f.h,sk===i,AR(f.h)+' '+HSI,()=>set(i),f.anim)));L.appendChild(g);
+    const nx=FIN.find(f=>save.heads<f.h);if(nx)L.appendChild(el('<div class="item"><div class="txt"><b>اللون الجاي: '+nx.name+'</b>'+prog(save.heads,nx.h)+'<small>'+AR(save.heads)+' من '+AR(nx.h)+' '+HSI+'</small></div></div>'));
     if(!own)L.appendChild(el('<p class="note">لازم تملك السلاح عشان تلبّسه لون.</p>'));}
   {const prev=save.gun;save.gun=id;applySkin();save.gun=prev;}}
 function partImg(k){return '<img class="ptImg" src="ui/c/p/'+((PARTS[k]&&PARTS[k].img)||'none')+'.webp" alt="">';}
@@ -2360,11 +2385,11 @@ function viewClothes(L){$('hubTitle').textContent='الملابس';tabs(null);
       trk.appendChild(el('<div class="st '+(done?'done':cur?'cur':'')+'"><span class="dot">'+(done?'✓':AR(i+1))+'</span><span style="width:40px;height:40px;flex:none">'+clothSVG(it.slot,it)+'</span><div class="txt" style="flex:1"><b>'+it.name+'</b><small>'+CLOTHES[it.slot].name+'، '+AR(it.t)+' فوز</small>'+(cur?prog(save.wins,it.t):'')+'</div></div>'));});
     L.appendChild(trk);}}
 function renderCareer(){const L=$('carList');L.innerHTML='';
-  L.appendChild(el('<div class="item"><div class="txt"><b>لقبك: '+(save.title?titleHTML(save.title):'بدون لقب')+'</b><small>'+AR(save.heads)+' ضربة راس بكل الأسلحة</small></div></div>'));
+  L.appendChild(el('<div class="item"><div class="txt"><b>لقبك: '+(save.title?titleHTML(save.title):'بدون لقب')+'</b><small>'+AR(save.heads)+' '+HSI+' بكل الأسلحة</small></div></div>'));
   let cur=null,nextShown=false;
   TITLES.forEach(([n,name])=>{const r=rarity(n);if(r!==cur){cur=r;L.appendChild(el('<div class="sec">'+RNAME[r]+'</div>'));}
     const open=save.heads>=n;let pr='';if(!open&&!nextShown){pr=prog(save.heads,n)+'<small>'+AR(save.heads)+' من '+AR(n)+'</small>';nextShown=true;}
-    const it=el('<div class="item'+(open?'':' locked')+'"><div class="txt"><b>'+titleHTML(name)+'</b><small>'+AR(n)+' ضربة راس</small>'+pr+'</div></div>');
+    const it=el('<div class="item'+(open?'':' locked')+'"><div class="txt"><b>'+titleHTML(name)+'</b><small>'+AR(n)+' '+HSI+'</small>'+pr+'</div></div>');
     if(open){const b=document.createElement('button');const on=save.title===name;b.textContent=on?'مستخدم':'استخدم';if(on)b.className='on';b.onclick=()=>{save.title=name;persist();renderCareer();menuStats();};it.appendChild(b);}
     L.appendChild(it);});}
 function snapshot(){return {ti:tierIdx(),fin:FIN.filter(f=>save.heads>=f.h).length,tt:unlockedTitles().length};}
@@ -2536,9 +2561,9 @@ function discharge(cx,cy,W){const now=performance.now();const gs=GST();if(windX)
       const dir=ray.ray.direction.clone();if(save.blood){burst(res.point,head?(n>1?8:22):(n>1?5:12),true,dir);if(n===1||Math.random()<.4)stain(res.point,res.obj);}else burst(res.point,n>1?4:8,false,dir);
       if(head&&!ghutraFly&&eParts.ghutra&&(n===1||Math.random()<.35)){const g=eParts.ghutra;const wp=new THREE.Vector3();g.getWorldPosition(wp);enemy.remove(g);scene.add(g);g.position.copy(wp);ghutraFly={o:g,v:new THREE.Vector3(rnd(-1,1),3.5,-2),s:rnd(4,8)};}}
     else{burst(res.point,n>1?3:10,false);if(n===1&&Math.random()<.6)sfx('ric',.45,.9+Math.random()*.25,.05);}}
-  if(total>0){const dmg=Math.round(total);eHP-=dmg;popDmg(cx,cy,'-'+AR(dmg)+(n>1?' ('+AR(hitCount)+'/'+AR(n)+')':''),anyHead);
+  if(total>0){hitFx(cx,cy,anyHead);const dmg=Math.round(total);eHP-=dmg;popDmg(cx,cy,'-'+AR(dmg)+(n>1?' ('+AR(hitCount)+'/'+AR(n)+')':''),anyHead);
     enemy.rotation.y=rnd(-.2,.2);enemy.position.z-=.08*(n>1?1.6:1);eFlinch=anyHead?1:.55;if(eHP>0&&Math.random()<.55)sfx('vox_hit',.85,voxRate()*(.95+Math.random()*.1),.03);if(eRig&&eHP-0>0&&eRig.cur!=='die'){eRig.A.hit&&(eRig.A.hit.timeScale=1.7);eRig.cur=null;eRig.play('hit',.08);}shake=Math.max(shake,.15);if(anyHead){save.heads++;GS().h++;misEvent('head');}
-    setMsg('',false,anyHead?'ضربة راس!':'');if(eHP<=0){lastKillHead=anyHead;win();}}
+    setMsg('',false,'');if(anyHead)hsStamp(eHP<=0);if(eHP<=0){lastKillHead=anyHead;win();}}
   renderHUD();}
 function hitAt(cx,cy,assist){const r=renderer.domElement.getBoundingClientRect();ndc.set(((cx-r.left)/r.width)*2-1,-((cy-r.top)/r.height)*2+1);ray.setFromCamera(ndc,cam);
   let hits=ray.intersectObjects(enemy.children.concat(env),true);
@@ -2578,6 +2603,19 @@ function settle(w,k){ST().duels++;const diff=(foe.rating||save.rating)-save.rati
   lastRes={w,d,gold,taken,streak:save.streak,tag};persist();}
 function runAway(){if(!(state==='fight'||state==='ready'||state==='holster'))return;state='end';settle(false,.5);setMsg('انحشت!',false,'');drum(.5);
   setTimeout(()=>finish(false,'انسحبت من المبارزة. خسرت نص النقاط بس، وسمعتك… الله يستر.'),900);}
+// headshot stamp: a big, satisfying marker every time you hit the head (gold + stars when it is the killing shot)
+// hit feel: a tiny freeze on impact + an X marker where the bullet landed
+function hitFx(x,y,head){if(timeScale===1){timeScale=.03;slowUntil=performance.now()+(head?95:55);}
+  const m=document.createElement('i');m.className='hitX'+(head?' hd':'');m.style.left=x+'px';m.style.top=y+'px';document.body.appendChild(m);setTimeout(()=>m.remove(),380);}
+// reward coins fly up and the number counts up (results screen)
+function coinFly(fromEl,n,kind){if(!fromEl||!n)return;const r=fromEl.getBoundingClientRect();const k=Math.min(10,4+Math.floor(n/40));
+  for(let i=0;i<k;i++){const c=document.createElement('img');c.className='flyC';c.src='ui/c/i_'+(kind||'coin')+'.webp';c.style.left=(r.left+r.width*.3+Math.random()*30)+'px';c.style.top=(r.top+r.height/2)+'px';
+    c.style.setProperty('--dx',(AW-60-r.left-r.width*.3)+'px');c.style.setProperty('--dy',(-r.top+24)+'px');c.style.animationDelay=(i*70)+'ms';document.body.appendChild(c);setTimeout(()=>{c.remove();if(i%2===0)click();},800+i*70);}
+  const sp=fromEl.querySelector('.up');if(sp){const t0=performance.now(),txt=sp.textContent;const step=()=>{const k2=Math.min(1,(performance.now()-t0)/900);sp.textContent='+'+AR(Math.round(n*k2))+' روبية';if(k2<1)requestAnimationFrame(step);else sp.textContent=txt;};step();}}
+function hsStamp(kill){const S=$('hsStamp');S.className='';void S.offsetWidth;S.classList.add('on');if(kill)S.classList.add('kill');
+  S.querySelector('b').textContent=kill?'قتلة بالراس!':'ضربة راس!';S.querySelector('.hsI2').src='ui/c/x/'+(kill?'hs_gold':'hs')+'.webp';
+  ding(kill);buzz(kill?[20,30,60]:30);clearTimeout(S._t);S._t=setTimeout(()=>S.classList.remove('on','kill'),kill?1500:950);}
+function ding(big){if(!save.sound)return;const a=ac();if(!a)return;const t=a.currentTime;[[1318,0],[1760,.07]].concat(big?[[2349,.14]]:[]).forEach(([f,d])=>{const o=a.createOscillator(),g=a.createGain();o.type='triangle';o.frequency.value=f;g.gain.setValueAtTime(0,t+d);g.gain.linearRampToValueAtTime(.22,t+d+.01);g.gain.exponentialRampToValueAtTime(.001,t+d+.5);o.connect(g);g.connect(fxOut(a));o.start(t+d);o.stop(t+d+.55);});}
 function win(){buzz([30,50,30,50,120]);state='end';$('outAmmo').classList.remove('on');setTimeout(()=>{if(state==='end'&&GW().model==='pistol'){pTwirl=Math.PI*4;whoosh();}setTimeout(()=>{drawn=false;},700);},1100);timeScale=.22;slowUntil=performance.now()+1500;fall=0.0001;sfx('vox_die',.9,voxRate()*.95,.15);sfx('fall',.7,.9,1.1);setMsg('كفو!',true,'');
   const up=foe.lvl>=save.level;const wasHigher=foe.lvl>save.level;save.wins++;if(up)save.level++;save.kills++;GS().k++;settle(true,1);misEvent('win',{gun:save.gun,map:save.map,clean:!tookDmg,higher:wasHigher});stWin({clean:!tookDmg,higher:wasHigher,tag:foe.tag});const g=lastRes.gold;persist();
   setTimeout(()=>{phrase([0,2,3,4,5,4,7,-1,7],.14,.45);},400);
@@ -2590,7 +2628,7 @@ function endLose(){if(endAnim!=='lose')return;endAnim=null;$('taunt').classList.
   finish(false,foe.name+' كان أسرع منك هالمرة. هاردلك، جرب مرة ثانية.');}
 addEventListener('pointerdown',()=>{if(endAnim==='lose'&&performance.now()-endT>900)endLose();});
 function resetDuelCam(){$('rfx').classList.remove('on');$('outAmmo').classList.remove('on');$('splats').innerHTML='';camMode='duel';cam.userData.lk=null;cam.clearViewOffset();cam.fov=baseFov;cam.updateProjectionMatrix();cam.position.set(0,1.62,0);cam.rotation.set(0,0,0);cam.lookAt(0,1.3,-12);pg.visible=true;endAnim=null;$('taunt').classList.remove('on');$('skipEnd').classList.remove('on');}
-function finish(w,t){persist();renderRes();$('choice').classList.toggle('hidden',!(w&&!foe.quick&&lastRes.tag!=='revenge'));$('againBtn').classList.toggle('hidden',w&&!foe.quick&&lastRes.tag!=='revenge');const notes=snap0?unlockNotes(snap0):[];$('endUnlock').innerHTML=notes.map(x=>'<div>'+x+'</div>').join('');applySkin();$('bbar').style.display='none';$('tell').style.display='none';$('litham').style.display='none';$('prep').classList.add('hidden');$('endTitle').textContent=w?'كفو!':'هاردلك';$('endText').textContent=t;
+function finish(w,t){persist();renderRes();if(w&&lastRes.gold)setTimeout(()=>coinFly(document.querySelector('.rwRow'),lastRes.gold),650);$('choice').classList.toggle('hidden',!(w&&!foe.quick&&lastRes.tag!=='revenge'));$('againBtn').classList.toggle('hidden',w&&!foe.quick&&lastRes.tag!=='revenge');const notes=snap0?unlockNotes(snap0):[];$('endUnlock').innerHTML=notes.map(x=>'<div>'+x+'</div>').join('');applySkin();$('bbar').style.display='none';$('tell').style.display='none';$('litham').style.display='none';$('prep').classList.add('hidden');$('endTitle').textContent=w?'كفو!':'هاردلك';$('endText').textContent=t;
   {const me=myLook(),him=foe;const run=lastRes.d!=null&&!w&&/انسحبت/.test(t);
     $('picMe').className='pic'+(w?'':' lose');$('picHim').className='pic'+(w?' lose':'');
     $('picMe').innerHTML=realPortrait(me,'hero',!w&&!run)||portrait(me,!w&&!run,!w&&lastDeathHead,w);$('picHim').innerHTML=realPortrait(him,modelFor(him),w)||portrait(him,w,w&&lastKillHead,!w);
@@ -2708,12 +2746,12 @@ const RCOL={common:['#9A7448','عادي'],rare:['#2F7FB5','نادر'],epic:['#8B
 function openTitles(){return openProfile(1);}
 function openTitlesOld(){ui('open');const B=$('tlBody');B.innerHTML='';const h=save.heads,nx=TITLES.find(t=>h<t[0]),cur=save.title,ct=TITLES.find(t=>t[1]===cur);
   B.appendChild(el('<div class="tlHero'+(ct?' '+rarity(ct[0]):'')+'"><small>لقبك</small><div class="tlRib"><b>'+(cur||'بدون لقب')+'</b></div>'
-    +'<span class="tlHeads"><b>'+AR(h)+'</b> ضربة راس بكل الأسلحة</span>'
+    +'<span class="tlHeads"><b>'+AR(h)+'</b> '+HSI+' بكل الأسلحة</span>'
     +(nx?'<div class="tlNext"><span>اللقب الجاي: <b>'+nx[1]+'</b></span><div class="pb lgPb"><i style="width:'+Math.max(3,h/nx[0]*100)+'%"></i></div><small>'+'\u2066'+AR(h)+' / '+AR(nx[0])+'\u2069'+'</small></div>':'<div class="tlNext"><span>جمعت كل الألقاب!</span></div>')+'</div>'));
   ['common','rare','epic','legend'].forEach(r=>{const list=TITLES.filter(t=>rarity(t[0])===r);const got=list.filter(t=>h>=t[0]).length;
     B.appendChild(el('<div class="tlSec" style="--rc:'+RCOL[r][0]+'"><b>'+RCOL[r][1]+'</b><span>'+'\u2066'+AR(got)+' / '+AR(list.length)+'\u2069'+'</span></div>'));
     const g=el('<div class="tlGrid"></div>');
-    list.forEach(t=>{const open=h>=t[0],on=cur===t[1];const c=el('<div class="tlCard '+r+(open?'':' lock')+(on?' on':'')+'" style="--rc:'+RCOL[r][0]+'"><b>'+t[1]+'</b><small>'+(open?(on?'مستخدم ✓':'اضغط وتلقّب فيه'):AR(t[0])+' ضربة راس')+'</small>'+(open?'':'<span class="lgLk">'+LOCK+'</span>')+'</div>');
+    list.forEach(t=>{const open=h>=t[0],on=cur===t[1];const c=el('<div class="tlCard '+r+(open?'':' lock')+(on?' on':'')+'" style="--rc:'+RCOL[r][0]+'"><b>'+t[1]+'</b><small>'+(open?(on?'مستخدم ✓':'اضغط وتلقّب فيه'):AR(t[0])+' '+HSI)+'</small>'+(open?'':'<span class="lgLk">'+LOCK+'</span>')+'</div>');
       if(open)c.onclick=()=>{save.title=t[1];persist();bell();openTitles();menuStats();};g.appendChild(c);});
     B.appendChild(g);});
   $('tlPage').classList.remove('hidden');}
@@ -2751,7 +2789,7 @@ function renderProfile(){const B=$('pfBody');B.innerHTML='';const me=myLook();co
    +'<div class="pfTitleTag">'+(save.title?esc(save.title):'')+'</div>'
    +'<div class="pfBadges"><div class="pfLv"><b>'+AR(save.level)+'</b></div><div class="pfLg">'+lgBadge(lg)+'<small>'+LEAGUES[lg][1]+'</small></div></div></div></div>'
    +'<div class="pfStats"><div class="pfSt"><img src="ui/c/m_g5.webp" alt=""><span><b>'+AR(save.wins||0)+'</b><small>فوز</small></span></div>'
-   +'<div class="pfSt"><img src="ui/c/m_g0.webp" alt=""><span><b>'+AR(save.heads||0)+'</b><small>راس</small></span></div>'
+   +'<div class="pfSt"><img src="ui/c/x/hs.webp" alt=""><span><b>'+AR(save.heads||0)+'</b><small>راس</small></span></div>'
    +'<div class="pfSt"><img src="ui/c/i_trophy.webp" alt=""><span><b>'+AR(save.rating)+'</b><small>نقاط</small></span></div></div>'
    +'<div class="pfBar"><small>الأوسمة</small><div class="tr"><i style="width:'+Math.max(3,got/60*100)+'%"></i></div><small>⁦'+AR(got)+' / '+AR(60)+'⁩</small></div>'
    +'<div class="pfShow"><small>واجهتك</small><div class="sl">'+[0,1,2].map(i=>{const a=ACH.find(x=>x.id===save.show[i]);const l=a?achLv(a):0;return a&&l?'<span><img src="'+achImg(a,l)+'" alt=""></span>':'<span class="em"></span>';}).join('')+'</div></div></div>');
@@ -2784,11 +2822,11 @@ function pfMedal(a){ui('open');const l=achLv(a),v=a.v(),nx=a.lv[l],cl=save.mc[a.
   M.classList.remove('hidden');}
 function pfTitles(B){const h=save.heads||0,cur=save.title,cls={common:'c',rare:'r',epic:'e',legend:'l'};
   const ct=TITLES.find(t=>t[1]===cur),nx=TITLES.find(t=>h<t[0]);
-  B.appendChild(el('<div class="pfTlHero"><div class="pfTl '+(ct?cls[rarity(ct[0])]:'c')+'"><b>'+(cur||'بدون لقب')+'</b></div><small>'+(nx?'اللقب الجاي «'+nx[1]+'» بعد '+AR(nx[0]-h)+' ضربة راس':'جمعت كل الألقاب!')+'</small></div>'));
+  B.appendChild(el('<div class="pfTlHero"><div class="pfTl '+(ct?cls[rarity(ct[0])]:'c')+'"><b>'+(cur||'بدون لقب')+'</b></div><small>'+(nx?'اللقب الجاي «'+nx[1]+'» بعد '+AR(nx[0]-h)+' '+HSI:'جمعت كل الألقاب!')+'</small></div>'));
   ['common','rare','epic','legend'].forEach(r=>{const list=TITLES.filter(t=>rarity(t[0])===r),g=list.filter(t=>h>=t[0]).length;
     B.appendChild(el('<div class="pfSec"><b>'+RCOL[r][1]+'</b><span>'+AR(g)+' / '+AR(list.length)+'</span></div>'));
     const L=el('<div class="pfList"></div>');
-    list.forEach(t=>{const open=h>=t[0],on=cur===t[1];const c=el('<div class="pfTl '+cls[r]+(open?'':' lock')+(on?' on':'')+'"><b>'+t[1]+'</b><small>'+(on?'مستخدم ✓':open?'اضغط وتلقّب فيه':AR(t[0])+' ضربة راس')+'</small></div>');
+    list.forEach(t=>{const open=h>=t[0],on=cur===t[1];const c=el('<div class="pfTl '+cls[r]+(open?'':' lock')+(on?' on':'')+'"><b>'+t[1]+'</b><small>'+(on?'مستخدم ✓':open?'اضغط وتلقّب فيه':AR(t[0])+' '+HSI)+'</small></div>');
       if(open)c.onclick=()=>{save.title=on?null:t[1];persist();ui('equip');renderProfile();menuStats();};L.appendChild(c);});
     B.appendChild(L);});}
 function pfAwards(B){const best=league(Math.max(save.best||0,save.rating||0)),s=ST();
@@ -3029,7 +3067,7 @@ function renderRes(){const r=lastRes;const lg=league(save.rating),L=lgBadge(lg,'
    +(lg>lg0?'<div class="promo up2">'+lgBadge(lg,'lgBig')+'<b>ترقّيت!</b><small>وصلت '+LEAGUES[lg][1]+'</small></div>':'')
    +(lg<lg0?'<div class="promo dn2">'+lgBadge(lg,'lgBig')+'<b>نزلت دوري</b><small>رجعت '+LEAGUES[lg][1]+'. باقي لك '+AR(LEAGUES[lg0][0]-save.rating)+' نقطة وترجع</small></div>':'')
    +'<div><span>الدوري</span><span class="lgRow">'+L+'</span></div>'
-   +(r.w?'<div><span>الجائزة</span><span class="up">+'+AR(r.gold)+' روبية</span></div>':'')
+   +(r.w?'<div class="rwRow"><span>الجائزة</span><span class="up">+'+AR(r.gold)+' روبية</span></div>':'')
    +(r.w&&r.streak>1?'<div><span>سلسلة انتصارات</span><span class="up">'+AR(r.streak)+' (+'+AR(Math.min(50,(r.streak-1)*10))+'%)</span></div>':'')
    +(r.tag==='revenge'&&r.w?'<div><span>ثأر</span><span class="up">خلصت منه، جائزة مضاعفة</span></div>':'')
    +(r.tag==='nemesis'&&r.w?'<div><span>رديت اعتبارك</span><span class="up">+50% جائزة</span></div>':'')
